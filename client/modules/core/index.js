@@ -1,4 +1,4 @@
-import routes from './routes.jsx';
+import routes from '../core/routes.jsx';
 
 export default {
   routes
