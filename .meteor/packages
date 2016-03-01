@@ -13,10 +13,36 @@ tracker                 # Meteor's client-side reactive programming library
 
 standard-minifier-css   # CSS minifier run for production mode
 standard-minifier-js    # JS minifier run for production mode
-es5-shim                # ECMAScript 5 compatibility for older browsers.
+es5-shim                # ECMAScript 5 compatibility for older browsers
 ecmascript              # Enable ECMAScript2015+ syntax in app code
 
-kadira:flow-router-ssr
 meteortoys:allthings
-kadira:dochead
-twbs:bootstrap
+
+kadira:flow-router-ssr              # A very simple router for meteor
+
+#audit-argument-checks              # Force checking of arguments
+check                               # Check whether a value matches a pattern
+
+accounts-base                       # A user account system
+ian:accounts-ui-bootstrap-3         # Bootstrap-styled accounts-ui with multi-language support
+accounts-password                   # Password support for accounts
+accounts-facebook                   # Login service for Facebook accounts
+accounts-google                     # Login service for Google accounts
+accounts-twitter                    # Login service for Twitter accounts
+
+reywood:publish-composite           # Publish a set of related documents from multiple collections with a reactive join
+aldeed:collection2                  # Automatic validation of insert and update operations on the client and server
+aldeed:autoform                     # Easily create forms with automatic insert and update, and automatic reactive validation
+
+random                              # Random number generator and utilities
+email                               # Send email messages
+
+kadira:dochead                      # Isomorphic way to manipulate document.head for Meteor apps
+twbs:bootstrap                      # The most popular front-end framework for developing responsive, mobile first projects on the web
+
+
+### Potential packages
+#jagi:astronomy                      # Model layer for Meteor
+#jagi:astronomy-slug-behavior        # Slug behavior for Meteor Astronomy
+#jagi:astronomy-timestamp-behavior   # Timestamp behavior for Meteor Astronomy
+#jagi:astronomy-validators           # Validators for Meteor Astronomy
