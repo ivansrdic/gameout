@@ -21,9 +21,13 @@ meteor
 
 
 ## Tutorials
+#### React
+[Modern React with Redux - udemy](https://www.udemy.com/react-redux/learn/#/) ivansrdic93@gmail.com gameouttutoriali
+#### Meteor
 [Meteor learning - community](https://github.com/ericdouglas/Meteor-Learning)<br>
 [Official Meteor React](https://www.meteor.com/tutorials/react/creating-an-app)<br>
-[Intermediate Meteor](https://www.youtube.com/watch?v=BI8IslJHSag&list=PLLnpHn493BHFYZUSK62aVycgcAouqBt7V&ab_channel=LevelUpTuts)<br>
+[Intermediate Meteor - youtube](https://www.youtube.com/watch?v=BI8IslJHSag&list=PLLnpHn493BHFYZUSK62aVycgcAouqBt7V&ab_channel=LevelUpTuts)<br>
+[Meteor development - coursera](https://www.coursera.org/learn/meteor-development/)<br>
 [Meteor optimisations](https://bulletproofmeteor.com/basics/introduction)<br>
 
 
