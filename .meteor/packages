@@ -24,6 +24,7 @@ kadira:flow-router-ssr              # A very simple router for meteor
 #audit-argument-checks              # Force checking of arguments
 check                               # Check whether a value matches a pattern
 
+service-configuration               # Programatically configure services
 accounts-base                       # A user account system
 ian:accounts-ui-bootstrap-3         # Bootstrap-styled accounts-ui with multi-language support
 accounts-password                   # Password support for accounts
