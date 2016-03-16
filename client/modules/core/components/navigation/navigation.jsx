@@ -13,6 +13,8 @@ const Navigation = () => (
     <Navbar.Collapse>
       <Nav>
         <NavItem href="/">Home</NavItem>
+        <NavItem href="/how-it-works">How it works</NavItem>
+        <NavItem href="/about">About</NavItem>
       </Nav>
       <Nav pullRight id="accounts-ui-container" style={{marginRight: 0}}>
         <AccountsUIWrapper />
