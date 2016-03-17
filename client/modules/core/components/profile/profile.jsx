@@ -9,7 +9,7 @@ class EditInfo extends Component {
           <Col md={12}>
             <Panel>
               <Col md={8} mdOffset={2}>
-                <h1 className="text-center">Hello, {Meteor.user().username}</h1>
+                <h1 className="text-center">Hello, {Meteor.user().profile.name}</h1>
 
                 <p>User data</p>
               </Col>

@@ -2,3 +2,13 @@
   display: flex;
   justify-content: center;
 }
+
+
+.social-buttons {
+  margin: 0 auto 20px auto;
+  max-width: 250px;
+}
+
+.social-buttons .row {
+  margin-bottom: 10px;
+}

@@ -1,31 +1,51 @@
 export default {
-  register(username, email, password) {
+  register(email, password) {
     Accounts.createUser({
-      username: username,
       email: email,
       password: password
     }, function(err) {
-      if(err) {
-        Session.set('auth-error', err.message);
-      } else {
-        FlowRouter.go('/edit-info');
-      }
+      redirectOrSetError(err, '/profile');
     });
   },
 
   login(username, password) {
     Meteor.loginWithPassword(username, password, function(err) {
-      if(err) {
-        Session.set('auth-error', err.message);
-      } else {
-        FlowRouter.go('/profile');
-      }
+      redirectOrSetError(err, '/profile');
     });
   },
 
   logout() {
-    Meteor.logout(function() {
-      FlowRouter.go('/');
+    Meteor.logout(function(err) {
+      redirectOrSetError(err, '/')
     });
+  },
+
+  loginWithFacebook() {
+    Meteor.loginWithFacebook({
+        requestPermissions: [
+          'public_profile'
+          ]
+      }, function(err) {
+        redirectOrSetError(err, '/profile');
+      }
+    );
+  },
+  loginWithGoogle() {
+    Meteor.loginWithGoogle(function(err) {
+      redirectOrSetError(err, '/profile');
+    });
+  },
+  loginWithTwitter() {
+    Meteor.loginWithTwitter(function(err) {
+      redirectOrSetError(err, '/profile');
+    });
+  }
+}
+
+function redirectOrSetError(err, location) {
+  if(err) {
+    Session.set('auth-error', err.reason || 'Unknown error');
+  } else {
+    FlowRouter.goOrRefresh(location);
   }
 }

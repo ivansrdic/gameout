@@ -54,12 +54,9 @@ export default function (injectDeps, {FlowRouter}) {
   FlowRouter.route('/profile', {
     name: 'profile',
 
-    action() {
-      if(!Meteor.user()) {
-        Session.set('auth-error', 'You need to log in first.');
-        FlowRouter.go('sign-in');
-        return;
-      }
+    action(params) {
+      if(!checkUserAuth()) return;
+
       mount(PublicLayoutCtx, {
         content: () => (<Profile />)
       });
@@ -70,11 +67,7 @@ export default function (injectDeps, {FlowRouter}) {
     name: 'edit-info',
 
     action() {
-      if(!Meteor.user()) {
-        FlowRouter.go('sign-in');
-        Session.set('auth-error', 'You need to log in first.');
-        return;
-      }
+      if(!checkUserAuth()) return;
       mount(PublicLayoutCtx, {
         content: () => (<EditInfo />)
       });
@@ -85,14 +78,19 @@ export default function (injectDeps, {FlowRouter}) {
     name: 'customize-character',
 
     action() {
-      if(!Meteor.user()) {
-        FlowRouter.go('sign-in');
-        Session.set('auth-error', 'You need to log in first.');
-        return;
-      }
+      if(!checkUserAuth()) return;
       mount(PublicLayoutCtx, {
         content: () => (<CustomizeCharacter />)
       });
     }
   });
+}
+
+function checkUserAuth() {
+  if(!Meteor.user()) {
+    FlowRouter.go('sign-in');
+    Session.set('auth-error', 'You need to log in first.');
+    return false;
+  }
+  return true;
 }

@@ -3,7 +3,9 @@ import SignInComponent from '../../components/profile/sign-in.jsx';
 
 function composer(props, onData) {
   const authError = Session.get('auth-error');
-  onData(null, {authError});
+  let childProps = {};
+  if(authError) childProps.authError = authError;
+  onData(null, childProps);
 }
 
 const SignInContainer = composeWithTracker(composer)(SignInComponent);

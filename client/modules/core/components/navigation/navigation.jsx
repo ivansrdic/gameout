@@ -19,6 +19,7 @@ class Navigation extends Component {
             <NavItem href="/about">About</NavItem>
             <NavItem href="/edit-info">Edit info</NavItem>
             <NavItem href="/customize-character">Customize</NavItem>
+            <NavItem href="/profile">Profile</NavItem>
           </Nav>
           <Nav id="auth-nav" pullRight style={{marginRight: 0}}>
             {this.renderAuthNav()}

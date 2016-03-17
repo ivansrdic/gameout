@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 import {Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
 
 class EditInfo extends Component {
-  constructor(props, content = null) {
-    super(props);
-    this.props.content = content;
-  }
-
   render() {
     return (
       <div>
@@ -44,7 +39,6 @@ class EditInfo extends Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
-    console.log('test');
     FlowRouter.go('/customize-character');
   }
 }

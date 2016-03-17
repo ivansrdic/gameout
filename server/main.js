@@ -1,7 +1,9 @@
 import configs from './configs';
-import publications from './publications';
+import listeners from './listeners';
 import methods from './methods';
+import publications from './publications';
 
 configs();
+listeners();
+//methods();
 // publications();
-methods();
