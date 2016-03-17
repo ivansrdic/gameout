@@ -4,4 +4,4 @@ import methods from './methods';
 
 configs();
 // publications();
-// methods();
+methods();

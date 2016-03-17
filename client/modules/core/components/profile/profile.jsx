@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 import {Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
 
 class EditInfo extends Component {
-  constructor(props, content = null) {
-    super(props);
-    this.props.content = content;
-  }
-
   render() {
     return (
       <div>
@@ -14,8 +9,7 @@ class EditInfo extends Component {
           <Col md={12}>
             <Panel>
               <Col md={8} mdOffset={2}>
-                <h1 className="text-center">Edit info</h1>
-
+                <h1 className="text-center">Hello, {Meteor.user().username}</h1>
                 <form onSubmit={this.handleFormSubmit}>
                   <Input type="text" label="Age" placeholder="Age"/>
                   <Input type="text" label="Height" placeholder="Height"/>
@@ -44,7 +38,7 @@ class EditInfo extends Component {
 
   handleFormSubmit(e) {
     e.preventDefault();
-    console.log('test');
+
     FlowRouter.go('/customize-character');
   }
 }

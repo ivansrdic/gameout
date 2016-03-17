@@ -13,23 +13,32 @@ class EditInfo extends Component {
         <Row>
           <Col md={12}>
             <Panel>
-              <Col md={8} mdOffset={2}>
-                <h1 className="text-center">Edit info</h1>
+              <Col md={10} mdOffset={1}>
+                <h1 className="text-center">Customize character</h1>
 
-                <form onSubmit={this.handleFormSubmit}>
+                <form>
+                  <label htmlFor="level" className="control-label input-group">Gender</label>
+                  <ButtonGroup className="form-group" bsSize="large" data-toggle="buttons">
+                    <label className="btn btn-default">
+                      <input name="level" value="male" type="radio"/>Male
+                    </label>
+                    <label className="btn btn-default">
+                      <input name="level" value="female" type="radio"/>Female
+                    </label>
+                  </ButtonGroup>
                   <Input type="text" label="Age" placeholder="Age"/>
                   <Input type="text" label="Height" placeholder="Height"/>
                   <Input type="text" label="Weight" placeholder="Weight"/>
                   <label htmlFor="level" className="control-label input-group">Level</label>
                   <ButtonGroup className="form-group" bsSize="large" data-toggle="buttons">
                     <label className="btn btn-default">
-                      <input name="level" value="beginner" type="radio"/>Beginner
+                      <input name="level" value="Beginner" type="radio"/>Beginner
                     </label>
                     <label className="btn btn-default">
-                      <input name="level" value="intermediate" type="radio"/>Intermediate
+                      <input name="level" value="Intermediate" type="radio"/>Intermediate
                     </label>
                     <label className="btn btn-default">
-                      <input name="level" value="advanced" type="radio"/>Advanced
+                      <input name="level" value="Advanced" type="radio"/>Advanced
                     </label>
                   </ButtonGroup>
                   <ButtonInput className="pull-right" type="submit" value="Next"/>
@@ -42,11 +51,7 @@ class EditInfo extends Component {
     );
   }
 
-  handleFormSubmit(e) {
-    e.preventDefault();
-    console.log('test');
-    FlowRouter.go('/customize-character');
-  }
+
 }
 
 export default EditInfo;
