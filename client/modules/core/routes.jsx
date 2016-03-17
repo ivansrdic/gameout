@@ -1,16 +1,15 @@
 import React from 'react';
 import {mount} from 'react-mounter';
 
-import PublicLayout from './components/main_layout_public.jsx';
-import PrivateLayout from './components/main_layout_private.jsx';
+import MainLayout from './components/main_layout.jsx';
 import Home from './components/home/home.jsx';
-import SignIn from './components/profile/sign-in.jsx';
+import SignIn from './containers/profile/sign-in.js';
 import Profile from './components/profile/profile.jsx';
 import EditInfo from './components/profile/edit-info.jsx';
 import CustomizeCharacter from './components/profile/customize-character.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
-  const PublicLayoutCtx = injectDeps(PublicLayout);
+  const PublicLayoutCtx = injectDeps(MainLayout);
 
   FlowRouter.route('/', {
     name: 'home',
@@ -57,6 +56,7 @@ export default function (injectDeps, {FlowRouter}) {
 
     action() {
       if(!Meteor.user()) {
+        Session.set('auth-error', 'You need to log in first.');
         FlowRouter.go('sign-in');
         return;
       }
@@ -72,6 +72,7 @@ export default function (injectDeps, {FlowRouter}) {
     action() {
       if(!Meteor.user()) {
         FlowRouter.go('sign-in');
+        Session.set('auth-error', 'You need to log in first.');
         return;
       }
       mount(PublicLayoutCtx, {
@@ -86,6 +87,7 @@ export default function (injectDeps, {FlowRouter}) {
     action() {
       if(!Meteor.user()) {
         FlowRouter.go('sign-in');
+        Session.set('auth-error', 'You need to log in first.');
         return;
       }
       mount(PublicLayoutCtx, {

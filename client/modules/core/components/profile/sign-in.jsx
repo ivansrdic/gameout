@@ -9,13 +9,19 @@ class EditInfo extends Component {
     this.state = {};
   }
 
-  componentDidMount() {
-    Tracker.autorun(function() {
+  /*componentDidMount() {
+    const authTracker = Tracker.autorun(function() {
       if(Session.get('auth-error')) {
         this.setState({});
+        Session.set('auth-error', null);
       }
     }.bind(this));
+
+    this.setState({authTracker});
   }
+  componentWillUnmount() {
+    this.state.authTracker.stop();
+  }*/
 
   render() {
     return (
@@ -75,10 +81,10 @@ class EditInfo extends Component {
   }
 
   renderErrorMessage() {
-    if(Session.get('auth-error')) {
+    if(this.props.authError) {
       return (
-        <div className="alert alert-danger">
-          <strong>{Session.get('auth-error')}</strong>
+        <div className="alert alert-danger fade in">
+          <strong>{this.props.authError}</strong>
         </div>
       );
     }
