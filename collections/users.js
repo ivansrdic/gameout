@@ -1,25 +1,19 @@
-Profile =  new SimpleSchema({
+ProfileSchema =  new SimpleSchema({
   email: {
-    type: String,
-    optional: true
+    type: String
   },
   name: {
-    type: String,
-    optional: true
+    type: String
   },
   first_name: {
-    type: String,
-    optional: true
+    type: String
   },
   last_name: {
-    type: String,
-    optional: true
+    type: String
   }
 });
 
-
-
-User = new SimpleSchema({
+UserSchema = new SimpleSchema({
   username: {
     type: String,
     optional: true
@@ -34,9 +28,13 @@ User = new SimpleSchema({
     blackbox: true
   },
   profile: {
-    type: Profile,
+    type: ProfileSchema,
+    optional: true
+  },
+  character: {
+    type: CharacterSchema,
     optional: true
   }
 });
 
-Meteor.users.attachSchema(User);
+Meteor.users.attachSchema(UserSchema);

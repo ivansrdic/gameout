@@ -6,4 +6,4 @@ import publications from './publications';
 configs();
 listeners();
 //methods();
-// publications();
+publications();

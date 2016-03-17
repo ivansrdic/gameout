@@ -5,6 +5,7 @@ import MainLayout from './components/main_layout.jsx';
 import Home from './components/home/home.jsx';
 import SignIn from './containers/profile/sign-in.js';
 import Profile from './components/profile/profile.jsx';
+import ProfileSetup from './components/profile/profile-setup.jsx';
 import EditInfo from './components/profile/edit-info.jsx';
 import CustomizeCharacter from './components/profile/customize-character.jsx';
 
@@ -54,11 +55,23 @@ export default function (injectDeps, {FlowRouter}) {
   FlowRouter.route('/profile', {
     name: 'profile',
 
-    action(params) {
+    action() {
       if(!checkUserAuth()) return;
 
       mount(PublicLayoutCtx, {
         content: () => (<Profile />)
+      });
+    }
+  });
+
+  FlowRouter.route('/profile-setup', {
+    name: 'profile-setup',
+
+    action() {
+      if(!checkUserAuth()) return;
+
+      mount(PublicLayoutCtx, {
+        content: () => (<ProfileSetup />)
       });
     }
   });
