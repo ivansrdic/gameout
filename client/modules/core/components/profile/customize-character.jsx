@@ -26,22 +26,9 @@ class EditInfo extends Component {
                       <input name="level" value="female" type="radio"/>Female
                     </label>
                   </ButtonGroup>
-                  <Input type="text" label="Age" placeholder="Age"/>
-                  <Input type="text" label="Height" placeholder="Height"/>
-                  <Input type="text" label="Weight" placeholder="Weight"/>
-                  <label htmlFor="level" className="control-label input-group">Level</label>
-                  <ButtonGroup className="form-group" bsSize="large" data-toggle="buttons">
-                    <label className="btn btn-default">
-                      <input name="level" value="Beginner" type="radio"/>Beginner
-                    </label>
-                    <label className="btn btn-default">
-                      <input name="level" value="Intermediate" type="radio"/>Intermediate
-                    </label>
-                    <label className="btn btn-default">
-                      <input name="level" value="Advanced" type="radio"/>Advanced
-                    </label>
-                  </ButtonGroup>
-                  <ButtonInput className="pull-right" type="submit" value="Next"/>
+                  <p>Character setup</p>
+
+                  <ButtonInput className="pull-right" type="submit" value="Save"/>
                 </form>
               </Col>
             </Panel>

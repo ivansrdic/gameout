@@ -10,36 +10,14 @@ class EditInfo extends Component {
             <Panel>
               <Col md={8} mdOffset={2}>
                 <h1 className="text-center">Hello, {Meteor.user().username}</h1>
-                <form onSubmit={this.handleFormSubmit}>
-                  <Input type="text" label="Age" placeholder="Age"/>
-                  <Input type="text" label="Height" placeholder="Height"/>
-                  <Input type="text" label="Weight" placeholder="Weight"/>
-                  <label htmlFor="level" className="control-label input-group">Level</label>
-                  <ButtonGroup className="form-group" bsSize="large" data-toggle="buttons">
-                    <label className="btn btn-default">
-                      <input name="level" value="beginner" type="radio"/>Beginner
-                    </label>
-                    <label className="btn btn-default">
-                      <input name="level" value="intermediate" type="radio"/>Intermediate
-                    </label>
-                    <label className="btn btn-default">
-                      <input name="level" value="advanced" type="radio"/>Advanced
-                    </label>
-                  </ButtonGroup>
-                  <ButtonInput className="pull-right" type="submit" value="Next"/>
-                </form>
+
+                <p>User data</p>
               </Col>
             </Panel>
           </Col>
         </Row>
       </div>
     );
-  }
-
-  handleFormSubmit(e) {
-    e.preventDefault();
-
-    FlowRouter.go('/customize-character');
   }
 }
 

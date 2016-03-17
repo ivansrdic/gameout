@@ -32,7 +32,7 @@ class EditInfo extends Component {
                       <input name="level" value="advanced" type="radio"/>Advanced
                     </label>
                   </ButtonGroup>
-                  <ButtonInput className="pull-right" type="submit" value="Next"/>
+                  <ButtonInput className="pull-right" type="submit" value="Save"/>
                 </form>
               </Col>
             </Panel>
