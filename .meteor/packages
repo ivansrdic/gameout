@@ -9,7 +9,6 @@ mobile-experience       # Packages for a great mobile UX
 mongo                   # The database Meteor supports right
 blaze-html-templates    # Compile .html files into Meteor Blaze views
 session                 # Client-side reactive dictionary for your app
-jquery                  # Helpful client-side library
 tracker                 # Meteor's client-side reactive programming library
 
 standard-minifier-css   # CSS minifier run for production mode
@@ -26,7 +25,6 @@ check                               # Check whether a value matches a pattern
 
 service-configuration               # Programatically configure services
 accounts-base                       # A user account system
-ian:accounts-ui-bootstrap-3         # Bootstrap-styled accounts-ui with multi-language support
 accounts-password                   # Password support for accounts
 accounts-facebook                   # Login service for Facebook accounts
 accounts-google                     # Login service for Google accounts
@@ -39,4 +37,3 @@ random                              # Random number generator and utilities
 email                               # Send email messages
 
 kadira:dochead                      # Isomorphic way to manipulate document.head for Meteor apps
-twbs:bootstrap                      # The most popular front-end framework for developing responsive, mobile first projects on the web
