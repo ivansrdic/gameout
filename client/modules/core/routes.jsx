@@ -10,6 +10,7 @@ import EditInfo from './components/profile/edit-info.jsx';
 import CustomizeCharacter from './components/profile/customize-character.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
+  // TODO: Define private layout for user auth
   const PublicLayoutCtx = injectDeps(MainLayout);
 
   FlowRouter.route('/', {

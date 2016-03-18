@@ -8,7 +8,6 @@ export default () => {
         name: user.services.facebook.name,
         first_name: user.services.facebook.first_name,
         last_name: user.services.facebook.last_name
-
       };
     } else if(user.services.google) {
       user.profile = {
