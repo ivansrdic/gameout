@@ -20,6 +20,14 @@ function extend() {
       FlowRouter.go(location);
     }
   };
+
+  FlowRouter.redirectOrSetError = function(err, location) {
+    if (err) {
+      Session.set('auth-error', err.reason || 'Unknown error');
+    } else {
+      FlowRouter.goOrRefresh(location);
+    }
+  }
 }
 
 function subscribe() {
