@@ -34,7 +34,23 @@ UserSchema = new SimpleSchema({
   character: {
     type: CharacterSchema,
     optional: true
+  },
+  completedSetup: {
+    type: Boolean,
+    optional: true
   }
 });
 
 Meteor.users.attachSchema(UserSchema);
+
+Meteor.users.allow({
+  insert: function(userId, doc) {
+    return true;
+  },
+  update: function(userId, docs, fields, modifier) {
+    return true;
+  },
+  remove: function(userId, docs) {
+    return false;
+  }
+});

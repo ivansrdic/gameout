@@ -1,7 +1,14 @@
 import React, {Component} from 'react';
-import {Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
+import {Grid, Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
 
 class EditInfo extends Component {
+  componentDidMount() {
+    console.log(Meteor.users.findOne(Meteor.userId()));
+    if(!Meteor.users.findOne(Meteor.userId()).completedSetup) {
+      alert('Please complete your setup');
+    }
+  }
+
   render() {
     return (
       <div>

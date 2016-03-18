@@ -8,9 +8,9 @@ export default () => {
         name: user.services.facebook.name,
         first_name: user.services.facebook.first_name,
         last_name: user.services.facebook.last_name
+
       };
     } else if(user.services.google) {
-
       user.profile = {
         email: user.services.google.email,
         name: user.services.google.name,
@@ -19,11 +19,7 @@ export default () => {
       }
     }
 
-    user.profile.character = {};
-
     user.completedSetup = false;
-
-    console.log(user.profile);
 
     return user;
   });

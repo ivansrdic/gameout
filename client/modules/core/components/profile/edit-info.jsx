@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
-import {Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
+import {Grid, Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
 
 class EditInfo extends Component {
   render() {
     return (
-      <div>
+      <Grid>
         <Row>
           <Col md={12}>
             <Panel>
@@ -33,7 +33,7 @@ class EditInfo extends Component {
             </Panel>
           </Col>
         </Row>
-      </div>
+      </Grid>
     );
   }
 

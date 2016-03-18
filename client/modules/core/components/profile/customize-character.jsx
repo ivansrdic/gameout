@@ -1,9 +1,9 @@
 import React from 'react';
-import {Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
+import {Grid, Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
 
 export default () => {
   return (
-    <div>
+    <Grid>
       <Row>
         <Col md={12}>
           <Panel>
@@ -27,6 +27,6 @@ export default () => {
           </Panel>
         </Col>
       </Row>
-    </div>
+    </Grid>
   );
 }

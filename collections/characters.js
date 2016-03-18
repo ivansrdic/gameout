@@ -1,3 +1,4 @@
+
 Characters = new Mongo.Collection('characters');
 
 CharacterSchema = new SimpleSchema({

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Row, Col, Panel} from 'react-bootstrap';
+import {Grid, Row, Col, Panel} from 'react-bootstrap';
 
 const Home = ({content = () => null }) => (
-  <div>
+  <Grid>
     <video autoPlay loop muted poster="landing-page.png" id="background">
       <source src="landing-page.mp4" type="video/mp4" />
     </video>
@@ -13,7 +13,7 @@ const Home = ({content = () => null }) => (
         </Panel>
       </Col>
     </Row>
-  </div>
+  </Grid>
 );
 
 export default Home;

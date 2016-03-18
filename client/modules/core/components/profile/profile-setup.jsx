@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Row, Col, Panel, Tabs, Tab, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
+import {Grid, Row, Col, Panel, Tabs, Tab, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
 import Actions from '/client/modules/core/actions';
 
 class ProfileSetup extends Component {
   render() {
     return (
-      <div>
+      <Grid>
         <Row>
           <Col md={12}>
             <Panel>
@@ -53,7 +53,7 @@ class ProfileSetup extends Component {
             </Panel>
           </Col>
         </Row>
-      </div>
+      </Grid>
     );
   }
 

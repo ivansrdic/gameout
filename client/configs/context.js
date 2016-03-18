@@ -4,7 +4,7 @@ import {Tracker} from 'meteor/tracker';
 
 export default function () {
   extend();
-
+  subscribe();
   return {
     Meteor,
     FlowRouter,
@@ -20,4 +20,11 @@ function extend() {
       FlowRouter.go(location);
     }
   };
+}
+
+function subscribe() {
+  Tracker.autorun(function() {
+    Meteor.subscribe('users');
+    Meteor.subscribe('character');
+  });
 }
