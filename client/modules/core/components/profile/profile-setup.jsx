@@ -36,7 +36,7 @@ class ProfileSetup extends Component {
                       <h1 className="text-center">Character customization</h1>
 
                       <label htmlFor="gender" className="control-label input-group">Gender</label>
-                      <ButtonGroup id="gender" className="form-group" bsSize="large" data-toggle="buttons">
+                      <ButtonGroup id="gender" className="form-group center" bsSize="large" data-toggle="buttons">
                         <label className="btn btn-default">
                           <input name="gender" value="male" type="radio"/>Male
                         </label>

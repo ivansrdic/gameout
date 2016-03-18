@@ -3,7 +3,6 @@
   justify-content: center;
 }
 
-
 .social-buttons {
   margin: 0 auto 20px auto;
   max-width: 250px;
@@ -11,4 +10,59 @@
 
 .social-buttons .row {
   margin-bottom: 10px;
+}
+
+.profile {
+  margin-top: -20px;
+}
+
+.character-window {
+  border: solid 1px #000;
+  float: left;
+  position: relative;
+  width: 100%;
+}
+
+.profile img {
+  margin: auto;
+}
+
+.equipment-toggle {
+  z-index: 10;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.equipment {
+  background: white;
+  float: left;
+  border: solid 1px #000;
+  width: 100%;
+}
+
+.slide-right {
+  display: none;
+}
+
+.slide-right-enter {
+  display: block;
+  width: 1%;
+}
+
+.slide-right-enter.slide-right-enter-active {
+  transition: all 300ms ease-in-out;
+}
+
+.slide-right-leave {
+}
+
+.slide-right-leave.slide-right-leave-active {
+  width: 0;
+  transition: all 300ms ease-in-out;
+}
+
+.stats {
+  border: solid 1px #007bb6;
+  padding: 10px;
 }

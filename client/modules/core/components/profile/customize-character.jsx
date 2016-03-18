@@ -1,6 +1,7 @@
 import React from 'react';
 import {Grid, Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
 
+// TODO: create a reusable component for use in profile setup
 export default () => {
   return (
     <Grid>
