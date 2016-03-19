@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount} from 'react-mounter';
 
-import MainLayout from './components/main_layout.jsx';
+import PublicLayout from './components/public_layout.jsx';
 import Home from './components/home/home.jsx';
 import SignIn from './containers/profile/sign-in.jsx';
 import Profile from './components/profile/profile.jsx';
@@ -11,7 +11,7 @@ import CustomizeCharacter from './components/profile/customize-character.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
   // TODO: Define private layout for user auth
-  const PublicLayoutCtx = injectDeps(MainLayout);
+  const PublicLayoutCtx = injectDeps(PublicLayout);
 
   FlowRouter.route('/', {
     name: 'home',
@@ -53,58 +53,57 @@ export default function (injectDeps, {FlowRouter}) {
     }
   });
 
-  FlowRouter.route('/profile', {
+  /*
+     PRIVATE
+   */
+
+  const PrivateRoutes = FlowRouter.group({
+    triggersEnter: [function(context, redirect) {
+      if(!Meteor.user()) {
+        Session.set('auth-error', 'You need to log in first.');
+        redirect('/sign-in');
+      }
+    }]
+  });
+
+
+  PrivateRoutes.route('/profile', {
     name: 'profile',
-
     action() {
-      if(!checkUserAuth()) return;
-
+      //if(!checkUserAuth()) return;
       mount(PublicLayoutCtx, {
         content: () => (<Profile />)
       });
     }
   });
 
-  FlowRouter.route('/profile-setup', {
+  PrivateRoutes.route('/profile-setup', {
     name: 'profile-setup',
 
     action() {
-      if(!checkUserAuth()) return;
-
       mount(PublicLayoutCtx, {
         content: () => (<ProfileSetup />)
       });
     }
   });
 
-  FlowRouter.route('/edit-info', {
+  PrivateRoutes.route('/edit-info', {
     name: 'edit-info',
 
     action() {
-      if(!checkUserAuth()) return;
       mount(PublicLayoutCtx, {
         content: () => (<EditInfo />)
       });
     }
   });
 
-  FlowRouter.route('/customize-character', {
+  PrivateRoutes.route('/customize-character', {
     name: 'customize-character',
 
     action() {
-      if(!checkUserAuth()) return;
       mount(PublicLayoutCtx, {
         content: () => (<CustomizeCharacter />)
       });
     }
   });
-}
-
-function checkUserAuth() {
-  if(!Meteor.user()) {
-    FlowRouter.go('sign-in');
-    Session.set('auth-error', 'You need to log in first.');
-    return false;
-  }
-  return true;
 }

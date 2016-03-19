@@ -46,6 +46,7 @@
   padding: 10px;
 }
 
+/* Za mobilne animacije dodati col-xs*/
 #character-details .equipment-exiting {
   width: 0;
 }

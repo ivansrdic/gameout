@@ -7,9 +7,7 @@ class Navigation extends Component {
     return (
       <Navbar>
         <Navbar.Header>
-          <NavbarBrand>
-            <a href="/">Gameout</a>
-          </NavbarBrand>
+          <a href="/"><img src="logo.png" alt="Gameout logo"/></a>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>

@@ -34,19 +34,19 @@ class Profile extends Component {
           <div id="character-details">
             <Transition
               in={this.state.showEquipment}
-              timeout={600}
+              timeout={500}
               className="col-sm-3 col-lg-2"
               enteringClassName='animate-width'
               exitingClassName='equipment-exiting animate-width'
               exitedClassName='equipment-exited'
             >
-              <div key="equipmentAnimation">
-                <div className="equipment">
-                  <div>
-                    <img src="character.png" alt="character" className="img-responsive"/>
-                  </div>
+            <div key="equipmentAnimation">
+              <div className="equipment">
+                <div>
+                  <img src="character.png" alt="character" className="img-responsive"/>
                 </div>
               </div>
+            </div>
             </Transition>
             <Col sm={3} lg={2}>
               <div>
@@ -56,7 +56,7 @@ class Profile extends Component {
             </Col>
             <Transition
               in={this.state.showEquipment}
-              timeout={600}
+              timeout={500}
               enteringClassName='col-sm-3 col-lg-6 animate-width'
               enteredClassName='col-sm-3 col-lg-6'
               exitingClassName='col-sm-6 col-lg-8 animate-width'
@@ -83,18 +83,6 @@ class Profile extends Component {
       </Grid>
     );
   }
-  //find a way to manipulate columns with ReactCSSTransitionGroup
-  renderEquipment() {
-    if(this.state.showEquipment) {
-    }
-  }
-  renderStats() {
-    return(
-      <Col lg={12}>
-
-      </Col>
-    );
-  }
 
   handleEquipmentButtonClick(e) {
     this.setState({
@@ -104,6 +92,3 @@ class Profile extends Component {
 }
 
 export default Profile;
-/*<ReactCSSTransitionGroup transitionName="example2" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
- {this.renderStats()}
- </ReactCSSTransitionGroup>*/

@@ -118,9 +118,7 @@ class SignIn extends Component {
 
 function composer(props, onData) {
   const authError = Session.get('auth-error');
-  let childProps = {};
-  if(authError) childProps.authError = authError;
-  onData(null, childProps);
+  onData(null, {authError});
 }
 
 export default composeWithTracker(composer)(SignIn);

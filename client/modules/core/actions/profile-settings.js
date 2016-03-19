@@ -5,7 +5,7 @@ export default {
       console.log(err);
     });
     Meteor.users.update(Meteor.userId(), {$set: {completedSetup: true}}, function(err) {
-      FlowRouter.redirectOrSetError(err, '/profile');
+      FlowRouter.redirectOrSetError('/profile', err);
     });
   }
 }

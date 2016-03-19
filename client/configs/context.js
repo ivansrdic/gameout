@@ -21,11 +21,12 @@ function extend() {
     }
   };
 
-  FlowRouter.redirectOrSetError = function(err, location) {
-    if (err) {
-      Session.set('auth-error', err.reason || 'Unknown error');
-    } else {
+  FlowRouter.redirectOrSetError = function(location, err) {
+    if (!err) {
       FlowRouter.goOrRefresh(location);
+    } else {
+      FlowRouter.goOrRefresh('sign-in');
+      Session.set('auth-error', err.reason || 'Unknown error');
     }
   }
 }
