@@ -31,6 +31,7 @@ class Navigation extends Component {
   }
 
   renderAuthNav() {
+    // TODO: container for reactive data source
     if(Meteor.user()) {
       return <NavItem onClick={this.handleLogoutClick}>Log out</NavItem>;
     } else {

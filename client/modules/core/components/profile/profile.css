@@ -41,28 +41,20 @@
   width: 100%;
 }
 
-.slide-right {
-  display: none;
-}
-
-.slide-right-enter {
-  display: block;
-  width: 1%;
-}
-
-.slide-right-enter.slide-right-enter-active {
-  transition: all 300ms ease-in-out;
-}
-
-.slide-right-leave {
-}
-
-.slide-right-leave.slide-right-leave-active {
-  width: 0;
-  transition: all 300ms ease-in-out;
-}
-
 .stats {
   border: solid 1px #007bb6;
   padding: 10px;
+}
+
+#character-details .equipment-exiting {
+  width: 0;
+}
+
+#character-details .equipment-exited {
+  width: 0;
+  visibility: hidden;
+}
+
+#character-details .animate-width {
+  transition: width 500ms linear;
 }

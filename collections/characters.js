@@ -1,6 +1,7 @@
 
 Characters = new Mongo.Collection('characters');
 
+//TODO: circular dependency user -> character
 CharacterSchema = new SimpleSchema({
   owner: {
     type: String

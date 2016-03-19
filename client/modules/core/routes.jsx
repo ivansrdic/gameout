@@ -3,7 +3,7 @@ import {mount} from 'react-mounter';
 
 import MainLayout from './components/main_layout.jsx';
 import Home from './components/home/home.jsx';
-import SignIn from './containers/profile/sign-in.js';
+import SignIn from './containers/profile/sign-in.jsx';
 import Profile from './components/profile/profile.jsx';
 import ProfileSetup from './components/profile/profile-setup.jsx';
 import EditInfo from './components/profile/edit-info.jsx';

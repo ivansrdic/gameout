@@ -1,14 +1,19 @@
+import {composeWithTracker} from 'react-komposer';
 import React, {Component} from 'react';
 import {Grid, Row, Col, Panel, Tabs, Tab, Input, ButtonInput} from 'react-bootstrap';
 import Actions from '/client/modules/core/actions';
 
-class EditInfo extends Component {
+class SignIn extends Component {
   constructor(props) {
     super(props);
 
     this.state = {};
   }
+  componentWillUnmount() {
+    Session.set('auth-error', null);
+  }
 
+  //TODO: delete twitter integration
   render() {
     return (
       <Grid>
@@ -21,21 +26,21 @@ class EditInfo extends Component {
                   <div className="row">
                     <Col md={12}>
                       <a className="btn btn-block btn-social btn-facebook" onClick={this.handleFacebookSignInClick}>
-                        <span className="fa fa-facebook"></span> Sign in with Facebook
+                        <i className="fa fa-facebook"></i> Sign in with Facebook
                       </a>
                     </Col>
                   </div>
                   <div className="row">
                     <Col md={12}>
                       <a className="btn btn-block btn-social btn-google" onClick={this.handleGoogleSignInClick}>
-                        <span className="fa fa-google"></span> Sign in with Google
+                        <i className="fa fa-google"></i> Sign in with Google
                       </a>
                     </Col>
                   </div>
                   <div className="row">
                     <Col md={12}>
                       <a className="btn btn-block btn-social btn-twitter" onClick={this.handleTwitterSignInClick}>
-                        <span className="fa fa-twitter"></span> Sign in with Twitter
+                        <i className="fa fa-twitter"></i> Sign in with Twitter
                       </a>
                     </Col>
                   </div>
@@ -111,4 +116,11 @@ class EditInfo extends Component {
   }
 }
 
-export default EditInfo;
+function composer(props, onData) {
+  const authError = Session.get('auth-error');
+  let childProps = {};
+  if(authError) childProps.authError = authError;
+  onData(null, childProps);
+}
+
+export default composeWithTracker(composer)(SignIn);

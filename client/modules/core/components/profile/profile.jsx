@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Grid, Row, Col, Overlay, Popover, Button, ProgressBar} from 'react-bootstrap';
-import TransitionGroup from 'react-addons-css-transition-group';
+import {Transition} from 'react-overlays';
 
-class EditInfo extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
 
@@ -31,17 +31,47 @@ class EditInfo extends Component {
               <Button className="equipment-toggle" bsStyle="default" onClick={this.handleEquipmentButtonClick.bind(this)}><i className="fa fa-play"></i></Button>
             </div>
           </Col>
-          <TransitionGroup transitionName="slide-right" transitionEnterTimeout={300} transitionLeaveTimeout={300}>
-            {this.renderEquipment()}
-          </TransitionGroup>
-          <Col sm={9} lg={10-this.state.equipmentWidth}>
-              <div className="stats">
-                <span><i className="fa fa-heart"></i> Health</span>
-                <ProgressBar bsStyle="danger" now={80} />
-                <span><i className="fa fa-star"></i> Experience</span>
-                <ProgressBar bsStyle="warning" now={60} />
+          <div id="character-details">
+            <Transition
+              in={this.state.showEquipment}
+              timeout={600}
+              className="col-sm-3 col-lg-2"
+              enteringClassName='animate-width'
+              exitingClassName='equipment-exiting animate-width'
+              exitedClassName='equipment-exited'
+            >
+              <div key="equipmentAnimation">
+                <div className="equipment">
+                  <div>
+                    <img src="character.png" alt="character" className="img-responsive"/>
+                  </div>
+                </div>
               </div>
-          </Col>
+            </Transition>
+            <Col sm={3} lg={2}>
+              <div>
+                <h3>Neki drugi column</h3>
+                Zadrži svoju responzivnost
+              </div>
+            </Col>
+            <Transition
+              in={this.state.showEquipment}
+              timeout={600}
+              enteringClassName='col-sm-3 col-lg-6 animate-width'
+              enteredClassName='col-sm-3 col-lg-6'
+              exitingClassName='col-sm-6 col-lg-8 animate-width'
+              exitedClassName='col-sm-6 col-lg-8'
+            >
+              <div key="statsAnimation">
+                <div className="stats">
+                  <span><i className="fa fa-heart"></i> Health</span>
+                  <ProgressBar bsStyle="danger" now={80} />
+                  <span><i className="fa fa-star"></i> Experience</span>
+                  <ProgressBar bsStyle="warning" now={60} />
+                </div>
+              </div>
+            </Transition>
+          </div>
         </Row>
         <Row>
           <Col md={12}>
@@ -53,25 +83,27 @@ class EditInfo extends Component {
       </Grid>
     );
   }
+  //find a way to manipulate columns with ReactCSSTransitionGroup
   renderEquipment() {
-    if(this.state.showEquipment)
-      return (
-        <Col lg={2}>
-          <div className="equipment">
-            <div>
-              <img src="character.png" alt="character" className="img-responsive"/>
-            </div>
-          </div>
-        </Col>
-      );
+    if(this.state.showEquipment) {
+    }
+  }
+  renderStats() {
+    return(
+      <Col lg={12}>
+
+      </Col>
+    );
   }
 
   handleEquipmentButtonClick(e) {
     this.setState({
-      showEquipment: !this.state.showEquipment,
-      equipmentWidth: this.state.showEquipment?0:2
+      showEquipment: !this.state.showEquipment
     });
   }
 }
 
-export default EditInfo;
+export default Profile;
+/*<ReactCSSTransitionGroup transitionName="example2" transitionEnterTimeout={500} transitionLeaveTimeout={300}>
+ {this.renderStats()}
+ </ReactCSSTransitionGroup>*/
