@@ -24,7 +24,7 @@ class Profile extends Component {
   render() {
     return (
       <Grid className="profile" fluid={true}>
-        <Row className="character-info no-margin eq-height">
+        <Row className="character-info no-gutter eq-height">
           <Col sm={3} lg={2}>
             <div className="character-window">
               <img src="character.png" alt="character" className="img-responsive"/>
@@ -32,23 +32,37 @@ class Profile extends Component {
             </div>
           </Col>
           <div id="character-details">
-            <Transition
-              in={this.state.showEquipment}
-              timeout={500}
-              className="col-sm-3 col-lg-2"
-              enteringClassName='animate-width'
-              exitingClassName='equipment-exiting animate-width'
-              exitedClassName='equipment-exited'
-            >
-            <div key="equipmentAnimation">
-              <div className="equipment">
-                <div>
-                  <img src="character.png" alt="character" className="img-responsive"/>
+              <Transition
+                in={this.state.showEquipment}
+                timeout={500}
+                className="col-xs-12 col-sm-3 col-lg-2"
+                enteringClassName="equipment-entering animate-character-stats"
+                enteredClassName="equipment-entered"
+                exitingClassName="equipment-exiting animate-character-stats"
+                exitedClassName="equipment-exited"
+              >
+                <div className="hide-of">
+                  <div className="equipment-container">
+                    <div className="equipment">
+                      <div className="equipment-row">
+                        <div className="item-container"><div className="item head"></div></div>
+                      </div>
+                      <div className="equipment-row">
+                        <div className="item-container item-container-weapon"><div className="item weapon-right"></div></div>
+                        <div className="item-container"><div className="item chest"></div></div>
+                        <div className="item-container item-container-weapon"><div className="item weapon-left"></div></div>
+                      </div>
+                      <div className="equipment-row">
+                        <div className="item-container"><div className="item legs"></div></div>
+                      </div>
+                      <div className="equipment-row">
+                        <div className="item-container"><div className="item feet"></div></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
             </Transition>
-            <Col sm={3} lg={2}>
+            <Col xs={12} sm={3} lg={2}>
               <div>
                 <h3>Neki drugi column</h3>
                 Zadrži svoju responzivnost
@@ -57,12 +71,13 @@ class Profile extends Component {
             <Transition
               in={this.state.showEquipment}
               timeout={500}
-              enteringClassName='col-sm-3 col-lg-6 animate-width'
-              enteredClassName='col-sm-3 col-lg-6'
-              exitingClassName='col-sm-6 col-lg-8 animate-width'
-              exitedClassName='col-sm-6 col-lg-8'
+              className="col-xs-12"
+              enteringClassName="col-sm-3 col-lg-6 animate-character-stats"
+              enteredClassName="col-sm-3 col-lg-6"
+              exitingClassName="col-sm-6 col-lg-8 animate-character-stats"
+              exitedClassName="col-sm-6 col-lg-8"
             >
-              <div key="statsAnimation">
+              <div>
                 <div className="stats">
                   <span><i className="fa fa-heart"></i> Health</span>
                   <ProgressBar bsStyle="danger" now={80} />

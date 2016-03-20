@@ -7,7 +7,7 @@ const Home = ({content = () => null }) => (
       <source src="landing-page.mp4" type="video/mp4" />
     </video>
     <Row>
-      <Col md={12}>
+      <Col md={8} mdOffset={2}>
         <Panel>
           <h1 className="text-center">Floskule o vježbanju</h1>
         </Panel>
