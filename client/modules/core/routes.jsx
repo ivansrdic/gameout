@@ -3,6 +3,8 @@ import {mount} from 'react-mounter';
 
 import PublicLayout from './components/public_layout.jsx';
 import Home from './components/home/home.jsx';
+import About from './components/home/about.jsx';
+import HowItWorks from  './components/home/how-it-works.jsx';
 import SignIn from './containers/profile/sign-in.jsx';
 import Profile from './components/profile/profile.jsx';
 import ProfileSetup from './components/profile/profile-setup.jsx';
@@ -28,7 +30,7 @@ export default function (injectDeps, {FlowRouter}) {
 
     action() {
       mount(PublicLayoutCtx, {
-        content: () => (<Home />)
+        content: () => (<HowItWorks />)
       });
     }
   });
@@ -38,7 +40,7 @@ export default function (injectDeps, {FlowRouter}) {
 
     action() {
       mount(PublicLayoutCtx, {
-        content: () => (<Home />)
+        content: () => (<About />)
       });
     }
   });
