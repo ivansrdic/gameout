@@ -7,6 +7,16 @@ cd gameout
 npm install
 meteor
 ```
+## Git safeguard steps
+1. Git pull
+2. Develop your features.
+3. Before pushing to remote, pull changes from remote again.
+4. Push your changes.
+    * Before pushing it is prudent to check all files that have been changed with "git status".
+
+"Women forgive bad commits but never forget a bad push". In case you make a bad push
+don't try to remove it. Rather make a new one that fixes beforehand errors and notify
+everyone of what happened.
 
 
 ## Application architecture
