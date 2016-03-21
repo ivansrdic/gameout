@@ -12,11 +12,6 @@ class Navigation extends Component {
         </Navbar.Header>
         <Navbar.Collapse>
 
-          <Nav>
-            <NavItem href="/">Home</NavItem>
-            <NavItem href="/how-it-works">How it works</NavItem>
-            <NavItem href="/about">About</NavItem>
-          </Nav>
           {this.renderLoggedInNav()}
 
           <Nav id="auth-nav" pullRight style={{marginRight: 0}}>
@@ -50,6 +45,16 @@ class Navigation extends Component {
           <NavItem href="/customize-character">Customize</NavItem>
           <NavItem href="/profile">Profile</NavItem>
           <NavItem href="/profile-setup">Profile Setup</NavItem>
+          <NavItem href="/create-workout">Create Workout</NavItem>
+          <NavItem href="/create-workout-group">Create Workout Group</NavItem>
+        </Nav>
+      );
+    } else {
+      return(
+        <Nav>
+          <NavItem href="/">Home</NavItem>
+          <NavItem href="/how-it-works">How it works</NavItem>
+          <NavItem href="/about">About</NavItem>
         </Nav>
       );
     }

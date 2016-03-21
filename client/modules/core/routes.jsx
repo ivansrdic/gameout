@@ -10,6 +10,7 @@ import Profile from './components/profile/profile.jsx';
 import ProfileSetup from './components/profile/profile-setup.jsx';
 import EditInfo from './components/profile/edit-info.jsx';
 import CustomizeCharacter from './components/profile/customize-character.jsx';
+import CreateWorkoutGroup from './components/profile/create-workout-group.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
   // TODO: Define private layout for user auth
@@ -105,6 +106,16 @@ export default function (injectDeps, {FlowRouter}) {
     action() {
       mount(PublicLayoutCtx, {
         content: () => (<CustomizeCharacter />)
+      });
+    }
+  });
+
+  PrivateRoutes.route('/create-workout-group', {
+    name: 'create-workout-group',
+
+    action() {
+      mount(PublicLayoutCtx, {
+        content: () => (<CreateWorkoutGroup />)
       });
     }
   });
