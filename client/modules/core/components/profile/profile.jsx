@@ -48,15 +48,9 @@ class Profile extends Component {
                         <div className="item-container"><div className="item head"></div></div>
                       </div>
                       <div className="equipment-row">
-                        <div className="item-container item-container-weapon"><div className="item weapon-right"></div></div>
+                        <div className="item-container item-container-weapon"><div className="item hand-right"></div></div>
                         <div className="item-container"><div className="item chest"></div></div>
-                        <div className="item-container item-container-weapon"><div className="item weapon-left"></div></div>
-                      </div>
-                      <div className="equipment-row">
-                        <div className="item-container"><div className="item legs"></div></div>
-                      </div>
-                      <div className="equipment-row">
-                        <div className="item-container"><div className="item feet"></div></div>
+                        <div className="item-container item-container-weapon"><div className="item hand-left"></div></div>
                       </div>
                     </div>
                   </div>
@@ -91,7 +85,6 @@ class Profile extends Component {
         <Row>
           <Col md={12}>
             <h1 className="text-center">Hello, {Meteor.user().profile.name}</h1>
-
             <p>User data</p>
           </Col>
         </Row>

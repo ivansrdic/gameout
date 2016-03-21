@@ -73,37 +73,29 @@
 }
 
 .equipment .item {
-  background-size: 200% !important;
   margin: auto;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  height: 48px;
-  width: 48px;
+  height: 16px;
+  width: 16px;
+  zoom: 3;
 }
 
 .equipment .head {
-  background: url("set-0.png") 48px 0;
+  background: url("items/head.png");
 }
 
 .equipment .chest {
-  background: url("set-0.png") 48px -48px;
+  background: url("items/chest.png");
 }
 
-.equipment .legs {
-  background: url("set-0.png") 48px -96px;
+.equipment .hand-left {
+  background: url("items/shield.png");
 }
 
-.equipment .feet {
-  background: url("set-0.png") 48px -144px;
-}
-
-.equipment .weapon-left {
-  background: url("set-0.png") 0 -96px;
-}
-
-.equipment .weapon-right {
-  background: url("set-0.png") 0 -48px;
+.equipment .hand-right {
+  background: url("items/weapon.png");
 }
 
 .stats {
