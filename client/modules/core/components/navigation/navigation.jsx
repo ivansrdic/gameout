@@ -11,18 +11,18 @@ class Navigation extends Component {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
+
           <Nav>
             <NavItem href="/">Home</NavItem>
             <NavItem href="/how-it-works">How it works</NavItem>
             <NavItem href="/about">About</NavItem>
-            <NavItem href="/edit-info">Edit info</NavItem>
-            <NavItem href="/customize-character">Customize</NavItem>
-            <NavItem href="/profile">Profile</NavItem>
-            <NavItem href="/profile-setup">Profile Setup</NavItem>
           </Nav>
+          {this.renderLoggedInNav()}
+
           <Nav id="auth-nav" pullRight style={{marginRight: 0}}>
             {this.renderAuthNav()}
           </Nav>
+
         </Navbar.Collapse>
       </Navbar>
     );
@@ -30,10 +30,28 @@ class Navigation extends Component {
 
   renderAuthNav() {
     // TODO: container for reactive data source
-    if(Meteor.user()) {
+    if (Meteor.user()) {
       return <NavItem onClick={this.handleLogoutClick}>Log out</NavItem>;
     } else {
       return <NavItem href="/sign-in">Log in/Register</NavItem>;
+    }
+  }
+
+  /**
+   * Method renders navigation elements that are specific
+   * to logged in users only.
+   * @returns {XML}
+   */
+  renderLoggedInNav() {
+    if (Meteor.user()) {
+      return (
+        <Nav>
+          <NavItem href="/edit-info">Edit info</NavItem>
+          <NavItem href="/customize-character">Customize</NavItem>
+          <NavItem href="/profile">Profile</NavItem>
+          <NavItem href="/profile-setup">Profile Setup</NavItem>
+        </Nav>
+      );
     }
   }
 
