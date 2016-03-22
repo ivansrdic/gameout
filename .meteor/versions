@@ -88,6 +88,7 @@ modules@0.5.1-rc.3
 modules-runtime@0.6.1-rc.3
 mongo@1.1.5-rc.3
 mongo-id@1.0.2-rc.3
+mrt:nprogress@0.2.0
 msavin:jetsetter@1.5.2
 msavin:mongol@1.6.2
 npm-bcrypt@0.7.8_2

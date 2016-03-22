@@ -1,4 +1,4 @@
-import {composeWithTracker} from 'react-komposer';
+import {composeWithTracker} from 'mantra-core';
 import React, {Component} from 'react';
 import {Grid, Row, Col, Panel, Tabs, Tab, Input, ButtonInput} from 'react-bootstrap';
 import Actions from '/client/modules/core/actions';
@@ -51,7 +51,7 @@ class SignIn extends Component {
                     <h1 className="text-center">Log in</h1>
 
                     <form onSubmit={this.handleLoginFormSubmit.bind(this)}>
-                      <Input id="username-login" type="text" label="Username/Email" placeholder="Username/Email"/>
+                      <Input id="email-login" type="text" label="Email" placeholder="Email"/>
                       <Input id="password-login" type="password" label="Password" placeholder="Password"/>
                       <ButtonInput className="pull-right" type="submit" value="Login"/>
                     </form>
@@ -61,6 +61,7 @@ class SignIn extends Component {
 
                     <form onSubmit={this.handleRegisterFormSubmit.bind(this)}>
                       <Input id="email-register" type="email" label="Email" placeholder="Email"/>
+                      <Input id="username-register" type="text" label="Username" placeholder="Username"/>
                       <Input id="password-register" type="password" label="Password" placeholder="Password"/>
                       <ButtonInput className="pull-right" type="submit" value="Register"/>
                     </form>
@@ -89,19 +90,20 @@ class SignIn extends Component {
   handleLoginFormSubmit(e) {
     e.preventDefault();
 
-    const username = $('#username-login').val();
+    const email = $('#email-login').val();
     const password = $('#password-login').val();
 
-    Actions.Authorization.login(username, password);
+    Actions.Authorization.login(email, password);
   }
 
   handleRegisterFormSubmit(e) {
     e.preventDefault();
 
     const email = $('#email-register').val();
+    const username = $('#username-register').val();
     const password = $('#password-register').val();
 
-    Actions.Authorization.register(email, password);
+    Actions.Authorization.register(email, username, password);
   }
 
   renderErrorMessage() {

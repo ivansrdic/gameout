@@ -1,15 +1,16 @@
 export default {
-  register(email, password) {
+  register(email, username, password) {
     Accounts.createUser({
       email: email,
+      username: username,
       password: password
     }, function(err) {
       FlowRouter.redirectOrSetError('/profile', err);
     });
   },
 
-  login(username, password) {
-    Meteor.loginWithPassword(username, password, function(err) {
+  login(email, password) {
+    Meteor.loginWithPassword(email, password, function(err) {
       FlowRouter.redirectOrSetError('/profile', err);
     });
   },

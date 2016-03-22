@@ -1,3 +1,4 @@
+import {composeWithTracker} from 'mantra-core';
 import React, {Component} from 'react';
 import {Grid, Row, Col, Overlay, Popover, Button, ProgressBar} from 'react-bootstrap';
 import {Transition} from 'react-overlays';
@@ -12,12 +13,13 @@ class Profile extends Component {
   }
 
   // TODO: better checking of complete setup
-  componentDidMount() {
-    setTimeout(function() {
-      if(!Meteor.users.findOne(Meteor.userId()).completedSetup) {
-        alert('Please complete your setup');
+  componentWillUpdate(nextProps, nextState) {
+    if(nextProps.ready) {
+      NProgress.done();
+      if(!nextProps.user.completedSetup) {
+        FlowRouter.goOrRefresh('profile-setup')
       }
-    }, 1000);
+    }
   }
 
   // TODO: break down into components
@@ -84,7 +86,7 @@ class Profile extends Component {
         </Row>
         <Row>
           <Col md={12}>
-            <h1 className="text-center">Hello, {Meteor.user().profile.name}</h1>
+            <h1 className="text-center">Hello, {this.props.user.profile.name}</h1>
             <p>User data</p>
           </Col>
         </Row>
@@ -99,4 +101,18 @@ class Profile extends Component {
   }
 }
 
-export default Profile;
+function composer(props, onData) {
+  const subscription = Meteor.subscribe('character');
+
+  if (subscription.ready()) {
+    const data = {
+      ready: true,
+      character: Characters.findOne({owner: props.user._id})
+    };
+    onData(null, data);
+  } else {
+    onData(null, {ready: false});
+  }
+}
+
+export default composeWithTracker(composer)(Profile);

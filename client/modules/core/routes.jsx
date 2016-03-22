@@ -1,12 +1,12 @@
 import React from 'react';
 import {mount} from 'react-mounter';
 
-import PublicLayout from './components/public_layout.jsx';
+import PublicLayout from './containers/public_layout.jsx';
 import Home from './components/home/home.jsx';
 import About from './components/home/about.jsx';
 import HowItWorks from  './components/home/how-it-works.jsx';
 import SignIn from './containers/profile/sign-in.jsx';
-import Profile from './components/profile/profile.jsx';
+import Profile from './containers/profile/profile.jsx';
 import ProfileSetup from './components/profile/profile-setup.jsx';
 import EditInfo from './components/profile/edit-info.jsx';
 import CustomizeCharacter from './components/profile/customize-character.jsx';
@@ -76,7 +76,7 @@ export default function (injectDeps, {FlowRouter}) {
     action() {
       //if(!checkUserAuth()) return;
       mount(PublicLayoutCtx, {
-        content: () => (<Profile />)
+        content: (user) => (<Profile user={user} />)
       });
     }
   });
@@ -86,7 +86,7 @@ export default function (injectDeps, {FlowRouter}) {
 
     action() {
       mount(PublicLayoutCtx, {
-        content: () => (<ProfileSetup />)
+        content: (user) => (<ProfileSetup user={user} />)
       });
     }
   });
@@ -96,7 +96,7 @@ export default function (injectDeps, {FlowRouter}) {
 
     action() {
       mount(PublicLayoutCtx, {
-        content: () => (<EditInfo />)
+        content: (user) => (<EditInfo user={user} />)
       });
     }
   });
@@ -106,7 +106,7 @@ export default function (injectDeps, {FlowRouter}) {
 
     action() {
       mount(PublicLayoutCtx, {
-        content: () => (<CustomizeCharacter />)
+        content: (user) => (<CustomizeCharacter user={user} />)
       });
     }
   });
@@ -117,7 +117,7 @@ export default function (injectDeps, {FlowRouter}) {
 
     action() {
       mount(PublicLayoutCtx, {
-        content: () => (<CreateWorkout />)
+        content: (user) => (<CreateWorkout user={user} />)
       });
     }
   });
@@ -127,7 +127,7 @@ export default function (injectDeps, {FlowRouter}) {
 
     action() {
       mount(PublicLayoutCtx, {
-        content: () => (<CreateWorkoutGroup />)
+        content: (user) => (<CreateWorkoutGroup user={user} />)
       });
     }
   });

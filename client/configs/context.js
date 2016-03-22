@@ -1,14 +1,15 @@
 import {Meteor} from 'meteor/meteor';
 import {FlowRouter} from 'meteor/kadira:flow-router-ssr';
 import {Tracker} from 'meteor/tracker';
+import {NProgress} from 'meteor/mrt:nprogress'
 
 export default function () {
   extend();
-  subscribe();
   return {
     Meteor,
     FlowRouter,
-    Tracker
+    Tracker,
+    NProgress
   };
 }
 
@@ -29,11 +30,4 @@ function extend() {
       Session.set('auth-error', err.reason || 'Unknown error');
     }
   }
-}
-
-function subscribe() {
-  Tracker.autorun(function() {
-    Meteor.subscribe('users');
-    Meteor.subscribe('character');
-  });
 }
