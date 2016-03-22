@@ -3,38 +3,43 @@ import React, {Component} from 'react';
 import Navigation from './../components/navigation/navigation.jsx';
 import Footer from './../components/footer/footer.jsx';
 
-class PublicLayout extends Component {
+class PrivateLayout extends Component {
   constructor(props) {
     super(props);
   }
-
+  
   componentWillMount() {
     if(!this.props.ready) {
       NProgress.start();
     }
   }
-
+  
   componentWillReceiveProps(nextProps, nextState) {
     console.log(nextProps.ready);
     if(nextProps.ready) {
       NProgress.inc();
     }
   }
-
+  
   render() {
+    if(this.props.ready)
     return (
       <div>
-        <Navigation />
-          {this.props.content(this.props.user)}
+        <Navigation user={this.props.user} />
+        {this.props.content(this.props.user)}
         <Footer />
       </div>
     );
+    else
+     return (
+     <div></div>
+     );
   }
 }
 
 function composer(props, onData) {
   const subUser= Meteor.subscribe('user');
-
+  
   if (subUser.ready()) {
     const data = {
       ready: true,
@@ -46,4 +51,4 @@ function composer(props, onData) {
   }
 }
 
-export default composeWithTracker(composer)(PublicLayout);
+export default composeWithTracker(composer)(PrivateLayout);

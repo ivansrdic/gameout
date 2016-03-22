@@ -94,7 +94,7 @@ class Profile extends Component {
     );
   }
 
-  handleEquipmentButtonClick(e) {
+  handleEquipmentButtonClick() {
     this.setState({
       showEquipment: !this.state.showEquipment
     });

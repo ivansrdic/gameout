@@ -3,6 +3,10 @@ import {Navbar, Nav, NavbarBrand, NavItem} from 'react-bootstrap';
 import Actions from '/client/modules/core/actions';
 
 class Navigation extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <Navbar>
@@ -38,7 +42,7 @@ class Navigation extends Component {
    * @returns {XML}
    */
   renderLoggedInNav() {
-    if (Meteor.user()) {
+    if (this.props.user) {
       return (
         <Nav>
           <NavItem href="/edit-info">Edit info</NavItem>

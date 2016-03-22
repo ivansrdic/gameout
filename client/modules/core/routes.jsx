@@ -2,6 +2,7 @@ import React from 'react';
 import {mount} from 'react-mounter';
 
 import PublicLayout from './containers/public_layout.jsx';
+import PrivateLayout from './containers/private_layout.jsx';
 import Home from './components/home/home.jsx';
 import About from './components/home/about.jsx';
 import HowItWorks from  './components/home/how-it-works.jsx';
@@ -16,6 +17,7 @@ import CreateWorkoutGroup from './components/profile/create-workout-group.jsx';
 export default function (injectDeps, {FlowRouter}) {
   // TODO: Define private layout for user auth
   const PublicLayoutCtx = injectDeps(PublicLayout);
+  const PrivateLayoutCtx = injectDeps(PrivateLayout);
 
   FlowRouter.route('/', {
     name: 'home',
@@ -75,7 +77,7 @@ export default function (injectDeps, {FlowRouter}) {
     name: 'profile',
     action() {
       //if(!checkUserAuth()) return;
-      mount(PublicLayoutCtx, {
+      mount(PrivateLayoutCtx, {
         content: (user) => (<Profile user={user} />)
       });
     }
@@ -85,7 +87,7 @@ export default function (injectDeps, {FlowRouter}) {
     name: 'profile-setup',
 
     action() {
-      mount(PublicLayoutCtx, {
+      mount(PrivateLayoutCtx, {
         content: (user) => (<ProfileSetup user={user} />)
       });
     }
@@ -95,7 +97,7 @@ export default function (injectDeps, {FlowRouter}) {
     name: 'edit-info',
 
     action() {
-      mount(PublicLayoutCtx, {
+      mount(PrivateLayoutCtx, {
         content: (user) => (<EditInfo user={user} />)
       });
     }
@@ -105,7 +107,7 @@ export default function (injectDeps, {FlowRouter}) {
     name: 'customize-character',
 
     action() {
-      mount(PublicLayoutCtx, {
+      mount(PrivateLayoutCtx, {
         content: (user) => (<CustomizeCharacter user={user} />)
       });
     }
@@ -116,7 +118,7 @@ export default function (injectDeps, {FlowRouter}) {
     name: 'create-workout',
 
     action() {
-      mount(PublicLayoutCtx, {
+      mount(PrivateLayoutCtx, {
         content: (user) => (<CreateWorkout user={user} />)
       });
     }
@@ -126,7 +128,7 @@ export default function (injectDeps, {FlowRouter}) {
     name: 'create-workout-group',
 
     action() {
-      mount(PublicLayoutCtx, {
+      mount(PrivateLayoutCtx, {
         content: (user) => (<CreateWorkoutGroup user={user} />)
       });
     }
