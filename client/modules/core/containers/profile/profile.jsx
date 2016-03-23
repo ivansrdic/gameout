@@ -1,6 +1,6 @@
 import {composeWithTracker} from 'mantra-core';
 import React, {Component} from 'react';
-import {Grid, Row, Col, Overlay, Popover, Button, ProgressBar} from 'react-bootstrap';
+import {Grid, Row, Col, Button, ProgressBar, Modal, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {Transition} from 'react-overlays';
 
 class Profile extends Component {
@@ -8,7 +8,8 @@ class Profile extends Component {
     super(props);
 
     this.state = {
-      showEquipment: false
+      showEquipment: false,
+      showModal: false
     };
   }
 
@@ -26,14 +27,20 @@ class Profile extends Component {
   render() {
     return (
       <Grid className="profile" fluid={true}>
-        <Row className="character-info no-gutter eq-height">
+        <Row className="hero-info no-gutter">
           <Col sm={3} lg={2}>
-            <div className="character-window">
-              <img src="character.png" alt="character" className="img-responsive"/>
+            <div className="hero-container">
+              <div className="equipment">
+                <div className="character-container"><div className="character"></div></div>
+                <div className="item-container item-container-head"><div className="item head"></div></div>
+                <div className="item-container item-container-hand-right"><div className="item hand-right"></div></div>
+                <div className="item-container item-container-chest"><div className="item chest"></div></div>
+                <div className="item-container item-container-hand-left"><div className="item hand-left"></div></div>
+              </div>
               <Button className="equipment-toggle" bsStyle="default" onClick={this.handleEquipmentButtonClick.bind(this)}><i className="fa fa-play"></i></Button>
             </div>
           </Col>
-          <div id="character-details">
+          <div id="hero-details">
               <Transition
                 in={this.state.showEquipment}
                 timeout={500}
@@ -46,14 +53,11 @@ class Profile extends Component {
                 <div className="hide-of">
                   <div className="equipment-container">
                     <div className="equipment">
-                      <div className="equipment-row">
-                        <div className="item-container"><div className="item head"></div></div>
-                      </div>
-                      <div className="equipment-row">
-                        <div className="item-container item-container-weapon"><div className="item hand-right"></div></div>
-                        <div className="item-container"><div className="item chest"></div></div>
-                        <div className="item-container item-container-weapon"><div className="item hand-left"></div></div>
-                      </div>
+                      <div className="character-container"><div className="character"></div></div>
+                      <div className="item-container item-container-head"><div className="item head"></div></div>
+                      <div className="item-container item-container-hand-right"><div className="item hand-right"></div></div>
+                      <div className="item-container item-container-chest"><div className="item chest"></div></div>
+                      <div className="item-container item-container-hand-left"><div className="item hand-left"></div></div>
                     </div>
                   </div>
                 </div>
@@ -86,8 +90,29 @@ class Profile extends Component {
         </Row>
         <Row>
           <Col md={12}>
-            <h1 className="text-center">Hello, {this.props.user.profile.name}</h1>
-            <p>User data</p>
+            <div className="ready-button-container">
+              <Button bsSize="large" bsStyle="danger" onClick={this.handleReadyButtonClick.bind(this)}>Ready</Button>
+            </div>
+            <Modal show={this.state.showModal} onHide={this.handleModalCloseClick.bind(this)} bsSize="large">
+              <Modal.Header closeButton>
+                <Modal.Title>Modal heading</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <h4>Text in a modal</h4>
+                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+
+                <hr />
+
+                <ListGroup>
+                  <ListGroupItem header="Heading 1">Some body text</ListGroupItem>
+                  <ListGroupItem header="Heading 2" href="#">Linked item</ListGroupItem>
+                  <ListGroupItem header="Heading 3" bsStyle="danger">Danger styling</ListGroupItem>
+                </ListGroup>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button onClick={this.handleModalCloseClick.bind(this)}>Close</Button>
+              </Modal.Footer>
+            </Modal>
           </Col>
         </Row>
       </Grid>
@@ -99,6 +124,18 @@ class Profile extends Component {
       showEquipment: !this.state.showEquipment
     });
   }
+
+  handleReadyButtonClick() {
+    this.setState({
+      showModal: true
+    });
+  }
+
+  handleModalCloseClick() {
+    this.setState({
+      showModal: false
+    });
+  }
 }
 
 function composer(props, onData) {
@@ -107,7 +144,7 @@ function composer(props, onData) {
   if (subscription.ready()) {
     const data = {
       ready: true,
-      character: Characters.findOne({owner: props.user._id})
+      character: Characters.findOne()
     };
     onData(null, data);
   } else {
