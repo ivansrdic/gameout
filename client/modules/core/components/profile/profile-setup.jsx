@@ -68,7 +68,20 @@ class ProfileSetup extends Component {
     const level = $("#level").find("input[name='level']:checked").val();
     const gender = $("#gender").find("input[name='gender']:checked").val();
 
-    Actions.Profile.completeSetup({owner, age, height, weight, level, gender});
+    Actions.ProfileSettings.completeSetup({
+      owner,
+      age,
+      height,
+      weight,
+      level,
+      gender,
+      equipment: {
+        head: 0,
+        chest: 0,
+        leftHand: 0,
+        rightHand: 0
+      }
+    });
   }
 }
 

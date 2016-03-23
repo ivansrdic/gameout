@@ -11,7 +11,7 @@ class Profile extends Component {
 
     this.state = {
       showEquipment: false,
-      showInventory: true,
+      showInventory: false,
       readyForWorkout: false
     };
   }
@@ -92,25 +92,7 @@ class Profile extends Component {
 
           {this.renderInventory()}
 
-          <Modal show={this.state.readyForWorkout} onHide={this.handleWorkoutsCloseClick.bind(this)} bsSize="large">
-            <Modal.Header closeButton>
-              <Modal.Title>Modal heading</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <h4>Text in a modal</h4>
-              <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-
-              <hr />
-              <ListGroup>
-                <ListGroupItem header="Heading 1">Some body text</ListGroupItem>
-                <ListGroupItem header="Heading 2" href="#">Linked item</ListGroupItem>
-                <ListGroupItem header="Heading 3" bsStyle="danger">Danger styling</ListGroupItem>
-              </ListGroup>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={this.handleWorkoutsCloseClick.bind(this)}>Close</Button>
-            </Modal.Footer>
-          </Modal>
+          {this.renderWorkoutSelection()}
         </Grid>
       );
     else
@@ -168,6 +150,30 @@ class Profile extends Component {
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.handleInventoryCloseClick.bind(this)}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
+  renderWorkoutSelection() {
+    return (
+      <Modal show={this.state.readyForWorkout} onHide={this.handleWorkoutsCloseClick.bind(this)} bsSize="large">
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h4>Text in a modal</h4>
+          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+
+          <hr />
+          <ListGroup>
+            <ListGroupItem header="Heading 1">Some body text</ListGroupItem>
+            <ListGroupItem header="Heading 2" href="#">Linked item</ListGroupItem>
+            <ListGroupItem header="Heading 3" bsStyle="danger">Danger styling</ListGroupItem>
+          </ListGroup>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.handleWorkoutsCloseClick.bind(this)}>Close</Button>
         </Modal.Footer>
       </Modal>
     );
