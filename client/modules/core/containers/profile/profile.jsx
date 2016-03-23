@@ -2,6 +2,8 @@ import {composeWithTracker} from 'mantra-core';
 import React, {Component} from 'react';
 import {Grid, Row, Col, Button, ProgressBar, Modal, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {Transition} from 'react-overlays';
+import Actions from '/client/modules/core/actions';
+import Item from '../../components/profile/item.jsx';
 
 class Profile extends Component {
   constructor(props) {
@@ -9,17 +11,14 @@ class Profile extends Component {
 
     this.state = {
       showEquipment: false,
-      showModal: false
+      showInventory: true,
+      readyForWorkout: false
     };
   }
 
-  // TODO: better checking of complete setup
   componentWillUpdate(nextProps, nextState) {
     if(nextProps.ready) {
       NProgress.done();
-      // if(!nextProps.user.completedSetup) {
-      //   FlowRouter.goOrRefresh('profile-setup')
-      // }
     }
   }
 
@@ -30,14 +29,8 @@ class Profile extends Component {
         <Row className="hero-info no-gutter">
           <Col sm={3} lg={2}>
             <div className="hero-container">
-              <div className="equipment">
-                <div className="character-container"><div className="character"></div></div>
-                <div className="item-container item-container-head"><div className="item head"></div></div>
-                <div className="item-container item-container-hand-right"><div className="item hand-right"></div></div>
-                <div className="item-container item-container-chest"><div className="item chest"></div></div>
-                <div className="item-container item-container-hand-left"><div className="item hand-left"></div></div>
-              </div>
-              <Button className="equipment-toggle" bsStyle="default" onClick={this.handleEquipmentButtonClick.bind(this)}><i className="fa fa-play"></i></Button>
+              {this.renderEquipment()}
+              <Button className="toggle equipment-toggle" bsStyle="default" onClick={this.handleEquipmentButtonClick.bind(this)}><i className="fa fa-play"></i></Button>
             </div>
           </Col>
           <div id="hero-details">
@@ -52,20 +45,18 @@ class Profile extends Component {
               >
                 <div className="hide-of">
                   <div className="equipment-container">
-                    <div className="equipment">
-                      <div className="character-container"><div className="character"></div></div>
-                      <div className="item-container item-container-head"><div className="item head"></div></div>
-                      <div className="item-container item-container-hand-right"><div className="item hand-right"></div></div>
-                      <div className="item-container item-container-chest"><div className="item chest"></div></div>
-                      <div className="item-container item-container-hand-left"><div className="item hand-left"></div></div>
-                    </div>
+                    {this.renderEquipment()}
+                    <Button className="toggle inventory-toggle" bsStyle="default" onClick={this.handleInventoryButtonClick.bind(this)}>Show inventory</Button>
                   </div>
                 </div>
-            </Transition>
+              </Transition>
             <Col xs={12} sm={3} lg={2}>
               <div>
-                <h3>Neki drugi column</h3>
-                Zadrži svoju responzivnost
+                <h3>Hero stats</h3>
+                <div><b>Strength</b>: 10</div>
+                <div><b>Stamina</b>: 10</div>
+                <div><b>Agility</b>: 10</div>
+                <div><b>Intelligence</b>: 10</div>
               </div>
             </Col>
             <Transition
@@ -93,47 +84,95 @@ class Profile extends Component {
             <div className="ready-button-container">
               <Button bsSize="large" bsStyle="danger" onClick={this.handleReadyButtonClick.bind(this)}>Ready</Button>
             </div>
-            <Modal show={this.state.showModal} onHide={this.handleModalCloseClick.bind(this)} bsSize="large">
-              <Modal.Header closeButton>
-                <Modal.Title>Modal heading</Modal.Title>
-              </Modal.Header>
-              <Modal.Body>
-                <h4>Text in a modal</h4>
-                <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-
-                <hr />
-
-                <ListGroup>
-                  <ListGroupItem header="Heading 1">Some body text</ListGroupItem>
-                  <ListGroupItem header="Heading 2" href="#">Linked item</ListGroupItem>
-                  <ListGroupItem header="Heading 3" bsStyle="danger">Danger styling</ListGroupItem>
-                </ListGroup>
-              </Modal.Body>
-              <Modal.Footer>
-                <Button onClick={this.handleModalCloseClick.bind(this)}>Close</Button>
-              </Modal.Footer>
-            </Modal>
           </Col>
         </Row>
+
+        {this.renderInventory()}
+
+        <Modal show={this.state.readyForWorkout} onHide={this.handleWorkoutsCloseClick.bind(this)} bsSize="large">
+          <Modal.Header closeButton>
+            <Modal.Title>Modal heading</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>Text in a modal</h4>
+            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
+
+            <hr />
+            <ListGroup>
+              <ListGroupItem header="Heading 1">Some body text</ListGroupItem>
+              <ListGroupItem header="Heading 2" href="#">Linked item</ListGroupItem>
+              <ListGroupItem header="Heading 3" bsStyle="danger">Danger styling</ListGroupItem>
+            </ListGroup>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.handleWorkoutsCloseClick.bind(this)}>Close</Button>
+          </Modal.Footer>
+        </Modal>
       </Grid>
+    );
+  }
+  renderEquipment() {
+    return(
+      <div className="equipment">
+        <div className="character-container"><div className="character"></div></div>
+        <Item equipment={true} type="head"/>
+        <Item equipment={true} type="chest"/>
+        <Item equipment={true} type="leftHand"/>
+        <Item equipment={true} type="rightHand"/>
+      </div>
+    );
+  }
+  renderInventory() {
+    return(
+      <Modal show={this.state.showInventory} onHide={this.handleInventoryCloseClick.bind(this)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Inventory</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <p>Click on the items you want to equip.</p>
+
+          <hr />
+          <div className="inventory">
+            <Item type="head" onClickHandler={this.handleInventoryItemClick} set={1}/>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={this.handleInventoryCloseClick.bind(this)}>Close</Button>
+        </Modal.Footer>
+      </Modal>
     );
   }
 
   handleEquipmentButtonClick() {
     this.setState({
-      showEquipment: !this.state.showEquipment
+      showEquipment: !this.state.showEquipment,
+      showInventory: false
+    });
+  }
+  handleInventoryButtonClick() {
+    this.setState({
+      showInventory: !this.state.showInventory
+    });
+  }
+  handleInventoryItemClick(e) {
+    const item = $(e.target);
+    Actions.Profile.equipItem(item.attr("data-type"), item.attr("data-set"))
+  }
+  handleInventoryCloseClick() {
+    this.setState({
+      showInventory: false
     });
   }
 
   handleReadyButtonClick() {
     this.setState({
-      showModal: true
+      readyForWorkout: true
     });
   }
 
-  handleModalCloseClick() {
+  handleWorkoutsCloseClick() {
     this.setState({
-      showModal: false
+      readyForWorkout: false
     });
   }
 }

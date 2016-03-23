@@ -1,6 +1,21 @@
 Characters = new Mongo.Collection('characters');
 
-//TODO: circular dependency user -> character
+EquipmentSchema = new SimpleSchema({
+  head: {
+    type: Number
+  },
+  chest: {
+    type: Number
+  },
+  leftHand: {
+    type: Number
+  },
+  rightHand: {
+    type: Number
+  }
+});
+
+//TODO: helpers for foreign key
 CharacterSchema = new SimpleSchema({
   owner: {
     type: String
@@ -19,6 +34,9 @@ CharacterSchema = new SimpleSchema({
   },
   gender: {
     type: String
+  },
+  equipment: {
+    type: EquipmentSchema
   }
 });
 

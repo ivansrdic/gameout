@@ -8,6 +8,23 @@
   height: 250px;
 }
 
+.hero-info .toggle {
+  z-index: 20;
+  position: absolute;
+}
+
+.hero-info .equipment-toggle {
+  right: 0;
+  top: 0;
+}
+
+.hero-info .inventory-toggle {
+  bottom: 0;
+  width: 100%;
+}
+/* --------------------------------------------- */
+
+/* Hero container styles */
 .hero-container {
   border: solid 1px #000;
   position: relative;
@@ -15,23 +32,109 @@
   width: 100%;
 }
 
-.equipment-toggle {
-  z-index: 20;
-  position: absolute;
-  top: 0;
-  right: 0;
+.hero-container .equipment {
+  height: 64px;
+  width: 64px;
 }
 
+.hero-container .character {
+  background: url("character1.png") no-repeat center top;
+}
+
+.hero-container .item-container-head {
+  top: 2px;
+}
+
+.hero-container .item-container-chest {
+  top: 25px;
+}
+
+.hero-container .item-container-leftHand {
+  right: 6px;
+  top: 28px;
+}
+
+.hero-container .item-container-rightHand {
+  left: 0;
+  top: 22px;
+}
+
+.hero-container .head {
+  zoom: 2;
+}
+
+.hero-container .chest {
+  zoom: 1.6;
+}
+
+.hero-container .leftHand {
+  zoom: 1.5;
+}
+
+.hero-container .rightHand {
+  zoom: 1.5;
+}
+/* --------------------------------------------- */
+
+/* Equipment container styles */
 .equipment-container {
   border: solid 1px #000;
   box-sizing: border-box;
   height: 250px;
 }
 
+.equipment-container .equipment {
+  height: 64px;
+  width: 48px;
+}
+
+.equipment-container .character {
+  background: url("character0.png") no-repeat center top;
+}
+
+.equipment-container .item-container-head {
+  top: 12px;
+}
+
+.equipment-container .item-container-chest {
+  top: 30px;
+}
+
+.equipment-container .item-container-leftHand {
+  right: 0;
+  top: 32px;
+}
+
+.equipment-container .item-container-rightHand {
+  left: 0;
+  top: 32px;
+}
+
+.equipment-container .item-container:hover {
+  background: #333;
+  z-index: 12;
+}
+
+.equipment-container .head {
+  zoom: 1;
+}
+
+.equipment-container .chest {
+  zoom: 1;
+}
+
+.equipment-container .leftHand {
+  zoom: 1;
+}
+
+.equipment-container .rightHand {
+  zoom: 1;
+}
+/* --------------------------------------------- */
+
+/* General equipment styles */
 .equipment {
   margin: auto;
-  height: 64px;
-  width: 72px;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
@@ -46,79 +149,80 @@
 
 .equipment .character {
   image-rendering: pixelated;
-  background: url("character.png") no-repeat center top;
   height: 32px;
   width: 20px;
   zoom: 2;
 }
 
 .equipment .item-container {
+  background: transparent;
+  border: none;
   position: absolute;
-}
-
-.equipment-container .equipment .item-container:hover {
-  background: #333;
-  z-index: 12;
 }
 
 .equipment .item-container-head {
   left: 50%;
   transform: translateX(-50%);
-  top: 2px;
   z-index: 11;
 }
 
 .equipment .item-container-chest {
   left: 50%;
   transform: translateX(-50%);
-  top: 25px;
   z-index: 10;
 }
 
-.equipment .item-container-hand-left {
-  right: 10px;
-  top: 26px;
+.equipment .item-container-leftHand {
   z-index: 11;
 }
 
-.equipment .item-container-hand-right {
-  left: 4px;
-  top: 22px;
+.equipment .item-container-rightHand {
   z-index: 11;
 }
+/* --------------------------------------------- */
 
-.equipment .item {
+/* General equipment styles */
+.inventory .item-container:hover {
+  cursor: pointer;
+}
+/* --------------------------------------------- */
+
+/* General item styles */
+.item-container {
+  background: #999;
+  border: solid 2px #666;
+  display: inline-block;
+}
+
+.item {
   image-rendering: pixelated;
   height: 16px;
   width: 16px;
 }
 
-.equipment .head {
+.head {
   background: url("items/head.png") -16px;
-  zoom: 2;
+  zoom: 3;
 }
 
-.equipment .chest {
+.chest {
   background: url("items/chest.png") -16px;
-  zoom: 1.6;
+  zoom: 3;
 }
 
-.equipment .hand-left {
+.leftHand {
   background: url("items/shield.png") 144px;
-  zoom: 1.5;
+  zoom: 3;
 }
 
-.equipment .hand-right {
+.rightHand {
   background: url("items/weapon.png") -112px;
   transform: scaleX(-1);
-  zoom: 1.5;
+  zoom: 3;
 }
+/* --------------------------------------------- */
 
-.stats {
-  border: solid 1px #000;
-  padding: 10px;
-}
-
+/* Hero details transitions */
 @media (max-width: 767px) {
   #hero-details .equipment-entering {
     max-height: 300px;
@@ -155,6 +259,13 @@
   #hero-details .animate-character-stats {
     transition: width 500ms ease-in;
   }
+}
+/* --------------------------------------------- */
+
+/* Stats styles */
+.stats {
+  border: solid 1px #000;
+  padding: 10px;
 }
 
 .ready-button-container {
