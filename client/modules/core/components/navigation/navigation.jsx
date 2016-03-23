@@ -11,7 +11,7 @@ class Navigation extends Component {
     return (
       <Navbar>
         <Navbar.Header>
-          <a href="/"><img src="logo.png" alt="Gameout logo"/></a>
+          <img src="logo.png" alt="Gameout logo"/>
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
@@ -54,7 +54,7 @@ class Navigation extends Component {
         </Nav>
       );
     } else {
-      return(
+      return (
         <Nav>
           <NavItem href="/">Home</NavItem>
           <NavItem href="/how-it-works">How it works</NavItem>
