@@ -17,9 +17,9 @@ class Profile extends Component {
   componentWillUpdate(nextProps, nextState) {
     if(nextProps.ready) {
       NProgress.done();
-      if(!nextProps.user.completedSetup) {
-        FlowRouter.goOrRefresh('profile-setup')
-      }
+      // if(!nextProps.user.completedSetup) {
+      //   FlowRouter.goOrRefresh('profile-setup')
+      // }
     }
   }
 

@@ -19,6 +19,11 @@ export default function (injectDeps, {FlowRouter}) {
 
   FlowRouter.route('/', {
     name: 'home',
+    triggersEnter: [function (context, redirect) {
+      if (Meteor.user()) {
+        redirect('/profile');
+      }
+    }],
 
     action() {
       mount(MainLayoutCtx, {
@@ -66,6 +71,11 @@ export default function (injectDeps, {FlowRouter}) {
       if(!Meteor.user()) {
         Session.set('auth-error', 'You need to log in first.');
         redirect('/sign-in');
+      }
+
+      // This part of code will be updated later on as profile setup divides into two components.
+      if(!Meteor.user().completedSetup && context.pathname != '/profile-setup') {
+        redirect('/profile-setup');
       }
     }]
   });
