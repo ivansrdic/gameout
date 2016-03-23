@@ -71,11 +71,13 @@ export default function (injectDeps, {FlowRouter}) {
       if(!Meteor.user()) {
         Session.set('auth-error', 'You need to log in first.');
         redirect('/sign-in');
+        return;
       }
 
       // This part of code will be updated later on as profile setup divides into two components.
-      if(!Meteor.user().completedSetup && context.pathname != '/profile-setup') {
+      if((!Meteor.user() || !Meteor.user().profile.character) && context.pathname != '/profile-setup') {
         redirect('/profile-setup');
+        return;
       }
     }]
   });

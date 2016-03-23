@@ -18,8 +18,6 @@ export default () => {
       }
     }
 
-    user.completedSetup = false;
-
     return user;
   });
 }

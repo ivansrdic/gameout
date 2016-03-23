@@ -10,6 +10,10 @@ ProfileSchema =  new SimpleSchema({
   },
   last_name: {
     type: String
+  },
+  character: {
+    type: String,
+    optional: true
   }
 });
 
@@ -29,14 +33,6 @@ UserSchema = new SimpleSchema({
   },
   profile: {
     type: ProfileSchema,
-    optional: true
-  },
-  character: {
-    type: CharacterSchema,
-    optional: true
-  },
-  completedSetup: {
-    type: Boolean,
     optional: true
   }
 });

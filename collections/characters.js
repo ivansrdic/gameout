@@ -1,4 +1,3 @@
-
 Characters = new Mongo.Collection('characters');
 
 //TODO: circular dependency user -> character
