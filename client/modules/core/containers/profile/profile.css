@@ -56,7 +56,7 @@
 
 .hero-container .item-container-rightHand {
   left: 0;
-  top: 22px;
+  top: 23px;
 }
 
 .hero-container .head {
@@ -201,23 +201,22 @@
 }
 
 .head {
-  background: url("items/head.png") -16px;
+  background: url("items/head.png") -64px;
   zoom: 3;
 }
 
 .chest {
-  background: url("items/chest.png") -16px;
+  background: url("items/chest.png") -64px;
   zoom: 3;
 }
 
 .leftHand {
-  background: url("items/shield.png") 144px;
+  background: url("items/shield.png") -64px;
   zoom: 3;
 }
 
 .rightHand {
-  background: url("items/weapon.png") -112px;
-  transform: scaleX(-1);
+  background: url("items/weapon.png") -64px;
   zoom: 3;
 }
 /* --------------------------------------------- */

@@ -1,8 +1,23 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Panel, Tabs, Tab, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
+import {Grid, Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
 import Actions from '/client/modules/core/actions';
 
 class CreateWorkout extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      name: "",
+      description: "",
+      type: "",
+      tips: ""
+    }
+  }
+
+  componentDidMount() {
+    NProgress.done();
+  }
+
   render() {
     return (
       <Grid>
@@ -10,31 +25,37 @@ class CreateWorkout extends Component {
           <Col md={12}>
             <Panel>
               <Col md={10} mdOffset={1}>
-                <form onSubmit={this.handleSetupFormSubmit}>
+                <form onSubmit={this.handleSetupFormSubmit.bind(this)}>
                     <hr/>
                       <h1 className="text-center">Create workout</h1>
-                      <Input id="workout-name" type="text" label="Workout name" placeholder="Workout name"/>
-                      <Input id="workout-description" type="text" label="Description" placeholder="Description"/>
-                      <label htmlFor="training-type" className="control-label input-group">Training Type</label>
-                      <ButtonGroup id="training-type" className="form-group" bsSize="large" data-toggle="buttons">
-                        <label className="btn btn-default">
-                          <input name="training-type" value="cardio" type="radio"/>Cardio
-                        </label>
-                        <label className="btn btn-default">
-                          <input name="training-type" value="total-body" type="radio"/>Total Body
-                        </label>
-                        <label className="btn btn-default">
-                          <input name="traning-type" value="upper-body" type="radio"/>Upper Body
-                        </label>
-                        <label className="btn btn-default">
-                          <input name="training-type" value="lower-body" type="radio"/>Lower Body
-                        </label>
-                        <label className="btn btn-default">
-                          <input name="training-type" value="ab-intervals" type="radio"/>Ab interval
-                        </label>
-                      </ButtonGroup>
-                      <br/>
-                      <Input id="workout-tips" type="text" label="Tips and advices" placeholder="Exercise is too exausting for beginners? Help them get through it :) "/>
+                      <Input
+                        type="text"
+                        label="Workout name"
+                        placeholder="Workout name"
+                        value={this.state.name}
+                        onChange={this.handleNameChange.bind(this)}
+                      />
+                      <Input
+                        type="textarea"
+                        label="Description"
+                        placeholder="Description"
+                        value={this.state.description}
+                        onChange={this.handleDescriptionChange.bind(this)}
+                      />
+                      <Input
+                        type="text"
+                        label="Type"
+                        placeholder="Type"
+                        value={this.state.type}
+                        onChange={this.handleTypeChange.bind(this)}
+                      />
+                      <Input
+                        type="textarea"
+                        label="Tips and advices"
+                        placeholder="The workout is too exhausting for beginners? Help them get through it :) "
+                        value={this.state.tips}
+                        onChange={this.handleTipsChange.bind(this)}
+                      />
                       <ButtonInput className="pull-right" type="submit" value="Save"/>
                 </form>
               </Col>
@@ -45,18 +66,40 @@ class CreateWorkout extends Component {
     );
   }
 
+  handleNameChange(e) {
+    this.setState({
+      name: $(e.target).val()
+    });
+  }
+
+  handleDescriptionChange(e) {
+    this.setState({
+      description: $(e.target).val()
+    });
+  }
+
+  handleTypeChange(e) {
+    this.setState({
+      type: $(e.target).val()
+    });
+  }
+
+  handleTipsChange(e) {
+    this.setState({
+      tips: $(e.target).val()
+    });
+  }
+
   // TODO: validation and error setting
   handleSetupFormSubmit(e) {
     e.preventDefault();
 
-    const owner = Meteor.userId();
-    const age = $('#age').val();
-    const height = $('#height').val();
-    const weight = $('#weight').val();
-    const level = $("#level").find("input[name='level']:checked").val();
-    const gender = $("#gender").find("input[name='gender']:checked").val();
-
-    Actions.Profile.completeSetup({owner, age, height, weight, level, gender});
+    Actions.Workouts.createWorkout({
+      name: this.state.name,
+      description: this.state.description,
+      type: this.state.type,
+      tips: this.state.tips
+    });
   }
 }
 
