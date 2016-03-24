@@ -11,7 +11,7 @@ import ProfileSetup from './components/private/profile-setup.jsx';
 import EditInfo from './components/private/edit-info.jsx';
 import CustomizeCharacter from './components/private/customize-character.jsx';
 import CreateWorkout from './components/private/create-workout/create-workout.jsx';
-import CreateWorkoutGroup from './components/private/create-workout-group.jsx';
+import CreateWorkoutGroup from './components/private/create-workout-group/create-workout-group.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
   // TODO: Define private layout for user auth
