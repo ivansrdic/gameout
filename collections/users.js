@@ -1,4 +1,6 @@
-ProfileSchema =  new SimpleSchema({
+let Users = Meteor.users;
+
+const ProfileSchema =  new SimpleSchema({
   email: {
     type: String
   },
@@ -17,7 +19,7 @@ ProfileSchema =  new SimpleSchema({
   }
 });
 
-UserSchema = new SimpleSchema({
+const UserSchema = new SimpleSchema({
   username: {
     type: String,
     optional: true
@@ -37,9 +39,9 @@ UserSchema = new SimpleSchema({
   }
 });
 
-Meteor.users.attachSchema(UserSchema);
+Users.attachSchema(UserSchema);
 
-Meteor.users.allow({
+Users.allow({
   insert: function(userId, doc) {
     return true;
   },
@@ -50,3 +52,5 @@ Meteor.users.allow({
     return false;
   }
 });
+
+export default Users;

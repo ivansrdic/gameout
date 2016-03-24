@@ -1,3 +1,5 @@
+import {Characters} from '/collections';
+
 export default {
   equipItem(type, set) {
     Characters.update(

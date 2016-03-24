@@ -1,10 +1,11 @@
 import {Meteor} from 'meteor/meteor';
+import {Users} from '/collections';
 
 export default function() {
   Meteor.publish('user', function() {
     if(this.userId)
       return (
-        Meteor.users.find(this.userId,
+        Users.find(this.userId,
           {
             fields: {
               services: 0

@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import {Grid, Row, Col, Button, ProgressBar, Modal, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {Transition} from 'react-overlays';
 import Actions from '/client/modules/core/actions';
+import {Characters} from '/collections';
 import Item from '../../../components/private/profile/item.jsx';
 
 class Profile extends Component {

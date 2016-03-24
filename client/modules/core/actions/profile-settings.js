@@ -1,3 +1,5 @@
+import {Characters} from '/collections';
+
 export default {
   completeSetup(userData) {
     // TODO: display error on character creation

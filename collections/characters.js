@@ -1,6 +1,6 @@
-Characters = new Mongo.Collection('characters');
+let Characters = new Mongo.Collection('characters');
 
-EquipmentSchema = new SimpleSchema({
+const EquipmentSchema = new SimpleSchema({
   head: {
     type: Number
   },
@@ -16,7 +16,7 @@ EquipmentSchema = new SimpleSchema({
 });
 
 //TODO: helpers for foreign key
-CharacterSchema = new SimpleSchema({
+const CharacterSchema = new SimpleSchema({
   owner: {
     type: String
   },
@@ -53,3 +53,5 @@ Characters.allow({
     return false;
   }
 });
+
+export default Characters;
