@@ -1,7 +1,7 @@
 import {composeWithTracker} from 'mantra-core';
 import React, {Component} from 'react';
-import Navigation from './../components/navigation/navigation.jsx';
-import Footer from './../components/footer/footer.jsx';
+import Navigation from '../components/common/navigation/navigation.jsx';
+import Footer from '../components/common/footer/footer.jsx';
 
 class PrivateLayout extends Component {
   constructor(props) {

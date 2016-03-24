@@ -2,16 +2,16 @@ import React from 'react';
 import {mount} from 'react-mounter';
 
 import MainLayout from './containers/main_layout.jsx';
-import Home from './components/home/home.jsx';
-import About from './components/home/about.jsx';
-import HowItWorks from  './components/home/how-it-works.jsx';
-import SignIn from './containers/profile/sign-in.jsx';
-import Profile from './containers/profile/profile.jsx';
-import ProfileSetup from './components/profile/profile-setup.jsx';
-import EditInfo from './components/profile/edit-info.jsx';
-import CustomizeCharacter from './components/profile/customize-character.jsx';
-import CreateWorkout from './components/profile/create-workout.jsx';
-import CreateWorkoutGroup from './components/profile/create-workout-group.jsx';
+import Home from './components/public/home.jsx';
+import About from './components/public/about.jsx';
+import HowItWorks from  './components/public/how-it-works.jsx';
+import SignIn from './containers/public/sign-in/sign-in.jsx';
+import Profile from './containers/private/profile/profile.jsx';
+import ProfileSetup from './components/private/profile-setup.jsx';
+import EditInfo from './components/private/edit-info.jsx';
+import CustomizeCharacter from './components/private/customize-character.jsx';
+import CreateWorkout from './components/private/create-workout/create-workout.jsx';
+import CreateWorkoutGroup from './components/private/create-workout-group.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
   // TODO: Define private layout for user auth
