@@ -2,11 +2,11 @@ import React from 'react';
 import {mount} from 'react-mounter';
 
 import MainLayout from './containers/main_layout.jsx';
-import Home from './components/public/home.jsx';
-import About from './components/public/about.jsx';
-import HowItWorks from  './components/public/how-it-works.jsx';
-import SignIn from './containers/public/sign-in/sign-in.jsx';
-import Profile from './containers/private/profile/profile.jsx';
+import Home from './components/public/home/home.jsx';
+import About from './components/public/about/about.jsx';
+import HowItWorks from  './components/public/how-it-works/how-it-works.jsx';
+import SignIn from './containers/public/sign-in/sign-in.js';
+import Profile from './containers/private/profile/profile.js';
 import ProfileSetup from './components/private/profile-setup.jsx';
 import EditInfo from './components/private/edit-info.jsx';
 import CustomizeCharacter from './components/private/customize-character.jsx';

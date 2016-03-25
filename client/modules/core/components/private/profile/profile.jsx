@@ -4,7 +4,7 @@ import {Grid, Row, Col, Button, ProgressBar, Modal, ListGroup, ListGroupItem} fr
 import {Transition} from 'react-overlays';
 import Actions from '/client/modules/core/actions';
 import {Characters} from '/collections';
-import Item from '../../../components/private/profile/item.jsx';
+import Item from './item.jsx';
 
 class Profile extends Component {
   constructor(props) {
@@ -222,18 +222,4 @@ class Profile extends Component {
   }
 }
 
-function composer(props, onData) {
-  const subscription = Meteor.subscribe('character');
-
-  if (subscription.ready()) {
-    const data = {
-      ready: true,
-      character: Characters.findOne()
-    };
-    onData(null, data);
-  } else {
-    onData(null, {ready: false});
-  }
-}
-
-export default composeWithTracker(composer)(Profile);
+export default Profile;
