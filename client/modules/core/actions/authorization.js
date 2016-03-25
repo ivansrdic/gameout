@@ -1,5 +1,5 @@
 export default {
-  register(email, username, password) {
+  register({FlowRouter}, email, username, password) {
     Accounts.createUser({
       email: email,
       username: username,
@@ -9,32 +9,36 @@ export default {
     });
   },
 
-  login(email, password) {
+  login({Meteor, FlowRouter}, email, password) {
     Meteor.loginWithPassword(email, password, function(err) {
       FlowRouter.redirectOrSetError('/profile', err);
     });
   },
 
-  logout() {
+  logout({Meteor, FlowRouter}) {
     Meteor.logout(function(err) {
       FlowRouter.redirectOrSetError('/', err)
     });
   },
 
-  loginWithFacebook() {
+  loginWithFacebook({Meteor, FlowRouter}) {
     Meteor.loginWithFacebook(function(err) {
       FlowRouter.redirectOrSetError('/profile', err);
       }
     );
   },
-  loginWithGoogle() {
+  loginWithGoogle({Meteor, FlowRouter}) {
     Meteor.loginWithGoogle(function(err) {
       FlowRouter.redirectOrSetError('/profile', err);
     });
   },
-  loginWithTwitter() {
+  loginWithTwitter({Meteor, FlowRouter}) {
     Meteor.loginWithTwitter(function(err) {
       FlowRouter.redirectOrSetError('/profile', err);
     });
+  },
+
+  clearErrors({LocalState}) {
+    LocalState.set('auth-error', null);
   }
 }

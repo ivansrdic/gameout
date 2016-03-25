@@ -1,7 +1,7 @@
 import React from 'react';
 import {mount} from 'react-mounter';
 
-import MainLayout from './containers/main_layout.jsx';
+import MainLayout from './containers/main_layout.js';
 import Home from './components/public/home/home.jsx';
 import About from './components/public/about/about.jsx';
 import HowItWorks from  './components/public/how-it-works/how-it-works.jsx';
@@ -14,7 +14,6 @@ import CreateWorkout from './components/private/create-workout/create-workout.js
 import CreateWorkoutGroup from './components/private/create-workout-group/create-workout-group.jsx';
 
 export default function (injectDeps, {FlowRouter}) {
-  // TODO: Define private layout for user auth
   const MainLayoutCtx = injectDeps(MainLayout);
 
   FlowRouter.route('/', {

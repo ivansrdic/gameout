@@ -1,9 +1,6 @@
-import {composeWithTracker} from 'mantra-core';
 import React, {Component} from 'react';
 import {Grid, Row, Col, Button, ProgressBar, Modal, ListGroup, ListGroupItem} from 'react-bootstrap';
 import {Transition} from 'react-overlays';
-import Actions from '/client/modules/core/actions';
-import {Characters} from '/collections';
 import Item from './item.jsx';
 
 class Profile extends Component {
@@ -108,10 +105,10 @@ class Profile extends Component {
         <div className="character-container">
           <div className="character"></div>
         </div>
-        <Item equipment={true} type="head" onClickHandler={this.handleEquipmentItemClick} set={this.props.character.equipment.head}/>
-        <Item equipment={true} type="chest" onClickHandler={this.handleEquipmentItemClick} set={this.props.character.equipment.chest}/>
-        <Item equipment={true} type="leftHand" onClickHandler={this.handleEquipmentItemClick} set={this.props.character.equipment.leftHand}/>
-        <Item equipment={true} type="rightHand" onClickHandler={this.handleEquipmentItemClick} set={this.props.character.equipment.rightHand}/>
+        <Item equipment={true} type="head" onClickHandler={this.handleEquipmentItemClick.bind(this)} set={this.props.character.equipment.head}/>
+        <Item equipment={true} type="chest" onClickHandler={this.handleEquipmentItemClick.bind(this)} set={this.props.character.equipment.chest}/>
+        <Item equipment={true} type="leftHand" onClickHandler={this.handleEquipmentItemClick.bind(this)} set={this.props.character.equipment.leftHand}/>
+        <Item equipment={true} type="rightHand" onClickHandler={this.handleEquipmentItemClick.bind(this)} set={this.props.character.equipment.rightHand}/>
       </div>
     );
   }
@@ -127,26 +124,26 @@ class Profile extends Component {
 
           <hr />
           <div className="inventory">
-            <Item type="head" onClickHandler={this.handleInventoryItemClick} set={1}/>
-            <Item type="head" onClickHandler={this.handleInventoryItemClick} set={2}/>
-            <Item type="head" onClickHandler={this.handleInventoryItemClick} set={3}/>
-            <Item type="head" onClickHandler={this.handleInventoryItemClick} set={4}/>
-            <Item type="head" onClickHandler={this.handleInventoryItemClick} set={5}/>
-            <Item type="chest" onClickHandler={this.handleInventoryItemClick} set={1}/>
-            <Item type="chest" onClickHandler={this.handleInventoryItemClick} set={2}/>
-            <Item type="chest" onClickHandler={this.handleInventoryItemClick} set={3}/>
-            <Item type="chest" onClickHandler={this.handleInventoryItemClick} set={4}/>
-            <Item type="chest" onClickHandler={this.handleInventoryItemClick} set={5}/>
-            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick} set={1}/>
-            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick} set={2}/>
-            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick} set={3}/>
-            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick} set={4}/>
-            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick} set={5}/>
-            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick} set={1}/>
-            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick} set={2}/>
-            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick} set={3}/>
-            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick} set={4}/>
-            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick} set={5}/>
+            <Item type="head" onClickHandler={this.handleInventoryItemClick.bind(this)} set={1}/>
+            <Item type="head" onClickHandler={this.handleInventoryItemClick.bind(this)} set={2}/>
+            <Item type="head" onClickHandler={this.handleInventoryItemClick.bind(this)} set={3}/>
+            <Item type="head" onClickHandler={this.handleInventoryItemClick.bind(this)} set={4}/>
+            <Item type="head" onClickHandler={this.handleInventoryItemClick.bind(this)} set={5}/>
+            <Item type="chest" onClickHandler={this.handleInventoryItemClick.bind(this)} set={1}/>
+            <Item type="chest" onClickHandler={this.handleInventoryItemClick.bind(this)} set={2}/>
+            <Item type="chest" onClickHandler={this.handleInventoryItemClick.bind(this)} set={3}/>
+            <Item type="chest" onClickHandler={this.handleInventoryItemClick.bind(this)} set={4}/>
+            <Item type="chest" onClickHandler={this.handleInventoryItemClick.bind(this)} set={5}/>
+            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={1}/>
+            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={2}/>
+            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={3}/>
+            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={4}/>
+            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={5}/>
+            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={1}/>
+            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={2}/>
+            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={3}/>
+            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={4}/>
+            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={5}/>
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -189,7 +186,7 @@ class Profile extends Component {
 
   handleEquipmentItemClick(e) {
     const item = $(e.target);
-    Actions.Profile.unEquipItem(item.attr("data-type"));
+    this.props.Actions.unEquipItem(item.attr("data-type"));
   }
 
   handleInventoryButtonClick() {
@@ -200,7 +197,7 @@ class Profile extends Component {
 
   handleInventoryItemClick(e) {
     const item = $(e.target);
-    Actions.Profile.equipItem(item.attr("data-type"), item.attr("data-set"));
+    this.props.Actions.equipItem(item.attr("data-type"), item.attr("data-set"));
   }
 
   handleInventoryCloseClick() {
