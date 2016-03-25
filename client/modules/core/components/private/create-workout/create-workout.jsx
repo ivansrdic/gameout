@@ -1,17 +1,9 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
-import Actions from '/client/modules/core/actions';
+import {Grid, Row, Col, Panel, Input, ButtonInput} from 'react-bootstrap';
 
 class CreateWorkout extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      name: "",
-      description: "",
-      type: "",
-      tips: ""
-    }
   }
 
   componentDidMount() {
@@ -29,32 +21,28 @@ class CreateWorkout extends Component {
                     <hr/>
                       <h1 className="text-center">Create workout</h1>
                       <Input
+                        ref="name"
                         type="text"
                         label="Workout name"
                         placeholder="Workout name"
-                        value={this.state.name}
-                        onChange={this.handleNameChange.bind(this)}
                       />
                       <Input
+                        ref="description"
                         type="textarea"
                         label="Description"
                         placeholder="Description"
-                        value={this.state.description}
-                        onChange={this.handleDescriptionChange.bind(this)}
                       />
                       <Input
+                        ref="tags"
                         type="text"
-                        label="Type"
-                        placeholder="Type"
-                        value={this.state.type}
-                        onChange={this.handleTypeChange.bind(this)}
+                        label="Tags"
+                        placeholder="Tags"
                       />
                       <Input
+                        ref="tips"
                         type="textarea"
                         label="Tips and advices"
                         placeholder="The workout is too exhausting for beginners? Help them get through it :) "
-                        value={this.state.tips}
-                        onChange={this.handleTipsChange.bind(this)}
                       />
                       <ButtonInput className="pull-right" type="submit" value="Save"/>
                 </form>
@@ -66,39 +54,17 @@ class CreateWorkout extends Component {
     );
   }
 
-  handleNameChange(e) {
-    this.setState({
-      name: $(e.target).val()
-    });
-  }
-
-  handleDescriptionChange(e) {
-    this.setState({
-      description: $(e.target).val()
-    });
-  }
-
-  handleTypeChange(e) {
-    this.setState({
-      type: $(e.target).val()
-    });
-  }
-
-  handleTipsChange(e) {
-    this.setState({
-      tips: $(e.target).val()
-    });
-  }
-
   // TODO: validation and error setting
   handleSetupFormSubmit(e) {
     e.preventDefault();
 
-    Actions.Workouts.createWorkout({
-      name: this.state.name,
-      description: this.state.description,
-      type: this.state.type,
-      tips: this.state.tips
+    const {name, description, tags, tips} = this.refs;
+
+    this.props.Actions.createWorkout({
+      name: name.getValue(),
+      description: description.getValue(),
+      tags: tags.getValue(),
+      tips: tips.getValue()
     });
   }
 }

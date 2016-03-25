@@ -1,6 +1,6 @@
 export default {
   //TODO: add workout to workouts collection
-  createWorkout(workout) {
+  createWorkout({}, workout) {
     console.log(workout);
   }
 }
