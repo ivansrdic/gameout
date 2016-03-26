@@ -1,3 +1,4 @@
+import {Characters} from './';
 let Users = Meteor.users;
 
 const ProfileSchema =  new SimpleSchema({
@@ -12,10 +13,24 @@ const ProfileSchema =  new SimpleSchema({
   },
   last_name: {
     type: String
-  },
-  character: {
+  }
+});
+
+const UserDataSchema = new SimpleSchema({
+  characterId: {
     type: String,
-    optional: true
+  },
+  age: {
+    type: Number
+  },
+  weight: {
+    type: Number
+  },
+  height: {
+    type: Number
+  },
+  gender: {
+    type: String
   }
 });
 
@@ -36,20 +51,18 @@ const UserSchema = new SimpleSchema({
   profile: {
     type: ProfileSchema,
     optional: true
+  },
+  data: {
+    type: UserDataSchema,
+    optional: true
   }
 });
 
 Users.attachSchema(UserSchema);
 
-Users.allow({
-  insert: function(userId, doc) {
-    return true;
-  },
-  update: function(userId, docs, fields, modifier) {
-    return true;
-  },
-  remove: function(userId, docs) {
-    return false;
+Users.helpers({
+  character() {
+    return Characters.findOne(this.data.characterId);
   }
 });
 

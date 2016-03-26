@@ -1,56 +1,73 @@
+import {Items} from './';
+import {Users} from './';
 let Characters = new Mongo.Collection('characters');
 
 const EquipmentSchema = new SimpleSchema({
-  head: {
-    type: Number
+  headId: {
+    type: String
   },
-  chest: {
-    type: Number
+  chestId: {
+    type: String
   },
-  leftHand: {
-    type: Number
+  leftHandId: {
+    type: String
   },
-  rightHand: {
-    type: Number
+  rightHandId: {
+    type: String
   }
 });
 
-//TODO: helpers for foreign key
-const CharacterSchema = new SimpleSchema({
-  owner: {
-    type: String
-  },
-  age: {
-    type: Number
-  },
-  height: {
-    type: Number
-  },
-  weight: {
-    type: Number
-  },
+const StatsSchema = new SimpleSchema({
   level: {
-    type: String
+    type: Number
   },
   gender: {
     type: String
   },
+  experience: {
+    type: Number
+  },
+  gold: {
+    type: Number
+  }
+});
+
+const CharacterSchema = new SimpleSchema({
+  ownerId: {
+    type: String,
+    optional: true
+  },
+  stats: {
+    type: StatsSchema,
+  },
   equipment: {
     type: EquipmentSchema
+  },
+  inventoryIds: {
+    type: [String]
   }
 });
 
 Characters.attachSchema(CharacterSchema);
 
-Characters.allow({
-  insert: function(userId, doc) {
-    return true;
+Characters.helpers({
+  owner() {
+    return Users.findOne(ownerId);
   },
-  update: function(userId, docs, fields, modifier) {
-    return true;
+  chest() {
+    return Items.findOne(this.equipment.chestId);
   },
-  remove: function(userId, docs) {
-    return false;
+  head() {
+    return Items.findOne(this.equipment.headId);
+  },
+  leftHand() {
+    return Items.findOne(this.equipment.leftHandId);
+  },
+  rightHand() {
+    return Items.findOne(this.equipment.rightHandId);
+  },
+  inventory() {
+    return Items.find({_id: {$in: this.inventoryIds}});
   }
 });
 

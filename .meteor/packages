@@ -33,7 +33,9 @@ accounts-twitter                    # Login service for Twitter accounts
 
 reywood:publish-composite           # Publish a set of related documents from multiple collections with a reactive join
 aldeed:collection2                  # Automatic validation of insert and update operations on the client and server
+dburles:collection-helpers
 
 email                               # Send email messages
 
 kadira:dochead                      # Isomorphic way to manipulate document.head for Meteor apps
+
