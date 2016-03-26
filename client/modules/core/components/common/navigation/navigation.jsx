@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Navbar, Nav, NavbarBrand, NavItem} from 'react-bootstrap';
-import Actions from '/client/modules/core/actions';
+import {Navbar, Nav, NavItem} from 'react-bootstrap';
 
 class Navigation extends Component {
   constructor(props) {
@@ -28,9 +27,8 @@ class Navigation extends Component {
   }
 
   renderAuthNav() {
-    // TODO: container for reactive data source
-    if (Meteor.user()) {
-      return <NavItem onClick={this.handleLogoutClick}>Log out</NavItem>;
+    if (this.props.user) {
+      return <NavItem onClick={() => {this.props.logout()}}>Log out</NavItem>;
     } else {
       return <NavItem href="/sign-in">Log in/Register</NavItem>;
     }
@@ -62,10 +60,6 @@ class Navigation extends Component {
         </Nav>
       );
     }
-  }
-
-  handleLogoutClick() {
-    Actions.Authorization.logout();
   }
 }
 

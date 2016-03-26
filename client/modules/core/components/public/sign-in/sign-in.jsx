@@ -1,16 +1,9 @@
-import {composeWithTracker} from 'mantra-core';
 import React, {Component} from 'react';
 import {Grid, Row, Col, Panel, Tabs, Tab, Input, ButtonInput} from 'react-bootstrap';
-import Actions from '/client/modules/core/actions';
 
 class SignIn extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {};
-  }
-  componentWillUnmount() {
-    Session.set('auth-error', null);
   }
 
   //TODO: delete twitter integration
@@ -25,21 +18,21 @@ class SignIn extends Component {
                 <div className="social-buttons">
                   <div className="row">
                     <Col md={12}>
-                      <a className="btn btn-block btn-social btn-facebook" onClick={this.handleFacebookSignInClick}>
+                      <a className="btn btn-block btn-social btn-facebook" onClick={() => {this.props.Authorization.loginWithFacebook()}}>
                         <i className="fa fa-facebook"></i> Sign in with Facebook
                       </a>
                     </Col>
                   </div>
                   <div className="row">
                     <Col md={12}>
-                      <a className="btn btn-block btn-social btn-google" onClick={this.handleGoogleSignInClick}>
+                      <a className="btn btn-block btn-social btn-google" onClick={() => {this.props.Authorization.loginWithGoogle()}}>
                         <i className="fa fa-google"></i> Sign in with Google
                       </a>
                     </Col>
                   </div>
                   <div className="row">
                     <Col md={12}>
-                      <a className="btn btn-block btn-social btn-twitter" onClick={this.handleTwitterSignInClick}>
+                      <a className="btn btn-block btn-social btn-twitter" onClick={() => {this.props.Authorization.loginWithTwitter()}}>
                         <i className="fa fa-twitter"></i> Sign in with Twitter
                       </a>
                     </Col>
@@ -51,8 +44,8 @@ class SignIn extends Component {
                     <h1 className="text-center">Log in</h1>
 
                     <form onSubmit={this.handleLoginFormSubmit.bind(this)}>
-                      <Input id="email-login" type="text" label="Email" placeholder="Email"/>
-                      <Input id="password-login" type="password" label="Password" placeholder="Password"/>
+                      <Input ref="emailLogin" type="text" label="Email" placeholder="Email"/>
+                      <Input ref="passwordLogin" type="password" label="Password" placeholder="Password"/>
                       <ButtonInput className="pull-right" type="submit" value="Login"/>
                     </form>
                   </Tab>
@@ -60,9 +53,9 @@ class SignIn extends Component {
                     <h1 className="text-center">Register</h1>
 
                     <form onSubmit={this.handleRegisterFormSubmit.bind(this)}>
-                      <Input id="email-register" type="email" label="Email" placeholder="Email"/>
-                      <Input id="username-register" type="text" label="Username" placeholder="Username"/>
-                      <Input id="password-register" type="password" label="Password" placeholder="Password"/>
+                      <Input ref="emailRegister" type="email" label="Email" placeholder="Email"/>
+                      <Input ref="usernameRegister" type="text" label="Username" placeholder="Username"/>
+                      <Input ref="passwordRegister" type="password" label="Password" placeholder="Password"/>
                       <ButtonInput className="pull-right" type="submit" value="Register"/>
                     </form>
                   </Tab>
@@ -75,52 +68,32 @@ class SignIn extends Component {
     );
   }
 
-  handleFacebookSignInClick() {
-    Actions.Authorization.loginWithFacebook();
-  }
-
-  handleGoogleSignInClick() {
-    Actions.Authorization.loginWithGoogle();
-  }
-
-  handleTwitterSignInClick() {
-    Actions.Authorization.loginWithTwitter();
-  }
-
   handleLoginFormSubmit(e) {
     e.preventDefault();
 
-    const email = $('#email-login').val();
-    const password = $('#password-login').val();
+    const {emailLogin, passwordLogin} = this.refs;
 
-    Actions.Authorization.login(email, password);
+    this.props.Authorization.login(emailLogin.getValue(), passwordLogin.getValue());
   }
 
   handleRegisterFormSubmit(e) {
     e.preventDefault();
 
-    const email = $('#email-register').val();
-    const username = $('#username-register').val();
-    const password = $('#password-register').val();
+    const {emailRegister, usernameRegister, passwordRegister} = this.refs;
 
-    Actions.Authorization.register(email, username, password);
+    this.props.Authorization.register(emailRegister.getValue(), usernameRegister.getValue(), passwordRegister.getValue());
   }
 
   renderErrorMessage() {
-    if(this.props.authError) {
+    if(this.props.error) {
       return (
         <div className="alert alert-danger alert-dismissible fade in" role="alert">
           <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <span className="fa fa-exclamation-circle"></span> <strong>{this.props.authError}</strong>
+          <span className="fa fa-exclamation-circle"></span> <strong>{this.props.error}</strong>
         </div>
       );
     }
   }
 }
 
-function composer(props, onData) {
-  const authError = Session.get('auth-error');
-  onData(null, {authError});
-}
-
-export default composeWithTracker(composer)(SignIn);
+export default SignIn;
