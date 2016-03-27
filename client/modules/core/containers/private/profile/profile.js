@@ -2,12 +2,16 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import Profile from '../../../components/private/profile/profile.jsx';
 
 function composer({Actions}, onData) {
-  const subscription = Meteor.subscribe('character');
+  const characterSubscription = Meteor.subscribe('character');
+  const itemsSubscription = Meteor.subscribe('items');
 
-  if (subscription.ready()) {
+  if (characterSubscription.ready() && itemsSubscription.ready()) {
+    const character = Actions.getCharacter();
+    
     const data = {
       ready: true,
-      character: Actions.getCharacter(),
+      character,
+      inventory: character.inventory(),
       Actions
     };
     onData(null, data);

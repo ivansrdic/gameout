@@ -5,17 +5,11 @@ export default {
     return Meteor.user().character();
   },
 
-  equipItem({Meteor}, type, set) {
-    Characters.update(
-      Meteor.user().data.characterId,
-      {$set: {["equipment." + type + "Id"]: set}}
-    );
+  equipItem({Meteor}, itemId) {
+    Meteor.call('equipItem', Meteor.user().data.characterId, itemId);
   },
 
-  unEquipItem({Meteor}, type) {
-    Characters.update(
-      Meteor.user().data.characterId,
-      {$set: {["equipment." + type + "Id"]: 0}}
-    );
+  unEquipItem({Meteor}, itemId) {
+    Meteor.call('unEquipItem', Meteor.user().data.characterId, itemId);
   }
 }

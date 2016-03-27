@@ -8,8 +8,8 @@ class Profile extends Component {
     super(props);
 
     this.state = {
-      showEquipment: false,
-      showInventory: false,
+      showEquipment: true,
+      showInventory: true,
       readyForWorkout: false
     };
   }
@@ -105,10 +105,10 @@ class Profile extends Component {
         <div className="character-container">
           <div className="character"></div>
         </div>
-        <Item equipment={true} type="head" onClickHandler={this.handleEquipmentItemClick.bind(this)} set={this.props.character.equipment.head}/>
-        <Item equipment={true} type="chest" onClickHandler={this.handleEquipmentItemClick.bind(this)} set={this.props.character.equipment.chest}/>
-        <Item equipment={true} type="leftHand" onClickHandler={this.handleEquipmentItemClick.bind(this)} set={this.props.character.equipment.leftHand}/>
-        <Item equipment={true} type="rightHand" onClickHandler={this.handleEquipmentItemClick.bind(this)} set={this.props.character.equipment.rightHand}/>
+        <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)} item={this.props.character.head()}/>
+        <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)} item={this.props.character.chest()}/>
+        <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)} item={this.props.character.leftHand()}/>
+        <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)} item={this.props.character.rightHand()}/>
       </div>
     );
   }
@@ -124,26 +124,7 @@ class Profile extends Component {
 
           <hr />
           <div className="inventory">
-            <Item type="head" onClickHandler={this.handleInventoryItemClick.bind(this)} set={1}/>
-            <Item type="head" onClickHandler={this.handleInventoryItemClick.bind(this)} set={2}/>
-            <Item type="head" onClickHandler={this.handleInventoryItemClick.bind(this)} set={3}/>
-            <Item type="head" onClickHandler={this.handleInventoryItemClick.bind(this)} set={4}/>
-            <Item type="head" onClickHandler={this.handleInventoryItemClick.bind(this)} set={5}/>
-            <Item type="chest" onClickHandler={this.handleInventoryItemClick.bind(this)} set={1}/>
-            <Item type="chest" onClickHandler={this.handleInventoryItemClick.bind(this)} set={2}/>
-            <Item type="chest" onClickHandler={this.handleInventoryItemClick.bind(this)} set={3}/>
-            <Item type="chest" onClickHandler={this.handleInventoryItemClick.bind(this)} set={4}/>
-            <Item type="chest" onClickHandler={this.handleInventoryItemClick.bind(this)} set={5}/>
-            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={1}/>
-            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={2}/>
-            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={3}/>
-            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={4}/>
-            <Item type="leftHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={5}/>
-            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={1}/>
-            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={2}/>
-            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={3}/>
-            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={4}/>
-            <Item type="rightHand" onClickHandler={this.handleInventoryItemClick.bind(this)} set={5}/>
+            {this.renderInventoryItems()}
           </div>
         </Modal.Body>
         <Modal.Footer>
@@ -151,6 +132,11 @@ class Profile extends Component {
         </Modal.Footer>
       </Modal>
     );
+  }
+  renderInventoryItems() {
+    return(this.props.inventory.map(function(item) {
+        return(<Item key={item.name} onClickHandler={this.handleInventoryItemClick.bind(this)} item={item}/>);
+      }.bind(this)));
   }
 
   renderWorkoutSelection() {
@@ -186,7 +172,7 @@ class Profile extends Component {
 
   handleEquipmentItemClick(e) {
     const item = $(e.target);
-    this.props.Actions.unEquipItem(item.attr("data-type"));
+    this.props.Actions.unEquipItem(item.attr("data-id"));
   }
 
   handleInventoryButtonClick() {
@@ -197,7 +183,7 @@ class Profile extends Component {
 
   handleInventoryItemClick(e) {
     const item = $(e.target);
-    this.props.Actions.equipItem(item.attr("data-type"), item.attr("data-set"));
+    this.props.Actions.equipItem(item.attr("data-id"));
   }
 
   handleInventoryCloseClick() {

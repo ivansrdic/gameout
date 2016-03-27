@@ -5,5 +5,5 @@ import publications from './publications';
 
 configs();
 listeners();
-//methods();
+methods();
 publications();
