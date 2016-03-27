@@ -11,6 +11,11 @@ class CreateWorkout extends Component {
   }
 
   render() {
+    console.log(this.props);
+    let {errors} = this.props;
+    errors = errors ? errors : {};
+    let {workoutNameValidation} = this.props;
+
     return (
       <Grid>
         <Row>
@@ -20,12 +25,19 @@ class CreateWorkout extends Component {
                 <form onSubmit={this.handleSetupFormSubmit.bind(this)}>
                     <hr/>
                       <h1 className="text-center">Create workout</h1>
+
+
+
                       <Input
                         ref="name"
                         type="text"
                         label="Workout name"
                         placeholder="Workout name"
-                      />
+                        help={errors.workoutNameValidation ? errors.workoutNameValidation.message : ""}
+                        bsStyle={errors.workoutNameValidation ? errors.workoutNameValidation.status : null}
+                        onBlur={(e) => workoutNameValidation(this.refs.name.getValue())}/>
+
+
                       <Input
                         ref="description"
                         type="textarea"
@@ -53,6 +65,7 @@ class CreateWorkout extends Component {
       </Grid>
     );
   }
+
 
   // TODO: validation and error setting
   handleSetupFormSubmit(e) {
