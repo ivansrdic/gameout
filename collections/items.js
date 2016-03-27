@@ -1,6 +1,9 @@
 let Items = new Mongo.Collection('items');
 
 const ItemSchema = new SimpleSchema({
+  type: {
+    type: String
+  },
   name: {
     type: String,
     unique: true
@@ -9,6 +12,9 @@ const ItemSchema = new SimpleSchema({
     type: String
   },
   price: {
+    type: Number
+  },
+  set: {
     type: Number
   }
 });

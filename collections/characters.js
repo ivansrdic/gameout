@@ -4,17 +4,17 @@ import {Skins} from './';
 
 let Characters = new Mongo.Collection('characters');
 
-const EquipmentSchema = new SimpleSchema({
-  headId: {
+const AppearanceSchema = new SimpleSchema({
+  hairId: {
     type: String
   },
-  chestId: {
+  torsoId: {
     type: String
   },
-  leftHandId: {
+  legsId: {
     type: String
   },
-  rightHandId: {
+  colorId: {
     type: String
   }
 });
@@ -34,17 +34,17 @@ const StatsSchema = new SimpleSchema({
   }
 });
 
-const AppearenceSchema = new SimpleSchema({
-  hairId: {
+const EquipmentSchema = new SimpleSchema({
+  headId: {
     type: String
   },
-  torsoId: {
+  chestId: {
     type: String
   },
-  legsId: {
+  leftHandId: {
     type: String
   },
-  colorId: {
+  rightHandId: {
     type: String
   }
 });
@@ -54,6 +54,9 @@ const CharacterSchema = new SimpleSchema({
     type: String,
     optional: true
   },
+  appearance: {
+    type: AppearanceSchema
+  },
   stats: {
     type: StatsSchema
   },
@@ -62,9 +65,6 @@ const CharacterSchema = new SimpleSchema({
   },
   inventoryIds: {
     type: [String]
-  },
-  appearence: {
-    type: AppearenceSchema
   }
 });
 
@@ -73,6 +73,18 @@ Characters.attachSchema(CharacterSchema);
 Characters.helpers({
   owner() {
     return Users.findOne(this.ownerId);
+  },
+  hair() {
+    return Skins.findOne(this.appearance.hairId);
+  },
+  torso() {
+    return Skins.findOne(this.appearance.torsoId);
+  },
+  legs() {
+    return Skins.findOne(this.appearance.legsId);
+  },
+  color() {
+    return Skins.findOne(this.appearance.colorId);
   },
   chest() {
     return Items.findOne(this.equipment.chestId);
@@ -88,18 +100,6 @@ Characters.helpers({
   },
   inventory() {
     return Items.find({_id: {$in: this.inventoryIds}});
-  },
-  hair() {
-    return Skins.findOne(this.appearence.hairId);
-  },
-  torso() {
-    return Skins.findOne(this.appearence.torsoId);
-  },
-  legs() {
-    return Skins.findOne(this.appearence.legsId);
-  },
-  color() {
-    return Skins.findOne(this.appearence.colorId);
   }
 });
 
