@@ -7,9 +7,9 @@ import About from './components/public/about/about.jsx';
 import HowItWorks from  './components/public/how-it-works/how-it-works.jsx';
 import SignIn from './containers/public/sign-in/sign-in.js';
 import Profile from './containers/private/profile/profile.js';
-import ProfileSetup from './components/private/profile-setup.jsx';
-import EditInfo from './components/private/edit-info.jsx';
-import CustomizeCharacter from './components/private/customize-character.jsx';
+import ProfileSetup from './components/private/profile-setup/profile-setup.jsx';
+import EditInfo from './components/private/profile-setup/edit-info.jsx';
+import CustomizeCharacter from './components/private/profile-setup/customize-character.jsx';
 import CreateWorkout from './containers/private/create-workout/create-workout.jsx';
 import CreateWorkoutGroup from './containers/private/create-workout-group/create-workout-group.jsx';
 
