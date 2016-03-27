@@ -10,7 +10,6 @@ export const composer = ({context, clearErrors}, onData) => {
 };
 
 export const depsMapper = (context, actions) => {
-  console.log(actions);
   return {
     ageValidation: actions.ProfileSettings.ageValidation,
     clearErrors: actions.ProfileSettings.clearErrors,

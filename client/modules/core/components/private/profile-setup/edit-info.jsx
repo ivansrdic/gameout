@@ -11,8 +11,6 @@ class EditInfo extends Component {
     errors = errors ? errors : {};
     let {ageValidation} = this.props;
 
-    console.log(errors, "Rendering");
-
     return (
       <Col md={10} mdOffset={1}>
         <h1 className="text-center">Edit info</h1>
@@ -38,7 +36,12 @@ class EditInfo extends Component {
             bsStyle={errors.ageValidation ? errors.ageValidation.status : "success"}
             onBlur={(e) => ageValidation(this.refs.age.getValue())}/>
 
-          <Input ref="height" type="text" label="Height" placeholder="Height"/>
+          <Input 
+            ref="height" 
+            type="text" 
+            label="Height" 
+            placeholder="Height - measured in meters"/>
+          
           <Input ref="weight" type="text" label="Weight" placeholder="Weight"/>
 
           <label htmlFor="level" className="control-label input-group">Level</label>

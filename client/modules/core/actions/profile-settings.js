@@ -1,4 +1,5 @@
 import {Characters} from '/collections';
+import Validation from './validation-utility';
 
 export default {
   completeSetup(userData) {
@@ -12,29 +13,19 @@ export default {
   },
 
   ageValidation({LocalState}, value) {
-    // console.log("AGE VALIDATION");
-    let errors = LocalState.get("EDIT_INFO_ERRORS");
-    errors = errors ? errors : {};
+    let validation = new Validation(LocalState, "EDIT_INFO_ERRORS", "ageValidation");
 
-    let isNumeric = function (n) {
-      return !isNaN(parseFloat(n)) && isFinite(n);
-    };
-    let setError = function(status, message) {
-      errors.ageValidation = {status, message};
-      LocalState.set("EDIT_INFO_ERRORS", errors);
-    };
-
-    if (!isNumeric(value) || !Number.isInteger(parseFloat(value)) || !(value > 0)) {
-      setError("error", "Age must be a positive number");
+    if (!validation.isNumeric(value) || !Number.isInteger(parseFloat(value)) || !(value > 0)) {
+      validation.setError("error", "Age must be a positive number");
       return;
     }
 
     if (value > 150) {
-      setError("warning", "Are you sure this is your age?");
+      validation.setError("warning", "Are you sure this is your age?");
       return;
     }
 
-    setError("success", "");
+    validation.setError("success", "");
   },
 
   clearErrors({LocalState}) {
