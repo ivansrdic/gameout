@@ -20,11 +20,14 @@ const AppearanceSchema = new SimpleSchema({
 });
 
 const StatsSchema = new SimpleSchema({
-  level: {
-    type: Number
-  },
   gender: {
     type: String
+  },
+  health: {
+    type: Number
+  },
+  level: {
+    type: Number
   },
   experience: {
     type: Number

@@ -8,8 +8,8 @@ class Profile extends Component {
     super(props);
 
     this.state = {
-      showEquipment: true,
-      showInventory: true,
+      showEquipment: false,
+      showInventory: false,
       readyForWorkout: false
     };
   }

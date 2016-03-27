@@ -1,13 +1,13 @@
 import {Users, Characters, Items} from '/collections';
 
 export default () => {
-  /*Users.remove({});
-  Characters.remove({});
-  Items.remove({});*/
-
   let user = Users.findOne({username: 'gameout'});
 
   if(!user) {
+    Users.remove({});
+    Characters.remove({});
+    Items.remove({});
+    
     Accounts.createUser({
       email: 'gameout@gameout.com',
       username: 'gameout',
@@ -96,26 +96,27 @@ export default () => {
 
     const charId = Characters.insert(
       {
-        "ownerId": userId,
-        "appearance": {
-          "hairId": "0",
-          "torsoId": "0",
-          "legsId": "0",
-          "colorId": "0"
+        ownerId: userId,
+        appearance: {
+          hairId: "0",
+          torsoId: "0",
+          legsId: "0",
+          colorId: "0"
         },
-        "stats": {
-          "level": "1",
-          "gender": "male",
-          "experience": "0",
-          "gold": "0"
+        stats: {
+          gender: "male",
+          health: 50,
+          level: 1,
+          experience: 0,
+          gold: 0
         },
-        "equipment": {
-          "headId": "0",
-          "chestId": "0",
-          "leftHandId": "0",
-          "rightHandId": "0"
+        equipment: {
+          headId: "0",
+          chestId: "0",
+          leftHandId: "0",
+          rightHandId: "0"
         },
-        "inventoryIds": [
+        inventoryIds: [
           headId1, chestId1, leftHandId1, rightHandId1,
           headId2, chestId2, leftHandId2, rightHandId2
         ]
