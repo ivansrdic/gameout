@@ -18,7 +18,7 @@ const ProfileSchema =  new SimpleSchema({
 
 const UserDataSchema = new SimpleSchema({
   characterId: {
-    type: String,
+    type: String
   },
   age: {
     type: Number

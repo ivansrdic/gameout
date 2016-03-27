@@ -38,7 +38,7 @@ const CharacterSchema = new SimpleSchema({
     optional: true
   },
   stats: {
-    type: StatsSchema,
+    type: StatsSchema
   },
   equipment: {
     type: EquipmentSchema
@@ -52,7 +52,7 @@ Characters.attachSchema(CharacterSchema);
 
 Characters.helpers({
   owner() {
-    return Users.findOne(ownerId);
+    return Users.findOne(this.ownerId);
   },
   chest() {
     return Items.findOne(this.equipment.chestId);

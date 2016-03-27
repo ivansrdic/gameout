@@ -2,20 +2,20 @@ import {Characters} from '/collections';
 
 export default {
   getCharacter({Meteor}) {
-    return Characters.findOne(Meteor.user().profile.character);
+    return Meteor.user().character();
   },
 
   equipItem({Meteor}, type, set) {
     Characters.update(
-      Meteor.user().profile.character,
-      {$set: {["equipment." + type]: set}}
+      Meteor.user().data.characterId,
+      {$set: {["equipment." + type + "Id"]: set}}
     );
   },
 
   unEquipItem({Meteor}, type) {
     Characters.update(
-      Meteor.user().profile.character,
-      {$set: {["equipment." + type]: 0}}
+      Meteor.user().data.characterId,
+      {$set: {["equipment." + type + "Id"]: 0}}
     );
   }
 }
