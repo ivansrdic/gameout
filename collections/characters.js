@@ -1,5 +1,7 @@
 import {Items} from './';
 import {Users} from './';
+import {Skins} from './';
+
 let Characters = new Mongo.Collection('characters');
 
 const EquipmentSchema = new SimpleSchema({
@@ -32,19 +34,37 @@ const StatsSchema = new SimpleSchema({
   }
 });
 
+const AppearenceSchema = new SimpleSchema({
+  hairId: {
+    type: String
+  },
+  torsoId: {
+    type: String
+  },
+  legsId: {
+    type: String
+  },
+  colorId: {
+    type: String
+  }
+});
+
 const CharacterSchema = new SimpleSchema({
   ownerId: {
     type: String,
     optional: true
   },
   stats: {
-    type: StatsSchema,
+    type: StatsSchema
   },
   equipment: {
     type: EquipmentSchema
   },
   inventoryIds: {
     type: [String]
+  },
+  appearence: {
+    type: AppearenceSchema
   }
 });
 
@@ -68,6 +88,18 @@ Characters.helpers({
   },
   inventory() {
     return Items.find({_id: {$in: this.inventoryIds}});
+  },
+  hair() {
+    return Skins.findOne(this.appearence.hairId);
+  },
+  torso() {
+    return Skins.findOne(this.appearence.torsoId);
+  },
+  legs() {
+    return Skins.findOne(this.appearence.legsId);
+  },
+  color() {
+    return Skins.findOne(this.appearence.colorId);
   }
 });
 

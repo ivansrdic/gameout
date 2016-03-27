@@ -3,6 +3,7 @@ import user from './user';
 import exercises from './exercises';
 import exerciseGroups from './exercise-groups';
 import items from './items';
+import skins from './skins';
 
 export default function() {
   character();
@@ -10,4 +11,5 @@ export default function() {
   exercises();
   exerciseGroups();
   items();
+  skins();
 }
