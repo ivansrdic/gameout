@@ -22,13 +22,23 @@ class Profile extends Component {
 
   // TODO: break down into components
   render() {
-    if (this.props.ready)
+    if (this.props.ready) {
+      const {character} = this.props
       return (
         <Grid className="profile" fluid={true}>
           <Row className="hero-info no-gutter">
             <Col sm={3} lg={2}>
               <div className="hero-container">
-                {this.renderEquipment()}
+                <div className="equipment">
+                  <Item equipment={true} item={character.hair()}/>
+                  <Item equipment={true} item={character.torso()}/>
+                  <Item equipment={true} item={character.legs()}/>
+                  <Item equipment={true} item={character.color()}/>
+                  <Item equipment={true} item={character.head()}/>
+                  <Item equipment={true} item={character.chest()}/>
+                  <Item equipment={true} item={character.leftHand()}/>
+                  <Item equipment={true} item={character.rightHand()}/>
+                </div>
                 <Button className="toggle equipment-toggle" bsStyle="default"
                         onClick={this.handleEquipmentButtonClick.bind(this)}><i className="fa fa-play"></i></Button>
               </div>
@@ -45,7 +55,20 @@ class Profile extends Component {
               >
                 <div className="hide-of">
                   <div className="equipment-container">
-                    {this.renderEquipment()}
+
+                    <div className="equipment">
+                      <div className="character-container">
+                        <div className="character"></div>
+                      </div>
+                      <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)}
+                            item={character.head()}/>
+                      <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)}
+                            item={character.chest()}/>
+                      <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)}
+                            item={character.leftHand()}/>
+                      <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)}
+                            item={character.rightHand()}/>
+                    </div>
                     <Button className="toggle inventory-toggle" bsStyle="default"
                             onClick={this.handleInventoryButtonClick.bind(this)}>Show inventory</Button>
                   </div>
@@ -54,10 +77,10 @@ class Profile extends Component {
               <Col xs={12} sm={3} lg={2}>
                 <div>
                   <h3>Hero stats</h3>
-                  <div><b>Strength</b>: 10</div>
-                  <div><b>Stamina</b>: 10</div>
-                  <div><b>Agility</b>: 10</div>
-                  <div><b>Intelligence</b>: 10</div>
+                  <div><b>Strength</b>: {character.stats.strength}</div>
+                  <div><b>Stamina</b>: {character.stats.stamina}</div>
+                  <div><b>Agility</b>: {character.stats.agility}</div>
+                  <div><b>Intelligence</b>: {character.stats.intelligence}</div>
                 </div>
               </Col>
               <Transition
@@ -72,9 +95,9 @@ class Profile extends Component {
                 <div>
                   <div className="stats">
                     <span><i className="fa fa-heart"></i> Health</span>
-                    <ProgressBar bsStyle="danger" now={80}/>
+                    <ProgressBar bsStyle="danger" now={(character.stats.health/50)*100}/>
                     <span><i className="fa fa-star"></i> Experience</span>
-                    <ProgressBar bsStyle="warning" now={60}/>
+                    <ProgressBar bsStyle="warning" now={(character.stats.experience/50)*100}/>
                   </div>
                 </div>
               </Transition>
@@ -93,24 +116,10 @@ class Profile extends Component {
           {this.renderWorkoutSelection()}
         </Grid>
       );
-    else
+    } else
       return (
         <div></div>
       );
-  }
-
-  renderEquipment() {
-    return (
-      <div className="equipment">
-        <div className="character-container">
-          <div className="character"></div>
-        </div>
-        <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)} item={this.props.character.head()}/>
-        <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)} item={this.props.character.chest()}/>
-        <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)} item={this.props.character.leftHand()}/>
-        <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)} item={this.props.character.rightHand()}/>
-      </div>
-    );
   }
 
   renderInventory() {

@@ -23,20 +23,32 @@ const AppearanceSchema = new SimpleSchema({
 });
 
 const StatsSchema = new SimpleSchema({
-  gender: {
-    type: String
-  },
-  health: {
+  strength: {
     type: Number
   },
-  level: {
+  stamina: {
+    type: Number
+  },
+  agility: {
+    type: Number
+  },
+  intelligence: {
+    type: Number
+  },
+  health: {
     type: Number
   },
   experience: {
     type: Number
   },
+  level: {
+    type: Number
+  },
   gold: {
     type: Number
+  },
+  gender: {
+    type: String
   }
 });
 

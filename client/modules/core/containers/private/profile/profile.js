@@ -4,8 +4,9 @@ import Profile from '../../../components/private/profile/profile.jsx';
 function composer({Actions}, onData) {
   const characterSubscription = Meteor.subscribe('character');
   const itemsSubscription = Meteor.subscribe('items');
+  const skinsSubscription = Meteor.subscribe('skins');
 
-  if (characterSubscription.ready() && itemsSubscription.ready()) {
+  if (characterSubscription.ready() && itemsSubscription.ready() && skinsSubscription.ready()) {
     const character = Actions.getCharacter();
     
     const data = {

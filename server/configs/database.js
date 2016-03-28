@@ -8,10 +8,10 @@ export default () => {
     Users.remove({});
     Characters.remove({});
     Items.remove({});
-    // Dev
+    Skins.remove({});
     Exercises.remove({});
     ExerciseGroups.remove({});
-    
+
     Accounts.createUser({
       email: 'gameout@gameout.com',
       username: 'gameout',
@@ -21,6 +21,260 @@ export default () => {
 
 
     const userId = user._id;
+
+    // Dev
+    const workoutId1 = Exercises.insert(
+      {
+        ownerId: userId,
+        name: "Push-ups",
+        description: "Raise body up off floor by extending arms with body straight",
+        unit: 10
+      }
+    );
+
+    // Dev
+    const workoutId2 = Exercises.insert(
+        {
+            ownerId: userId,
+            name: "Pull-ups",
+            description: "Pulling body up using arms with varierity of grips" ,
+            unit: 5
+        }
+    );
+
+    // Dev
+    const workoutId3 = Exercises.insert(
+        {
+            ownerId: userId,
+            name: "Squats",
+            description: "To sit in a crouching position with knees bent and the buttocks on or near the heels",
+            unit: 20
+        }
+    );
+
+    // Dev
+    const workoutId4 = Exercises.insert(
+        {
+            ownerId: userId,
+            name: "Dips",
+            description: "The tricep dip is an excellent exercise that works the triceps using your own body",
+            unit: 8
+        }
+    );
+
+    // Dev
+    const workoutGroupId1 = ExerciseGroups.insert(
+        {
+            ownerId: userId,
+            name: "Chest routine",
+            description: "Excellent exercises for chest muscles.",
+            exerciseIds: [workoutId1, workoutId4]
+        }
+    );
+
+    // Dev
+    const workoutGroupId2 = ExerciseGroups.insert(
+        {
+            ownerId: userId,
+            name: "Full body routine",
+            description: "Excellent exercises for full body workout.",
+            exerciseIds: [workoutId1, workoutId2, workoutId3, workoutId4]
+        }
+    );
+
+    /*
+     SKINS
+     */
+
+    //set legs
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair1",
+        description: "hair one",
+        set: 1
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair2",
+        description: "hair two",
+        set: 2
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair3",
+        description: "hair three",
+        set: 3
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair4",
+        description: "hair four",
+        set: 4
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair5",
+        description: "hair five",
+        set: 5
+      }
+    );
+
+    //set torso
+    const torsoId1 = Skins.insert(
+      {
+        type: "torso",
+        name: "torso1",
+        description: "torso one",
+        set: 1
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "torso",
+        name: "torso2",
+        description: "torso two",
+        set: 2
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "torso",
+        name: "torso3",
+        description: "torso three",
+        set: 3
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "torso",
+        name: "torso4",
+        description: "torso four",
+        set: 4
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "torso",
+        name: "torso5",
+        description: "torso five",
+        set: 5
+      }
+    );
+
+
+    //set legs
+    const legsId1 = Skins.insert(
+      {
+        type: "legs",
+        name: "legs1",
+        description: "legs one",
+        set: 1
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "legs",
+        name: "legs2",
+        description: "legs two",
+        set: 2
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "legs",
+        name: "legs3",
+        description: "legs three",
+        set: 3
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "legs",
+        name: "legs4",
+        description: "legs four",
+        set: 4
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "legs",
+        name: "legs5",
+        description: "legs five",
+        set: 5
+      }
+    );
+
+
+    //set color
+    const colorId1 = Skins.insert(
+      {
+        type: "color",
+        name: "color1",
+        description: "color one",
+        set: 1
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "color",
+        name: "color2",
+        description: "color two",
+        set: 2
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "color",
+        name: "color3",
+        description: "color three",
+        set: 3
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "color",
+        name: "color4",
+        description: "color four",
+        set: 4
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "color",
+        name: "color5",
+        description: "color five",
+        set: 5
+      }
+    );
+
+    /*
+     ITEMS
+     */
 
     //set 1
     const headId1 = Items.insert(
@@ -98,82 +352,25 @@ export default () => {
       }
     );
 
-    // Dev
-    const workoutId1 = Exercises.insert(
-      {
-        ownerId: userId,
-        name: "Push-ups",
-        description: "Raise body up off floor by extending arms with body straight",
-        unit: 10
-      }
-    );
-
-    // Dev
-    const workoutId2 = Exercises.insert(
-        {
-            ownerId: userId,
-            name: "Pull-ups",
-            description: "Pulling body up using arms with varierity of grips" ,
-            unit: 5
-        }
-    );
-
-    // Dev
-    const workoutId3 = Exercises.insert(
-        {
-            ownerId: userId,
-            name: "Squats",
-            description: "To sit in a crouching position with knees bent and the buttocks on or near the heels",
-            unit: 20
-        }
-    );
-
-    // Dev
-    const workoutId4 = Exercises.insert(
-        {
-            ownerId: userId,
-            name: "Dips",
-            description: "The tricep dip is an excellent exercise that works the triceps using your own body",
-            unit: 8
-        }
-    );
-
-    // Dev
-    const workoutGroupId1 = ExerciseGroups.insert(
-        {
-            ownerId: userId,
-            name: "Chest routine",
-            description: "Excellent exercises for chest muscles.",
-            exerciseIds: [workoutId1, workoutId4]
-        }
-    );
-
-    // Dev
-    const workoutGroupId2 = ExerciseGroups.insert(
-        {
-            ownerId: userId,
-            name: "Full body routine",
-            description: "Excellent exercises for full body workout.",
-            exerciseIds: [workoutId1, workoutId2, workoutId3, workoutId4]
-        }
-    );
-
-
     const charId = Characters.insert(
       {
         ownerId: userId,
         appearance: {
-          hairId: "0",
-          torsoId: "0",
-          legsId: "0",
-          colorId: "0"
+          hairId: hairId1,
+          torsoId: torsoId1,
+          legsId: legsId1,
+          colorId: colorId1
         },
         stats: {
-          gender: "male",
+          strength: 0,
+          stamina: 0,
+          agility: 0,
+          intelligence: 0,
           health: 50,
-          level: 1,
           experience: 0,
-          gold: 0
+          level: 1,
+          gold: 0,
+          gender: "male"
         },
         equipment: {
           headId: "0",
@@ -187,7 +384,7 @@ export default () => {
         ],
         // Dev
         workoutIds: [
-            workoutId1, workoutId2, workoutId3, workoutId4
+          workoutId1, workoutId2, workoutId3, workoutId4
         ],
         groupWorkoutIds: [workoutGroupId1, workoutGroupId2
         ]
@@ -205,193 +402,6 @@ export default () => {
             "gender": "male"
           }
         }
-      }
-    );
-
-
-
-    //set legs
-    Skins.insert(
-      {
-        type: "legs",
-        name: "legs1",
-        description: "legs one",
-        set: 1
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "legs",
-        name: "legs2",
-        description: "legs two",
-        set: 2
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "legs",
-        name: "legs3",
-        description: "legs three",
-        set: 3
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "legs",
-        name: "legs4",
-        description: "legs four",
-        set: 4
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "legs",
-        name: "legs5",
-        description: "legs five",
-        set: 5
-      }
-    );
-
-    //set torso
-    Skins.insert(
-      {
-        type: "torso",
-        name: "torso1",
-        description: "torso one",
-        set: 1
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "torso",
-        name: "torso2",
-        description: "torso two",
-        set: 2
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "torso",
-        name: "torso3",
-        description: "torso three",
-        set: 3
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "torso",
-        name: "torso4",
-        description: "torso four",
-        set: 4
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "torso",
-        name: "torso5",
-        description: "torso five",
-        set: 5
-      }
-    );
-
-    //set hair
-    Skins.insert(
-      {
-        type: "hair",
-        name: "hair1",
-        description: "hair one",
-        set: 1
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "hair",
-        name: "hair2",
-        description: "hair two",
-        set: 2
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "hair",
-        name: "hair3",
-        description: "hair three",
-        set: 3
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "hair",
-        name: "hair4",
-        description: "hair four",
-        set: 4
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "hair",
-        name: "hair5",
-        description: "hair five",
-        set: 5
-      }
-    );
-
-    //set skin
-
-    Skins.insert(
-      {
-        type: "color",
-        name: "color1",
-        description: "color one",
-        set: 1
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "color",
-        name: "color2",
-        description: "color two",
-        set: 2
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "color",
-        name: "color3",
-        description: "color three",
-        set: 3
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "color",
-        name: "color4",
-        description: "color four",
-        set: 4
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "color",
-        name: "color5",
-        description: "color five",
-        set: 5
       }
     );
   }

@@ -37,8 +37,28 @@
   width: 64px;
 }
 
-.hero-container .character {
-  background: url("character1.png") no-repeat center top;
+.hero-container .item-container-hair {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 0;
+}
+
+.hero-container .item-container-torso {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 22px;
+}
+
+.hero-container .item-container-legs {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 36px;
+}
+
+.hero-container .item-container-color {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 16px;
 }
 
 .hero-container .item-container-head {
@@ -57,6 +77,13 @@
 .hero-container .item-container-rightHand {
   left: 0;
   top: 23px;
+}
+
+.hero-container .hair,
+.hero-container .torso,
+.hero-container .legs,
+.hero-container .color{
+  zoom: 2;
 }
 
 .hero-container .head {
@@ -88,8 +115,18 @@
   width: 48px;
 }
 
+.equipment-container .character-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .equipment-container .character {
   background: url("character0.png") no-repeat center top;
+  image-rendering: pixelated;
+  height: 32px;
+  width: 20px;
+  zoom: 2;
 }
 
 .equipment-container .item-container-head {
@@ -116,18 +153,9 @@
   z-index: 12;
 }
 
-.equipment-container .head {
-  zoom: 1;
-}
-
-.equipment-container .chest {
-  zoom: 1;
-}
-
-.equipment-container .leftHand {
-  zoom: 1;
-}
-
+.equipment-container .head,
+.equipment-container .chest,
+.equipment-container .leftHand,
 .equipment-container .rightHand {
   zoom: 1;
 }
@@ -140,19 +168,6 @@
   top: 50%;
   transform: translateY(-50%);
   zoom: 3;
-}
-
-.equipment .character-container {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-}
-
-.equipment .character {
-  image-rendering: pixelated;
-  height: 32px;
-  width: 20px;
-  zoom: 2;
 }
 
 .equipment .item-container {
@@ -182,7 +197,7 @@
 }
 /* --------------------------------------------- */
 
-/* General equipment styles */
+/* General inventory styles */
 .inventory .item-container:hover {
   cursor: pointer;
 }
@@ -199,26 +214,39 @@
   image-rendering: pixelated;
   height: 16px;
   width: 16px;
+  zoom: 3;
+}
+
+.hair {
+  background: url("character-components/hair.png");
+}
+
+.torso {
+  background: url("character-components/torso.png");
+}
+
+.legs {
+  background: url("character-components/legs.png");
+}
+
+.color {
+  background: url("character-components/color.png");
 }
 
 .head {
-  background: url("items/head.png") -64px;
-  zoom: 3;
+  background: url("items/head.png");
 }
 
 .chest {
-  background: url("items/chest.png") -64px;
-  zoom: 3;
+  background: url("items/chest.png");
 }
 
 .leftHand {
-  background: url("items/shield.png") -64px;
-  zoom: 3;
+  background: url("items/shield.png");
 }
 
 .rightHand {
-  background: url("items/weapon.png") -64px;
-  zoom: 3;
+  background: url("items/weapon.png");
 }
 /* --------------------------------------------- */
 
