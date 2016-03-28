@@ -5,7 +5,6 @@ function composer({Actions}, onData) {
     onData(null, {Actions});
 }
 
-// actions.Wokrouts or actions.WorkoutGroups
 function depsMapper(context, actions) {
     return ({
         Actions: actions.workoutGroups
