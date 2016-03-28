@@ -7,7 +7,8 @@ export default () => {
     Users.remove({});
     Characters.remove({});
     Items.remove({});
-    
+    Skins.remove({});
+
     Accounts.createUser({
       email: 'gameout@gameout.com',
       username: 'gameout',
@@ -17,6 +18,200 @@ export default () => {
 
 
     const userId = user._id;
+
+    /*
+    SKINS
+     */
+
+    //set hair
+    const hairId1 = Skins.insert(
+      {
+        type: "hair",
+        name: "hair1",
+        description: "hair one",
+        set: 1
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair2",
+        description: "hair two",
+        set: 2
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair3",
+        description: "hair three",
+        set: 3
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair4",
+        description: "hair four",
+        set: 4
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair5",
+        description: "hair five",
+        set: 5
+      }
+    );
+
+    //set torso
+    const torsoId1 = Skins.insert(
+      {
+        type: "torso",
+        name: "torso1",
+        description: "torso one",
+        set: 1
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "torso",
+        name: "torso2",
+        description: "torso two",
+        set: 2
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "torso",
+        name: "torso3",
+        description: "torso three",
+        set: 3
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "torso",
+        name: "torso4",
+        description: "torso four",
+        set: 4
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "torso",
+        name: "torso5",
+        description: "torso five",
+        set: 5
+      }
+    );
+
+
+    //set legs
+    const legsId1 = Skins.insert(
+      {
+        type: "legs",
+        name: "legs1",
+        description: "legs one",
+        set: 1
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "legs",
+        name: "legs2",
+        description: "legs two",
+        set: 2
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "legs",
+        name: "legs3",
+        description: "legs three",
+        set: 3
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "legs",
+        name: "legs4",
+        description: "legs four",
+        set: 4
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "legs",
+        name: "legs5",
+        description: "legs five",
+        set: 5
+      }
+    );
+
+
+    //set color
+    const colorId1 = Skins.insert(
+      {
+        type: "color",
+        name: "color1",
+        description: "color one",
+        set: 1
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "color",
+        name: "color2",
+        description: "color two",
+        set: 2
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "color",
+        name: "color3",
+        description: "color three",
+        set: 3
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "color",
+        name: "color4",
+        description: "color four",
+        set: 4
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "color",
+        name: "color5",
+        description: "color five",
+        set: 5
+      }
+    );
+
+    /*
+     ITEMS
+     */
 
     //set 1
     const headId1 = Items.insert(
@@ -98,17 +293,21 @@ export default () => {
       {
         ownerId: userId,
         appearance: {
-          hairId: "0",
-          torsoId: "0",
-          legsId: "0",
-          colorId: "0"
+          hairId: hairId1,
+          torsoId: torsoId1,
+          legsId: legsId1,
+          colorId: colorId1
         },
         stats: {
-          gender: "male",
+          strength: 0,
+          stamina: 0,
+          agility: 0,
+          intelligence: 0,
           health: 50,
-          level: 1,
           experience: 0,
-          gold: 0
+          level: 1,
+          gold: 0,
+          gender: "male"
         },
         equipment: {
           headId: "0",
@@ -134,193 +333,6 @@ export default () => {
             "gender": "male"
           }
         }
-      }
-    );
-
-
-
-    //set legs
-    Skins.insert(
-      {
-        type: "legs",
-        name: "legs1",
-        description: "legs one",
-        set: 1
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "legs",
-        name: "legs2",
-        description: "legs two",
-        set: 2
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "legs",
-        name: "legs3",
-        description: "legs three",
-        set: 3
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "legs",
-        name: "legs4",
-        description: "legs four",
-        set: 4
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "legs",
-        name: "legs5",
-        description: "legs five",
-        set: 5
-      }
-    );
-
-    //set torso
-    Skins.insert(
-      {
-        type: "torso",
-        name: "torso1",
-        description: "torso one",
-        set: 1
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "torso",
-        name: "torso2",
-        description: "torso two",
-        set: 2
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "torso",
-        name: "torso3",
-        description: "torso three",
-        set: 3
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "torso",
-        name: "torso4",
-        description: "torso four",
-        set: 4
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "torso",
-        name: "torso5",
-        description: "torso five",
-        set: 5
-      }
-    );
-
-    //set hair
-    Skins.insert(
-      {
-        type: "hair",
-        name: "hair1",
-        description: "hair one",
-        set: 1
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "hair",
-        name: "hair2",
-        description: "hair two",
-        set: 2
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "hair",
-        name: "hair3",
-        description: "hair three",
-        set: 3
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "hair",
-        name: "hair4",
-        description: "hair four",
-        set: 4
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "hair",
-        name: "hair5",
-        description: "hair five",
-        set: 5
-      }
-    );
-
-    //set skin
-
-    Skins.insert(
-      {
-        type: "color",
-        name: "color1",
-        description: "color one",
-        set: 1
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "color",
-        name: "color2",
-        description: "color two",
-        set: 2
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "color",
-        name: "color3",
-        description: "color three",
-        set: 3
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "color",
-        name: "color4",
-        description: "color four",
-        set: 4
-      }
-    );
-
-    Skins.insert(
-      {
-        type: "color",
-        name: "color5",
-        description: "color five",
-        set: 5
       }
     );
   }
