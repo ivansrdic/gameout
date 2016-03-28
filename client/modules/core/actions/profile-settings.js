@@ -13,10 +13,10 @@ export default {
   },
 
   ageValidation({LocalState}, value) {
-    let validation = new Validation(LocalState, "EDIT_INFO_ERRORS", "ageValidation");
+    const validation = new Validation(LocalState, "EDIT_INFO_ERRORS", "ageValidation");
 
-    if (!validation.isNumeric(value) || !Number.isInteger(parseFloat(value)) || !(value > 0)) {
-      validation.setError("error", "Age must be a positive number");
+    if (Validation.isPositiveInteger(value)) {
+      validation.setError("error", "Age must be a positive integer number");
       return;
     }
 
@@ -25,7 +25,23 @@ export default {
       return;
     }
 
-    validation.setError("success", "");
+    validation.success();
+  },
+
+  heightValidation({LocalState}, value) {
+    const validation = new Validation(LocalState, "EDIT_INFO_ERRORS", "heightValidation");
+
+    if (Validation.isPositiveInteger(value)) {
+      validation.setError("error", "Height must be a positive integer number");
+      return;
+    }
+
+    if (value > 240) {
+      validation.setError("warning", "Are you sure this is your height?");
+      return;
+    }
+
+    validation.success();
   },
 
   clearErrors({LocalState}) {

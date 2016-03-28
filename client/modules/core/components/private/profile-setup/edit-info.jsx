@@ -9,7 +9,7 @@ class EditInfo extends Component {
   render() {
     let {errors} = this.props;
     errors = errors ? errors : {};
-    let {ageValidation} = this.props;
+    let {ageValidation, heightValidation} = this.props;
 
     return (
       <Col md={10} mdOffset={1}>
@@ -33,14 +33,17 @@ class EditInfo extends Component {
             label="Age"
             placeholder="Age"
             help={errors.ageValidation ? errors.ageValidation.message : ""}
-            bsStyle={errors.ageValidation ? errors.ageValidation.status : "success"}
+            bsStyle={errors.ageValidation ? errors.ageValidation.status : null}
             onBlur={(e) => ageValidation(this.refs.age.getValue())}/>
 
           <Input 
             ref="height" 
             type="text" 
             label="Height" 
-            placeholder="Height - measured in meters"/>
+            placeholder="Height - measured in meters"
+            help={errors.heightValidation ? errors.heightValidation.message : ""}
+            bsStyle={errors.heightValidation ? errors.heightValidation.status : null}
+            onBlur={(e) => heightValidation(this.refs.age.getValue())}/>
           
           <Input ref="weight" type="text" label="Weight" placeholder="Weight"/>
 

@@ -15,12 +15,23 @@ export default class Validation{
     errors[this.validationObject] = {status, message};
     this.LocalState.set(this.key, errors);
   }
+  
+  success() {
+    this.setError("success", "");
+  }
 
-  isNumeric(value) {
+  static isNumeric(value) {
     return !isNaN(parseFloat(value)) && isFinite(value);
   }
 
-  isEmpty(value) {
+  /**
+   * Note: This will defend against injection attacks as well.
+   */
+  static isPositiveInteger(value) {
+    return !Validation.isNumeric(value) || !Number.isInteger(parseFloat(value)) || !(value > 0);
+  }
+
+  static isEmpty(value) {
     return !value;
   }
 
