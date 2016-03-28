@@ -87,7 +87,7 @@ export default () => {
      */
 
     //set legs
-    Skins.insert(
+    const hairId1 = Skins.insert(
       {
         type: "hair",
         name: "hair1",
@@ -381,12 +381,6 @@ export default () => {
         inventoryIds: [
           headId1, chestId1, leftHandId1, rightHandId1,
           headId2, chestId2, leftHandId2, rightHandId2
-        ],
-        // Dev
-        workoutIds: [
-          workoutId1, workoutId2, workoutId3, workoutId4
-        ],
-        groupWorkoutIds: [workoutGroupId1, workoutGroupId2
         ]
       }
     );
@@ -396,6 +390,8 @@ export default () => {
         $set: {
           'data': {
             "characterId": charId,
+            "exerciseIds": [ workoutId1, workoutId2, workoutId3, workoutId4 ],
+            "exerciseGroupIds": [ workoutGroupId1, workoutGroupId2 ],
             "age": "21",
             "weight": "70",
             "height": "180",

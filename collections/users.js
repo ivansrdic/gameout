@@ -1,4 +1,7 @@
 import {Characters} from './';
+import {Exercises} from './';
+import {ExerciseGroups} from './';
+
 let Users = Meteor.users;
 
 const ProfileSchema =  new SimpleSchema({
@@ -19,6 +22,12 @@ const ProfileSchema =  new SimpleSchema({
 const UserDataSchema = new SimpleSchema({
   characterId: {
     type: String
+  },
+  exerciseIds: {
+    type: [String]
+  },
+  exerciseGroupIds: {
+    type: [String]
   },
   age: {
     type: Number
@@ -63,6 +72,12 @@ Users.attachSchema(UserSchema);
 Users.helpers({
   character() {
     return Characters.findOne(this.data.characterId);
+  },
+  exercises() {
+    return Exercises.find({_id: {$in: this.data.exerciseIds}});
+  },
+  exerciseGroups() {
+    return ExerciseGroups.find({_id: {$in: this.data.exerciseGroupIds}});
   }
 });
 
