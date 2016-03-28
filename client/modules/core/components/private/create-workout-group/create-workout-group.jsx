@@ -40,9 +40,7 @@ class CreateWorkoutGroup extends Component {
                                         Workout list
                                     </ButtonInput>
                                     <Panel collapsible expanded={this.state.open}>
-                                        Ovdje treba ici neka element koji ima selectable listu <br/>
-                                        Trebao bi bit selectable ili samo hover kada pređe preko a <br/>
-                                        A desno kao plus pa se doda u Selected workouts <br/>
+                                        {this.showData()}
                                     </Panel>
                                 </form>
                             </Col>
@@ -63,6 +61,14 @@ class CreateWorkoutGroup extends Component {
                 </Row>
             </Grid>
         );
+    }
+
+    showData() {
+      const workouts = this.props.Actions.listAllWorkouts();
+      return (workouts.map(function (workout) {
+            console.log(workout.name);
+          }
+      ));
     }
 
     // TODO: validation and error setting

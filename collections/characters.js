@@ -1,9 +1,6 @@
 import {Items} from './';
 import {Users} from './';
 import {Skins} from './';
-// Dev
-import {Exercises} from './';
-import {ExerciseGroups} from './';
 
 let Characters = new Mongo.Collection('characters');
 

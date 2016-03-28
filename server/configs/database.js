@@ -46,7 +46,7 @@ export default () => {
     const workoutId3 = Exercises.insert(
         {
             ownerId: userId,
-            name: "Squat",
+            name: "Squats",
             description: "To sit in a crouching position with knees bent and the buttocks on or near the heels",
             unit: 20
         }

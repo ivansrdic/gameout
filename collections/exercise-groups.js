@@ -25,7 +25,6 @@ ExerciseGroups.helpers({
   owner() {
     return Users.findOne(this.ownerId);
   },
-
   exercises() {
     return Exercises.find({_id: {$in: this.exerciseIds}});
   }
