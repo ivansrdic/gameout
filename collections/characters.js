@@ -74,10 +74,10 @@ const CharacterSchema = new SimpleSchema({
   },
   // Dev
   workoutIds: {
-    type: [Exercises]
+    type: [String]
   },
   groupWorkoutIds: {
-    type: [ExerciseGroups]
+    type: [String]
   }
 });
 
