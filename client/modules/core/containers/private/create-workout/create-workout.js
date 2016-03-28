@@ -12,7 +12,10 @@ export const composer = ({context, clearErrors}, onData) => {
 export const depsMapper = (context, actions) => {
   console.log(actions);
   return {
-    workoutNameValidation: actions.Workouts.workoutNameValidation,
+    nameValidation: actions.Workouts.nameValidation,
+    descriptionValidation: actions.Workouts.descriptionValidation,
+    tagsValidation: actions.Workouts.tagsValidation,
+    tipsValidation: actions.Workouts.tipsValidation,
     clearErrors: actions.Workouts.clearErrors,
     context: () => context
   }

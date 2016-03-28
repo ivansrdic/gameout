@@ -14,7 +14,7 @@ class CreateWorkout extends Component {
     console.log(this.props);
     let {errors} = this.props;
     errors = errors ? errors : {};
-    let {workoutNameValidation} = this.props;
+    let {nameValidation, descriptionValidation, tagsValidation, tipsValidation} = this.props;
 
     return (
       <Grid>
@@ -33,9 +33,9 @@ class CreateWorkout extends Component {
                         type="text"
                         label="Workout name"
                         placeholder="Workout name"
-                        help={errors.workoutNameValidation ? errors.workoutNameValidation.message : ""}
-                        bsStyle={errors.workoutNameValidation ? errors.workoutNameValidation.status : null}
-                        onBlur={(e) => workoutNameValidation(this.refs.name.getValue())}/>
+                        help={errors.nameValidation ? errors.nameValidation.message : ""}
+                        bsStyle={errors.nameValidation ? errors.nameValidation.status : null}
+                        onBlur={(e) => nameValidation($(e.target).val())}/>
 
 
                       <Input
@@ -43,18 +43,27 @@ class CreateWorkout extends Component {
                         type="textarea"
                         label="Description"
                         placeholder="Description"
+                        help={errors.descriptionValidation ? errors.descriptionValidation.message : ""}
+                        bsStyle={errors.descriptionValidation ? errors.descriptionValidation.status : null}
+                        onBlur={(e) => descriptionValidation($(e.target).val())}
                       />
                       <Input
                         ref="tags"
                         type="text"
                         label="Tags"
                         placeholder="Tags"
+                        help={errors.tagsValidation ? errors.tagsValidation.message : ""}
+                        bsStyle={errors.tagsValidation ? errors.tagsValidation.status : null}
+                        onBlur={(e) => tagsValidation($(e.target).val())}
                       />
                       <Input
                         ref="tips"
                         type="textarea"
                         label="Tips and advices"
                         placeholder="The workout is too exhausting for beginners? Help them get through it :) "
+                        help={errors.tipsValidation ? errors.tipsValidation.message : ""}
+                        bsStyle={errors.tipsValidation ? errors.tipsValidation.status : null}
+                        onBlur={(e) => tipsValidation($(e.target).val())}
                       />
                       <ButtonInput className="pull-right" type="submit" value="Save"/>
                 </form>

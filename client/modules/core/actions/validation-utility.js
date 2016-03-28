@@ -6,7 +6,7 @@ export default class Validation{
   }
 
   getErrors() {
-    let errors = this.LocalState.get(this.key);
+    const errors = this.LocalState.get(this.key);
     return errors ? errors : {};
   }
 
@@ -19,4 +19,9 @@ export default class Validation{
   isNumeric(value) {
     return !isNaN(parseFloat(value)) && isFinite(value);
   }
+
+  isEmpty(value) {
+    return !value;
+  }
+
 }

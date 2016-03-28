@@ -1,32 +1,53 @@
+import Validation from './validation-utility';
+
 export default {
   //TODO: add workout to workouts collection
   createWorkout({}, workout) {
     console.log(workout);
   },
   
-  workoutNameValidation({LocalState}, value) {
+  nameValidation({LocalState}, value) {
+    const validation = new Validation(LocalState, "CREATE_WORKOUT_ERRORS", "nameValidation");
 
-    value = value.replace(/</g, "&lt;").replace(/>/g, "&gt;");
-
-    let errors = LocalState.get("CREATE_WORKOUT_ERRORS");
-    errors = errors ? errors : {};
-
-    let setError = function(status, message) {
-      errors.workoutNameValidation = {status, message};
-      LocalState.set("CREATE_WORKOUT_ERRORS", errors);
-    };
-
-    if (value == null) {
-      setError("error", "This is a required input.");
+    if (validation.isEmpty(value)) {
+      validation.setError("error", "This is a required input.");
       return;
     }
 
-    if (isNaN(value) == false) {
-      setError("warning", "You can name your workout with numbers, but is it intuitive?");
+    validation.setError("success", "");
+  },
+  
+  descriptionValidation({LocalState}, value) {
+    const validation = new Validation(LocalState, "CREATE_WORKOUT_ERRORS", "descriptionValidation");
+    
+    if (validation.isEmpty(value)) {
+      validation.setError("error", "This is a required input.");
       return;
     }
+    
+    validation.setError("success", "");
+  },
+  
+  tagsValidation({LocalState}, value) {
+    const validation = new Validation(LocalState, "CREATE_WORKOUT_ERRORS", "tagsValidation");
 
-    setError("success", "");
+    if (validation.isEmpty(value)) {
+      validation.setError("error", "This is a required input.");
+      return;
+    }
+    
+    validation.setError("success", "");
+  },
+  
+  tipsValidation({LocalState}, value) {
+    const validation = new Validation(LocalState, "CREATE_WORKOUT_ERRORS", "tipsValidation");
+
+    if (validation.isEmpty(value)) {
+      validation.setError("error", "This is a required input.");
+      return;
+    }
+    
+    validation.setError("success", "");
   },
 
   clearErrors({LocalState}) {
