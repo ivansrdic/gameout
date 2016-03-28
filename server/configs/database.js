@@ -1,4 +1,5 @@
-import {Users, Characters, Items, Skins} from '/collections';
+// Dev
+import {Users, Characters, Items, Skins, Exercises, ExerciseGroups} from '/collections';
 
 export default () => {
   let user = Users.findOne({username: 'gameout'});
@@ -8,6 +9,8 @@ export default () => {
     Characters.remove({});
     Items.remove({});
     Skins.remove({});
+    Exercises.remove({});
+    ExerciseGroups.remove({});
 
     Accounts.createUser({
       email: 'gameout@gameout.com',
@@ -19,12 +22,72 @@ export default () => {
 
     const userId = user._id;
 
+    // Dev
+    const workoutId1 = Exercises.insert(
+      {
+        ownerId: userId,
+        name: "Push-ups",
+        description: "Raise body up off floor by extending arms with body straight",
+        unit: 10
+      }
+    );
+
+    // Dev
+    const workoutId2 = Exercises.insert(
+        {
+            ownerId: userId,
+            name: "Pull-ups",
+            description: "Pulling body up using arms with varierity of grips" ,
+            unit: 5
+        }
+    );
+
+    // Dev
+    const workoutId3 = Exercises.insert(
+        {
+            ownerId: userId,
+            name: "Squat",
+            description: "To sit in a crouching position with knees bent and the buttocks on or near the heels",
+            unit: 20
+        }
+    );
+
+    // Dev
+    const workoutId4 = Exercises.insert(
+        {
+            ownerId: userId,
+            name: "Dips",
+            description: "The tricep dip is an excellent exercise that works the triceps using your own body",
+            unit: 8
+        }
+    );
+
+    // Dev
+    const workoutGroupId1 = ExerciseGroups.insert(
+        {
+            ownerId: userId,
+            name: "Chest routine",
+            description: "Excellent exercises for chest muscles.",
+            exerciseIds: [workoutId1, workoutId4]
+        }
+    );
+
+    // Dev
+    const workoutGroupId2 = ExerciseGroups.insert(
+        {
+            ownerId: userId,
+            name: "Full body routine",
+            description: "Excellent exercises for full body workout.",
+            exerciseIds: [workoutId1, workoutId2, workoutId3, workoutId4]
+        }
+    );
+
     /*
-    SKINS
+     SKINS
      */
 
-    //set hair
-    const hairId1 = Skins.insert(
+    //set legs
+    Skins.insert(
       {
         type: "hair",
         name: "hair1",
@@ -318,6 +381,12 @@ export default () => {
         inventoryIds: [
           headId1, chestId1, leftHandId1, rightHandId1,
           headId2, chestId2, leftHandId2, rightHandId2
+        ],
+        // Dev
+        workoutIds: [
+          workoutId1, workoutId2, workoutId3, workoutId4
+        ],
+        groupWorkoutIds: [workoutGroupId1, workoutGroupId2
         ]
       }
     );

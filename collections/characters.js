@@ -1,6 +1,9 @@
 import {Items} from './';
 import {Users} from './';
 import {Skins} from './';
+// Dev
+import {Exercises} from './';
+import {ExerciseGroups} from './';
 
 let Characters = new Mongo.Collection('characters');
 
@@ -80,6 +83,13 @@ const CharacterSchema = new SimpleSchema({
   },
   inventoryIds: {
     type: [String]
+  },
+  // Dev
+  workoutIds: {
+    type: [Exercises]
+  },
+  groupWorkoutIds: {
+    type: [ExerciseGroups]
   }
 });
 
@@ -115,6 +125,13 @@ Characters.helpers({
   },
   inventory() {
     return Items.find({_id: {$in: this.inventoryIds}});
+  },
+  // Dev
+  workouts() {
+    return Exercises.find({_id: {$in: this.workoutIds}});
+  },
+  groupWorkouts() {
+    return ExerciseGroups.find({_id: {$in: this.groupWorkoutIds}});
   }
 });
 
