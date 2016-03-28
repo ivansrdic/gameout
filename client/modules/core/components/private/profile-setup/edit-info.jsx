@@ -7,9 +7,8 @@ class EditInfo extends Component {
   }
 
   render() {
-    let {errors} = this.props;
-    errors = errors ? errors : {};
-    let {ageValidation, heightValidation} = this.props;
+    const {errors} = this.props;
+    const {ageValidation, heightValidation} = this.props;
 
     return (
       <Col md={10} mdOffset={1}>

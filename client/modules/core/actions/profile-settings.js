@@ -1,7 +1,13 @@
 import {Characters} from '/collections';
-import Validation from './validation-utility';
+import Validation, {Utils} from './validation-utility';
+
+const stateKey = "EDIT_INFO_ERRORS";
 
 export default {
+  stateKey() {
+    return stateKey;
+  },
+
   completeSetup(userData) {
     // TODO: display error on character creation
     const characterId = Characters.insert(userData, function (err) {
@@ -13,15 +19,15 @@ export default {
   },
 
   ageValidation({LocalState}, value) {
-    const validation = new Validation(LocalState, "EDIT_INFO_ERRORS", "ageValidation");
+    const validation = new Validation(LocalState, stateKey, "ageValidation");
 
-    if (Validation.isPositiveInteger(value)) {
-      validation.setError("error", "Age must be a positive integer number");
+    if (Utils.isPositiveInteger(value)) {
+      validation.error(Utils.POSITIVE_NUMBER);
       return;
     }
 
     if (value > 150) {
-      validation.setError("warning", "Are you sure this is your age?");
+      validation.warning("Are you sure this is your age?");
       return;
     }
 
@@ -29,15 +35,15 @@ export default {
   },
 
   heightValidation({LocalState}, value) {
-    const validation = new Validation(LocalState, "EDIT_INFO_ERRORS", "heightValidation");
+    const validation = new Validation(LocalState, stateKey, "heightValidation");
 
-    if (Validation.isPositiveInteger(value)) {
-      validation.setError("error", "Height must be a positive integer number");
+    if (Utils.isPositiveInteger(value)) {
+      validation.error(Utils.POSITIVE_NUMBER);
       return;
     }
 
     if (value > 240) {
-      validation.setError("warning", "Are you sure this is your height?");
+      validation.warning("Are you sure this is your height?");
       return;
     }
 
@@ -45,6 +51,6 @@ export default {
   },
 
   clearErrors({LocalState}) {
-    return LocalState.set('EDIT_INFO_ERRORS', null);
+    return LocalState.set(stateKey, null);
   }
 }

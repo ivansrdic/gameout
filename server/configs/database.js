@@ -86,7 +86,7 @@ export default () => {
      SKINS
      */
 
-    //set legs
+    //set hair
     const hairId1 = Skins.insert(
       {
         type: "hair",

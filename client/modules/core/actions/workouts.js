@@ -1,56 +1,58 @@
-import Validation from './validation-utility';
+import Validation, {Utils} from './validation-utility';
+
+const stateKey = "CREATE_WORKOUT_ERRORS";
 
 export default {
-  //TODO: add workout to workouts collection
-  createWorkout({}, workout) {
-    console.log(workout);
+  stateKey() {
+    return stateKey;
   },
-  
-  nameValidation({LocalState}, value) {
-    const validation = new Validation(LocalState, "CREATE_WORKOUT_ERRORS", "nameValidation");
 
-    if (validation.isEmpty(value)) {
-      validation.setError("error", "This is a required input.");
+  nameValidation({LocalState}, value) {
+    const validation = new Validation(LocalState, stateKey, "nameValidation");
+
+    if(Utils.isEmpty(value)) {
+      validation.error(Utils.REQUIRED);
       return;
     }
 
-    validation.setError("success", "");
+    validation.success();
   },
   
   descriptionValidation({LocalState}, value) {
-    const validation = new Validation(LocalState, "CREATE_WORKOUT_ERRORS", "descriptionValidation");
-    
-    if (validation.isEmpty(value)) {
-      validation.setError("error", "This is a required input.");
-      return;
-    }
-    
-    validation.setError("success", "");
-  },
-  
-  tagsValidation({LocalState}, value) {
-    const validation = new Validation(LocalState, "CREATE_WORKOUT_ERRORS", "tagsValidation");
+    const validation = new Validation(LocalState, stateKey, "descriptionValidation");
 
-    if (validation.isEmpty(value)) {
-      validation.setError("error", "This is a required input.");
+    if(Utils.isEmpty(value)) {
+      validation.error(Utils.REQUIRED);
       return;
     }
     
-    validation.setError("success", "");
+    validation.success();
   },
-  
-  tipsValidation({LocalState}, value) {
-    const validation = new Validation(LocalState, "CREATE_WORKOUT_ERRORS", "tipsValidation");
 
-    if (validation.isEmpty(value)) {
-      validation.setError("error", "This is a required input.");
+  unitValidation({LocalState}, value) {
+    const validation = new Validation(LocalState, stateKey, "unitValidation");
+
+    if(Utils.isEmpty(value)) {
+      validation.error(Utils.REQUIRED);
       return;
     }
-    
-    validation.setError("success", "");
+
+    if(!Utils.isNumeric(value)) {
+      validation.error(Utils.NUMERIC);
+      return;
+    }
+
+    validation.success();
   },
 
   clearErrors({LocalState}) {
-    return LocalState.set('CREATE_WORKOUT_ERRORS', null);
+    return LocalState.set(stateKey, null);
+  },
+
+  createWorkout({LocalState}, workout) {
+    if(Utils.hasErrors(LocalState.get(stateKey)))
+      return;
+
+    Meteor.call('addExercise', workout);
   }
-}
+};

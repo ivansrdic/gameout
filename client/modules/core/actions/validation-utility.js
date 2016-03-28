@@ -10,29 +10,50 @@ export default class Validation{
     return errors ? errors : {};
   }
 
-  setError(status, message) {
-    let errors = this.getErrors(this.key);
-    errors[this.validationObject] = {status, message};
-    this.LocalState.set(this.key, errors);
+    setMessage(status, message) {
+      let errors = this.getErrors(this.key);
+      errors[this.validationObject] = {status, message};
+      this.LocalState.set(this.key, errors);
+    }
+
+  error(message) {
+    this.setMessage("error", message);
+  }
+
+  warning(message) {
+    this.setMessage("warning", message);
   }
   
   success() {
-    this.setError("success", "");
+    this.setMessage("success", "");
   }
+}
 
-  static isNumeric(value) {
+
+const Utils = {
+  REQUIRED: "This is a required input.",
+  NUMERIC: "This should be a number.",
+  POSITIVE_NUMBER: "This must be a positive integer number",
+
+  isNumeric(value) {
     return !isNaN(parseFloat(value)) && isFinite(value);
-  }
+  },
 
   /**
    * Note: This will defend against injection attacks as well.
    */
-  static isPositiveInteger(value) {
+  isPositiveInteger(value) {
     return !Validation.isNumeric(value) || !Number.isInteger(parseFloat(value)) || !(value > 0);
-  }
-
-  static isEmpty(value) {
+  },
+  isEmpty(value) {
     return !value;
+  },
+  hasErrors(validationState) {
+    for(const error in validationState) {
+      if(validationState.hasOwnProperty(error) && validationState[error].status === "error") return true;
+    }
+    return false;
   }
+};
 
-}
+export {Utils};

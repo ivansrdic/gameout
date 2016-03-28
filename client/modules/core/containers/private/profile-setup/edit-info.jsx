@@ -1,9 +1,9 @@
 import EditInfo from '../../../components/private/profile-setup/edit-info.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
-export const composer = ({context, clearErrors}, onData) => {
+export const composer = ({context, stateKey, clearErrors}, onData) => {
   const {LocalState} = context();
-  const errors = LocalState.get('EDIT_INFO_ERRORS');
+  const errors = LocalState.get(stateKey()) || {};
   onData(null, {errors});
 
   return clearErrors;
@@ -11,6 +11,7 @@ export const composer = ({context, clearErrors}, onData) => {
 
 export const depsMapper = (context, actions) => {
   return {
+    stateKey: actions.ProfileSettings.stateKey,
     ageValidation: actions.ProfileSettings.ageValidation,
     clearErrors: actions.ProfileSettings.clearErrors,
     context: () => context
