@@ -33,73 +33,73 @@
 }
 
 .hero-container .equipment {
-  height: 64px;
-  width: 64px;
+  height: 192px;
+  width: 192px;
 }
 
 .hero-container .item-container-hair {
   left: 50%;
   transform: translateX(-50%);
-  top: 0;
+  top: 24px;
 }
 
 .hero-container .item-container-torso {
   left: 50%;
   transform: translateX(-50%);
-  top: 22px;
+  top: 90px;
 }
 
 .hero-container .item-container-legs {
   left: 50%;
   transform: translateX(-50%);
-  top: 36px;
+  top: 132px;
 }
 
 .hero-container .item-container-color {
   left: 50%;
   transform: translateX(-50%);
-  top: 16px;
+  top: 72px;
 }
 
 .hero-container .item-container-head {
-  top: 2px;
+  top: 30px;
 }
 
 .hero-container .item-container-chest {
-  top: 25px;
+  top: 88px;
 }
 
 .hero-container .item-container-leftHand {
-  right: 6px;
-  top: 28px;
+  right: 34px;
+  top: 98px;
 }
 
 .hero-container .item-container-rightHand {
-  left: 0;
-  top: 23px;
+  left: 14px;
+  top: 92px;
 }
 
 .hero-container .hair,
 .hero-container .torso,
 .hero-container .legs,
 .hero-container .color{
-  zoom: 2;
+  transform: scale(2);
 }
 
 .hero-container .head {
-  zoom: 2;
+  transform: scale(2);
 }
 
 .hero-container .chest {
-  zoom: 1.6;
+  transform: scale(1.6);
 }
 
 .hero-container .leftHand {
-  zoom: 1.5;
+  transform: scale(1.5);
 }
 
 .hero-container .rightHand {
-  zoom: 1.5;
+  transform: scale(1.5);
 }
 /* --------------------------------------------- */
 
@@ -111,8 +111,8 @@
 }
 
 .equipment-container .equipment {
-  height: 64px;
-  width: 48px;
+  height: 192px;
+  width: 144px;
 }
 
 .equipment-container .character-container {
@@ -122,29 +122,29 @@
 }
 
 .equipment-container .character {
-  background: url("character0.png") no-repeat center top;
+  background-image: url("character0.png");
+  background-size: cover;
   image-rendering: pixelated;
-  height: 32px;
-  width: 20px;
-  zoom: 2;
+  height: 192px;
+  width: 120px;
 }
 
 .equipment-container .item-container-head {
-  top: 12px;
+  top: 32px;
 }
 
 .equipment-container .item-container-chest {
-  top: 30px;
+  top: 90px;
 }
 
 .equipment-container .item-container-leftHand {
   right: 0;
-  top: 32px;
+  top: 100px;
 }
 
 .equipment-container .item-container-rightHand {
   left: 0;
-  top: 32px;
+  top: 100px;
 }
 
 .equipment-container .item-container:hover {
@@ -167,7 +167,6 @@
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  zoom: 3;
 }
 
 .equipment .item-container {
@@ -210,43 +209,53 @@
   display: inline-block;
 }
 
+.pixelated {
+  image-rendering:optimizeSpeed;             /* Legal fallback */
+  image-rendering:-moz-crisp-edges;          /* Firefox        */
+  image-rendering:-o-crisp-edges;            /* Opera          */
+  image-rendering:-webkit-optimize-contrast; /* Safari         */
+  image-rendering:optimize-contrast;         /* CSS3 Proposed  */
+  image-rendering:crisp-edges;               /* CSS4 Proposed  */
+  image-rendering:pixelated;                 /* CSS4 Proposed  */
+  -ms-interpolation-mode:nearest-neighbor;   /* IE8+           */
+}
+
 .item {
-  image-rendering: pixelated;
-  height: 16px;
-  width: 16px;
-  zoom: 3;
+  height: 48px;
+  width: 48px;
+  background-size: cover;
 }
 
 .hair {
-  background: url("character-components/hair.png");
+  background-image: url("skins/hair.png");
 }
 
 .torso {
-  background: url("character-components/torso.png");
+  background-image: url("skins/torso.png");
 }
 
 .legs {
-  background: url("character-components/legs.png");
+  background-image: url("skins/legs.png");
 }
 
 .color {
-  background: url("character-components/color.png");
+  background-image: url("skins/color.png");
 }
 
 .head {
-  background: url("items/head.png");
+  background-image: url("items/head.png");
 }
 
 .chest {
-  background: url("items/chest.png");
+  background-image: url("items/chest.png");
 }
 
 .leftHand {
-  background: url("items/shield.png");
+  background-image: url("items/shield.png");
 }
 
 .rightHand {
-  background: url("items/weapon.png");
+  background-image: url("items/weapon.png");
 }
 /* --------------------------------------------- */
 

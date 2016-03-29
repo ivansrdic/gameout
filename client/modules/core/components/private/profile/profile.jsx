@@ -62,7 +62,7 @@ class Profile extends Component {
 
                     <div className="equipment">
                       <div className="character-container">
-                        <div className="character"></div>
+                        <div className="character pixelated"></div>
                       </div>
                       <Item equipment={true} onClickHandler={this.unEquipItem.bind(this)}
                             item={character.head()}/>

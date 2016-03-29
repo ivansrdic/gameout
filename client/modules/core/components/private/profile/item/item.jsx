@@ -11,8 +11,8 @@ class Item extends Component {
       return (
         <div className={"item-container " + (equipment?("item-container-" + item.type):"")}>
           <div
-            className={"item " + item.type} onClick={this.onClickHandler.bind(this)}
-            style={{backgroundPosition: (item.set-1)*-17+"px"}}
+            className={"item " + item.type + " pixelated"} onClick={this.onClickHandler.bind(this)}
+            style={{backgroundPosition: (item.set-1)*-51+"px"}}
           >
           </div>
         </div>
