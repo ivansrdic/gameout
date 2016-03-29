@@ -1,8 +1,10 @@
-import {Characters} from '/collections';
-
 export default {
   getCharacter({Meteor}) {
     return Meteor.user().character();
+  },
+
+  getInventory() {
+    return Meteor.user().character().inventory();
   },
 
   equipItem({Meteor}, itemId) {
@@ -11,5 +13,13 @@ export default {
 
   unEquipItem({Meteor}, itemId) {
     Meteor.call('unEquipItem', Meteor.user().data.characterId, itemId);
+  },
+
+  getWorkouts() {
+    return Meteor.user().exerciseGroups();
+  },
+
+  getExercises({}, workout) {
+    return workout.exercises();
   }
 }

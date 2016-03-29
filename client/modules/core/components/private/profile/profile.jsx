@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Button, ProgressBar, Modal, ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Grid, Row, Col, Button, ProgressBar} from 'react-bootstrap';
 import {Transition} from 'react-overlays';
-import Item from './item.jsx';
+import Inventory from './item/inventory.jsx';
+import Item from './item/item.jsx';
+import WorkoutSelection from './workout/workout-selection.jsx';
+import Exercises from './exercise/exercises.jsx';
 
 class Profile extends Component {
   constructor(props) {
@@ -10,7 +13,8 @@ class Profile extends Component {
     this.state = {
       showEquipment: false,
       showInventory: false,
-      readyForWorkout: false
+      showWorkoutSelection: false,
+      exercises: null
     };
   }
 
@@ -23,7 +27,7 @@ class Profile extends Component {
   // TODO: break down into components
   render() {
     if (this.props.ready) {
-      const {character} = this.props
+      const {character} = this.props;
       return (
         <Grid className="profile" fluid={true}>
           <Row className="hero-info no-gutter">
@@ -60,17 +64,17 @@ class Profile extends Component {
                       <div className="character-container">
                         <div className="character"></div>
                       </div>
-                      <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)}
+                      <Item equipment={true} onClickHandler={this.unEquipItem.bind(this)}
                             item={character.head()}/>
-                      <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)}
+                      <Item equipment={true} onClickHandler={this.unEquipItem.bind(this)}
                             item={character.chest()}/>
-                      <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)}
+                      <Item equipment={true} onClickHandler={this.unEquipItem.bind(this)}
                             item={character.leftHand()}/>
-                      <Item equipment={true} onClickHandler={this.handleEquipmentItemClick.bind(this)}
+                      <Item equipment={true} onClickHandler={this.unEquipItem.bind(this)}
                             item={character.rightHand()}/>
                     </div>
                     <Button className="toggle inventory-toggle" bsStyle="default"
-                            onClick={this.handleInventoryButtonClick.bind(this)}>Show inventory</Button>
+                            onClick={this.showInventory.bind(this)}>Show inventory</Button>
                   </div>
                 </div>
               </Transition>
@@ -104,16 +108,30 @@ class Profile extends Component {
             </div>
           </Row>
           <Row>
-            <Col md={12}>
-              <div className="ready-button-container">
-                <Button bsSize="large" bsStyle="danger" onClick={this.handleReadyButtonClick.bind(this)}>Ready</Button>
+            <Col md={6} mdOffset={3}>
+              <div className="exercises-container">
+                <Exercises
+                  chooseWorkout={this.chooseWorkout.bind(this)}
+                  finishWorkout={this.finishWorkout.bind(this)}
+                  exercises={this.state.exercises}/>
               </div>
             </Col>
           </Row>
 
-          {this.renderInventory()}
+          <Inventory
+            show={this.state.showInventory}
+            getInventory={this.props.getInventory}
+            equipItem={this.equipItem.bind(this)}
+            closeInventory={this.closeInventory.bind(this)}
+            />
 
-          {this.renderWorkoutSelection()}
+          <WorkoutSelection
+            show={this.state.showWorkoutSelection}
+            getWorkouts={this.props.getWorkouts}
+            selectWorkout={this.selectWorkout.bind(this)}
+            closeWorkoutSelection={this.closeWorkoutSelection.bind(this)}
+          />
+
         </Grid>
       );
     } else
@@ -122,94 +140,56 @@ class Profile extends Component {
       );
   }
 
-  renderInventory() {
-    return (
-      <Modal show={this.state.showInventory} onHide={this.handleInventoryCloseClick.bind(this)}>
-        <Modal.Header closeButton>
-          <Modal.Title>Inventory</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p>Click on the items you want to equip.</p>
-
-          <hr />
-          <div className="inventory">
-            {this.renderInventoryItems()}
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.handleInventoryCloseClick.bind(this)}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  }
-  renderInventoryItems() {
-    return(this.props.inventory.map(function(item) {
-        return(<Item key={item.name} onClickHandler={this.handleInventoryItemClick.bind(this)} item={item}/>);
-      }.bind(this)));
-  }
-
-  renderWorkoutSelection() {
-    return (
-      <Modal show={this.state.readyForWorkout} onHide={this.handleWorkoutsCloseClick.bind(this)} bsSize="large">
-        <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <h4>Text in a modal</h4>
-          <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-
-          <hr />
-          <ListGroup>
-            <ListGroupItem header="Heading 1">Some body text</ListGroupItem>
-            <ListGroupItem header="Heading 2" href="#">Linked item</ListGroupItem>
-            <ListGroupItem header="Heading 3" bsStyle="danger">Danger styling</ListGroupItem>
-          </ListGroup>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={this.handleWorkoutsCloseClick.bind(this)}>Close</Button>
-        </Modal.Footer>
-      </Modal>
-    );
-  }
-
   handleEquipmentButtonClick() {
     this.setState({
-      showEquipment: !this.state.showEquipment,
-      showInventory: false
+      showEquipment: !this.state.showEquipment
     });
   }
 
-  handleEquipmentItemClick(e) {
-    const item = $(e.target);
-    this.props.Actions.unEquipItem(item.attr("data-id"));
+  unEquipItem(itemId) {
+    this.props.unEquipItem(itemId);
   }
 
-  handleInventoryButtonClick() {
+  showInventory() {
     this.setState({
-      showInventory: !this.state.showInventory
+      showInventory: true
     });
   }
 
-  handleInventoryItemClick(e) {
-    const item = $(e.target);
-    this.props.Actions.equipItem(item.attr("data-id"));
-  }
-
-  handleInventoryCloseClick() {
+  closeInventory() {
     this.setState({
       showInventory: false
     });
   }
 
-  handleReadyButtonClick() {
+  equipItem(itemId) {
+    this.props.equipItem(itemId);
+  }
+
+  chooseWorkout() {
     this.setState({
-      readyForWorkout: true
+      showWorkoutSelection: true
     });
   }
 
-  handleWorkoutsCloseClick() {
+  closeWorkoutSelection() {
     this.setState({
-      readyForWorkout: false
+      showWorkoutSelection: false
+    });
+  }
+
+  selectWorkout(workout) {
+    const exercises = this.props.getExercises(workout);
+
+    this.setState({
+      showWorkoutSelection: false,
+      exercises
+    });
+  }
+
+  finishWorkout() {
+    this.setState({
+      exercises: null
     });
   }
 }
