@@ -7,8 +7,12 @@ class EditInfo extends Component {
   }
 
   render() {
-    const {errors} = this.props;
-    const {ageValidation, heightValidation} = this.props;
+    const {
+      errors,
+      ageValidation,
+      heightValidation,
+      weightValidation
+    } = this.props;
 
     return (
       <Col md={10} mdOffset={1}>
@@ -35,16 +39,23 @@ class EditInfo extends Component {
             bsStyle={errors.ageValidation ? errors.ageValidation.status : null}
             onBlur={(e) => ageValidation(this.refs.age.getValue())}/>
 
-          <Input 
-            ref="height" 
-            type="text" 
-            label="Height" 
+          <Input
+            ref="height"
+            type="text"
+            label="Height"
             placeholder="Height - measured in meters"
             help={errors.heightValidation ? errors.heightValidation.message : ""}
             bsStyle={errors.heightValidation ? errors.heightValidation.status : null}
-            onBlur={(e) => heightValidation(this.refs.age.getValue())}/>
-          
-          <Input ref="weight" type="text" label="Weight" placeholder="Weight"/>
+            onBlur={(e) => heightValidation(this.refs.height.getValue())}/>
+
+          <Input
+            ref="weight"
+            type="text"
+            label="Weight"
+            placeholder="Weight"
+            help={errors.weightValidation ? errors.weightValidation.message : ""}
+            bsStyle={errors.weightValidation ? errors.weightValidation.status : null}
+            onBlur={(e) => weightValidation(this.refs.weight.getValue())}/>
 
           <label htmlFor="level" className="control-label input-group">Level</label>
           <ButtonGroup refs="level" className="form-group" bsSize="large" data-toggle="buttons">
@@ -66,15 +77,6 @@ class EditInfo extends Component {
     );
   }
 
-  componentWillUnmount() {
-    console.log("Component will unmount.");
-  }
-
-  // handleBlur(e) {
-  //   console.log("Handling blur");
-  //   this.props.ageValidation(this.refs.age.getValue());
-  // }
-
   //region ButtonGroupHandlers
   handleGenderPick(e, value) {
     this.refs.gender = value;
@@ -89,9 +91,23 @@ class EditInfo extends Component {
   handleFormSubmit(e) {
     e.preventDefault();
 
-    console.log(this.refs, "MEGA");
-    console.log(this.refs.age.getValue());
-    console.log(this.refs.gender, this.refs.level);
+    const {age, weight, height, gender, level} = this.refs;
+
+    const userInfo = {
+      age: age.getValue(),
+      weight: weight.getValue(),
+      height: height.getValue(),
+      gender,
+      level
+    };
+
+    const {ageValidation, heightValidation, weightValidation} = this.props;
+    ageValidation(userInfo.age);
+    heightValidation(userInfo.height);
+    weightValidation(userInfo.weight);
+
+    // Call the method.
+    // Meteor.call("addUserInfo", userInfo);
 
     // FlowRouter.go('/customize-character');
   }

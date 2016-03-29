@@ -64,8 +64,6 @@ class CreateWorkout extends Component {
     );
   }
 
-
-  // TODO: validation and error setting
   handleSetupFormSubmit(e) {
     e.preventDefault();
 

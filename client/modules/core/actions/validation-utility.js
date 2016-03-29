@@ -1,4 +1,4 @@
-export default class Validation{
+export default class Validation {
   constructor(LocalState, key, validationObject) {
     this.LocalState = LocalState;
     this.key = key;
@@ -10,11 +10,11 @@ export default class Validation{
     return errors ? errors : {};
   }
 
-    setMessage(status, message) {
-      let errors = this.getErrors(this.key);
-      errors[this.validationObject] = {status, message};
-      this.LocalState.set(this.key, errors);
-    }
+  setMessage(status, message) {
+    let errors = this.getErrors(this.key);
+    errors[this.validationObject] = {status, message};
+    this.LocalState.set(this.key, errors);
+  }
 
   error(message) {
     this.setMessage("error", message);
@@ -23,7 +23,7 @@ export default class Validation{
   warning(message) {
     this.setMessage("warning", message);
   }
-  
+
   success() {
     this.setMessage("success", "");
   }
@@ -43,14 +43,14 @@ const Utils = {
    * Note: This will defend against injection attacks as well.
    */
   isPositiveInteger(value) {
-    return !Validation.isNumeric(value) || !Number.isInteger(parseFloat(value)) || !(value > 0);
+    return !this.isNumeric(value) || !Number.isInteger(parseFloat(value)) || !(value > 0);
   },
   isEmpty(value) {
     return !value;
   },
-  hasErrors(validationState) {
-    for(const error in validationState) {
-      if(validationState.hasOwnProperty(error) && validationState[error].status === "error") return true;
+  hasErrors(errors) {
+    for (const error in errors) {
+      if (errors.hasOwnProperty(error) && errors[error].status === "error") return true;
     }
     return false;
   }

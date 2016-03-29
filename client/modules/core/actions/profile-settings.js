@@ -42,11 +42,27 @@ export default {
       return;
     }
 
-    if (value > 240) {
+    if (value > 240 ) {
       validation.warning("Are you sure this is your height?");
       return;
     }
 
+    validation.success();
+  },
+  
+  weightValidation({LocalState}, value) {
+    const validation = new Validation(LocalState, stateKey, "weightValidation");
+    
+    if (Utils.isPositiveInteger(value)) {
+      validation.error(Utils.POSITIVE_NUMBER);
+      return;
+    }
+    
+    if (value > 150) {
+      validation.warning("Are you sure this is your weight?");
+      return;
+    }
+    
     validation.success();
   },
 

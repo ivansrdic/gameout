@@ -13,6 +13,8 @@ export const depsMapper = (context, actions) => {
   return {
     stateKey: actions.ProfileSettings.stateKey,
     ageValidation: actions.ProfileSettings.ageValidation,
+    heightValidation: actions.ProfileSettings.heightValidation,
+    weightValidation: actions.ProfileSettings.weightValidation,
     clearErrors: actions.ProfileSettings.clearErrors,
     context: () => context
   }
