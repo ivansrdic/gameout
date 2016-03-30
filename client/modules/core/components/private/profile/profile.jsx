@@ -34,14 +34,14 @@ class Profile extends Component {
             <Col sm={3} lg={2}>
               <div className="hero-container">
                 <div className="equipment">
-                  <Item equipment={true} item={character.hair()}/>
-                  <Item equipment={true} item={character.torso()}/>
-                  <Item equipment={true} item={character.legs()}/>
-                  <Item equipment={true} item={character.color()}/>
-                  <Item equipment={true} item={character.head()}/>
-                  <Item equipment={true} item={character.chest()}/>
-                  <Item equipment={true} item={character.leftHand()}/>
-                  <Item equipment={true} item={character.rightHand()}/>
+                  <Item item={character.hair()}/>
+                  <Item item={character.torso()}/>
+                  <Item item={character.legs()}/>
+                  <Item item={character.color()}/>
+                  <Item heroEquipment={true} item={character.head()}/>
+                  <Item heroEquipment={true} item={character.chest()}/>
+                  <Item heroEquipment={true} item={character.leftHand()}/>
+                  <Item heroEquipment={true} item={character.rightHand()}/>
                 </div>
                 <Button className="toggle equipment-toggle" bsStyle="default"
                         onClick={this.handleEquipmentButtonClick.bind(this)}><i className="fa fa-play"></i></Button>
@@ -62,15 +62,15 @@ class Profile extends Component {
 
                     <div className="equipment">
                       <div className="character-container">
-                        <div className="character pixelated"></div>
+                        <img src="character0.png" className="character pixelated" />
                       </div>
-                      <Item equipment={true} onClickHandler={this.unEquipItem.bind(this)}
+                      <Item onClickHandler={this.unEquipItem.bind(this)}
                             item={character.head()}/>
-                      <Item equipment={true} onClickHandler={this.unEquipItem.bind(this)}
+                      <Item onClickHandler={this.unEquipItem.bind(this)}
                             item={character.chest()}/>
-                      <Item equipment={true} onClickHandler={this.unEquipItem.bind(this)}
+                      <Item onClickHandler={this.unEquipItem.bind(this)}
                             item={character.leftHand()}/>
-                      <Item equipment={true} onClickHandler={this.unEquipItem.bind(this)}
+                      <Item onClickHandler={this.unEquipItem.bind(this)}
                             item={character.rightHand()}/>
                     </div>
                     <Button className="toggle inventory-toggle" bsStyle="default"

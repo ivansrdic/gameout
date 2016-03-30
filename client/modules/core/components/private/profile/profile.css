@@ -37,69 +37,56 @@
   width: 192px;
 }
 
-.hero-container .item-container-hair {
+.hero-container .item-container-hair,
+.hero-container .item-container-torso,
+.hero-container .item-container-legs,
+.hero-container .item-container-color{
   left: 50%;
   transform: translateX(-50%);
-  top: 24px;
+  height: 96px;
+  width: 96px;
+}
+
+.hero-container .item-container-hair {
+  top: 0;
 }
 
 .hero-container .item-container-torso {
-  left: 50%;
-  transform: translateX(-50%);
-  top: 90px;
+  top: 66px;
 }
 
 .hero-container .item-container-legs {
-  left: 50%;
-  transform: translateX(-50%);
-  top: 132px;
+  top: 108px;
 }
 
 .hero-container .item-container-color {
-  left: 50%;
-  transform: translateX(-50%);
-  top: 72px;
+  top: 48px;
 }
 
 .hero-container .item-container-head {
-  top: 30px;
+  height: 96px;
+  width: 96px;
+  top: 6px;
 }
 
 .hero-container .item-container-chest {
-  top: 88px;
+  height: 77px;
+  width: 77px;
+  top: 74px;
 }
 
 .hero-container .item-container-leftHand {
-  right: 34px;
-  top: 98px;
+  height: 72px;
+  width: 72px;
+  right: 26px;
+  top: 84px;
 }
 
 .hero-container .item-container-rightHand {
-  left: 14px;
-  top: 92px;
-}
-
-.hero-container .hair,
-.hero-container .torso,
-.hero-container .legs,
-.hero-container .color{
-  transform: scale(2);
-}
-
-.hero-container .head {
-  transform: scale(2);
-}
-
-.hero-container .chest {
-  transform: scale(1.6);
-}
-
-.hero-container .leftHand {
-  transform: scale(1.5);
-}
-
-.hero-container .rightHand {
-  transform: scale(1.5);
+  height: 72px;
+  width: 72px;
+  left: 0;
+  top: 72px;
 }
 /* --------------------------------------------- */
 
@@ -122,9 +109,6 @@
 }
 
 .equipment-container .character {
-  background-image: url("character0.png");
-  background-size: cover;
-  image-rendering: pixelated;
   height: 192px;
   width: 120px;
 }
@@ -151,13 +135,6 @@
   background: #666;
   cursor: pointer;
   z-index: 12;
-}
-
-.equipment-container .head,
-.equipment-container .chest,
-.equipment-container .leftHand,
-.equipment-container .rightHand {
-  zoom: 1;
 }
 /* --------------------------------------------- */
 
@@ -206,7 +183,12 @@
 .item-container {
   background: #999;
   border: solid 2px #666;
+  box-sizing: content-box;
   display: inline-block;
+  height: 48px;
+  width: 48px;
+  overflow: hidden;
+  position: relative;
 }
 
 .pixelated {
@@ -221,41 +203,9 @@
 }
 
 .item {
-  height: 48px;
-  width: 48px;
-  background-size: cover;
-}
-
-.hair {
-  background-image: url("skins/hair.png");
-}
-
-.torso {
-  background-image: url("skins/torso.png");
-}
-
-.legs {
-  background-image: url("skins/legs.png");
-}
-
-.color {
-  background-image: url("skins/color.png");
-}
-
-.head {
-  background-image: url("items/head.png");
-}
-
-.chest {
-  background-image: url("items/chest.png");
-}
-
-.leftHand {
-  background-image: url("items/shield.png");
-}
-
-.rightHand {
-  background-image: url("items/weapon.png");
+  height: 100%;
+  position: absolute;
+  top: 0;
 }
 /* --------------------------------------------- */
 
