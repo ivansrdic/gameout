@@ -4,39 +4,39 @@ class Item extends Component {
   constructor(props) {
     super(props);
 
-    const {item, heroEquipment} = props;
-
-    let folder = "";
-    if (item.type == 'head' || item.type == 'chest' || item.type == 'leftHand' || item.type == 'rightHand')
-      folder = 'items/';
-    else
-      folder = "skins/";
-
-    let size = 51;
-    if(heroEquipment) {
-      if(item.type == 'head') size = 102;
-      else if(item.type == 'chest') size = 81.8;
-      else if(item.type == 'leftHand') size = 76.5;
-      else if(item.type == 'rightHand') size = 76.5
-      else size = 102;
-    }
-
     this.state = {
-      size,
-      folder
+      size: null,
+      folder: null
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+  }
+
   render() {
-    const {item} = this.props;
+    const {item, heroEquipment} = this.props;
     if(item) {
+      let folder = "";
+      if (item.type == 'head' || item.type == 'chest' || item.type == 'leftHand' || item.type == 'rightHand')
+        folder = 'items/';
+      else
+        folder = "skins/";
+
+      let size = 51;
+      if(heroEquipment) {
+        if(item.type == 'head') size = 102;
+        else if(item.type == 'chest') size = 81.8;
+        else if(item.type == 'leftHand') size = 76.5;
+        else if(item.type == 'rightHand') size = 76.5
+        else size = 102;
+      }
 
       return (
         <div className={"item-container item-container-" + item.type}>
           <img
-            src={this.state.folder + item.type + ".png"}
+            src={folder + item.type + ".png"}
             className={"item pixelated"} onClick={this.onClickHandler.bind(this)}
-            style={{left: (item.set-1)*-this.state.size+"px"}}
+            style={{left: (item.set-1)*-size+"px"}}
             height="100%"
           />
         </div>
