@@ -9,16 +9,16 @@ class Workout extends Component {
   render() {
     const {workout} = this.props;
     return (
-      <ListGroupItem header={workout.name} onClick={this.selectWorkout.bind(this)}>
+      <ListGroupItem header={workout.name} onClick={this.onClickHandler.bind(this)}>
         {workout.description}
       </ListGroupItem>
     );
   }
 
-  selectWorkout() {
-    const {selectWorkout, workout} = this.props;
+  onClickHandler() {
+    const {onClickWorkout, workout} = this.props;
 
-    selectWorkout(workout);
+    if(onClickWorkout) onClickWorkout(workout);
   }
 }
 

@@ -12,9 +12,10 @@ function composer({Actions}, onData) {
   }
 }
 
-function depsMapper(context, {Workout}) {
+function depsMapper(context, {Exercise, Workout}) {
   return ({
     createWorkout: Workout.createWorkout,
+    getExercises: Exercise.getExercises,
     getWorkouts: Workout.getWorkouts
   });
 }

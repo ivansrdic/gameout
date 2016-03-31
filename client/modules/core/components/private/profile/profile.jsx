@@ -4,7 +4,7 @@ import {Transition} from 'react-overlays';
 import Inventory from './item/inventory.jsx';
 import Item from './item/item.jsx';
 import WorkoutSelection from './workout/workout-selection.jsx';
-import Exercises from './exercise/exercises.jsx';
+import CurrentExercises from './exercise/current-exercises.jsx';
 
 class Profile extends Component {
   constructor(props) {
@@ -110,7 +110,7 @@ class Profile extends Component {
           <Row>
             <Col md={6} mdOffset={3}>
               <div className="exercises-container">
-                <Exercises
+                <CurrentExercises
                   chooseWorkout={this.chooseWorkout.bind(this)}
                   finishWorkout={this.finishWorkout.bind(this)}
                   exercises={this.state.exercises}/>

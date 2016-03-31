@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Button, Modal, ListGroup} from 'react-bootstrap';
-import Workout from './workout.jsx';
+import {Button, Modal} from 'react-bootstrap';
+import WorkoutsList from '../../shared/workout/workouts-list.jsx';
 
 class WorkoutSelection extends Component {
   constructor(props) {
@@ -27,9 +27,7 @@ class WorkoutSelection extends Component {
             <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
 
             <hr />
-            <ListGroup>
-              {this.renderWorkouts()}
-            </ListGroup>
+            <WorkoutsList workouts={this.props.getWorkouts()} onClickWorkout={this.props.selectWorkout} />
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.handleWorkoutSelectionCloseClick.bind(this)}>Close</Button>
@@ -37,14 +35,6 @@ class WorkoutSelection extends Component {
         </div>
       );
     }
-  }
-
-  renderWorkouts() {
-    const workouts = this.props.getWorkouts();
-
-    return (workouts.map(function (workout) {
-      return (<Workout key={workout.name} workout={workout} selectWorkout={this.props.selectWorkout} />);
-    }.bind(this)));
   }
   
   handleWorkoutSelectionCloseClick() {

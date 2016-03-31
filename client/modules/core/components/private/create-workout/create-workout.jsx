@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Grid, Row, Col, Panel, Input, ButtonInput} from 'react-bootstrap';
+import ExercisesList from '../shared/exercise/exercises-list.jsx';
 
 class CreateWorkout extends Component {
   constructor(props) {
@@ -73,11 +74,9 @@ class CreateWorkout extends Component {
   }
 
   showData() {
-    const workouts = this.props.getWorkouts();
-    return (workouts.map(function (workout) {
-        console.log(workout.name);
-      }
-    ));
+    return (
+      <ExercisesList exercises={this.props.getExercises()} />
+    );
   }
 
   // TODO: validation and error setting

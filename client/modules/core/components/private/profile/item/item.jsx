@@ -49,7 +49,7 @@ class Item extends Component {
   onClickHandler() {
     const {onClickHandler, item} = this.props;
 
-    onClickHandler(item._id);
+    if(onClickHandler) onClickHandler(item._id);
   }
 }
 

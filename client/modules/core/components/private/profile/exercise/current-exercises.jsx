@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {ListGroup, Button} from 'react-bootstrap';
-import Exercise from './exercise.jsx';
+import ExercisesList from '../../shared/exercise/exercises-list.jsx';
 
-class Exercises extends Component {
+class CurrentExercises extends Component {
   constructor(props) {
     super(props);
   }
@@ -11,9 +11,7 @@ class Exercises extends Component {
     if(this.props.exercises)
       return (
         <div>
-          <ListGroup>
-            {this.renderExercises()}
-          </ListGroup>
+          <ExercisesList exercises={this.props.exercises} />
           <div className="center-button">
             <Button bsSize="large" bsStyle="success" onClick={this.props.finishWorkout}>Finish</Button>
           </div>
@@ -27,14 +25,6 @@ class Exercises extends Component {
       );
     }
   }
-  
-  renderExercises() {
-    const {exercises} = this.props;
-    
-    return (exercises.map(function (exercise) {
-      return (<Exercise key={exercise.name} exercise={exercise} />);
-    }.bind(this)));
-  }
 }
 
-export default Exercises;
+export default CurrentExercises;
