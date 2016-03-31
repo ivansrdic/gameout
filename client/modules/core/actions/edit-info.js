@@ -1,7 +1,7 @@
 import {Characters} from '/collections';
 import Validation, {Utils} from './validation-utility';
 
-const stateKey = "EDIT_INFO_ERRORS";
+const stateKey = "client.modules.core.actions.edit-info";
 
 export default {
   stateKey() {
@@ -42,28 +42,42 @@ export default {
       return;
     }
 
-    if (value > 240 ) {
+    if (value > 240) {
       validation.warning("Are you sure this is your height?");
       return;
     }
 
     validation.success();
   },
-  
+
   weightValidation({LocalState}, value) {
     const validation = new Validation(LocalState, stateKey, "weightValidation");
-    
+
     if (Utils.isPositiveInteger(value)) {
       validation.error(Utils.POSITIVE_NUMBER);
       return;
     }
-    
+
     if (value > 150) {
       validation.warning("Are you sure this is your weight?");
       return;
     }
-    
+
     validation.success();
+  },
+
+  submitUserInfo({LocalState}, userInfo) {
+    // if (Utils.hasErrors(LocalState.get(stateKey))) return;
+
+    Meteor.call('user.createUserInfo', userInfo, (err) => {
+      if (err) {
+        LocalState.set(stateKey, Utils.serverError());
+      } else {
+        LocalState.set(stateKey, null);
+        LocalState.set("ProfileSetupChoice", "customize-character");
+      }
+    });
+
   },
 
   clearErrors({LocalState}) {

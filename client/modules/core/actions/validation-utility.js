@@ -34,6 +34,7 @@ const Utils = {
   REQUIRED: "This is a required input.",
   NUMERIC: "This should be a number.",
   POSITIVE_NUMBER: "This must be a positive integer number",
+  SERVER_ERROR: "There was a hiccup in communication. For security reasons, please enter your input again.",
 
   isNumeric(value) {
     return !isNaN(parseFloat(value)) && isFinite(value);
@@ -53,6 +54,9 @@ const Utils = {
       if (errors.hasOwnProperty(error) && errors[error].status === "error") return true;
     }
     return false;
+  },
+  serverError() {
+    return {serverError: "Server error occurred!"};
   }
 };
 
