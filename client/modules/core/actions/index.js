@@ -1,16 +1,19 @@
 import Authorization from './authorization.js';
-import ProfileSettings from './profile-settings.js';
+import EditInfo from './edit-info.js';
+import CustomizeCharacter from './customize-character';
 import Profile from './profile.js';
 import Workouts from './workouts.js';
 
 export {Authorization};
-export {ProfileSettings};
+export {EditInfo};
+export {CustomizeCharacter};
 export {Profile};
 export {Workouts};
 
 export default {
   Authorization,
-  ProfileSettings,
+  EditInfo,
+  CustomizeCharacter,
   Profile,
   Workouts
 };

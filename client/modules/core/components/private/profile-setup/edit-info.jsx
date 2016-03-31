@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Panel, Input, ButtonGroup, ButtonInput, Button} from 'react-bootstrap';
+import {Grid, Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
 
 class EditInfo extends Component {
   constructor(props) {
     super(props);
+
+    this.gender = "male";
+    this.level = "beginner";
   }
 
   render() {
@@ -17,16 +20,17 @@ class EditInfo extends Component {
     return (
       <Col md={10} mdOffset={1}>
         <h1 className="text-center">Edit info</h1>
+        {this.renderServerErrorMessage(errors)}
 
         <form onSubmit={this.handleFormSubmit.bind(this)}>
 
           <label htmlFor="gender" className="control-label input-group">Gender</label>
           <ButtonGroup ref="gender" className="form-group" bsSize="large" data-toggle="buttons">
-            <label onClick={e => this.handleGenderPick(e, "male")} className="btn btn-default">
-              <input name="level" value="beginner" type="radio"/>Male
+            <label onClick={e => this.handleGenderPick(e, "male")} className="btn btn-default active">
+              <input name="gender" value="male" type="radio"/>Male
             </label>
             <label onClick={e => this.handleGenderPick(e, "female")} className="btn btn-default">
-              <input name="level" value="intermediate" type="radio"/>Female
+              <input name="gender" value="female" type="radio"/>Female
             </label>
           </ButtonGroup>
 
@@ -37,7 +41,7 @@ class EditInfo extends Component {
             placeholder="Age"
             help={errors.ageValidation ? errors.ageValidation.message : ""}
             bsStyle={errors.ageValidation ? errors.ageValidation.status : null}
-            onBlur={(e) => ageValidation(this.refs.age.getValue())}/>
+            onBlur={(e) => ageValidation(Number(this.refs.age.getValue()))}/>
 
           <Input
             ref="height"
@@ -46,20 +50,20 @@ class EditInfo extends Component {
             placeholder="Height - measured in meters"
             help={errors.heightValidation ? errors.heightValidation.message : ""}
             bsStyle={errors.heightValidation ? errors.heightValidation.status : null}
-            onBlur={(e) => heightValidation(this.refs.height.getValue())}/>
+            onBlur={(e) => heightValidation(Number(this.refs.height.getValue()))}/>
 
           <Input
             ref="weight"
             type="text"
             label="Weight"
-            placeholder="Weight"
+            placeholder="Weight - measured in kilograms"
             help={errors.weightValidation ? errors.weightValidation.message : ""}
             bsStyle={errors.weightValidation ? errors.weightValidation.status : null}
-            onBlur={(e) => weightValidation(this.refs.weight.getValue())}/>
+            onBlur={(e) => weightValidation(Number(this.refs.weight.getValue()))}/>
 
           <label htmlFor="level" className="control-label input-group">Level</label>
           <ButtonGroup refs="level" className="form-group" bsSize="large" data-toggle="buttons">
-            <label onClick={e => this.handleLevelPick(e, "beginner")} className="btn btn-default">
+            <label onClick={e => this.handleLevelPick(e, "beginner")} className="btn btn-default active">
               <input name="level" value="beginner" type="radio"/>Beginner
             </label>
             <label onClick={e => this.handleLevelPick(e, "intermediate")} className="btn btn-default">
@@ -77,39 +81,51 @@ class EditInfo extends Component {
     );
   }
 
+  renderServerErrorMessage(errors) {
+    if (errors.serverError) {
+      return (
+        <div className="alert alert-danger alert-dismissible fade in" role="alert">
+          <button type="button" className="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <span className="fa fa-exclamation-circle"></span> <strong>{errors.serverError}</strong>
+          <p>Correct your form and submit it again.</p>
+        </div>
+      );
+    }
+  }
+
   //region ButtonGroupHandlers
   handleGenderPick(e, value) {
-    this.refs.gender = value;
+    this.gender = value;
   }
 
   handleLevelPick(e, value) {
-    this.refs.level = value;
+    this.level = value;
   }
-
   //endregion
 
   handleFormSubmit(e) {
     e.preventDefault();
 
-    const {age, weight, height, gender, level} = this.refs;
+    const {age, weight, height} = this.refs;
+    const {gender, level} = this;
 
     const userInfo = {
-      age: age.getValue(),
-      weight: weight.getValue(),
-      height: height.getValue(),
+      age: Number(age.getValue()),
+      weight: Number(weight.getValue()),
+      height: Number(height.getValue()),
       gender,
       level
     };
 
-    const {ageValidation, heightValidation, weightValidation} = this.props;
+    const {ageValidation, heightValidation, weightValidation, submitUserInfo} = this.props;
+    
     ageValidation(userInfo.age);
     heightValidation(userInfo.height);
     weightValidation(userInfo.weight);
-
-    // Call the method.
-    // Meteor.call("addUserInfo", userInfo);
-
-    // FlowRouter.go('/customize-character');
+    
+    submitUserInfo(userInfo);
   }
 }
 

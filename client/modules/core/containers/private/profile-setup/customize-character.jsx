@@ -1,4 +1,4 @@
-import EditInfo from '../../../components/private/profile-setup/edit-info.jsx';
+import CustomizeCharacter from '../../../components/private/profile-setup/customize-character.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, stateKey, clearErrors}, onData) => {
@@ -11,12 +11,8 @@ export const composer = ({context, stateKey, clearErrors}, onData) => {
 
 export const depsMapper = (context, actions) => {
   return {
-    stateKey: actions.EditInfo.stateKey,
-    ageValidation: actions.EditInfo.ageValidation,
-    heightValidation: actions.EditInfo.heightValidation,
-    weightValidation: actions.EditInfo.weightValidation,
-    submitUserInfo: actions.EditInfo.submitUserInfo,
-    clearErrors: actions.EditInfo.clearErrors,
+    stateKey: actions.CustomizeCharacter.stateKey,
+    clearErrors: actions.CustomizeCharacter.clearErrors,
     context: () => context
   }
 };
@@ -24,4 +20,4 @@ export const depsMapper = (context, actions) => {
 export default composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(EditInfo);
+)(CustomizeCharacter);
