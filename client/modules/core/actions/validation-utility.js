@@ -32,7 +32,7 @@ export default class Validation {
 
 const Utils = {
   REQUIRED: "This is a required input.",
-  NUMERIC: "This should be a number.",
+  NUMERIC: "Enter the number of repetitions for this exercise.",
   POSITIVE_NUMBER: "This must be a positive integer number",
   SERVER_ERROR: "There was a hiccup in communication. For security reasons, please enter your input again.",
 

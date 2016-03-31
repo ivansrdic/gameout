@@ -1,14 +1,50 @@
+import Validation, {Utils} from './validation-utility';
+
+const stateKey = "CREATE_WORKOUT_ERRORS";
+
 export default {
-    //TODO: add workout to workouts collection
-    createWorkout({}, workoutGroup) {
-        console.log(workoutGroup);
-    },
+  stateKey() {
+    return stateKey;
+  },
 
-    getExercises({}, workout) {
-      return workout.exercises();
-    },
+  nameValidation({LocalState}, value) {
+    const validation = new Validation(LocalState, stateKey, "nameValidation");
 
-    getWorkouts({Meteor}) {
-      return Meteor.user().workouts();
+    if(Utils.isEmpty(value)) {
+      validation.error(Utils.REQUIRED);
+      return;
     }
-}
+
+    validation.success();
+  },
+
+  descriptionValidation({LocalState}, value) {
+    const validation = new Validation(LocalState, stateKey, "descriptionValidation");
+
+    if(Utils.isEmpty(value)) {
+      validation.error(Utils.REQUIRED);
+      return;
+    }
+
+    validation.success();
+  },
+
+  clearErrors({LocalState}) {
+    return LocalState.set(stateKey, null);
+  },
+
+  createWorkout({LocalState}, workout) {
+    if(Utils.hasErrors(LocalState.get(stateKey)))
+      return;
+
+    Meteor.call('addWorkout', workout);
+  },
+
+  getExercises({}, workout) {
+    return workout.exercises();
+  },
+
+  getWorkouts({Meteor}) {
+    return Meteor.user().workouts();
+  }
+};
