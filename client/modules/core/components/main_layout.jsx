@@ -13,7 +13,7 @@ class MainLayout extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps, nextState) {
+  componentWillUpdate(nextProps) {
     if(nextProps.ready) {
       NProgress.inc();
     }

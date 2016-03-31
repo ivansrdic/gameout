@@ -8,10 +8,10 @@ import HowItWorks from  './components/public/how-it-works/how-it-works.jsx';
 import SignIn from './containers/public/sign-in/sign-in.js';
 import Profile from './containers/private/profile/profile.js';
 import ProfileSetup from './components/private/profile-setup/profile-setup.jsx';
-import EditInfo from './components/private/profile-setup/edit-info.jsx';
+import EditInfo from './containers/private/profile-setup/edit-info.jsx';
 import CustomizeCharacter from './components/private/profile-setup/customize-character.jsx';
+import CreateExercise from './containers/private/create-exercise/create-exercise.js';
 import CreateWorkout from './containers/private/create-workout/create-workout.js';
-import CreateWorkoutGroup from './containers/private/create-workout-group/create-workout-group.jsx';
 
 export default function (injectDeps, {FlowRouter, LocalState}) {
   const MainLayoutCtx = injectDeps(MainLayout);
@@ -121,22 +121,22 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
   });
 
 
+  PrivateRoutes.route('/create-exercise', {
+    name: 'create-exercise',
+
+    action() {
+      mount(MainLayoutCtx, {
+        content: (user) => (<CreateExercise user={user} />)
+      });
+    }
+  });
+
   PrivateRoutes.route('/create-workout', {
     name: 'create-workout',
 
     action() {
       mount(MainLayoutCtx, {
         content: (user) => (<CreateWorkout user={user} />)
-      });
-    }
-  });
-
-  PrivateRoutes.route('/create-workout-group', {
-    name: 'create-workout-group',
-
-    action() {
-      mount(MainLayoutCtx, {
-        content: (user) => (<CreateWorkoutGroup user={user} />)
       });
     }
   });

@@ -1,11 +1,11 @@
 import user from './user';
 import character from './character';
-import exercises from './exercises';
-import exerciseGroups from './exercise-groups';
+import exercise from './exercise';
+import workout from './workout';
 
 export default function() {
   user();
   character();
-  exercises();
-  exerciseGroups();
+  exercise();
+  workout();
 }

@@ -18,8 +18,8 @@ class Profile extends Component {
     };
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    if (nextProps.ready) {
+  componentDidUpdate() {
+    if (this.props.ready) {
       NProgress.done();
     }
   }
@@ -179,7 +179,7 @@ class Profile extends Component {
   }
 
   selectWorkout(workout) {
-    const exercises = this.props.getExercises(workout);
+    const exercises = this.props.getWorkoutExercises(workout);
 
     this.setState({
       showWorkoutSelection: false,
