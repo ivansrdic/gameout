@@ -10,9 +10,6 @@ class Item extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-  }
-
   render() {
     const {item, heroEquipment} = this.props;
     if(item) {

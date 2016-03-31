@@ -1,25 +1,23 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import CreateWorkout from '../../../components/private/create-workout/create-workout.jsx';
 
-export const composer = ({context, stateKey,  clearErrors}, onData) => {
-  const {LocalState} = context();
-  const errors = LocalState.get(stateKey()) || {};
-  onData(null, {errors});
+function composer({Actions}, onData) {
+  const exercisesSubscription = Meteor.subscribe('exercises');
+  const workoutsSubscription = Meteor.subscribe('workouts');
 
-  return clearErrors;
-};
-
-export const depsMapper = (context, actions) => {
-  return {
-    stateKey: actions.Workouts.stateKey,
-    nameValidation: actions.Workouts.nameValidation,
-    descriptionValidation: actions.Workouts.descriptionValidation,
-    unitValidation: actions.Workouts.unitValidation,
-    createWorkout: actions.Workouts.createWorkout,
-    clearErrors: actions.Workouts.clearErrors,
-    context: () => context
+  if(exercisesSubscription.ready() && workoutsSubscription.ready()) {
+    onData(null, {ready: true});
+  } else {
+    onData(null, {ready: false});
   }
-};
+}
+
+function depsMapper(context, {Workout}) {
+  return ({
+    createWorkout: Workout.createWorkout,
+    getWorkouts: Workout.getWorkouts
+  });
+}
 
 export default composeAll(
   composeWithTracker(composer),

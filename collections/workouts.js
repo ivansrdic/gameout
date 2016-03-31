@@ -1,9 +1,9 @@
 import {Exercises} from './';
 import {Users} from './';
 
-let ExerciseGroups = new Mongo.Collection('exercise-groups');
+let Workouts = new Mongo.Collection('workouts');
 
-const ExerciseGroupSchema = new SimpleSchema({
+const WorkoutsSchema = new SimpleSchema({
   ownerId: {
     type: String
   },
@@ -19,9 +19,9 @@ const ExerciseGroupSchema = new SimpleSchema({
   }
 });
 
-ExerciseGroups.attachSchema(ExerciseGroupSchema);
+Workouts.attachSchema(WorkoutsSchema);
 
-ExerciseGroups.helpers({
+Workouts.helpers({
   owner() {
     return Users.findOne(this.ownerId);
   },
@@ -30,5 +30,5 @@ ExerciseGroups.helpers({
   }
 });
 
-export default ExerciseGroups;
+export default Workouts;
 

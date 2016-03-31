@@ -1,6 +1,6 @@
 import Validation, {Utils} from './validation-utility';
 
-const stateKey = "CREATE_WORKOUT_ERRORS";
+const stateKey = "CREATE_EXERCISE_ERRORS";
 
 export default {
   stateKey() {
@@ -49,10 +49,14 @@ export default {
     return LocalState.set(stateKey, null);
   },
 
-  createWorkout({LocalState}, workout) {
+  createExercise({LocalState}, exercise) {
     if(Utils.hasErrors(LocalState.get(stateKey)))
       return;
 
-    Meteor.call('addExercise', workout);
+    Meteor.call('addExercise', exercise);
+  },
+
+  getExercises({Meteor}) {
+    return Meteor.user().exercises();
   }
 };

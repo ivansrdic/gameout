@@ -6,11 +6,11 @@ function composer({getCharacter}, onData) {
   const itemsSubscription = Meteor.subscribe('items');
   const skinsSubscription = Meteor.subscribe('skins');
   const exercisesSubscription = Meteor.subscribe('exercises');
-  const exerciseGroupsSubscription = Meteor.subscribe('exercise-groups');
+  const workoutsSubscription = Meteor.subscribe('workouts');
 
   if (characterSubscription.ready() &&
     itemsSubscription.ready() && skinsSubscription.ready() &&
-    exercisesSubscription.ready() && exerciseGroupsSubscription.ready()) {
+    exercisesSubscription.ready() && workoutsSubscription.ready()) {
 
     const character = getCharacter();
     
@@ -24,14 +24,14 @@ function composer({getCharacter}, onData) {
   }
 }
 
-function depsMapper(context, actions) {
+function depsMapper(context, {Profile, Exercise, Workout}) {
   return ({
-    getCharacter: actions.Profile.getCharacter,
-    getInventory: actions.Profile.getInventory,
-    equipItem: actions.Profile.equipItem,
-    unEquipItem: actions.Profile.unEquipItem,
-    getWorkouts: actions.Profile.getWorkouts,
-    getExercises: actions.Profile.getExercises
+    getCharacter: Profile.getCharacter,
+    getInventory: Profile.getInventory,
+    equipItem: Profile.equipItem,
+    unEquipItem: Profile.unEquipItem,
+    getWorkouts: Workout.getWorkouts,
+    getWorkoutExercises: Workout.getExercises
   });
 }
 

@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import {Users, Exercises, ExerciseGroups} from '/collections';
+import {Users, Exercises, Workouts} from '/collections';
 
 export default function() {
   Meteor.methods({
@@ -21,10 +21,10 @@ export default function() {
       
       Users.update(ownerId, {$pull: {"data.exerciseIds": exerciseId}});
 
-      let groups = ExerciseGroups.find({exerciseIds: exerciseId});
+      let groups = Workouts.find({exerciseIds: exerciseId});
 
       groups.forEach((group) => {
-        Meteor.call('removeExerciseFromGroup', group._id, exerciseId);
+        Meteor.call('removeExerciseFromWorkout', group._id, exerciseId);
       });
     }
   });

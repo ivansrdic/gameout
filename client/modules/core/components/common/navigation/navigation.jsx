@@ -43,12 +43,12 @@ class Navigation extends Component {
     if (this.props.user) {
       return (
         <Nav>
-          <NavItem href="/edit-info">Edit info</NavItem>
-          <NavItem href="/customize-character">Customize</NavItem>
           <NavItem href="/profile">Profile</NavItem>
+          <NavItem href="/edit-info">User info</NavItem>
+          <NavItem href="/customize-character">Character</NavItem>
           <NavItem href="/profile-setup">Profile Setup</NavItem>
+          <NavItem href="/create-exercise">Create Exercise</NavItem>
           <NavItem href="/create-workout">Create Workout</NavItem>
-          <NavItem href="/create-workout-group">Create Workout Group</NavItem>
         </Nav>
       );
     } else {

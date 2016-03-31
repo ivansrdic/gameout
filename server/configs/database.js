@@ -1,5 +1,5 @@
 // Dev
-import {Users, Characters, Items, Skins, Exercises, ExerciseGroups} from '/collections';
+import {Users, Characters, Items, Skins, Exercises, Workouts} from '/collections';
 
 export default () => {
   let user = Users.findOne({username: 'gameout'});
@@ -10,7 +10,7 @@ export default () => {
     Items.remove({});
     Skins.remove({});
     Exercises.remove({});
-    ExerciseGroups.remove({});
+    Workouts.remove({});
 
     Accounts.createUser({
       email: 'gameout@gameout.com',
@@ -23,7 +23,7 @@ export default () => {
     const userId = user._id;
 
     // Dev
-    const workoutId1 = Exercises.insert(
+    const exerciseId1 = Exercises.insert(
       {
         ownerId: userId,
         name: "Push-ups",
@@ -33,7 +33,7 @@ export default () => {
     );
 
     // Dev
-    const workoutId2 = Exercises.insert(
+    const exerciseId2 = Exercises.insert(
         {
             ownerId: userId,
             name: "Pull-ups",
@@ -43,7 +43,7 @@ export default () => {
     );
 
     // Dev
-    const workoutId3 = Exercises.insert(
+    const exerciseId3 = Exercises.insert(
         {
             ownerId: userId,
             name: "Squats",
@@ -53,7 +53,7 @@ export default () => {
     );
 
     // Dev
-    const workoutId4 = Exercises.insert(
+    const exerciseId4 = Exercises.insert(
         {
             ownerId: userId,
             name: "Dips",
@@ -63,22 +63,22 @@ export default () => {
     );
 
     // Dev
-    const workoutGroupId1 = ExerciseGroups.insert(
+    const workoutId1 = Workouts.insert(
         {
             ownerId: userId,
             name: "Chest routine",
             description: "Excellent exercises for chest muscles.",
-            exerciseIds: [workoutId1, workoutId4]
+            exerciseIds: [exerciseId1, exerciseId4]
         }
     );
 
     // Dev
-    const workoutGroupId2 = ExerciseGroups.insert(
+    const workoutId2 = Workouts.insert(
         {
             ownerId: userId,
             name: "Full body routine",
             description: "Excellent exercises for full body workout.",
-            exerciseIds: [workoutId1, workoutId2, workoutId3, workoutId4]
+            exerciseIds: [exerciseId1, exerciseId2, exerciseId3, exerciseId4]
         }
     );
 
@@ -390,8 +390,8 @@ export default () => {
         $set: {
           'data': {
             "characterId": charId,
-            "exerciseIds": [ workoutId1, workoutId2, workoutId3, workoutId4 ],
-            "exerciseGroupIds": [ workoutGroupId1, workoutGroupId2 ],
+            "exerciseIds": [ exerciseId1, exerciseId2, exerciseId3, exerciseId4 ],
+            "workoutIds": [ workoutId1, workoutId2 ],
             "age": "21",
             "weight": "70",
             "height": "180",

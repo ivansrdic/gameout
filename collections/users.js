@@ -1,6 +1,6 @@
 import {Characters} from './';
 import {Exercises} from './';
-import {ExerciseGroups} from './';
+import {Workouts} from './';
 
 let Users = Meteor.users;
 
@@ -26,7 +26,7 @@ const UserDataSchema = new SimpleSchema({
   exerciseIds: {
     type: [String]
   },
-  exerciseGroupIds: {
+  workoutIds: {
     type: [String]
   },
   age: {
@@ -76,8 +76,8 @@ Users.helpers({
   exercises() {
     return Exercises.find({_id: {$in: this.data.exerciseIds}});
   },
-  exerciseGroups() {
-    return ExerciseGroups.find({_id: {$in: this.data.exerciseGroupIds}});
+  workouts() {
+    return Workouts.find({_id: {$in: this.data.workoutIds}});
   }
 });
 

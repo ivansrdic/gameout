@@ -4,85 +4,92 @@ import {Grid, Row, Col, Panel, Input, ButtonInput} from 'react-bootstrap';
 class CreateWorkout extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      open: false
+    }
   }
 
-  componentDidMount() {
-    NProgress.done();
+  componentDidUpdate() {
+    if (this.props.ready) {
+      NProgress.done();
+    }
   }
 
   render() {
-    const {errors} = this.props;
-    const {nameValidation, descriptionValidation, unitValidation} = this.props;
-
-    return (
-      <Grid>
-        <Row>
-          <Col md={12}>
-            <Panel>
-              <Col md={10} mdOffset={1}>
+    const {ready} = this.props;
+    if(ready) {
+      return (
+        <Grid>
+          <Row>
+            <Col md={12}>
+              <Panel>
+                <h1 className="text-center">Create workout</h1>
+                <hr/>
                 <form onSubmit={this.handleSetupFormSubmit.bind(this)}>
-                  <hr/>
-                  <h1 className="text-center">Create workout</h1>
-
-                  <Input
-                    id="name"
-                    ref="name"
-                    type="text"
-                    label="Workout name"
-                    placeholder="Workout name"
-                    help={errors.nameValidation ? errors.nameValidation.message : ""}
-                    bsStyle={errors.nameValidation ? errors.nameValidation.status : null}
-                    onBlur={() => nameValidation(this.refs.name.getValue())}/>
-
-                  <Input
-                    ref="description"
-                    type="textarea"
-                    label="Description"
-                    placeholder="Description"
-                    help={errors.descriptionValidation ? errors.descriptionValidation.message : ""}
-                    bsStyle={errors.descriptionValidation ? errors.descriptionValidation.status : null}
-                    onBlur={() => descriptionValidation(this.refs.description.getValue())}
-                  />
-
-                  <Input
-                    ref="unit"
-                    type="text"
-                    label="Unit"
-                    placeholder="Unit"
-                    help={errors.unitValidation ? errors.unitValidation.message : ""}
-                    bsStyle={errors.unitValidation ? errors.unitValidation.status : null}
-                    onBlur={() => unitValidation(this.refs.unit.getValue())}
-                  />
-
-                  <ButtonInput className="pull-right" type="submit" value="Save"/>
+                  <Col md={6}>
+                    <Input
+                      ref="name"
+                      type="text-left"
+                      label="Group workout name"
+                      placeholder="Group workout name"
+                    />
+                    <Input
+                      ref="description"
+                      type="textarea"
+                      label="Description"
+                      placeholder="Description"
+                    />
+                    <ButtonInput onClick={ ()=> this.setState({ open: !this.state.open })}>
+                      Workout list
+                    </ButtonInput>
+                    <Panel collapsible expanded={this.state.open}>
+                      {this.showData()}
+                    </Panel>
+                  </Col>
+                  <Col md={6}>
+                    <Panel header="Selected workouts">
+                      Ovdje nekako ubaciti popis odabranih vježbi <br />
+                      Vježba 2<br />
+                      Vježba 3<br />
+                      <br />
+                      <ButtonInput className="pull-right">
+                        +
+                      </ButtonInput>
+                    </Panel>
+                    <ButtonInput className="pull-right" type="submit" value="Save"/>
+                  </Col>
                 </form>
-              </Col>
-            </Panel>
-          </Col>
-        </Row>
-      </Grid>
-    );
+              </Panel>
+            </Col>
+          </Row>
+        </Grid>
+      );
+    } else {
+      return(
+        <div></div>
+      );
+    }
   }
 
+  showData() {
+    const workouts = this.props.getWorkouts();
+    return (workouts.map(function (workout) {
+        console.log(workout.name);
+      }
+    ));
+  }
+
+  // TODO: validation and error setting
   handleSetupFormSubmit(e) {
     e.preventDefault();
 
-    const {name, description, unit} = this.refs;
+    const {name, description} = this.refs;
 
-    const workout = {
-      ownerId: this.props.user._id,
+    this.props.createWorkout({
       name: name.getValue(),
-      description: description.getValue(),
-      unit: unit.getValue()
-    };
-
-    const {nameValidation, descriptionValidation, unitValidation} = this.props;
-
-    nameValidation(workout.name);
-    descriptionValidation(workout.description);
-    unitValidation(workout.unit);
-
-    this.props.createWorkout(workout);
+      description: description.getValue()
+    });
   }
 }
 
