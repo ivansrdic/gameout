@@ -1,8 +1,10 @@
 import React, {Component} from 'react';
 import {Grid, Row, Col, Button, ProgressBar} from 'react-bootstrap';
 import {Transition} from 'react-overlays';
-import Inventory from './item/inventory.jsx';
-import Item from './item/item.jsx';
+import Character from '../shared/character/character.jsx';
+import Stats from '../shared/character/stats.jsx';
+import Equipment from './equipment/equipment.jsx';
+import Inventory from './inventory/inventory.jsx';
 import WorkoutSelection from './workout/workout-selection.jsx';
 import CurrentExercises from './exercise/current-exercises.jsx';
 
@@ -30,24 +32,15 @@ class Profile extends Component {
       const {character} = this.props;
       return (
         <Grid className="profile" fluid={true}>
-          <Row className="hero-info no-gutter">
+          <Row className="character-info no-gutter">
             <Col sm={3} lg={2}>
-              <div className="hero-container">
-                <div className="equipment">
-                  <Item item={character.hair()}/>
-                  <Item item={character.torso()}/>
-                  <Item item={character.legs()}/>
-                  <Item item={character.color()}/>
-                  <Item heroEquipment={true} item={character.head()}/>
-                  <Item heroEquipment={true} item={character.chest()}/>
-                  <Item heroEquipment={true} item={character.leftHand()}/>
-                  <Item heroEquipment={true} item={character.rightHand()}/>
-                </div>
+              <div className="character-container">
+                <Character character={character} />
                 <Button className="toggle equipment-toggle" bsStyle="default"
                         onClick={this.handleEquipmentButtonClick.bind(this)}><i className="fa fa-play"></i></Button>
               </div>
             </Col>
-            <div id="hero-details">
+            <div id="character-details">
               <Transition
                 in={this.state.showEquipment}
                 timeout={500}
@@ -58,33 +51,16 @@ class Profile extends Component {
                 exitedClassName="equipment-exited"
               >
                 <div className="hide-of">
-                  <div className="equipment-container">
-
-                    <div className="equipment">
-                      <div className="character-container">
-                        <img src="character0.png" className="character pixelated" />
-                      </div>
-                      <Item onClickHandler={this.unEquipItem.bind(this)}
-                            item={character.head()}/>
-                      <Item onClickHandler={this.unEquipItem.bind(this)}
-                            item={character.chest()}/>
-                      <Item onClickHandler={this.unEquipItem.bind(this)}
-                            item={character.leftHand()}/>
-                      <Item onClickHandler={this.unEquipItem.bind(this)}
-                            item={character.rightHand()}/>
-                    </div>
-                    <Button className="toggle inventory-toggle" bsStyle="default"
-                            onClick={this.showInventory.bind(this)}>Show inventory</Button>
-                  </div>
+                  <Equipment character={character} unEquipItem={this.unEquipItem.bind(this)} />
+                  <Button className="toggle inventory-toggle" bsStyle="default"
+                          onClick={this.showInventory.bind(this)}>Show inventory</Button>
                 </div>
               </Transition>
               <Col xs={12} sm={3} lg={2}>
-                <div>
-                  <h3>Hero stats</h3>
-                  <div><b>Strength</b>: {character.stats.strength}</div>
-                  <div><b>Stamina</b>: {character.stats.stamina}</div>
-                  <div><b>Agility</b>: {character.stats.agility}</div>
-                  <div><b>Intelligence</b>: {character.stats.intelligence}</div>
+                <div className="stats-container">
+                  <h3><strong>{character.owner().username}</strong> Level {character.stats.level}</h3>
+                  <Stats stats={character.stats} />
+                  <div><b>Gold</b>: {character.stats.gold}</div>
                 </div>
               </Col>
               <Transition
@@ -97,7 +73,7 @@ class Profile extends Component {
                 exitedClassName="col-sm-6 col-lg-8"
               >
                 <div>
-                  <div className="stats">
+                  <div className="stats-container">
                     <span><i className="fa fa-heart"></i> Health</span>
                     <ProgressBar bsStyle="danger" now={(character.stats.health/50)*100}/>
                     <span><i className="fa fa-star"></i> Experience</span>

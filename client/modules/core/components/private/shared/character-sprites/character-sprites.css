@@ -1,0 +1,72 @@
+.character-sprites {
+  margin: auto;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.character-sprites .item-container,
+.character-sprites .skin-container{
+  background: transparent;
+  border: none;
+  position: absolute;
+}
+
+.character-sprites .skin-container-hair,
+.character-sprites .skin-container-torso,
+.character-sprites .skin-container-legs,
+.character-sprites .skin-container-color,
+.character-sprites .item-container-head,
+.character-sprites .item-container-chest {
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.character-sprites .item-container-head {
+  z-index: 11;
+}
+
+.character-sprites .item-container-chest {
+  z-index: 10;
+}
+
+.character-sprites .item-container-leftHand {
+  z-index: 11;
+}
+
+.character-sprites .item-container-rightHand {
+  z-index: 11;
+}
+
+/* General item styles */
+.item-container,
+.skin-container {
+  background: #999;
+  border: solid 2px #666;
+  border-radius: 6px;
+  box-sizing: content-box;
+  display: inline-block;
+  margin-right: 3px;
+  height: 48px;
+  width: 48px;
+  overflow: hidden;
+  position: relative;
+}
+
+.pixelated {
+  image-rendering: optimizeSpeed;             /* Legal fallback */
+  image-rendering: -moz-crisp-edges;          /* Firefox        */
+  image-rendering: -o-crisp-edges;            /* Opera          */
+  image-rendering: -webkit-optimize-contrast; /* Safari         */
+  image-rendering: optimize-contrast;         /* CSS3 Proposed  */
+  image-rendering: crisp-edges;               /* CSS4 Proposed  */
+  image-rendering: pixelated;                 /* CSS4 Proposed  */
+  -ms-interpolation-mode: nearest-neighbor;   /* IE8+           */
+}
+
+.item,
+.skin {
+  height: 100%;
+  position: absolute;
+  top: 0;
+}

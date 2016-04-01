@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {ListGroupItem} from 'react-bootstrap';
 
-class Workout extends Component {
+class Exercise extends Component {
   constructor(props) {
     super(props);
   }
@@ -9,7 +9,7 @@ class Workout extends Component {
   render() {
     const {exercise} = this.props;
     return (
-      <ListGroupItem header={exercise.name}  onClick={this.onClickHandler.bind(this)}>
+      <ListGroupItem header={exercise.name} onClick={this.onClickHandler.bind(this)}>
         {exercise.description}
       </ListGroupItem>
     );
@@ -18,8 +18,8 @@ class Workout extends Component {
   onClickHandler() {
     const {onClickExercise, exercise} = this.props;
 
-    if(onClickExercise) onClickExercise(exercise);
+    if (onClickExercise) onClickExercise(exercise);
   }
 }
 
-export default Workout;
+export default Exercise;
