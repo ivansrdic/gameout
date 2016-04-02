@@ -19,6 +19,9 @@ class CreateWorkout extends Component {
 
   render() {
     const {ready} = this.props;
+    const {errors} = this.props;
+    const {nameValidation, descriptionValidation} = this.props;
+    
     if(ready) {
       return (
         <Grid>
@@ -32,24 +35,30 @@ class CreateWorkout extends Component {
                     <Input
                       ref="name"
                       type="text-left"
-                      label="Group workout name"
-                      placeholder="Group workout name"
+                      label="Workout name"
+                      placeholder="Workout name"
+                      help={errors.nameValidation ? errors.nameValidation.message : ""}
+                      bsStyle={errors.nameValidation ? errors.nameValidation.status : null}
+                      onBlur={() => nameValidation(this.refs.name.getValue())}
                     />
                     <Input
                       ref="description"
                       type="textarea"
                       label="Description"
                       placeholder="Description"
+                      help={errors.descriptionValidation ? errors.descriptionValidation.message : ""}
+                      bsStyle={errors.descriptionValidation ? errors.descriptionValidation.status : null}
+                      onBlur={() => descriptionValidation(this.refs.description.getValue())}
                     />
                     <ButtonInput onClick={ ()=> this.setState({ open: !this.state.open })}>
-                      Workout list
+                      Exercise List
                     </ButtonInput>
                     <Panel collapsible expanded={this.state.open}>
                       {this.showData()}
                     </Panel>
                   </Col>
                   <Col md={6}>
-                    <Panel header="Selected workouts">
+                    <Panel header="Selected exercises for your workout">
                       Ovdje nekako ubaciti popis odabranih vježbi <br />
                       Vježba 2<br />
                       Vježba 3<br />
@@ -79,16 +88,30 @@ class CreateWorkout extends Component {
     );
   }
 
-  // TODO: validation and error setting
+  // call when submiting with save
+  getSelectedExcerciseIds() {
+    // get in array all workouts in selected panel
+    // return array of strings
+  }
+
   handleSetupFormSubmit(e) {
     e.preventDefault();
 
     const {name, description} = this.refs;
 
-    this.props.createWorkout({
+    const workout = {
+      ownerId: this.props.user._id,
       name: name.getValue(),
-      description: description.getValue()
-    });
+      description: description.getValue(),
+      exerciseIds: this.getSelectedExercisesIds()
+    };
+
+    const {nameValidation, descriptionValidation} = this.props;
+
+    nameValidation(workout.name);
+    descriptionValidation(workout.description);
+
+    this.props.createWorkout(workout);
   }
 }
 

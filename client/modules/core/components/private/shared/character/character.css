@@ -1,0 +1,63 @@
+.character-container {
+  border: solid 1px #000;
+  position: relative;
+  height: 250px;
+  width: 100%;
+}
+
+.character-container .character-sprites {
+  height: 192px;
+  width: 192px;
+}
+
+.character-container .skin-container-hair,
+.character-container .skin-container-torso,
+.character-container .skin-container-legs,
+.character-container .skin-container-color {
+  left: 50%;
+  transform: translateX(-50%);
+  height: 96px;
+  width: 96px;
+}
+
+.character-container .skin-container-hair {
+  top: 0;
+}
+
+.character-container .skin-container-torso {
+  top: 66px;
+}
+
+.character-container .skin-container-legs {
+  top: 108px;
+}
+
+.character-container .skin-container-color {
+  top: 48px;
+}
+
+.character-container .item-container-head {
+  height: 96px;
+  width: 96px;
+  top: 6px;
+}
+
+.character-container .item-container-chest {
+  height: 77px;
+  width: 77px;
+  top: 74px;
+}
+
+.character-container .item-container-leftHand {
+  height: 72px;
+  width: 72px;
+  right: 26px;
+  top: 84px;
+}
+
+.character-container .item-container-rightHand {
+  height: 72px;
+  width: 72px;
+  left: 0;
+  top: 72px;
+}

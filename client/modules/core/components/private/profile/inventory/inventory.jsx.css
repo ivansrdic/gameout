@@ -1,0 +1,5 @@
+/* General inventory styles */
+.inventory .item-container:hover,
+.inventory .skin-container:hover{
+  cursor: pointer;
+}

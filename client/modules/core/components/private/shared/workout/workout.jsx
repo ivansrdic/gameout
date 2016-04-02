@@ -5,7 +5,7 @@ class Workout extends Component {
   constructor(props) {
     super(props);
   }
-
+  
   render() {
     const {workout} = this.props;
     return (
@@ -14,11 +14,11 @@ class Workout extends Component {
       </ListGroupItem>
     );
   }
-
+  
   onClickHandler() {
     const {onClickWorkout, workout} = this.props;
-
-    if(onClickWorkout) onClickWorkout(workout);
+    
+    if (onClickWorkout) onClickWorkout(workout);
   }
 }
 

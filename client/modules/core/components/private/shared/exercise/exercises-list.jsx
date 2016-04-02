@@ -19,7 +19,7 @@ class ExercisesList extends Component {
     const {exercises} = this.props;
 
     return (exercises.map(function (exercise) {
-      return (<Exercise key={exercise.name} exercise={exercise} onClickExercise={this.props.onClickExercise} />);
+      return (<Exercise key={exercise.name} exercise={exercise} onClickExercise={this.props.onClickExercise}/>);
     }.bind(this)));
   }
 }

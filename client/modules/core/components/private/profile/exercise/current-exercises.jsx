@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ListGroup, Button} from 'react-bootstrap';
+import {Button} from 'react-bootstrap';
 import ExercisesList from '../../shared/exercise/exercises-list.jsx';
 
 class CurrentExercises extends Component {
