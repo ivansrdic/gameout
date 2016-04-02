@@ -352,6 +352,7 @@ export default () => {
       }
     );
 
+    
     const charId = Characters.insert(
       {
         ownerId: userId,
@@ -373,10 +374,6 @@ export default () => {
           gender: "male"
         },
         equipment: {
-          headId: "0",
-          chestId: "0",
-          leftHandId: "0",
-          rightHandId: "0"
         },
         inventoryIds: [
           headId1, chestId1, leftHandId1, rightHandId1,
@@ -392,10 +389,12 @@ export default () => {
             "characterId": charId,
             "exerciseIds": [ exerciseId1, exerciseId2, exerciseId3, exerciseId4 ],
             "workoutIds": [ workoutId1, workoutId2 ],
-            "age": "21",
-            "weight": "70",
-            "height": "180",
-            "gender": "male"
+            "userInfo": {
+              "age": "21",
+              "weight": "70",
+              "height": "180",
+              "gender": "male"
+            }
           }
         }
       }

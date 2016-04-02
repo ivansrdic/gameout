@@ -5,7 +5,8 @@ let Workouts = new Mongo.Collection('workouts');
 
 const WorkoutsSchema = new SimpleSchema({
   ownerId: {
-    type: String
+    type: String,
+    regEx: SimpleSchema.RegEx.Id
   },
   name: {
     type: String

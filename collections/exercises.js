@@ -4,16 +4,19 @@ let Exercises = new Mongo.Collection('exercises');
 
 const ExercisesSchema = new SimpleSchema({
   ownerId: {
-    type: String
+    type: String,
+    regEx: SimpleSchema.RegEx.Id
   },
   name: {
     type: String
   },
   description: {
-    type: String
+    type: String,
+    optional: true
   },
   unit: {
-    type: Number
+    type: Number,
+    min: 1
   }
 });
 

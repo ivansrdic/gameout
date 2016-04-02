@@ -2,7 +2,8 @@ let Skins = new Mongo.Collection('skins');
 
 const SkinSchema = new SimpleSchema({
   type: {
-    type: String
+    type: String,
+    allowedValues: ["hair", "legs", "torso", "color"]
   },
   name: {
     type: String,

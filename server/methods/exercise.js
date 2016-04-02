@@ -5,6 +5,7 @@ export default function() {
   Meteor.methods({
     'addExercise'(exercise) {
 
+      exercise.ownerId = this.userId;
       const exerciseId = Exercises.insert(exercise);
 
       Users.update(
@@ -17,8 +18,11 @@ export default function() {
     'removeExercise'(exerciseId) {
 
       let ownerId = Exercises.findOne(exerciseId).ownerId;
+      if (this.userId != ownerId)
+        throw Meteor.Error("exercise.removeExercise.unauthorized");
+
       Exercises.remove(exerciseId);
-      
+    
       Users.update(ownerId, {$pull: {"data.exerciseIds": exerciseId}});
 
       let groups = Workouts.find({exerciseIds: exerciseId});

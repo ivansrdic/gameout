@@ -6,68 +6,102 @@ let Characters = new Mongo.Collection('characters');
 
 const AppearanceSchema = new SimpleSchema({
   hairId: {
-    type: String
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    optional: true
   },
   torsoId: {
-    type: String
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    optional: true
   },
   legsId: {
-    type: String
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    optional: true
   },
   colorId: {
-    type: String
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    optional: true
   }
 });
 
 const StatsSchema = new SimpleSchema({
   strength: {
-    type: Number
+    type: Number,
+    min: 0,
+    defaultValue: 0
   },
   stamina: {
-    type: Number
+    type: Number,
+    min: 0,
+    defaultValue: 0
   },
   agility: {
-    type: Number
+    type: Number,
+    min: 0,
+    defaultValue: 0
   },
   intelligence: {
-    type: Number
+    type: Number,
+    min: 0,
+    defaultValue: 0
   },
   health: {
-    type: Number
+    type: Number,
+    min: 0,
+    defaultValue: 50
   },
   experience: {
-    type: Number
+    type: Number,
+    min: 0,
+    defaultValue: 0
   },
   level: {
-    type: Number
+    type: Number,
+    min: 1,
+    defaultValue: 1
   },
   gold: {
-    type: Number
+    type: Number,
+    min: 0,
+    defaultValue: 0
   },
   gender: {
-    type: String
+    type: String,
+    allowedValues: ["male", "female"],
+    defaultValue: "male"
   }
 });
 
 const EquipmentSchema = new SimpleSchema({
   headId: {
-    type: String
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    optional: true
   },
   chestId: {
-    type: String
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    optional: true
   },
   leftHandId: {
-    type: String
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    optional: true
   },
   rightHandId: {
-    type: String
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    optional: true
   }
 });
 
 const CharacterSchema = new SimpleSchema({
   ownerId: {
     type: String,
-    optional: true
+    regEx: SimpleSchema.RegEx.Id
   },
   appearance: {
     type: AppearanceSchema
@@ -79,7 +113,8 @@ const CharacterSchema = new SimpleSchema({
     type: EquipmentSchema
   },
   inventoryIds: {
-    type: [String]
+    type: [String],
+    defaultValue: []
   }
 });
 
@@ -89,32 +124,52 @@ Characters.helpers({
   owner() {
     return Users.findOne(this.ownerId);
   },
+  //skins
   hair() {
+    if (!this.appearance.hairId) return undefined;
     return Skins.findOne(this.appearance.hairId);
   },
   torso() {
+    if (!this.appearance.torsoId) return undefined;
     return Skins.findOne(this.appearance.torsoId);
   },
   legs() {
+    if (!this.appearance.legsId) return undefined;
     return Skins.findOne(this.appearance.legsId);
   },
   color() {
+    if (!this.appearance.colorId) return undefined;
     return Skins.findOne(this.appearance.colorId);
   },
+
+  //equipment
   chest() {
+    if (!this.equipment.chestId) return undefined;
     return Items.findOne(this.equipment.chestId);
   },
   head() {
+    if (!this.equipment.headId) return undefined;
     return Items.findOne(this.equipment.headId);
   },
   leftHand() {
+    if (!this.equipment.leftHandId) return undefined;
     return Items.findOne(this.equipment.leftHandId);
   },
   rightHand() {
+    if (!this.equipment.rightHandId) return undefined;
     return Items.findOne(this.equipment.rightHandId);
   },
+
   inventory() {
     return Items.find({_id: {$in: this.inventoryIds}});
+  },
+  getEquipment() {
+    return Items.find({_id: {$in: [this.equipment.chestId, this.equipment.headId, 
+                                   this.equipment.leftHandId, this.equipment.rightHandId]}});
+  },
+  skins() {
+    return Skins.find({_id: {$in: [this.appearance.hairId, this.appearance.torsoId, 
+                                   this.appearance.legsId, this.appearance.colorId]}});
   }
 });
 
