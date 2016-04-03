@@ -12,9 +12,11 @@ class Exercise extends Component {
       return (
           <ListGroupItem className="clearfix" onClick={onClickExercise ? this.onClickExercise.bind(this) : null}>
             <b>{exercise.name}</b>
-            {this.renderDelete()}
-            {this.renderSelected()}
-            {this.renderRemoved()}
+            <span className="pull-right">
+              {this.renderDelete()}
+              {this.renderSelected()}
+              {this.renderRemoved()}
+            </span>
           </ListGroupItem>
       );
     } else {
@@ -29,36 +31,33 @@ class Exercise extends Component {
   renderRemoved() {
     if(this.props.onClickRemoveExercise) {
       return (
-          <span className="pull-right">
-            <a className="btn btn-xs btn-danger"
-               onClick={this.props.onClickRemoveExercise ? this.onClickRemoveExercise.bind(this) : null}>
-              <span className="fa fa-minus"></span>
-            </a>
-          </span>);
+        <a className="btn btn-xs btn-danger"
+           onClick={this.props.onClickRemoveExercise ? this.onClickRemoveExercise.bind(this) : null}>
+          <span className="fa fa-minus"></span>
+        </a>
+      );
     }
   }
 
   renderSelected() {
-      if(this.props.onSelectedAddToSelectedWorkout) {
-        return (
-          <span className="pull-right">
-            <a className="btn btn-xs btn-success"
-              onClick={this.props.onSelectedAddToSelectedWorkout ? this.onSelectedAddToSelectedWorkout.bind(this) : null}>
-              <span className="fa fa-plus"></span>
-            </a>
-          </span>);
-      }
+    if(this.props.onSelectedAddToSelectedWorkout) {
+      return (
+        <a className="btn btn-xs btn-success"
+          onClick={this.props.onSelectedAddToSelectedWorkout ? this.onSelectedAddToSelectedWorkout.bind(this) : null}>
+          <span className="fa fa-plus"></span>
+        </a>
+      );
+    }
   }
 
   renderDelete() {
     if (this.props.onClickDelete) {
       return (
-        <span className="pull-right">
-          <a className="btn btn-xs btn-danger"
-            onClick={this.props.onClickDelete ? this.onClickDelete.bind(this) : null}>
-            <span className="fa fa-trash"></span>
-          </a>
-        </span>)
+        <a className="btn btn-xs btn-danger"
+          onClick={this.props.onClickDelete ? this.onClickDelete.bind(this) : null}>
+          <span className="fa fa-trash"></span>
+        </a>
+      );
     }
   }
 

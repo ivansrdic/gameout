@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Grid, Row, Col, Panel, Input, ButtonInput} from 'react-bootstrap';
 import ExercisesList from '../shared/exercise/exercises-list.jsx';
+import CreateExerciseModal from './create-exercise-modal.jsx';
 
 
 class CreateWorkout extends Component {
@@ -8,7 +9,8 @@ class CreateWorkout extends Component {
     super(props);
 
     this.state = {
-      open: false,
+      showExerciseList: false,
+      showCreateModal: false,
       selectedExerciseIds: [],
       selectedExercises: []
     }
@@ -53,10 +55,10 @@ class CreateWorkout extends Component {
                       bsStyle={errors.descriptionValidation ? errors.descriptionValidation.status : null}
                       onBlur={() => descriptionValidation(this.refs.description.getValue())}
                     />
-                    <ButtonInput onClick={ ()=> this.setState({ open: !this.state.open })}>
-                      Exercise List
+                    <ButtonInput onClick={ ()=> this.setState({ showExerciseList: !this.state.showExerciseList })}>
+                      Show Exercise List
                     </ButtonInput>
-                    <Panel collapsible expanded={this.state.open}>
+                    <Panel collapsible expanded={this.state.showExerciseList}>
                       {this.showData()}
                     </Panel>
                   </Col>
@@ -64,7 +66,10 @@ class CreateWorkout extends Component {
                     <Panel header="Selected exercises for your workout">
                         <ExercisesList exercises={this.showSelectedExercises()} onClickRemoveExercise={this.removeFromSelectedList.bind(this)}/>
                       <span className="pull-right">
-                          <a className="btn btn-sm btn-success">Create new exercise</a>
+                          <a className="btn btn-sm btn-success"
+                             onClick={() => {this.setState({showCreateModal: true})}}>
+                            Create new exercise
+                          </a>
                       </span>
                     </Panel>
                     <ButtonInput className="pull-right" type="submit" value="Save"/>
@@ -73,6 +78,11 @@ class CreateWorkout extends Component {
               </Panel>
             </Col>
           </Row>
+          <CreateExerciseModal
+            user={this.props.user}
+            show={this.state.showCreateModal}
+            onClickClose={this.closeCreateExerciseModal.bind(this)}
+          />
         </Grid>
       );
     } else {
@@ -109,7 +119,6 @@ class CreateWorkout extends Component {
     }
   }
 
-
   addToSelectedList(exercise) {
     var newSelectedIds = this.state.selectedExerciseIds.slice();
     var newSelectedExercise = this.state.selectedExercises.slice();
@@ -119,6 +128,10 @@ class CreateWorkout extends Component {
       this.setState({selectedExerciseIds:newSelectedIds});
       this.setState({selectedExercises:newSelectedExercise});
     }
+  }
+
+  closeCreateExerciseModal() {
+    this.setState({showCreateModal: false});
   }
 
   handleSetupFormSubmit(e) {

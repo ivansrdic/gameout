@@ -9,7 +9,7 @@ class Workout extends Component {
   render() {
     const {errors, nameValidation, descriptionValidation, unitValidation} = this.props;
     return (
-      <form onSubmit={this.handleSetupFormSubmit.bind(this)}>
+      <form className="create-exercise" onSubmit={this.handleSetupFormSubmit.bind(this)}>
         <hr/>
         <h1 className="text-center">Create exercise</h1>
 
@@ -68,6 +68,8 @@ class Workout extends Component {
     unitValidation(exercise.unit);
     
     this.props.createExercise(exercise);
+
+    this.props.onFormSubmit();
   }
 }
 
