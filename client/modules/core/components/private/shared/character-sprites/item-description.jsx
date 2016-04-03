@@ -7,7 +7,7 @@ class ItemDescription extends Component {
   }
   
   render() {
-    const {item} = this.props;
+    const {item, className} = this.props;
     if (item) {
       const size = 51;
       return (
@@ -22,7 +22,7 @@ class ItemDescription extends Component {
               <div><b>Intelligence</b>: {0}</div>
             </Popover>}
         >
-          <div className={"item-container item-container-" + item.type}>
+          <div className={"item-container item-container-" + item.type + " " + className}>
             <img
               src={"items/" + item.type + ".png"}
               className={"item pixelated"} onClick={this.onClickHandler.bind(this)}
@@ -38,6 +38,7 @@ class ItemDescription extends Component {
       );
     }
   }
+  
   
   onClickHandler() {
     const {onClickHandler, item} = this.props;

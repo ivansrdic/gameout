@@ -30,7 +30,8 @@ class ExercisesList extends Component {
           exercise={exercise}
           onClickExercise={this.props.onClickExercise}
           onClickDelete={this.props.onClickDelete}
-
+          onSelectedAddToSelectedWorkout={this.props.onSelectedAddToSelectedWorkout}
+          onClickRemoveExercise={this.props.onClickRemoveExercise}
         />
       );
     }.bind(this)));

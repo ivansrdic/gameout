@@ -8,10 +8,29 @@ export default {
   },
 
   equipItem({Meteor}, itemId) {
-    Meteor.call('equipItem', Meteor.user().data.characterId, itemId);
+    Meteor.call('equipItem', Meteor.user().data.characterId, itemId, function (err) {
+      if (err) console.log(err);
+    });
   },
 
-  unEquipItem({Meteor}, itemId) {
-    Meteor.call('unEquipItem', Meteor.user().data.characterId, itemId);
+  getEquipment({Meteor}) {
+    return Meteor.user().character().getEquipment();
+  },
+
+  getEquipmentIds({Meteor}) {
+    const character = Meteor.user().character();
+
+    return [character.equipment.chestId, character.equipment.headId,
+      character.equipment.leftHandId, character.equipment.rightHandId];
+  },
+
+  selectWorkout({Meteor}, workout) {
+    Meteor.call('selectWorkout', workout._id, function(err) {
+      if(err) console.log(err);
+    });
+  },
+
+  getSelectedWorkout({Meteor}) {
+    return Meteor.user().selectedWorkout()
   }
 }

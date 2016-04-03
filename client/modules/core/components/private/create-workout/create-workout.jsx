@@ -2,12 +2,15 @@ import React, {Component} from 'react';
 import {Grid, Row, Col, Panel, Input, ButtonInput} from 'react-bootstrap';
 import ExercisesList from '../shared/exercise/exercises-list.jsx';
 
+
 class CreateWorkout extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      open: false
+      open: false,
+      selectedExerciseIds: [],
+      selectedExercises: []
     }
   }
 
@@ -21,7 +24,7 @@ class CreateWorkout extends Component {
     const {ready} = this.props;
     const {errors} = this.props;
     const {nameValidation, descriptionValidation} = this.props;
-    
+
     if(ready) {
       return (
         <Grid>
@@ -59,13 +62,10 @@ class CreateWorkout extends Component {
                   </Col>
                   <Col md={6}>
                     <Panel header="Selected exercises for your workout">
-                      Ovdje nekako ubaciti popis odabranih vježbi <br />
-                      Vježba 2<br />
-                      Vježba 3<br />
-                      <br />
-                      <ButtonInput className="pull-right">
-                        +
-                      </ButtonInput>
+                        <ExercisesList exercises={this.showSelectedExercises()} onClickRemoveExercise={this.removeFromSelectedList.bind(this)}/>
+                      <span className="pull-right">
+                          <a className="btn btn-sm btn-success">Create new workout</a>
+                      </span>
                     </Panel>
                     <ButtonInput className="pull-right" type="submit" value="Save"/>
                   </Col>
@@ -84,14 +84,41 @@ class CreateWorkout extends Component {
 
   showData() {
     return (
-      <ExercisesList exercises={this.props.getExercises()} />
+      <ExercisesList exercises={this.props.getExercises()} onSelectedAddToSelectedWorkout={this.addToSelectedList.bind(this)}/>
     );
   }
 
-  // call when submiting with save
-  getSelectedExcerciseIds() {
-    // get in array all workouts in selected panel
-    // return array of strings
+  showSelectedExercises() {
+    const exercises = [];
+    for (var i = 0; i < this.state.selectedExercises.length; i++) {
+      exercises.push(this.state.selectedExercises[i]);
+    }
+    return exercises;
+  }
+
+  removeFromSelectedList(exercise) {
+    var newSelectedIds = this.state.selectedExerciseIds.slice();
+    var newSelectedExercise = this.state.selectedExercises.slice();
+    var indexId = newSelectedIds.indexOf(exercise._id);
+    var IndexExercise = newSelectedExercise.indexOf(exercise);
+    if(indexId != -1) {
+        newSelectedIds.splice(indexId, 1);
+        newSelectedExercise.splice(IndexExercise, 1);
+      this.setState({selectedExerciseIds:newSelectedIds});
+      this.setState({selectedExercises:newSelectedExercise});
+    }
+  }
+
+
+  addToSelectedList(exercise) {
+    var newSelectedIds = this.state.selectedExerciseIds.slice();
+    var newSelectedExercise = this.state.selectedExercises.slice();
+    if(newSelectedIds.indexOf(exercise._id) === -1) {
+      newSelectedIds.push(exercise._id);
+      newSelectedExercise.push(exercise);
+      this.setState({selectedExerciseIds:newSelectedIds});
+      this.setState({selectedExercises:newSelectedExercise});
+    }
   }
 
   handleSetupFormSubmit(e) {
@@ -103,7 +130,7 @@ class CreateWorkout extends Component {
       ownerId: this.props.user._id,
       name: name.getValue(),
       description: description.getValue(),
-      exerciseIds: this.getSelectedExercisesIds()
+      exerciseIds: this.state.selectedExerciseIds
     };
 
     const {nameValidation, descriptionValidation} = this.props;
