@@ -5,7 +5,7 @@ const Footer = () => (
   <footer>
     <Grid>
       <Row>
-        <p className="text-center">Gameout</p>
+        <p className="text-center">&#169; 2016 Gameout</p>
       </Row>
     </Grid>
   </footer>

@@ -3,7 +3,6 @@ import {mount} from 'react-mounter';
 
 import MainLayout from './containers/main_layout.js';
 import Home from './components/public/home/home.jsx';
-import About from './components/public/about/about.jsx';
 import HowItWorks from  './components/public/how-it-works/how-it-works.jsx';
 import SignIn from './containers/public/sign-in/sign-in.js';
 import Profile from './containers/private/profile/profile.js';
@@ -37,16 +36,6 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
     action() {
       mount(MainLayoutCtx, {
         content: () => (<HowItWorks />)
-      });
-    }
-  });
-
-  FlowRouter.route('/about', {
-    name: 'about',
-
-    action() {
-      mount(MainLayoutCtx, {
-        content: () => (<About />)
       });
     }
   });

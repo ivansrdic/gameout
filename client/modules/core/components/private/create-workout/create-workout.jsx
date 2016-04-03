@@ -64,7 +64,7 @@ class CreateWorkout extends Component {
                     <Panel header="Selected exercises for your workout">
                         <ExercisesList exercises={this.showSelectedExercises()} onClickRemoveExercise={this.removeFromSelectedList.bind(this)}/>
                       <span className="pull-right">
-                          <a className="btn btn-sm btn-success">Create new workout</a>
+                          <a className="btn btn-sm btn-success">Create new exercise</a>
                       </span>
                     </Panel>
                     <ButtonInput className="pull-right" type="submit" value="Save"/>

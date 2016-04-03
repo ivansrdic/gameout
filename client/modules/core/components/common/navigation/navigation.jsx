@@ -56,7 +56,6 @@ class Navigation extends Component {
         <Nav>
           <NavItem href="/">Home</NavItem>
           <NavItem href="/how-it-works">How it works</NavItem>
-          <NavItem href="/about">About</NavItem>
         </Nav>
       );
     }
