@@ -39,6 +39,7 @@ class ItemDescription extends Component {
     }
   }
   
+  
   onClickHandler() {
     const {onClickHandler, item} = this.props;
     

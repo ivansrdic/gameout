@@ -28,7 +28,8 @@ class Profile extends Component {
   // TODO: break down into components
   render() {
     if (this.props.ready) {
-      const {character, getEquipment, getEquipmentIds, selectWorkout, getSelectedWorkout, getWorkoutExercises} = this.props;
+      const {character, getEquipment, getEquipmentIds, getInventory,
+              selectWorkout, getSelectedWorkout, getWorkoutExercises} = this.props;
       return (
         <Grid className="profile" fluid={true}>
           <Row className="character-info no-gutter">
@@ -75,7 +76,7 @@ class Profile extends Component {
                   <div className="stats-container">
                     <span><i className="fa fa-heart"></i> Health</span>
                     <ProgressBar bsStyle="danger" min={0} max={50} now={character.stats.health}
-                                 label="%(now)s/%(max)s"/>
+                                 label={"%(now)s/%(max)s"}/>
                     <span><i className="fa fa-star"></i> Experience</span>
                     <ProgressBar bsStyle="warning" min={0} max={100} now={character.stats.experience}
                                  label="%(now)s/%(max)s"/>
@@ -99,8 +100,8 @@ class Profile extends Component {
 
           <Inventory
             show={this.state.showInventory}
-            equipmentIds={getEquipmentIds()}
-            getInventory={this.props.getInventory}
+            getEquipmentIds={getEquipmentIds}
+            getInventory={getInventory}
             equipItem={this.equipItem.bind(this)}
             closeInventory={this.closeInventory.bind(this)}
           />
