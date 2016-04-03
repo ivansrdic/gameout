@@ -10,7 +10,7 @@ export default {
   nameValidation({LocalState}, value) {
     const validation = new Validation(LocalState, stateKey, "nameValidation");
 
-    if(Utils.isEmpty(value)) {
+    if (Utils.isEmpty(value)) {
       validation.error(Utils.REQUIRED);
       return;
     }
@@ -21,7 +21,7 @@ export default {
   descriptionValidation({LocalState}, value) {
     const validation = new Validation(LocalState, stateKey, "descriptionValidation");
 
-    if(Utils.isEmpty(value)) {
+    if (Utils.isEmpty(value)) {
       validation.error(Utils.REQUIRED);
       return;
     }
@@ -32,12 +32,12 @@ export default {
   unitValidation({LocalState}, value) {
     const validation = new Validation(LocalState, stateKey, "unitValidation");
 
-    if(Utils.isEmpty(value)) {
+    if (Utils.isEmpty(value)) {
       validation.error(Utils.REQUIRED);
       return;
     }
 
-    if(!Utils.isNumeric(value)) {
+    if (!Utils.isNumeric(value)) {
       validation.error(Utils.NUMERIC);
       return;
     }
@@ -50,13 +50,21 @@ export default {
   },
 
   createExercise({LocalState}, exercise) {
-    if(Utils.hasErrors(LocalState.get(stateKey)))
+    if (Utils.hasErrors(LocalState.get(stateKey)))
       return;
 
-    Meteor.call('addExercise', exercise);
+    Meteor.call('addExercise', exercise, function (err) {
+      if (err) console.log(err);
+    });
   },
 
   getExercises({Meteor}) {
     return Meteor.user().exercises();
+  },
+
+  removeExercise({}, exercise) {
+    Meteor.call('removeExercise', exercise._id, function (err) {
+      if (err) console.log(err);
+    });
   }
 };

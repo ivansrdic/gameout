@@ -1,10 +1,21 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import CreateExercise from '../../../components/private/create-exercise/create-exercise.jsx';
 
-export const composer = ({context, stateKey,  clearErrors}, onData) => {
+export const composer = ({context, stateKey, getExercises, clearErrors}, onData) => {
+  const exercisesSubscription = Meteor.subscribe('exercises');
   const {LocalState} = context();
   const errors = LocalState.get(stateKey()) || {};
-  onData(null, {errors});
+  if(exercisesSubscription.ready()) {
+    const exercises = getExercises();
+
+    onData(null, {
+      ready: true,
+      errors,
+      exercises
+    });
+  } else {
+    onData(null, {errors});
+  }
 
   return clearErrors;
 };
@@ -17,6 +28,7 @@ export const depsMapper = (context, {Exercise}) => {
     unitValidation: Exercise.unitValidation,
     createExercise: Exercise.createExercise,
     clearErrors: Exercise.clearErrors,
+    getExercises: Exercise.getExercises,
     context: () => context
   }
 };

@@ -8,18 +8,31 @@ class ExercisesList extends Component {
   }
   
   render() {
-    return (
-      <ListGroup>
-        {this.renderExercises()}
-      </ListGroup>
-    );
+    if (this.props.exercises)
+      return (
+        <ListGroup className="clearfix">
+          {this.renderExercises()}
+        </ListGroup>
+      );
+    else
+      return (
+        <div></div>
+      );
   }
 
   renderExercises() {
     const {exercises} = this.props;
 
     return (exercises.map(function (exercise) {
-      return (<Exercise key={exercise.name} exercise={exercise} onClickExercise={this.props.onClickExercise}/>);
+      return (
+        <Exercise
+          key={exercise.name}
+          exercise={exercise}
+          onClickExercise={this.props.onClickExercise}
+          onClickDelete={this.props.onClickDelete}
+
+        />
+      );
     }.bind(this)));
   }
 }

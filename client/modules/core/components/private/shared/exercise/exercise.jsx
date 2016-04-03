@@ -7,19 +7,39 @@ class Exercise extends Component {
   }
   
   render() {
-    const {exercise} = this.props;
-    return (
-      <ListGroupItem header={exercise.name} onClick={this.onClickHandler.bind(this)}>
-        {exercise.description}
-      </ListGroupItem>
-    );
+    const {exercise, onClickExercise, onClickDelete} = this.props;
+    if (onClickDelete)
+      return (
+        <ListGroupItem className="clearfix" onClick={onClickExercise ? this.onClickExercise.bind(this) : null}>
+          <b>{exercise.name}</b>
+          <span className="pull-right">
+            <a className="btn btn-xs btn-danger" onClick={onClickDelete ? this.onClickDelete.bind(this) : null}>
+              <span className="fa fa-trash"></span>
+            </a>
+          </span>
+        </ListGroupItem>
+      );
+    else
+      return (
+        <ListGroupItem header={exercise.name} onClick={onClickExercise ? onClickExercise(exercise) : null}>
+          {exercise.description}
+        </ListGroupItem>
+      );
   }
 
-  onClickHandler() {
-    const {onClickExercise, exercise} = this.props;
+  onClickExercise() {
+    const {exercise, onClickExercise} = this.props;
 
-    if (onClickExercise) onClickExercise(exercise);
+    onClickExercise(exercise);
   }
+
+  onClickDelete() {
+    const {exercise, onClickDelete} = this.props;
+
+    onClickDelete(exercise);
+  }
+
+
 }
 
 export default Exercise;
