@@ -67,8 +67,7 @@ export default {
   },
 
   submitUserInfo({LocalState}, userInfo) {
-    //TODO: Return client validation!!!
-    // if (Utils.hasErrors(LocalState.get(stateKey))) return;
+    if (Utils.hasErrors(LocalState.get(stateKey))) return;
 
     Meteor.call('user.updateUserInfo', userInfo, (err) => {
       if (err) {
