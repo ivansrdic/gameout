@@ -21,7 +21,7 @@ class Exercise extends Component {
       );
     else
       return (
-        <ListGroupItem header={exercise.name} onClick={onClickExercise ? onClickExercise(exercise) : null}>
+        <ListGroupItem header={<h4>{exercise.name}<span className="pull-right badge">{exercise.unit} reps</span></h4>} onClick={onClickExercise ? onClickExercise(exercise) : null}>
           {exercise.description}
         </ListGroupItem>
       );

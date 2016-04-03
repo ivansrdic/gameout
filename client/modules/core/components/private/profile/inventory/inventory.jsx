@@ -39,10 +39,14 @@ class Inventory extends Component {
   }
   
   renderInventoryItems() {
-    const inventory = this.props.getInventory();
+    const {getInventory, equipmentIds} = this.props;
+    const inventory = getInventory();
 
     return (inventory.map(function (item) {
-      return (<ItemDescription key={item.name} onClickHandler={this.props.equipItem} item={item}/>);
+      if($.inArray(item._id, equipmentIds) != -1)
+        return (<ItemDescription key={item.name} className="selected" onClickHandler={this.props.equipItem} item={item}/>);
+      else
+        return (<ItemDescription key={item.name} onClickHandler={this.props.equipItem} item={item}/>);
     }.bind(this)));
   }
 

@@ -15,8 +15,7 @@ class Profile extends Component {
     this.state = {
       showEquipment: false,
       showInventory: false,
-      showWorkoutSelection: false,
-      exercises: null
+      showWorkoutSelection: false
     };
   }
 
@@ -29,13 +28,13 @@ class Profile extends Component {
   // TODO: break down into components
   render() {
     if (this.props.ready) {
-      const {character} = this.props;
+      const {character, getEquipment, getEquipmentIds, selectWorkout, getSelectedWorkout, getWorkoutExercises} = this.props;
       return (
         <Grid className="profile" fluid={true}>
           <Row className="character-info no-gutter">
             <Col sm={3} lg={2}>
               <div className="character-container">
-                <Character character={character} />
+                <Character character={character}/>
                 <Button className="toggle equipment-toggle" bsStyle="default"
                         onClick={this.handleEquipmentButtonClick.bind(this)}><i className="fa fa-play"></i></Button>
               </div>
@@ -51,7 +50,7 @@ class Profile extends Component {
                 exitedClassName="equipment-exited"
               >
                 <div className="hide-of">
-                  <Equipment character={character} unEquipItem={this.unEquipItem.bind(this)} />
+                  <Equipment equipment={getEquipment()} unEquipItem={this.equipItem.bind(this)}/>
                   <Button className="toggle inventory-toggle" bsStyle="default"
                           onClick={this.showInventory.bind(this)}>Show inventory</Button>
                 </div>
@@ -59,7 +58,7 @@ class Profile extends Component {
               <Col xs={12} sm={3} lg={2}>
                 <div className="stats-container">
                   <h3><strong>{character.owner().username}</strong> Level {character.stats.level}</h3>
-                  <Stats stats={character.stats} />
+                  <Stats stats={character.stats}/>
                   <div><b>Gold</b>: {character.stats.gold}</div>
                 </div>
               </Col>
@@ -75,9 +74,11 @@ class Profile extends Component {
                 <div>
                   <div className="stats-container">
                     <span><i className="fa fa-heart"></i> Health</span>
-                    <ProgressBar bsStyle="danger" now={(character.stats.health/50)*100}/>
+                    <ProgressBar bsStyle="danger" min={0} max={50} now={character.stats.health}
+                                 label="%(now)s/%(max)s"/>
                     <span><i className="fa fa-star"></i> Experience</span>
-                    <ProgressBar bsStyle="warning" now={(character.stats.experience/50)*100}/>
+                    <ProgressBar bsStyle="warning" min={0} max={100} now={character.stats.experience}
+                                 label="%(now)s/%(max)s"/>
                   </div>
                 </div>
               </Transition>
@@ -87,19 +88,22 @@ class Profile extends Component {
             <Col md={6} mdOffset={3}>
               <div className="exercises-container">
                 <CurrentExercises
-                  chooseWorkout={this.chooseWorkout.bind(this)}
-                  finishWorkout={this.finishWorkout.bind(this)}
-                  exercises={this.state.exercises}/>
+                  showWorkoutSelection={this.showWorkoutSelection.bind(this)}
+                  selectedWorkout={getSelectedWorkout()}
+                  getWorkoutExercises={getWorkoutExercises}
+                  finishWorkout={selectWorkout}
+                />
               </div>
             </Col>
           </Row>
 
           <Inventory
             show={this.state.showInventory}
+            equipmentIds={getEquipmentIds()}
             getInventory={this.props.getInventory}
             equipItem={this.equipItem.bind(this)}
             closeInventory={this.closeInventory.bind(this)}
-            />
+          />
 
           <WorkoutSelection
             show={this.state.showWorkoutSelection}
@@ -122,8 +126,8 @@ class Profile extends Component {
     });
   }
 
-  unEquipItem(itemId) {
-    this.props.unEquipItem(itemId);
+  equipItem(itemId) {
+    this.props.equipItem(itemId);
   }
 
   showInventory() {
@@ -138,34 +142,21 @@ class Profile extends Component {
     });
   }
 
-  equipItem(itemId) {
-    this.props.equipItem(itemId);
-  }
-
-  chooseWorkout() {
+  showWorkoutSelection() {
     this.setState({
       showWorkoutSelection: true
     });
   }
 
+  selectWorkout(workout) {
+    this.props.selectWorkout(workout);
+
+    this.closeWorkoutSelection();
+  }
+
   closeWorkoutSelection() {
     this.setState({
       showWorkoutSelection: false
-    });
-  }
-
-  selectWorkout(workout) {
-    const exercises = this.props.getWorkoutExercises(workout);
-
-    this.setState({
-      showWorkoutSelection: false,
-      exercises
-    });
-  }
-
-  finishWorkout() {
-    this.setState({
-      exercises: null
     });
   }
 }

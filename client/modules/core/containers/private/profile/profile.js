@@ -24,12 +24,15 @@ function composer({getCharacter}, onData) {
   }
 }
 
-function depsMapper(context, {Profile, Exercise, Workout}) {
+function depsMapper(context, {Profile, Workout}) {
   return ({
     getCharacter: Profile.getCharacter,
     getInventory: Profile.getInventory,
+    getEquipment: Profile.getEquipment,
+    getEquipmentIds: Profile.getEquipmentIds,
+    selectWorkout: Profile.selectWorkout,
+    getSelectedWorkout: Profile.getSelectedWorkout,
     equipItem: Profile.equipItem,
-    unEquipItem: Profile.unEquipItem,
     getWorkouts: Workout.getWorkouts,
     getWorkoutExercises: Workout.getExercises
   });
