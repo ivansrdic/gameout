@@ -7,7 +7,7 @@ import About from './components/public/about/about.jsx';
 import HowItWorks from  './components/public/how-it-works/how-it-works.jsx';
 import SignIn from './containers/public/sign-in/sign-in.js';
 import Profile from './containers/private/profile/profile.js';
-import ProfileSetup from './components/private/profile-setup/profile-setup.jsx';
+import ProfileSetup from './containers/private/profile-setup/profile-setup.jsx';
 import EditInfo from './containers/private/profile-setup/edit-info.jsx';
 import CustomizeCharacter from './components/private/profile-setup/customize-character.jsx';
 import CreateExercisePanel from './containers/private/create-exercise/create-exercise-panel.js';

@@ -67,14 +67,14 @@ export default {
   },
 
   submitUserInfo({LocalState}, userInfo) {
+    //TODO: Return client validation!!!
     // if (Utils.hasErrors(LocalState.get(stateKey))) return;
 
-    Meteor.call('user.createUserInfo', userInfo, (err) => {
+    Meteor.call('user.updateUserInfo', userInfo, (err) => {
       if (err) {
         LocalState.set(stateKey, Utils.serverError());
       } else {
         LocalState.set(stateKey, null);
-        LocalState.set("ProfileSetupChoice", "customize-character");
       }
     });
 

@@ -23,8 +23,7 @@ const ProfileSchema =  new SimpleSchema({
 const UserInfoSchema = new SimpleSchema({
   age: {
     type: Number,
-    min: 1,
-    max: 100
+    min: 1
   },
   weight: {
     type: Number,
@@ -37,6 +36,10 @@ const UserInfoSchema = new SimpleSchema({
   gender: {
     type: String,
     allowedValues: ["male", "female"]
+  },
+  level: {
+    type: String,
+    allowedValues: ["beginner", "intermediate", "advanced"]
   }
 });
 
@@ -104,6 +107,16 @@ Users.helpers({
   selectedWorkout() {
     if (!this.data.selectedWorkoutId) return undefined;
     return Workouts.findOne(this.data.selectedWorkoutId);
+  },
+  userInfo() {
+    // This may be very bugs funny.
+    return !this.data.userInfo ? null : {
+      age: this.data.userInfo.age,
+      gender: this.data.userInfo.gender,
+      height: this.data.userInfo.height,
+      level: this.data.userInfo.level,
+      weight: this.data.userInfo.weight
+    }
   }
 });
 
