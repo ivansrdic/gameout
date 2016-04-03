@@ -104,8 +104,6 @@ class CreateWorkout extends Component {
     if(indexId != -1) {
         newSelectedIds.splice(indexId, 1);
         newSelectedExercise.splice(IndexExercise, 1);
-      console.log(newSelectedIds);
-      console.log(newSelectedExercise);
       this.setState({selectedExerciseIds:newSelectedIds});
       this.setState({selectedExercises:newSelectedExercise});
     }
@@ -118,8 +116,6 @@ class CreateWorkout extends Component {
     if(newSelectedIds.indexOf(exercise._id) === -1) {
       newSelectedIds.push(exercise._id);
       newSelectedExercise.push(exercise);
-      console.log(newSelectedIds);
-      console.log(newSelectedExercise);
       this.setState({selectedExerciseIds:newSelectedIds});
       this.setState({selectedExercises:newSelectedExercise});
     }

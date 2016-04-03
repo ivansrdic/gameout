@@ -7,7 +7,6 @@ class Equipment extends Component {
   }
 
   render() {
-    const {character, unEquipItem} = this.props;
     return (
       <div className="equipment-container">
 
@@ -16,26 +15,25 @@ class Equipment extends Component {
             <img src="character-background.png" className="character-background pixelated"/>
           </div>
           <div className="character-equipment">
-            <ItemDescription
-              onClickHandler={unEquipItem}
-              item={character.head()}
-            />
-            <ItemDescription
-              onClickHandler={unEquipItem}
-              item={character.chest()}
-            />
-            <ItemDescription
-              onClickHandler={unEquipItem}
-              item={character.leftHand()}
-            />
-            <ItemDescription
-              onClickHandler={unEquipItem}
-              item={character.rightHand()}
-            />
+            {this.renderEquipment()}
           </div>
         </div>
       </div>
     );
+  }
+
+  renderEquipment() {
+    const {equipment, unEquipItem} = this.props;
+    if(equipment)
+      return equipment.map(function(item) {
+        return(
+          <ItemDescription
+            key={item._id}
+            onClickHandler={unEquipItem}
+            item={item}
+          />
+        );
+      });
   }
 }
 

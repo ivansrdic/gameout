@@ -3,3 +3,7 @@
 .inventory .skin-container:hover{
   cursor: pointer;
 }
+
+.item-container.selected {
+  background: green;
+}

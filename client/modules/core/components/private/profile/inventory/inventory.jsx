@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import ItemDescription from './../../shared/character-sprites/item-description.jsx';
+import ItemDescriptionList from './../../shared/character-sprites/item-description-list.jsx';
 
 class Inventory extends Component {
   constructor(props) {
@@ -27,7 +27,11 @@ class Inventory extends Component {
 
             <hr />
             <div className="inventory">
-              {this.renderInventoryItems()}
+              <ItemDescriptionList
+                getItems={this.props.getInventory}
+                getEquipmentIds={this.props.getEquipmentIds}
+                equipItem={this.props.equipItem}
+              />
             </div>
           </Modal.Body>
           <Modal.Footer>
@@ -36,14 +40,6 @@ class Inventory extends Component {
         </div>
       );
     }
-  }
-  
-  renderInventoryItems() {
-    const inventory = this.props.getInventory();
-
-    return (inventory.map(function (item) {
-      return (<ItemDescription key={item.name} onClickHandler={this.props.equipItem} item={item}/>);
-    }.bind(this)));
   }
 
   handleInventoryCloseClick() {
