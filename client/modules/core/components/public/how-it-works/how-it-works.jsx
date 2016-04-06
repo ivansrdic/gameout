@@ -20,7 +20,7 @@ const HowItWorks = ({content = () => null }) => (
             <br/>
             <br/>
             First you have to sign up – you can do this by using your Facebook/Google+ account, or simply by entering your email and password.
-            The next step is setting up your profile. Tell us about your daily habits, some personal dana and create your own character. Creating your character is a fun step because there are a lot of customizations and you can really make it unique.
+            The next step is setting up your profile. Tell us about your daily habits, some personal data and create your own character. Creating your character is a fun step because there are a lot of customizations and you can really make it unique.
             <br/>
             <br/>
             Let the games begin!
