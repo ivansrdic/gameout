@@ -15,6 +15,7 @@ export const depsMapper = (context, actions) => {
     ageValidation: actions.EditInfo.ageValidation,
     heightValidation: actions.EditInfo.heightValidation,
     weightValidation: actions.EditInfo.weightValidation,
+    usernameValidation: actions.EditInfo.usernameValidation,
     submitUserInfo: actions.EditInfo.submitUserInfo,
     clearErrors: actions.EditInfo.clearErrors,
     context: () => context

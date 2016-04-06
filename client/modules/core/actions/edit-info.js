@@ -66,6 +66,29 @@ export default {
     validation.success();
   },
 
+  usernameValidation({LocalState}, value) {
+    const validation = new Validation(LocalState, stateKey, "usernameValidation");
+    console.log(value, "DENI");
+
+    if(Utils.isEmpty(value)) {
+      validation.error(Utils.REQUIRED);
+      return;
+    }
+
+    if(value.match(/\b\w+\b/g).length != 1) {
+      validation.error("Username should be one word long.");
+      return;
+    }
+
+    if(Utils.isNumeric(value[0])) {
+      validation.error("Username must begin with a letter.");
+      return;
+    }
+
+
+    validation.success();
+  },
+
   submitUserInfo({LocalState}, userInfo) {
     if (Utils.hasErrors(LocalState.get(stateKey))) return;
 

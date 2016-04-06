@@ -14,7 +14,8 @@ class EditInfo extends Component {
       errors,
       ageValidation,
       heightValidation,
-      weightValidation
+      weightValidation,
+      usernameValidation
     } = this.props;
 
     return (
@@ -23,6 +24,15 @@ class EditInfo extends Component {
         {this.renderServerErrorMessage(errors)}
 
         <form onSubmit={this.handleFormSubmit.bind(this)}>
+
+          <Input
+            ref="username"
+            type="text"
+            label="Username"
+            placeholder="Username"
+            help={errors.usernameValidation ? errors.usernameValidation.message : ""}
+            bsStyle={errors.usernameValidation ? errors.usernameValidation.status : null}
+            onBlur={(e) => usernameValidation(this.refs.username.getValue().trim())}/>
 
           <label htmlFor="gender" className="control-label input-group">Gender</label>
           <ButtonGroup ref="gender" className="form-group" bsSize="large" data-toggle="buttons">
@@ -109,8 +119,10 @@ class EditInfo extends Component {
     e.preventDefault();
 
     const {age, weight, height} = this.refs;
+    const username = this.refs.username.trim(); // Never forget trim.
     const {gender, level} = this;
 
+    //TODO: Add username to user collection.
     const userInfo = {
       age: Number(age.getValue()),
       weight: Number(weight.getValue()),
@@ -119,11 +131,12 @@ class EditInfo extends Component {
       level
     };
 
-    const {ageValidation, heightValidation, weightValidation, submitUserInfo} = this.props;
+    const {ageValidation, heightValidation, weightValidation, usernameValidation, submitUserInfo} = this.props;
     
     ageValidation(userInfo.age);
     heightValidation(userInfo.height);
     weightValidation(userInfo.weight);
+    // usernameValidation(userInfo.username);
     
     submitUserInfo(userInfo);
   }
