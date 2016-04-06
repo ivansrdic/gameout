@@ -166,13 +166,14 @@ Characters.helpers({
     return Items.find({_id: {$in: [this.equipment.chestId, this.equipment.headId, 
                                    this.equipment.leftHandId, this.equipment.rightHandId]}});
   },
-  getAppearence() {
-    return Skins.find({_id: {$in: [this.appearance.hairId, this.appearance.torsoId, 
+  getAppearance() {
+    return Skins.find({_id: {$in: [this.appearance.hairId, this.appearance.torsoId,
                                    this.appearance.legsId, this.appearance.colorId]}});
   },
 
   getTotalStats() {
-    let stats = this.stats;
+    let stats = Object.assign({}, this.stats);
+    
     this.getEquipment().forEach((item) => {
       stats.strength += item.stats.strength;
       stats.agility += item.stats.agility;

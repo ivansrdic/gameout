@@ -59,7 +59,7 @@ class Profile extends Component {
               <Col xs={12} sm={3} lg={2}>
                 <div className="stats-container">
                   <h3><strong>{character.owner().username}</strong> Level {character.stats.level}</h3>
-                  <Stats stats={character.stats}/>
+                  <Stats stats={character.getTotalStats()}/>
                   <div><b>Gold</b>: {character.stats.gold}</div>
                 </div>
               </Col>
