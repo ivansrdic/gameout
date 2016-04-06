@@ -15,12 +15,4 @@ export default () => {
       'loginStyle' : 'popup'
     });
   }
-  if(ServiceConfiguration.configurations.find({service: 'twitter'}).count() === 0) {
-    ServiceConfiguration.configurations.insert({
-      service : 'twitter',
-      consumerKey : 'elSGgXY8JPqLCDJ3XOOw97b7W',
-      secret : 'EcpFnLGerqj1JnVDr3jaPS8EELaFkFKOnJZENIKLvR10o7KUDK',
-      loginStyle : 'popup'
-    });
-  }
 };

@@ -6,7 +6,6 @@ class SignIn extends Component {
     super(props);
   }
 
-  //TODO: delete twitter integration
   render() {
     return (
       <Grid>
@@ -27,13 +26,6 @@ class SignIn extends Component {
                     <Col md={12}>
                       <a className="btn btn-block btn-social btn-google" onClick={() => {this.props.Authorization.loginWithGoogle()}}>
                         <i className="fa fa-google"></i> Sign in with Google
-                      </a>
-                    </Col>
-                  </div>
-                  <div className="row">
-                    <Col md={12}>
-                      <a className="btn btn-block btn-social btn-twitter" onClick={() => {this.props.Authorization.loginWithTwitter()}}>
-                        <i className="fa fa-twitter"></i> Sign in with Twitter
                       </a>
                     </Col>
                   </div>

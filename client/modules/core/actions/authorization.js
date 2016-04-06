@@ -32,11 +32,6 @@ export default {
       FlowRouter.redirectOrSetError('/profile', err);
     });
   },
-  loginWithTwitter({Meteor, FlowRouter}) {
-    Meteor.loginWithTwitter(function(err) {
-      FlowRouter.redirectOrSetError('/profile', err);
-    });
-  },
 
   clearErrors({LocalState}) {
     LocalState.set('auth-error', null);
