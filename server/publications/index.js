@@ -4,6 +4,7 @@ import exercises from './exercises';
 import workouts from './workouts';
 import items from './items';
 import skins from './skins';
+import levels from './levels';
 
 export default function() {
   character();
@@ -12,4 +13,5 @@ export default function() {
   workouts();
   items();
   skins();
+  levels();
 }

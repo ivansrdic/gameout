@@ -1,6 +1,4 @@
-import {Items} from './';
-import {Users} from './';
-import {Skins} from './';
+import {Items, Users, Skins, Levels} from './';
 
 let Characters = new Mongo.Collection('characters');
 
@@ -61,6 +59,7 @@ const StatsSchema = new SimpleSchema({
   level: {
     type: Number,
     min: 1,
+    max: 100,
     defaultValue: 1
   },
   gold: {
@@ -167,9 +166,24 @@ Characters.helpers({
     return Items.find({_id: {$in: [this.equipment.chestId, this.equipment.headId, 
                                    this.equipment.leftHandId, this.equipment.rightHandId]}});
   },
-  skins() {
+  getAppearence() {
     return Skins.find({_id: {$in: [this.appearance.hairId, this.appearance.torsoId, 
                                    this.appearance.legsId, this.appearance.colorId]}});
+  },
+
+  getTotalStats() {
+    let stats = this.stats;
+    this.getEquipment().forEach((item) => {
+      stats.strength += item.stats.strength;
+      stats.agility += item.stats.agility;
+      stats.stamina += item.stats.stamina;
+      stats.intelligence += item.stats.intelligence;
+    });
+    return stats;
+  },
+
+  level() {
+    return Levels.findOne({level: this.stats.level});
   }
 });
 

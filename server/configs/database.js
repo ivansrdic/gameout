@@ -1,5 +1,5 @@
 // Dev
-import {Users, Characters, Items, Skins, Exercises, Workouts} from '/collections';
+import {Users, Characters, Items, Skins, Exercises, Workouts, Levels} from '/collections';
 
 export default () => {
   let user = Users.findOne({username: 'gameout'});
@@ -11,6 +11,7 @@ export default () => {
     Skins.remove({});
     Exercises.remove({});
     Workouts.remove({});
+    Levels.remove({});
 
     Accounts.createUser({
       email: 'gameout@gameout.com',
@@ -283,7 +284,13 @@ export default () => {
         name: "head1",
         description: "head one",
         price: 1,
-        set: 1
+        set: 1,
+        stats: {
+          strength: 5,
+          stamina: 4,
+          agility: 3,
+          intelligence: 2
+        }
       }
     );
     const chestId1 = Items.insert(
@@ -292,7 +299,13 @@ export default () => {
         name: "chest1",
         description: "chest one",
         price: "1",
-        set: 1
+        set: 1,
+        stats: {
+          strength: 5,
+          stamina: 4,
+          agility: 3,
+          intelligence: 2
+        }
       }
     );
     const leftHandId1 = Items.insert(
@@ -301,7 +314,13 @@ export default () => {
         name: "leftHand1",
         description: "leftHand one",
         price: "1",
-        set: 1
+        set: 1,
+        stats: {
+          strength: 5,
+          stamina: 4,
+          agility: 3,
+          intelligence: 2
+        }
       }
     );
     const rightHandId1 = Items.insert(
@@ -310,7 +329,13 @@ export default () => {
         name: "rightHand1",
         description: "rightHand one",
         price: "1",
-        set: 1
+        set: 1,
+        stats: {
+          strength: 5,
+          stamina: 4,
+          agility: 3,
+          intelligence: 2
+        }
       }
     );
 
@@ -321,7 +346,13 @@ export default () => {
         name: "head2",
         description: "head two",
         price: "2",
-        set: 2
+        set: 2,
+        stats: {
+          strength: 5,
+          stamina: 4,
+          agility: 3,
+          intelligence: 2
+        }
       }
     );
     const chestId2 = Items.insert(
@@ -330,7 +361,13 @@ export default () => {
         name: "chest2",
         description: "chest two",
         price: "2",
-        set: 2
+        set: 2,
+        stats: {
+          strength: 5,
+          stamina: 4,
+          agility: 3,
+          intelligence: 2
+        }
       }
     );
     const leftHandId2 = Items.insert(
@@ -339,7 +376,13 @@ export default () => {
         name: "leftHand2",
         description: "leftHand two",
         price: "2",
-        set: 2
+        set: 2,
+        stats: {
+          strength: 5,
+          stamina: 4,
+          agility: 3,
+          intelligence: 2
+        }
       }
     );
     const rightHandId2 = Items.insert(
@@ -348,10 +391,24 @@ export default () => {
         name: "rightHand2",
         description: "rightHand two",
         price: "2",
-        set: 2
+        set: 2,
+        stats: {
+          strength: 5,
+          stamina: 4,
+          agility: 3,
+          intelligence: 2
+        }
       }
     );
 
+    // Levels
+    let base = 100;
+    for (let i = 1; i <= 100; i++) {
+      Levels.insert({
+        level: i,
+        experience: base + i*20
+      });
+    }
     
     const charId = Characters.insert(
       {
@@ -393,13 +450,13 @@ export default () => {
               "age": "21",
               "weight": "70",
               "height": "180",
-              "gender": "male"
+              "gender": "male",
+              "level": "beginner"
             }
           }
         }
       }
     );
   }
-
 
 }
