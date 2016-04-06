@@ -6,6 +6,10 @@ class SignIn extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    NProgress.done();
+  }
+
   render() {
     return (
       <Grid>
@@ -46,7 +50,6 @@ class SignIn extends Component {
 
                     <form onSubmit={this.handleRegisterFormSubmit.bind(this)}>
                       <Input ref="emailRegister" type="email" label="Email" placeholder="Email"/>
-                      <Input ref="usernameRegister" type="text" label="Username" placeholder="Username"/>
                       <Input ref="passwordRegister" type="password" label="Password" placeholder="Password"/>
                       <ButtonInput className="pull-right" type="submit" value="Register"/>
                     </form>
@@ -71,9 +74,9 @@ class SignIn extends Component {
   handleRegisterFormSubmit(e) {
     e.preventDefault();
 
-    const {emailRegister, usernameRegister, passwordRegister} = this.refs;
+    const {emailRegister, passwordRegister} = this.refs;
 
-    this.props.Authorization.register(emailRegister.getValue(), usernameRegister.getValue(), passwordRegister.getValue());
+    this.props.Authorization.register(emailRegister.getValue(), passwordRegister.getValue());
   }
 
   renderErrorMessage() {

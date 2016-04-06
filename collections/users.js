@@ -74,9 +74,22 @@ const UserSchema = new SimpleSchema({
     type: String,
     optional: true
   },
-  email: {
-    type: String,
+  emails: {
+    type: Array,
     optional: true
+  },
+  "emails.$": {
+    type: Object
+  },
+  "emails.$.address": {
+    type: String,
+    regEx: SimpleSchema.RegEx.Email
+  },
+  "emails.$.verified": {
+    type: Boolean
+  },
+  createdAt: {
+    type: Date
   },
   services: {
     type: Object,

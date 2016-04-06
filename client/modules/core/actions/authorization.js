@@ -1,8 +1,7 @@
 export default {
-  register({FlowRouter}, email, username, password) {
+  register({FlowRouter}, email, password) {
     Accounts.createUser({
       email: email,
-      username: username,
       password: password
     }, function(err) {
       FlowRouter.redirectOrSetError('/profile', err);
