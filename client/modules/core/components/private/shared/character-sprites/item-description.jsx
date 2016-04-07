@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {OverlayTrigger, Popover} from 'react-bootstrap';
+import Stats from '../character/stats.jsx';
 
 class ItemDescription extends Component {
   constructor(props) {
@@ -16,10 +17,7 @@ class ItemDescription extends Component {
           overlay={
             <Popover id={item.name} title={item.name}>
               {item.description}<br/>
-              <div><b>Strength</b>: {0}</div>
-              <div><b>Stamina</b>: {0}</div>
-              <div><b>Agility</b>: {0}</div>
-              <div><b>Intelligence</b>: {0}</div>
+              <Stats stats={item.stats}/>
             </Popover>}
         >
           <div className={"item-container item-container-" + item.type + " " + className}>
