@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Grid, Row, Col, Panel, Tabs, Tab, Input, ButtonInput} from 'react-bootstrap';
+import Message from '../../common/message.jsx';
 
 class SignIn extends Component {
   constructor(props) {
@@ -17,7 +18,9 @@ class SignIn extends Component {
           <Col md={12}>
             <Panel>
               <Col md={8} mdOffset={2}>
-                {this.renderErrorMessage()}
+
+                <Message error={this.props.error} success={this.props.success}/>
+
                 <div className="social-buttons">
                   <div className="row">
                     <Col md={12}>
@@ -77,17 +80,6 @@ class SignIn extends Component {
     const {emailRegister, passwordRegister} = this.refs;
 
     this.props.Authorization.register(emailRegister.getValue(), passwordRegister.getValue());
-  }
-
-  renderErrorMessage() {
-    if(this.props.error) {
-      return (
-        <div className="alert alert-danger alert-dismissible fade in" role="alert">
-          <button type="button" className="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <span className="fa fa-exclamation-circle"></span> <strong>{this.props.error}</strong>
-        </div>
-      );
-    }
   }
 }
 

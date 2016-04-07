@@ -2,8 +2,16 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import SignIn from '../../../components/public/sign-in/sign-in.jsx';
 
 function composer({Authorization, LocalState}, onData) {
-  const error = LocalState.get('auth-error');
-  onData(null, {error});
+  const state = LocalState.get(Authorization.stateKey());
+
+  if(state) {
+    onData(null, {
+      error: state.error,
+      success: state.success
+    });
+  } else {
+    onData(null, {});
+  }
 
   return Authorization.clearErrors;
 }
