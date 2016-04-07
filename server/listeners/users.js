@@ -20,4 +20,20 @@ export default () => {
 
     return user;
   });
+
+  Accounts.validateLoginAttempt(function(data) {
+    if(data.type === 'google' || data.type === 'facebook') return true;
+    else if(data.methodName === 'createUser') return false;
+
+    const loginEmail = data.methodArguments[0].user.email;
+    for(let email of data.user.emails) {
+      if(email.address == loginEmail) {
+        if(email.verified) {
+          return true;
+        } else {
+          Meteor.Error("Please verify your email")
+        }
+      }
+    }
+  });
 }

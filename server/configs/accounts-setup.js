@@ -15,4 +15,10 @@ export default () => {
       'loginStyle' : 'popup'
     });
   }
+
+  Accounts.config({
+    sendVerificationEmail: true
+  });
+
+  process.env.MAIL_URL = 'smtp://postmaster@sandbox4e333d9d03c8498ca87e533468696cb2.mailgun.org:6cfce0f331307da7674e899a5f454b0c@smtp.mailgun.org:587';
 };

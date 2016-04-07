@@ -4,6 +4,9 @@ export default {
       email: email,
       password: password
     }, function(err) {
+      err = {
+        reason: "Registration successful, please verify your email"
+      };
       FlowRouter.redirectOrSetError('/profile', err);
     });
   },
