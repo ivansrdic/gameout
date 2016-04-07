@@ -9,6 +9,10 @@ class EditInfo extends Component {
     this.level = "beginner";
   }
 
+  componentDidMount() {
+    NProgress.done();
+  }
+
   render() {
     const {
       errors,

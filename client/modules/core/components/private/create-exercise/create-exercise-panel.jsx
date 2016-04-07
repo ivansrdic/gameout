@@ -8,12 +8,6 @@ class CreateExercisePanel extends Component {
     super(props);
   }
 
-  componentDidUpdate() {
-    if (this.props.ready) {
-      NProgress.done();
-    }
-  }
-
   render() {
     if (this.props.ready)
       return (

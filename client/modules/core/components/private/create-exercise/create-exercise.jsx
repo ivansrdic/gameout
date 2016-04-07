@@ -5,6 +5,12 @@ class Workout extends Component {
   constructor(props) {
     super(props);
   }
+  
+  componentDidUpdate() {
+    if (this.props.ready) {
+      NProgress.done();
+    }
+  }
 
   render() {
     const {errors, nameValidation, descriptionValidation, unitValidation} = this.props;
