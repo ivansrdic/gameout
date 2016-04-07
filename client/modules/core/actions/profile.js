@@ -3,6 +3,10 @@ export default {
     return Meteor.user().character();
   },
 
+  getLevel({Meteor}) {
+    return Meteor.user().character().level();
+  },
+
   getInventory() {
     return Meteor.user().character().inventory();
   },

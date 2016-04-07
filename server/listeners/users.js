@@ -22,6 +22,8 @@ export default () => {
   });
 
   Accounts.validateLoginAttempt(function(data) {
+    if(data.error) return false;
+
     if(data.type === 'google' || data.type === 'facebook') return true;
     else if(data.methodName === 'createUser') throw new Meteor.Error("verify-email", "Please verify your email");
 

@@ -1,4 +1,6 @@
-const stateKey = "client.modules.core.actions.authorization";
+import Validation from './validation-utility';
+
+export const stateKey = "client.modules.core.actions.authorization";
 
 export default {
   stateKey() {
@@ -10,10 +12,12 @@ export default {
       email: email,
       password: password
     }, function(err) {
+      const validation = new Validation(LocalState, stateKey, "globalMessage");
       if(err.error === 'verify-email') {
-        setSuccess(LocalState, "Registration successful. An email verification link has been sent.");
+        validation.success("Registration successful. An email verification link has been sent.");
       } else {
-        setError(LocalState, err);
+        const errorMessage = err.reason;
+        validation.error(errorMessage);
       }
     });
   },
@@ -47,24 +51,13 @@ export default {
   }
 }
 
-export function setError(LocalState, err) {
-  const error = err.reason || err;
-  LocalState.set(stateKey, {
-    error
-  })
-}
-
 export function setErrorOrRedirect(FlowRouter, LocalState, location, err) {
   if(err) {
-    setError(LocalState, err);
+    const validation = new Validation(LocalState, stateKey, "globalMessage");
+    const errorMessage = err.reason;
+    validation.error(errorMessage);
   }
   else {
     FlowRouter.go(location);
   }
-}
-
-export function setSuccess(LocalState, success) {
-  LocalState.set(stateKey, {
-    success
-  });
 }

@@ -46,7 +46,12 @@ export default {
   },
 
   clearErrors({LocalState}) {
-    return LocalState.set(stateKey, null);
+    const {globalMessage} = LocalState.get(stateKey);
+    LocalState.set(stateKey, {globalMessage});
+
+    setTimeout(function() {
+      LocalState.set(stateKey, {});
+    }, 2000);
   },
 
   createExercise({LocalState}, exercise) {
@@ -54,7 +59,12 @@ export default {
       return;
 
     Meteor.call('addExercise', exercise, function (err) {
-      if (err) console.log(err);
+      const validation = new Validation(LocalState, stateKey, "globalMessage");
+      if(err) {
+        validation.error(err.reason);
+      } else {
+        validation.success("Exercise successfully added.");
+      }
     });
   },
 

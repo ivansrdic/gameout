@@ -28,7 +28,7 @@ class Profile extends Component {
   // TODO: break down into components
   render() {
     if (this.props.ready) {
-      const {character, getEquipment, getEquipmentIds, getInventory,
+      const {character, getLevel, getEquipment, getEquipmentIds, getInventory,
               selectWorkout, getSelectedWorkout, getWorkoutExercises} = this.props;
       return (
         <Grid className="profile" fluid={true}>
@@ -78,7 +78,7 @@ class Profile extends Component {
                     <ProgressBar bsStyle="danger" min={0} max={50} now={character.stats.health}
                                  label={"%(now)s/%(max)s"}/>
                     <span><i className="fa fa-star"></i> Experience</span>
-                    <ProgressBar bsStyle="warning" min={0} max={100} now={character.stats.experience}
+                    <ProgressBar bsStyle="warning" min={0} max={getLevel().experience} now={character.stats.experience}
                                  label="%(now)s/%(max)s"/>
                   </div>
                 </div>

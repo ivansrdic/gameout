@@ -12,6 +12,7 @@ class SignIn extends Component {
   }
 
   render() {
+    const {messages} = this.props;
     return (
       <Grid>
         <Row>
@@ -19,7 +20,7 @@ class SignIn extends Component {
             <Panel>
               <Col md={8} mdOffset={2}>
 
-                <Message error={this.props.error} success={this.props.success}/>
+                <Message message={messages.globalMessage}/>
 
                 <div className="social-buttons">
                   <div className="row">

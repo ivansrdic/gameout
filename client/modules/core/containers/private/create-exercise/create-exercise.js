@@ -3,18 +3,20 @@ import CreateExercise from '../../../components/private/create-exercise/create-e
 
 export const composer = ({context, stateKey, getExercises, clearErrors}, onData) => {
   const exercisesSubscription = Meteor.subscribe('exercises');
+
   const {LocalState} = context();
-  const errors = LocalState.get(stateKey()) || {};
+  const messages = LocalState.get(stateKey()) || {};
+
   if(exercisesSubscription.ready()) {
     const exercises = getExercises();
 
     onData(null, {
       ready: true,
-      errors,
+      messages,
       exercises
     });
   } else {
-    onData(null, {errors});
+    onData(null, {messages});
   }
 
   return clearErrors;

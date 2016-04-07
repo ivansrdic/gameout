@@ -11,23 +11,24 @@ class SignIn extends Component {
   }
 
   render() {
-    if (this.state.alertVisible) {
-      if(this.props.error)
-        return (
-        <Alert bsStyle="danger" onDismiss={this.handleAlertDismiss.bind(this)}>
-          <span className="fa fa-exclamation-circle"></span> <strong>{this.props.error}</strong>
-        </Alert>
-        );
-      else if(this.props.success)
-        return (
-          <Alert bsStyle="success" onDismiss={this.handleAlertDismiss.bind(this)}>
-            <span className="fa fa-check"></span> <strong>{this.props.success}</strong>
+    const {message} = this.props;
+    if (this.state.alertVisible && message) {
+        if(message.status === 'error')
+          return (
+          <Alert bsStyle="danger" onDismiss={this.handleAlertDismiss.bind(this)}>
+            <span className="fa fa-exclamation-circle"></span> <strong>{message.message}</strong>
           </Alert>
-        );
-      else
-        return (
-          <div></div>
-        );
+          );
+        else if(message.status === 'success')
+          return (
+            <Alert bsStyle="success" onDismiss={this.handleAlertDismiss.bind(this)}>
+              <span className="fa fa-check"></span> <strong>{message.message}</strong>
+            </Alert>
+          );
+        else
+          return (
+            <div></div>
+          );
     } else
       return (
         <div></div>
