@@ -119,6 +119,12 @@ class EditInfo extends Component {
   }
   //endregion
 
+  // My first JS specific monster.
+  resetForm() {
+    const labels = ['age', 'height', 'weight', 'username'];
+    labels.forEach((label) => {this.refs[label].getInputDOMNode().value = '';});
+  }
+
   handleFormSubmit(e) {
     e.preventDefault();
 
@@ -142,7 +148,10 @@ class EditInfo extends Component {
     heightValidation(userInfo.height);
     weightValidation(userInfo.weight);
     usernameValidation(userInfo.username);
-    
+
+    // this.refs.age.getInputDOMNode().value = '';
+    this.resetForm();
+
     submitUserInfo(userInfo);
   }
 }
