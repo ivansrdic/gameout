@@ -119,11 +119,12 @@ class EditInfo extends Component {
     e.preventDefault();
 
     const {age, weight, height} = this.refs;
-    const username = this.refs.username.trim(); // Never forget trim.
+    const {username} = this.refs;
     const {gender, level} = this;
 
     //TODO: Add username to user collection.
     const userInfo = {
+      username: username.getValue().trim(),
       age: Number(age.getValue()),
       weight: Number(weight.getValue()),
       height: Number(height.getValue()),
@@ -136,7 +137,7 @@ class EditInfo extends Component {
     ageValidation(userInfo.age);
     heightValidation(userInfo.height);
     weightValidation(userInfo.weight);
-    // usernameValidation(userInfo.username);
+    usernameValidation(userInfo.username);
     
     submitUserInfo(userInfo);
   }
