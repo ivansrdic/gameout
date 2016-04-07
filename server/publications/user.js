@@ -1,19 +1,42 @@
 import {Meteor} from 'meteor/meteor';
-import {Users} from '/collections';
+import {Users, Workouts, Exercises} from '/collections';
 
 export default function() {
-  Meteor.publish('user', function() {
-    if(this.userId)
-      return (
-        Users.find(this.userId,
-          {
-            fields: {
-              services: 0
+  Meteor.publishComposite('user', {
+    find: function() {
+      if(this.userId)
+        return (
+          Users.find(this.userId,
+            {
+              fields: {
+                services: 0,
+                emails: 0,
+                createdAt: 0
+              }
             }
-          }
-        )
-      );
-    else
-      this.ready();
-  })
+          )
+        );
+      else
+        return this.ready();
+    },
+    children: [
+      {
+        find: function(post) {
+          if(this.userId)
+            return Workouts.find({ownerId: this.userId});
+          else
+            return this.ready();
+        }
+      },
+      {
+        find: function(post) {
+          if(this.userId)
+            return Exercises.find({ownerId: this.userId});
+          else
+            return this.ready();
+        }
+      }
+    ]
+  });
 }
+         
