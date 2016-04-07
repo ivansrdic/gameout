@@ -446,6 +446,9 @@ export default () => {
             "characterId": charId,
             "exerciseIds": [ exerciseId1, exerciseId2, exerciseId3, exerciseId4 ],
             "workoutIds": [ workoutId1, workoutId2 ],
+            "currentWorkout": {
+              "completedExerciseIds": []
+            },
             "userInfo": {
               "age": "21",
               "weight": "70",
@@ -458,5 +461,4 @@ export default () => {
       }
     );
   }
-
 }

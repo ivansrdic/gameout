@@ -43,6 +43,19 @@ const UserInfoSchema = new SimpleSchema({
   }
 });
 
+const CurrentWorkoutSchema = new SimpleSchema({
+  selectedWorkoutId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    optional: true
+  },
+  completedExerciseIds: {
+    type: [String],
+    defaultValue: [],
+    minCount: 0
+  }
+});
+
 const UserDataSchema = new SimpleSchema({
   characterId: {
     type: String,
@@ -58,10 +71,8 @@ const UserDataSchema = new SimpleSchema({
     defaultValue: [],
     minCount: 0
   },
-  selectedWorkoutId: {
-    type: String,
-    regEx: SimpleSchema.RegEx.Id,
-    optional: true
+  currentWorkout: {
+    type: CurrentWorkoutSchema
   },
   userInfo: {
     type: UserInfoSchema,
@@ -117,10 +128,16 @@ Users.helpers({
   workouts() {
     return Workouts.find({_id: {$in: this.data.workoutIds}});
   },
-  selectedWorkout() {
-    if (!this.data.selectedWorkoutId) return undefined;
-    return Workouts.findOne(this.data.selectedWorkoutId);
+
+  // returns object with properties workout and completedExercises
+  currentWorkout() {
+    if (!this.data.currentWorkout.selectedWorkoutId) return undefined;
+    return {
+      workout: Workouts.findOne(this.data.currentWorkout.selectedWorkoutId),
+      completedExercises: Exercises.find({_id: {$in: this.data.currentWorkout.completedExerciseIds}})
+    }
   },
+
   userInfo() {
     // This may be very bugs funny.
     return !this.data.userInfo ? null : {
