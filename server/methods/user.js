@@ -4,13 +4,11 @@ import {Users, Workouts, Exercises} from '/collections';
 
 export default function() {
   Meteor.methods({
-    //userInfo must contain age, weight, height, gender AND level :P
+    //userInfo must contain age, weight, height, gender, level
     //TODO: fix dat
     'user.updateUserInfo'(userInfo) {
-      const username = userInfo.username;
-      delete userInfo.username;
       Users.update(this.userId, {$set: {
-        "username": username,
+        "username": userInfo.username,
         "data.userInfo": userInfo
       }});
     },
