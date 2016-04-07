@@ -1,6 +1,6 @@
 import Validation, {Utils} from './validation-utility';
 
-const stateKey = "CREATE_EXERCISE_ERRORS";
+const stateKey = "client.modules.core.actions.exercise";
 
 export default {
   stateKey() {
