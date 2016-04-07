@@ -8,8 +8,8 @@ export default {
     });
   },
 
-  login({Meteor, FlowRouter}, email, password) {
-    Meteor.loginWithPassword(email, password, function(err) {
+  login({Meteor, FlowRouter}, usernameEmail, password) {
+    Meteor.loginWithPassword(usernameEmail, password, function(err) {
       FlowRouter.redirectOrSetError('/profile', err);
     });
   },

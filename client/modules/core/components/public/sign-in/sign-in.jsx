@@ -40,7 +40,7 @@ class SignIn extends Component {
                     <h1 className="text-center">Log in</h1>
 
                     <form onSubmit={this.handleLoginFormSubmit.bind(this)}>
-                      <Input ref="emailLogin" type="text" label="Email" placeholder="Email"/>
+                      <Input ref="usernameEmailLogin" type="text" label="Username/Email" placeholder="Username/Email"/>
                       <Input ref="passwordLogin" type="password" label="Password" placeholder="Password"/>
                       <ButtonInput className="pull-right" type="submit" value="Login"/>
                     </form>
@@ -66,9 +66,9 @@ class SignIn extends Component {
   handleLoginFormSubmit(e) {
     e.preventDefault();
 
-    const {emailLogin, passwordLogin} = this.refs;
+    const {usernameEmailLogin, passwordLogin} = this.refs;
 
-    this.props.Authorization.login(emailLogin.getValue(), passwordLogin.getValue());
+    this.props.Authorization.login(usernameEmailLogin.getValue(), passwordLogin.getValue());
   }
 
   handleRegisterFormSubmit(e) {
