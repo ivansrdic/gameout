@@ -24,8 +24,8 @@ export default class Validation {
     this.setMessage("warning", message);
   }
 
-  success() {
-    this.setMessage("success", "");
+  success(message = "") {
+    this.setMessage("success", message);
   }
 }
 
@@ -51,7 +51,7 @@ const Utils = {
   },
   hasErrors(errors) {
     for (const error in errors) {
-      if (errors.hasOwnProperty(error) && errors[error].status === "error") return true;
+      if (errors.hasOwnProperty(error) && errors[error].status === "error" && error !== 'globalMessage') return true;
     }
     return false;
   },

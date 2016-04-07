@@ -26,7 +26,7 @@ class ExercisesList extends Component {
     return (exercises.map(function (exercise) {
       return (
         <Exercise
-          key={exercise.name}
+          key={exercise._id}
           exercise={exercise}
           onClickExercise={this.props.onClickExercise}
           onClickDelete={this.props.onClickDelete}
