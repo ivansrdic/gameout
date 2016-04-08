@@ -34,7 +34,7 @@ export default {
     });
   },
 
-  getSelectedWorkout({Meteor}) {
-    return Meteor.user().selectedWorkout()
+  getCurrentWorkout({Meteor}) {
+    return Meteor.user().currentWorkout()
   }
 }

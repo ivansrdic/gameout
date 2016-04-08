@@ -11,9 +11,11 @@ export default class Validation {
   }
 
   setMessage(status, message) {
-    let errors = this.getErrors(this.key);
-    errors[this.validationObject] = {status, message};
-    this.LocalState.set(this.key, errors);
+    setTimeout(function() {
+      let errors = this.getErrors(this.key);
+      errors[this.validationObject] = {status, message};
+      this.LocalState.set(this.key, errors);
+    }.bind(this), 0);
   }
 
   error(message) {
@@ -28,7 +30,6 @@ export default class Validation {
     this.setMessage("success", message);
   }
 }
-
 
 const Utils = {
   REQUIRED: "This is a required input.",

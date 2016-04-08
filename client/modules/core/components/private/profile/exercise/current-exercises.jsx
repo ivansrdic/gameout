@@ -8,11 +8,11 @@ class CurrentExercises extends Component {
   }
   
   render() {
-    const {selectedWorkout, getWorkoutExercises} = this.props;
-    if(selectedWorkout)
+    const {currentWorkout, getWorkoutExercises} = this.props;
+    if(currentWorkout)
       return (
         <div>
-          <ExercisesList exercises={getWorkoutExercises(selectedWorkout)} />
+          <ExercisesList exercises={getWorkoutExercises(currentWorkout.workout)} />
           <div className="center-button">
             <Button bsSize="large" bsStyle="success" onClick={this.props.finishWorkout}>Finish</Button>
           </div>

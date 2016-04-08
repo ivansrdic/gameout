@@ -3,16 +3,8 @@ import Profile from '../../../components/private/profile/profile.jsx';
 
 function composer({getCharacter}, onData) {
   const characterSubscription = Meteor.subscribe('character');
-  const levelsSubscription = Meteor.subscribe('levels');
-  const itemsSubscription = Meteor.subscribe('items');
-  const skinsSubscription = Meteor.subscribe('skins');
-  const exercisesSubscription = Meteor.subscribe('exercises');
-  const workoutsSubscription = Meteor.subscribe('workouts');
 
-  if (characterSubscription.ready() && levelsSubscription.ready() &&
-    itemsSubscription.ready() && skinsSubscription.ready() &&
-    exercisesSubscription.ready() && workoutsSubscription.ready()) {
-
+  if (characterSubscription.ready()) {
     const character = getCharacter();
     
     const data = {
@@ -33,7 +25,7 @@ function depsMapper(context, {Profile, Workout}) {
     getEquipment: Profile.getEquipment,
     getEquipmentIds: Profile.getEquipmentIds,
     selectWorkout: Profile.selectWorkout,
-    getSelectedWorkout: Profile.getSelectedWorkout,
+    getCurrentWorkout: Profile.getCurrentWorkout,
     equipItem: Profile.equipItem,
     getWorkouts: Workout.getWorkouts,
     getWorkoutExercises: Workout.getExercises

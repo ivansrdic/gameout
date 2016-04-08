@@ -6,11 +6,9 @@ class Workout extends Component {
   constructor(props) {
     super(props);
   }
-  
-  componentDidUpdate() {
-    if (this.props.ready) {
-      NProgress.done();
-    }
+
+  componentDidMount() {
+    NProgress.done();
   }
 
   render() {
@@ -77,13 +75,15 @@ class Workout extends Component {
     nameValidation(exercise.name);
     descriptionValidation(exercise.description);
     unitValidation(exercise.unit);
-    
-    this.props.createExercise(exercise, function() {
-      console.log(name);
-      name.value = "";
-      description.value = "";
-      unit.value = "";
-    });
+
+
+    this.props.createExercise(exercise);
+  }
+
+  resetForm() {
+    for(let ref in this.refs) {
+      this.refs[ref].getInputDOMNode().value = ''
+    }
   }
 }
 

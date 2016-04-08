@@ -46,17 +46,16 @@ export default {
   },
 
   clearErrors({LocalState}) {
-    const {globalMessage} = LocalState.get(stateKey);
-    LocalState.set(stateKey, {globalMessage});
+    LocalState.set(stateKey, null);
+  },
 
-    setTimeout(function() {
-      LocalState.set(stateKey, {});
-    }, 2000);
+  localState({LocalState}) {
+    return LocalState.get(stateKey) || {};
   },
 
   createExercise({LocalState}, exercise) {
     if (Utils.hasErrors(LocalState.get(stateKey)))
-      return;
+     return;
 
     Meteor.call('addExercise', exercise, function (err) {
       const validation = new Validation(LocalState, stateKey, "globalMessage");

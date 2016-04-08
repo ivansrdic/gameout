@@ -14,7 +14,7 @@ class MainLayout extends Component {
   }
 
   componentWillUpdate(nextProps) {
-    if(nextProps.ready) {
+    if(!this.props.ready && nextProps.ready) {
       NProgress.inc();
     }
   }
