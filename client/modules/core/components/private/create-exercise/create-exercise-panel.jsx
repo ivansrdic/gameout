@@ -9,29 +9,24 @@ class CreateExercisePanel extends Component {
   }
 
   render() {
-    if (this.props.ready)
-      return (
-        <Grid>
-          <Row>
-            <Col md={12}>
-              <Panel>
-                <Row>
-                  <Col md={10} mdOffset={1}>
-                    <ExercisesList exercises={this.props.exercises} onClickDelete={this.props.removeExercise}/>
-                  </Col>
-                  <Col md={10} mdOffset={1}>
-                    <CreateExercise user={this.props.user}/>
-                  </Col>
-                </Row>
-              </Panel>
-            </Col>
-          </Row>
-        </Grid>
-      );
-    else
-      return (
-        <div></div>
-      );
+    return (
+      <Grid>
+        <Row>
+          <Col md={12}>
+            <Panel>
+              <Row>
+                <Col md={10} mdOffset={1}>
+                  <ExercisesList exercises={this.props.exercises} onClickDelete={this.props.removeExercise}/>
+                </Col>
+                <Col md={10} mdOffset={1}>
+                  <CreateExercise user={this.props.user}/>
+                </Col>
+              </Row>
+            </Panel>
+          </Col>
+        </Row>
+      </Grid>
+    );
   }
 
 }
