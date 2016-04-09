@@ -19,7 +19,7 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 meteortoys:allthings                # Insanely Handy Development Tools
 
 kadira:flow-router-ssr              # A very simple router for meteor
-mrt:nprogress           # NProgress for Meteor
+mrt:nprogress                       # NProgress for Meteor
 
 #audit-argument-checks              # Force checking of arguments
 check                               # Check whether a value matches a pattern
@@ -35,6 +35,7 @@ reywood:publish-composite           # Publish a set of related documents from mu
 aldeed:collection2                  # Automatic validation of insert and update operations on the client and server
 dburles:collection-helpers
 
+percolate:synced-cron               # A simple cron system for meteor
 email                               # Send email messages
 
 kadira:dochead                      # Isomorphic way to manipulate document.head for Meteor apps
