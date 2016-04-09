@@ -32,6 +32,11 @@ export default {
   linkValidation({LocalState}, value) {
     const validation = new Validation(LocalState, stateKey, "linkValidation");
 
+    if(!Utils.isImageOrVideo(value)) {
+      validation.error(Utils.IMAGE_OR_VIDEO);
+      return;
+    }
+
     if (Utils.isEmpty(value)) {
       validation.error(Utils.REQUIRED);
       return;

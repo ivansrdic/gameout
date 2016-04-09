@@ -15,11 +15,11 @@ class Workout extends Component {
     const {messages, nameValidation, descriptionValidation, linkValidation, unitValidation} = this.props;
     return (
       <div>
-        <Message message={messages.globalMessage}/>
-        
+        <hr/>
         <form className="create-exercise" onSubmit={this.handleSetupFormSubmit.bind(this)}>
-          <hr/>
           <h1 className="text-center">Create exercise</h1>
+
+          <Message message={messages.globalMessage}/>
 
           <Input
             id="name"
@@ -48,7 +48,7 @@ class Workout extends Component {
             placeholder="Video/image link"
             help={messages.linkValidation ? messages.linkValidation.message : ""}
             bsStyle={messages.linkValidation ? messages.linkValidation.status : null}
-            onBlur={() => linkValidation(this.refs.unit.getValue())}
+            onBlur={() => linkValidation(this.refs.link.getValue())}
           />
 
           <Input
@@ -80,7 +80,14 @@ class Workout extends Component {
       link: link.getValue(),
       unit: unit.getValue()
     };
-    
+
+    const youtubeUrlMatch = exercise.link.match(/^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/);
+
+    if(youtubeUrlMatch != null) {
+      const id = youtubeUrlMatch[1];
+      exercise.link = "http://www.youtube.com/embed/" + id;
+    }
+
     const {nameValidation, descriptionValidation, linkValidation, unitValidation} = this.props;
     
     nameValidation(exercise.name);
@@ -93,9 +100,8 @@ class Workout extends Component {
   }
 
   resetForm() {
-    for(let ref in this.refs) {
-      this.refs[ref].getInputDOMNode().value = ''
-    }
+    const labels = ['name', 'description', 'link', 'unit'];
+    labels.forEach((label) => {this.refs[label].getInputDOMNode().value = '';});
   }
 }
 
