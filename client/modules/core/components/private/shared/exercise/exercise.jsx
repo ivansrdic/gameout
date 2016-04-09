@@ -16,7 +16,7 @@ class Exercise extends Component {
           <span className="badge" style={{float: "none", marginLeft: 10}}>{exercise.unit} reps</span>
           <span className="pull-right">
             {this.renderDelete()}
-            {this.renderSelect()}
+            {this.renderAdd()}
             {this.renderRemove()}
             {this.renderInfo()}
           </span>
@@ -37,18 +37,18 @@ class Exercise extends Component {
     if (this.props.onClickDelete) {
       return (
         <a className="btn btn-xs btn-danger"
-          onClick={this.props.onClickDelete ? this.onClickDelete.bind(this) : null}>
+          onClick={this.onClickDelete.bind(this)}>
           <i className="fa fa-trash"></i>
         </a>
       );
     }
   }
 
-  renderSelect() {
-    if(this.props.onSelectedAddToSelectedWorkout) {
+  renderAdd() {
+    if(this.props.onClickAdd) {
       return (
         <a className="btn btn-xs btn-success"
-           onClick={this.props.onSelectedAddToSelectedWorkout ? this.onSelectedAddToSelectedWorkout.bind(this) : null}>
+           onClick={this.onClickAdd.bind(this)}>
           <i className="fa fa-plus"></i>
         </a>
       );
@@ -56,10 +56,10 @@ class Exercise extends Component {
   }
 
   renderRemove() {
-    if(this.props.onClickRemoveExercise) {
+    if(this.props.onClickRemove) {
       return (
         <a className="btn btn-xs btn-danger"
-           onClick={this.props.onClickRemoveExercise ? this.onClickRemoveExercise.bind(this) : null}>
+           onClick={this.onClickRemove.bind(this)}>
           <i className="fa fa-minus"></i>
         </a>
       );
@@ -67,10 +67,10 @@ class Exercise extends Component {
   }
 
   renderInfo() {
-    if (this.props.onClickExerciseInfo) {
+    if (this.props.onClickInfo) {
       return (
         <a className="btn btn-xs btn-info"
-           onClick={this.props.onClickExerciseInfo ? this.onClickExerciseInfo.bind(this) : null}>
+           onClick={this.onClickInfo.bind(this)}>
           <i className="fa fa-info"></i>
         </a>
       );
@@ -91,25 +91,25 @@ class Exercise extends Component {
     onClickDelete(exercise);
   }
 
-  onSelectedAddToSelectedWorkout(e) {
+  onClickAdd(e) {
     e.stopPropagation();
-    const {exercise, onSelectedAddToSelectedWorkout} = this.props;
+    const {exercise, onClickAdd} = this.props;
 
-    onSelectedAddToSelectedWorkout(exercise);
+    onClickAdd(exercise);
   }
 
-  onClickRemoveExercise(e) {
+  onClickRemove(e) {
     e.stopPropagation();
-    const {exercise, onClickRemoveExercise} = this.props;
+    const {exercise, onClickRemove} = this.props;
 
-    onClickRemoveExercise(exercise);
+    onClickRemove(exercise);
   }
 
-  onClickExerciseInfo(e) {
+  onClickInfo(e) {
     e.stopPropagation();
-    const {exercise, onClickExerciseInfo} = this.props;
-
-    onClickExerciseInfo(exercise);
+    const {exercise, onClickInfo} = this.props;
+    
+    onClickInfo(exercise);
   }
 }
 

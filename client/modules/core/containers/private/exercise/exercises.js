@@ -1,5 +1,5 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
-import CreateExercisePanel from '../../../components/private/create-exercise/create-exercise-panel.jsx';
+import CreateExercisePanel from '../../../components/private/exercise/exercises.jsx';
 
 export const composer = ({getExercises}, onData) => {
   const exercises = getExercises();

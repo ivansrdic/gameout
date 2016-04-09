@@ -25,13 +25,7 @@ class ExercisesInfo extends Component {
           <Modal.Body>
             <p>{exercise.description}</p>
 
-            <iframe id="ytplayer" type="text/html" width="100%" height="300px"
-                    src={exercise.link}
-                    frameBorder="0">
-            </iframe>
-
-            <hr />
-
+            {this.renderLink()}
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={this.handleExerciseInfoCloseClick.bind(this)}>Close</Button>
@@ -43,6 +37,22 @@ class ExercisesInfo extends Component {
 
   handleExerciseInfoCloseClick() {
     this.props.closeExerciseInfo();
+  }
+
+  renderLink() {
+    const {exercise} = this.props;
+    if(exercise.link) {
+      return (
+        <div>
+          <hr />
+
+          <iframe id="ytplayer" type="text/html" width="100%" height="300px"
+                  src={exercise.link}
+                  frameBorder="0">
+          </iframe>
+        </div>
+      );
+    }
   }
 }
 

@@ -15,3 +15,8 @@
 .hide-of {
   overflow: hidden;
 }
+
+.list-group-item .btn.btn-xs {
+  margin-left: 5px;
+  min-width: 20px;
+}

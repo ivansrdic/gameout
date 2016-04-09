@@ -17,7 +17,7 @@ class ExercisesList extends Component {
     if (this.props.exercises)
       return (
         <div>
-          <ListGroup className="clearfix">
+          <ListGroup className="exercise-list">
             {this.renderExercises()}
           </ListGroup>
           <ExercisesInfo
@@ -45,17 +45,19 @@ class ExercisesList extends Component {
           completed={completed}
           onClickExercise={this.props.onClickExercise}
           onClickDelete={this.props.onClickDelete}
-          onSelectedAddToSelectedWorkout={this.props.onSelectedAddToSelectedWorkout}
-          onClickRemoveExercise={this.props.onClickRemoveExercise}
-          onClickExerciseInfo={this.onClickExerciseInfo.bind(this)}
+          onClickAdd={this.props.onClickAdd}
+          onClickRemove={this.props.onClickRemove}
+          onClickInfo={this.onClickInfo.bind(this)}
         />
       );
     }.bind(this)));
   }
 
-  onClickExerciseInfo(exercise) {
-    this.setState({exercise});
-    this.showExerciseInfo();
+  onClickInfo(exercise) {
+    this.setState({
+      exercise,
+      showInfo: true
+    });
   }
 
   showExerciseInfo() {

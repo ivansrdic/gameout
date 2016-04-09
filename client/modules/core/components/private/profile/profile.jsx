@@ -86,7 +86,7 @@ class Profile extends Component {
           </Row>
           <Row>
             <Col md={6} mdOffset={3}>
-              <Panel className="exercises-container">
+              <Panel className="current-workout-container">
                 <CurrentWorkout
                   getWorkouts={this.props.getWorkouts}
                   selectWorkout={this.selectWorkout.bind(this)}

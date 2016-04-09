@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import CreateExercise from './../../../containers/private/create-exercise/create-exercise';
+import CreateExercise from './../../../containers/private/exercise/create-exercise';
 
 class CreateExerciseModal extends Component {
   constructor(props) {

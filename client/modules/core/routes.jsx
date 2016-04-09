@@ -9,7 +9,7 @@ import Profile from './containers/private/profile/profile.js';
 import ProfileSetup from './containers/private/profile-setup/profile-setup.jsx';
 import EditInfo from './containers/private/profile-setup/edit-info.jsx';
 import CustomizeCharacter from './containers/private/profile-setup/customize-character.jsx';
-import CreateExercisePanel from './containers/private/create-exercise/create-exercise-panel.js';
+import Exercises from './containers/private/exercise/exercises.js';
 import CreateWorkout from './containers/private/create-workout/create-workout.js';
 
 export default function (injectDeps, {FlowRouter, LocalState}) {
@@ -110,12 +110,12 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
   });
 
 
-  PrivateRoutes.route('/create-exercise', {
+  PrivateRoutes.route('/exercises', {
     name: 'create-exercise',
 
     action() {
       mount(MainLayoutCtx, {
-        content: (user) => (<CreateExercisePanel user={user} />)
+        content: (user) => (<Exercises user={user} />)
       });
     }
   });

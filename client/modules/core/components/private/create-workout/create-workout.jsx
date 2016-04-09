@@ -60,7 +60,7 @@ class CreateWorkout extends Component {
                 </Col>
                 <Col md={6}>
                   <Panel header="Selected exercises for your workout">
-                      <ExercisesList exercises={this.showSelectedExercises()} onClickRemoveExercise={this.removeFromSelectedList.bind(this)}/>
+                      <ExercisesList exercises={this.showSelectedExercises()} onClickRemove={this.removeFromSelectedList.bind(this)}/>
                     <span className="pull-right">
                         <a className="btn btn-sm btn-success"
                            onClick={() => {this.setState({showCreateModal: true})}}>
@@ -85,7 +85,7 @@ class CreateWorkout extends Component {
 
   showData() {
     return (
-      <ExercisesList exercises={this.props.getExercises()} onSelectedAddToSelectedWorkout={this.addToSelectedList.bind(this)}/>
+      <ExercisesList exercises={this.props.getExercises()} onClickAdd={this.addToSelectedList.bind(this)}/>
     );
   }
 

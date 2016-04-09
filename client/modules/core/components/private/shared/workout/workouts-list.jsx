@@ -9,7 +9,7 @@ class WorkoutsList extends Component {
   
   render() {
     return (
-      <ListGroup>
+      <ListGroup className="workout-list">
         {this.renderWorkouts()}
       </ListGroup>
     );

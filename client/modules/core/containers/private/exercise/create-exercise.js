@@ -1,5 +1,5 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
-import CreateExercise from '../../../components/private/create-exercise/create-exercise.jsx';
+import CreateExercise from '../../../components/private/exercise/create-exercise.jsx';
 
 export const composer = ({localState, clearErrors}, onData) => {
   const messages = localState();
