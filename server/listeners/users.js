@@ -28,7 +28,7 @@ export default () => {
     else if(data.methodName === 'createUser') throw new Meteor.Error("verify-email", "Please verify your email");
 
     //TODO: remove
-    if(data.user.username === 'gameout') return true;
+    if(data.user.emails[0].address === 'gameout@gameout.com') return true;
 
     const email = data.user.emails[0];
     if(email.verified) {

@@ -3,7 +3,7 @@ import {Button} from 'react-bootstrap';
 import WorkoutsList from '../../shared/workout/workouts-list.jsx';
 import ExercisesList from '../../shared/exercise/exercises-list.jsx';
 
-class CurrentExercises extends Component {
+class CurrentWorkout extends Component {
   constructor(props) {
     super(props);
   }
@@ -46,4 +46,4 @@ class CurrentExercises extends Component {
   }
 }
 
-export default CurrentExercises;
+export default CurrentWorkout;

@@ -5,7 +5,7 @@ import Character from '../shared/character/character.jsx';
 import Stats from '../shared/character/stats.jsx';
 import Equipment from './equipment/equipment.jsx';
 import Inventory from './inventory/inventory.jsx';
-import CurrentExercises from './exercise/current-exercises.jsx';
+import CurrentWorkout from './exercise/current-workout.jsx';
 
 class Profile extends Component {
   constructor(props) {
@@ -87,7 +87,7 @@ class Profile extends Component {
           <Row>
             <Col md={6} mdOffset={3}>
               <div className="exercises-container">
-                <CurrentExercises
+                <CurrentWorkout
                   getWorkouts={this.props.getWorkouts}
                   selectWorkout={this.selectWorkout.bind(this)}
                   currentWorkout={getCurrentWorkout()}

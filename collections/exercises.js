@@ -17,6 +17,10 @@ const ExercisesSchema = new SimpleSchema({
   unit: {
     type: Number,
     min: 1
+  },
+  link: {
+    type: String,
+    optional: true
   }
 });
 
