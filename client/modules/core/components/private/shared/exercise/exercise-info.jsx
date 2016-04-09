@@ -27,7 +27,7 @@ class ExercisesInfo extends Component {
 
             <iframe id="ytplayer" type="text/html" width="100%" height="300px"
                     src={exercise.link}
-                    frameborder="0">
+                    frameBorder="0">
             </iframe>
 
             <hr />

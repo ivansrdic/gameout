@@ -29,6 +29,17 @@ export default {
     validation.success();
   },
 
+  linkValidation({LocalState}, value) {
+    const validation = new Validation(LocalState, stateKey, "linkValidation");
+
+    if (Utils.isEmpty(value)) {
+      validation.error(Utils.REQUIRED);
+      return;
+    }
+
+    validation.success();
+  },
+
   unitValidation({LocalState}, value) {
     const validation = new Validation(LocalState, stateKey, "unitValidation");
 
@@ -53,7 +64,7 @@ export default {
     return LocalState.get(stateKey) || {};
   },
 
-  createExercise({LocalState}, exercise) {
+  createExercise({LocalState}, exercise, resetForm) {
     if (Utils.hasErrors(LocalState.get(stateKey)))
      return;
 
@@ -63,6 +74,7 @@ export default {
         validation.error(err.reason);
       } else {
         validation.success("Exercise successfully added.");
+        resetForm();
       }
     });
   },

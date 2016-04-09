@@ -26,9 +26,9 @@ class Exercise extends Component {
 
   renderCheckbox() {
     const {checked} = this.props;
-    if(checked !== null) {
+    if(checked === true || checked === false) {
       return(
-        <i className={"list-group-item-checkbox fa "+ (this.props.completed?"fa-check":"fa") +"-square-o"}></i>
+        <i className={"list-group-item-checkbox fa " + (this.props.completed?"fa-check":"fa") + "-square-o"}></i>
       );
     }
   }

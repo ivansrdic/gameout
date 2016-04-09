@@ -12,7 +12,7 @@ class Workout extends Component {
   }
 
   render() {
-    const {messages, nameValidation, descriptionValidation, unitValidation} = this.props;
+    const {messages, nameValidation, descriptionValidation, linkValidation, unitValidation} = this.props;
     return (
       <div>
         <Message message={messages.globalMessage}/>
@@ -42,6 +42,16 @@ class Workout extends Component {
           />
 
           <Input
+            ref="link"
+            type="text"
+            label="Video/image link"
+            placeholder="Video/image link"
+            help={messages.linkValidation ? messages.linkValidation.message : ""}
+            bsStyle={messages.linkValidation ? messages.linkValidation.status : null}
+            onBlur={() => linkValidation(this.refs.unit.getValue())}
+          />
+
+          <Input
             ref="unit"
             type="text"
             label="Unit"
@@ -61,23 +71,25 @@ class Workout extends Component {
   handleSetupFormSubmit(e) {
     e.preventDefault();
     
-    const {name, description, unit} = this.refs;
+    const {name, description, link, unit} = this.refs;
     
     const exercise = {
       ownerId: this.props.user._id,
       name: name.getValue(),
       description: description.getValue(),
+      link: link.getValue(),
       unit: unit.getValue()
     };
     
-    const {nameValidation, descriptionValidation, unitValidation} = this.props;
+    const {nameValidation, descriptionValidation, linkValidation, unitValidation} = this.props;
     
     nameValidation(exercise.name);
     descriptionValidation(exercise.description);
+    linkValidation(exercise.link);
     unitValidation(exercise.unit);
 
 
-    this.props.createExercise(exercise);
+    this.props.createExercise(exercise, this.resetForm.bind(this));
   }
 
   resetForm() {

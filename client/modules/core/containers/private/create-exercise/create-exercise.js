@@ -18,6 +18,7 @@ export const depsMapper = (context, {Exercise}) => {
     localState: Exercise.localState,
     nameValidation: Exercise.nameValidation,
     descriptionValidation: Exercise.descriptionValidation,
+    linkValidation: Exercise.linkValidation,
     unitValidation: Exercise.unitValidation,
     createExercise: Exercise.createExercise,
     clearErrors: Exercise.clearErrors
