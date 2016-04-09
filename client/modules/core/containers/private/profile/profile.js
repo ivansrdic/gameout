@@ -28,7 +28,8 @@ function depsMapper(context, {Profile, Workout}) {
     getCurrentWorkout: Profile.getCurrentWorkout,
     equipItem: Profile.equipItem,
     getWorkouts: Workout.getWorkouts,
-    getWorkoutExercises: Workout.getExercises
+    getWorkoutExercises: Workout.getExercises,
+    completeExercise: Profile.completeExercise
   });
 }
 

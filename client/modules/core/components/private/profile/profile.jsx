@@ -5,7 +5,6 @@ import Character from '../shared/character/character.jsx';
 import Stats from '../shared/character/stats.jsx';
 import Equipment from './equipment/equipment.jsx';
 import Inventory from './inventory/inventory.jsx';
-import WorkoutSelection from './workout/workout-selection.jsx';
 import CurrentExercises from './exercise/current-exercises.jsx';
 
 class Profile extends Component {
@@ -28,8 +27,8 @@ class Profile extends Component {
   // TODO: break down into components
   render() {
     if (this.props.ready) {
-      const {character, getLevel, getEquipment, getEquipmentIds, getInventory,
-              selectWorkout, getCurrentWorkout, getWorkoutExercises} = this.props;
+      const {character, getLevel, getEquipment, getEquipmentIds, getInventory, equipItem,
+              selectWorkout, getCurrentWorkout, getWorkoutExercises, completeExercise} = this.props;
       return (
         <Grid className="profile" fluid={true}>
           <Row className="character-info no-gutter">
@@ -51,7 +50,7 @@ class Profile extends Component {
                 exitedClassName="equipment-exited"
               >
                 <div className="hide-of">
-                  <Equipment equipment={getEquipment()} unEquipItem={this.equipItem.bind(this)}/>
+                  <Equipment equipment={getEquipment()} unEquipItem={equipItem}/>
                   <Button className="toggle inventory-toggle" bsStyle="default"
                           onClick={this.showInventory.bind(this)}>Show inventory</Button>
                 </div>
@@ -89,9 +88,11 @@ class Profile extends Component {
             <Col md={6} mdOffset={3}>
               <div className="exercises-container">
                 <CurrentExercises
-                  showWorkoutSelection={this.showWorkoutSelection.bind(this)}
+                  getWorkouts={this.props.getWorkouts}
+                  selectWorkout={this.selectWorkout.bind(this)}
                   currentWorkout={getCurrentWorkout()}
                   getWorkoutExercises={getWorkoutExercises}
+                  completeExercise={completeExercise}
                   finishWorkout={selectWorkout}
                 />
               </div>
@@ -102,15 +103,8 @@ class Profile extends Component {
             show={this.state.showInventory}
             getEquipmentIds={getEquipmentIds}
             getInventory={getInventory}
-            equipItem={this.equipItem.bind(this)}
+            equipItem={equipItem}
             closeInventory={this.closeInventory.bind(this)}
-          />
-
-          <WorkoutSelection
-            show={this.state.showWorkoutSelection}
-            getWorkouts={this.props.getWorkouts}
-            selectWorkout={this.selectWorkout.bind(this)}
-            closeWorkoutSelection={this.closeWorkoutSelection.bind(this)}
           />
 
         </Grid>
@@ -125,10 +119,6 @@ class Profile extends Component {
     this.setState({
       showEquipment: !this.state.showEquipment
     });
-  }
-
-  equipItem(itemId) {
-    this.props.equipItem(itemId);
   }
 
   showInventory() {
@@ -150,7 +140,7 @@ class Profile extends Component {
   }
 
   selectWorkout(workout) {
-    this.props.selectWorkout(workout);
+    this.props.selectWorkout(workout._id);
 
     this.closeWorkoutSelection();
   }

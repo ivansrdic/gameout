@@ -1,0 +1,8 @@
+.list-group-item-checkbox {
+  margin-right: 5px;
+}
+
+.list-group-item .btn.btn-xs {
+  margin-left: 5px;
+  min-width: 20px;
+}

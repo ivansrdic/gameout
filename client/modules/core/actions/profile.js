@@ -28,13 +28,19 @@ export default {
       character.equipment.leftHandId, character.equipment.rightHandId];
   },
 
-  selectWorkout({Meteor}, workout) {
-    Meteor.call('selectWorkout', workout._id, function(err) {
+  selectWorkout({Meteor}, workoutId) {
+    Meteor.call('selectWorkout', workoutId, function(err) {
       if(err) console.log(err);
     });
   },
 
   getCurrentWorkout({Meteor}) {
     return Meteor.user().currentWorkout()
+  },
+
+  completeExercise({Meteor}, exerciseId) {
+    Meteor.call('selectExercise', exerciseId, function(err) {
+      if(err) console.log(err);
+    });
   }
 }

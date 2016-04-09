@@ -19,7 +19,7 @@ class WorkoutsList extends Component {
     const {workouts} = this.props;
 
     return (workouts.map(function (workout) {
-      return (<Workout key={workout.name} workout={workout} onClickWorkout={this.props.onClickWorkout}/>);
+      return (<Workout key={workout._id} workout={workout} onClickWorkout={this.props.onClickWorkout}/>);
     }.bind(this)));
   }
 }

@@ -44,7 +44,7 @@ const UserInfoSchema = new SimpleSchema({
 });
 
 const CurrentWorkoutSchema = new SimpleSchema({
-  selectedWorkoutId: {
+  currentWorkoutId: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
     optional: true
@@ -131,9 +131,9 @@ Users.helpers({
 
   // returns object with properties workout and completedExercises
   currentWorkout() {
-    if (!this.data.currentWorkout.selectedWorkoutId) return undefined;
+    if (!this.data.currentWorkout.currentWorkoutId) return undefined;
     return {
-      workout: Workouts.findOne(this.data.currentWorkout.selectedWorkoutId),
+      workout: Workouts.findOne(this.data.currentWorkout.currentWorkoutId),
       completedExercises: Exercises.find({_id: {$in: this.data.currentWorkout.completedExerciseIds}})
     }
   },
