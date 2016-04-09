@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Button, ProgressBar} from 'react-bootstrap';
+import {Grid, Row, Col, Panel, Button, ProgressBar} from 'react-bootstrap';
 import {Transition} from 'react-overlays';
 import Character from '../shared/character/character.jsx';
 import Stats from '../shared/character/stats.jsx';
 import Equipment from './equipment/equipment.jsx';
 import Inventory from './inventory/inventory.jsx';
-import CurrentWorkout from './exercise/current-workout.jsx';
+import CurrentWorkout from './workout/current-workout.jsx';
 
 class Profile extends Component {
   constructor(props) {
@@ -86,7 +86,7 @@ class Profile extends Component {
           </Row>
           <Row>
             <Col md={6} mdOffset={3}>
-              <div className="exercises-container">
+              <Panel className="exercises-container">
                 <CurrentWorkout
                   getWorkouts={this.props.getWorkouts}
                   selectWorkout={this.selectWorkout.bind(this)}
@@ -95,7 +95,7 @@ class Profile extends Component {
                   completeExercise={completeExercise}
                   finishWorkout={selectWorkout}
                 />
-              </div>
+              </Panel>
             </Col>
           </Row>
 
