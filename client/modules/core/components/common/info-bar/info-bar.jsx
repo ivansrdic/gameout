@@ -10,9 +10,9 @@ class Navigation extends Component {
     return (
       <Navbar id="info-bar" fixedTop={true} className={this.props.fixed?"":"info-bar"}>
         <Nav pullRight={true}>
-          <NavItem>Gold 0</NavItem>
-          <NavItem>Exp 0/120</NavItem>
-          <NavItem>HP 50/50</NavItem>
+          <NavItem><i className="fa fa-circle"></i> 0</NavItem>
+          <NavItem><i className="fa fa-star"></i> 0/120</NavItem>
+          <NavItem><i className="fa fa-heart"></i> 50/50</NavItem>
           <NavItem>Gameout Lvl 1</NavItem>
         </Nav>
       </Navbar>

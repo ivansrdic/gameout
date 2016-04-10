@@ -20,3 +20,15 @@
   margin-left: 5px;
   min-width: 20px;
 }
+
+.fa-heart {
+  color: #d9534f;
+}
+
+.fa-star {
+  color: #f0ad4e;
+}
+
+.fa-circle {
+  color: gold;
+}
