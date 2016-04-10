@@ -46,9 +46,16 @@ class Navigation extends Component {
     
           </Navbar.Collapse>
         </Navbar>
-        <InfoBar user={this.props.user} fixed={this.state.fixed} />
+        {this.renderInfoBar()}
       </div>
     );
+  }
+
+  renderInfoBar() {
+    console.log(this.props.user, "whoopsie");
+    if (this.props.user) {
+      return <InfoBar user={this.props.user} fixed={this.state.fixed} />
+    }
   }
 
   renderAuthNav() {
