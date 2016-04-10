@@ -1,28 +1,53 @@
 import React, {Component} from 'react';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
+import _ from 'lodash';
+import InfoBar from './info-bar/info-bar.jsx';
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      fixed: false
+    }
+  }
+  
+  componentDidMount() {
+    window.addEventListener('scroll', _.debounce(this.handleScroll.bind(this), 10));
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', _.debounce(this.handleScroll.bind(this), 10));
+  }
+
+  handleScroll() {
+    if(window.scrollY > 52) {
+      this.setState({fixed: true});
+    } else {
+      this.setState({fixed: false});
+    }
   }
 
   render() {
     return (
-      <Navbar style={{marginBottom: (this.props.fixed?72:0)}}>
-        <Navbar.Header>
-          <a href="/"><img src="logo.png" alt="Gameout logo"/></a>
-          <Navbar.Toggle />
-        </Navbar.Header>
-        <Navbar.Collapse>
-
-          {this.renderLoggedInNav()}
-
-          <Nav id="auth-nav" pullRight style={{marginRight: 0}}>
-            {this.renderAuthNav()}
-          </Nav>
-
-        </Navbar.Collapse>
-      </Navbar>
+      <div>
+        <Navbar style={{marginBottom: (this.state.fixed?72:0)}}>
+          <Navbar.Header>
+            <a href="/"><img src="logo.png" alt="Gameout logo"/></a>
+            <Navbar.Toggle />
+          </Navbar.Header>
+          <Navbar.Collapse>
+      
+            {this.renderLoggedInNav()}
+      
+            <Nav id="auth-nav" pullRight style={{marginRight: 0}}>
+              {this.renderAuthNav()}
+            </Nav>
+    
+          </Navbar.Collapse>
+        </Navbar>
+        <InfoBar user={this.props.user} fixed={this.state.fixed} />
+      </div>
     );
   }
 
