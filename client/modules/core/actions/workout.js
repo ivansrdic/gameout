@@ -30,14 +30,26 @@ export default {
   },
 
   clearErrors({LocalState}) {
-    return LocalState.set(stateKey, null);
+    LocalState.set(stateKey, null);
   },
 
-  createWorkout({LocalState}, workout) {
+  localState({LocalState}) {
+    return LocalState.get(stateKey) || {};
+  },
+
+  createWorkout({LocalState}, workout, resetForm) {
     if(Utils.hasErrors(LocalState.get(stateKey)))
       return;
 
-    Meteor.call('addWorkout', workout);
+    Meteor.call('addWorkout', workout, function (err) {
+      const validation = new Validation(LocalState, stateKey, "globalMessage");
+      if(err) {
+        validation.error(err.reason);
+      } else {
+        validation.success("Workout successfully added.");
+        resetForm();
+      }
+    });
   },
 
   getExercises({}, workout) {

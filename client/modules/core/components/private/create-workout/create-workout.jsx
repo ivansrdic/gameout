@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Grid, Row, Col, Panel, Input, ButtonInput} from 'react-bootstrap';
 import ExercisesList from '../shared/exercise/exercises-list.jsx';
 import CreateExerciseModal from './create-exercise-modal.jsx';
-
+import Message from '../../common/message.jsx';
 
 class CreateWorkout extends Component {
   constructor(props) {
@@ -21,8 +21,7 @@ class CreateWorkout extends Component {
   }
 
   render() {
-    const {errors} = this.props;
-    const {nameValidation, descriptionValidation} = this.props;
+    const {messages, nameValidation, descriptionValidation} = this.props;
 
     return (
       <Grid>
@@ -30,6 +29,7 @@ class CreateWorkout extends Component {
           <Col md={12}>
             <Panel>
               <h1 className="text-center">Create workout</h1>
+              <Message message={messages.globalMessage}/>
               <hr/>
               <form onSubmit={this.handleSetupFormSubmit.bind(this)}>
                 <Col md={6}>
@@ -38,8 +38,8 @@ class CreateWorkout extends Component {
                     type="text-left"
                     label="Workout name"
                     placeholder="Workout name"
-                    help={errors.nameValidation ? errors.nameValidation.message : ""}
-                    bsStyle={errors.nameValidation ? errors.nameValidation.status : null}
+                    help={messages.nameValidation ? messages.nameValidation.message : ""}
+                    bsStyle={messages.nameValidation ? messages.nameValidation.status : null}
                     onBlur={() => nameValidation(this.refs.name.getValue())}
                   />
                   <Input
@@ -47,8 +47,8 @@ class CreateWorkout extends Component {
                     type="textarea"
                     label="Description"
                     placeholder="Description"
-                    help={errors.descriptionValidation ? errors.descriptionValidation.message : ""}
-                    bsStyle={errors.descriptionValidation ? errors.descriptionValidation.status : null}
+                    help={messages.descriptionValidation ? messages.descriptionValidation.message : ""}
+                    bsStyle={messages.descriptionValidation ? messages.descriptionValidation.status : null}
                     onBlur={() => descriptionValidation(this.refs.description.getValue())}
                   />
                   <ButtonInput onClick={ ()=> this.setState({ showExerciseList: !this.state.showExerciseList })}>
@@ -142,7 +142,15 @@ class CreateWorkout extends Component {
     nameValidation(workout.name);
     descriptionValidation(workout.description);
 
-    this.props.createWorkout(workout);
+    this.props.createWorkout(workout, this.resetForm.bind(this));
+  }
+
+  resetForm() {
+    const labels = ['name', 'description'];
+    this.setState({selectedExerciseIds:[]});
+    this.setState({selectedExercises:[]});
+    this.setState({showExerciseList:false});
+    labels.forEach((label) => {this.refs[label].getInputDOMNode().value = '';});
   }
 }
 
