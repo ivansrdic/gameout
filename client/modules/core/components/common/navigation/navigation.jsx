@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
 import _ from 'lodash';
-import InfoBar from './info-bar/info-bar.jsx';
+import InfoBar from '../../../containers/common/navigation/info-bar/info-bar';
 
 class Navigation extends Component {
   constructor(props) {
