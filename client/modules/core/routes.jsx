@@ -2,6 +2,7 @@ import React from 'react';
 import {mount} from 'react-mounter';
 
 import MainLayout from './containers/main_layout.js';
+import PublicLayout from './components/public_layout.jsx';
 import Home from './components/public/home/home.jsx';
 import HowItWorks from  './components/public/how-it-works/how-it-works.jsx';
 import SignIn from './containers/public/sign-in/sign-in.js';
@@ -14,6 +15,7 @@ import CreateWorkout from './containers/private/create-workout/create-workout.js
 
 export default function (injectDeps, {FlowRouter, LocalState}) {
   const MainLayoutCtx = injectDeps(MainLayout);
+  const PublicLayoutCtx = injectDeps(PublicLayout);
 
   FlowRouter.route('/', {
     name: 'home',
@@ -24,7 +26,7 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
     }],
 
     action() {
-      mount(MainLayoutCtx, {
+      mount(PublicLayoutCtx, {
         content: () => (<Home />)
       });
     }
@@ -34,7 +36,7 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
     name: 'how-it-works',
 
     action() {
-      mount(MainLayoutCtx, {
+      mount(PublicLayoutCtx, {
         content: () => (<HowItWorks />)
       });
     }
@@ -44,7 +46,7 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
     name: 'sign-in',
 
     action() {
-      mount(MainLayoutCtx, {
+      mount(PublicLayoutCtx, {
         content: () => (<SignIn />)
       });
     }

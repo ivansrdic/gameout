@@ -8,7 +8,7 @@ class Navigation extends Component {
 
   render() {
     return (
-      <Navbar>
+      <Navbar style={{marginBottom: (this.props.fixed?72:0)}}>
         <Navbar.Header>
           <a href="/"><img src="logo.png" alt="Gameout logo"/></a>
           <Navbar.Toggle />

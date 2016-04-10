@@ -1,0 +1,18 @@
+#info-bar {
+  height: 52px;
+}
+
+#info-bar li {
+  float: right !important;
+}
+
+#info-bar li a {
+  cursor: default;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.info-bar {
+  position: relative !important;
+}
+
