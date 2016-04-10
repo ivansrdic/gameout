@@ -7,7 +7,7 @@ class SkinDescription extends Component {
   }
 
   render() {
-    const {skin} = this.props;
+    const {skin, className} = this.props;
     if (skin) {
 
       const size = 51;
@@ -19,7 +19,7 @@ class SkinDescription extends Component {
               {skin.description}<br/>
             </Popover>}
         >
-          <div className={"skin-container skin-container-" + skin.type}>
+          <div className={"skin-container skin-container-" + skin.type + " " + className}>
             <img
               src={"skins/" + skin.type + ".png"}
               className={"skin pixelated"} onClick={this.onClickHandler.bind(this)}
@@ -37,6 +37,7 @@ class SkinDescription extends Component {
   }
 
   onClickHandler() {
+    if (this.props.className == 'selected') return;
     const {onClickHandler, skin} = this.props;
 
     if (onClickHandler) onClickHandler(skin._id);

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import SkinDescription from './skin-description.jsx';
 
-class ItemDescriptionList extends Component {
+class SkinDescriptionList extends Component {
   constructor(props) {
     super(props);
   }
@@ -28,4 +28,4 @@ class ItemDescriptionList extends Component {
   }
 }
 
-export default ItemDescriptionList;
+export default SkinDescriptionList;

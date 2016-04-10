@@ -5,6 +5,7 @@ import Item from './../character-sprites/item.jsx';
 class Character extends Component {
   constructor(props) {
     super(props);
+  //  Accepted params; character, isNaked
   }
 
   render() {
@@ -17,12 +18,20 @@ class Character extends Component {
           <Skin skin={character.legs()}/>
           <Skin skin={character.color()}/>
         </div>
-        <div className="character-equipment">
-          <Item item={character.head()}/>
-          <Item item={character.chest()}/>
-          <Item item={character.leftHand()}/>
-          <Item item={character.rightHand()}/>
-        </div>
+        {this.renderEquipment()}
+      </div>
+    );
+  }
+
+  renderEquipment() {
+    const isNaked = this.props.isNaked;
+    const {character} = this.props;
+    if (!isNaked) return (
+      <div className="character-equipment">
+        <Item item={character.head()}/>
+        <Item item={character.chest()}/>
+        <Item item={character.leftHand()}/>
+        <Item item={character.rightHand()}/>
       </div>
     );
   }

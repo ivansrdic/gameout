@@ -17,6 +17,7 @@ export const depsMapper = (context, actions) => {
     weightValidation: actions.EditInfo.weightValidation,
     usernameValidation: actions.EditInfo.usernameValidation,
     submitUserInfo: actions.EditInfo.submitUserInfo,
+    createCharacter: actions.CustomizeCharacter.createCharacter,
     clearErrors: actions.EditInfo.clearErrors,
     context: () => context
   }

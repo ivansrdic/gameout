@@ -119,7 +119,6 @@ class EditInfo extends Component {
   }
   //endregion
 
-  // My first JS specific monster.
   resetForm() {
     const labels = ['age', 'height', 'weight', 'username'];
     labels.forEach((label) => {this.refs[label].getInputDOMNode().value = '';});
@@ -132,7 +131,6 @@ class EditInfo extends Component {
     const {username} = this.refs;
     const {gender, level} = this;
 
-    //TODO: Add username to user collection.
     const userInfo = {
       username: username.getValue().trim(),
       age: Number(age.getValue()),
@@ -148,11 +146,11 @@ class EditInfo extends Component {
     heightValidation(userInfo.height);
     weightValidation(userInfo.weight);
     usernameValidation(userInfo.username);
-
-    // this.refs.age.getInputDOMNode().value = '';
+    
     this.resetForm();
 
     submitUserInfo(userInfo);
+    this.props.createCharacter(); // Action won't run if user already has a character.
   }
 }
 

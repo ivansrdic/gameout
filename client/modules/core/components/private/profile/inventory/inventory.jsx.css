@@ -4,6 +4,7 @@
   cursor: pointer;
 }
 
-.item-container.selected {
+.item-container.selected,
+.skin-container.selected{
   background: green;
 }

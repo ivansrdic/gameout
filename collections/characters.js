@@ -140,6 +140,10 @@ Characters.helpers({
     if (!this.appearance.colorId) return undefined;
     return Skins.findOne(this.appearance.colorId);
   },
+  allSkins() {
+    // Refactor if we agree skins fall under achievements or monetization.
+    return Skins.find({});
+  },
 
   //equipment
   chest() {
