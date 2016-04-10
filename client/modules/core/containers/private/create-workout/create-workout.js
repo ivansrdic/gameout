@@ -1,18 +1,21 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import CreateWorkout from '../../../components/private/create-workout/create-workout.jsx';
 
-export const composer = ({context, stateKey,  clearErrors}, onData) => {
-  const {LocalState} = context();
-  const errors = LocalState.get(stateKey()) || {};
+export const composer = ({localState, clearErrors}, onData) => {
+  const messages = localState();
 
   onData(null, {
-    errors
+    ready: true,
+    messages
   });
+
+  return clearErrors;
 };
 
 function depsMapper(context, {Exercise, Workout}) {
   return ({
     stateKey: Workout.stateKey,
+    localState: Workout.localState,
     nameValidation : Workout.nameValidation,
     descriptionValidation: Workout.descriptionValidation,
     createWorkout: Workout.createWorkout,

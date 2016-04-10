@@ -95,7 +95,6 @@ class Workout extends Component {
     linkValidation(exercise.link);
     unitValidation(exercise.unit);
 
-
     this.props.createExercise(exercise, this.resetForm.bind(this));
   }
 
