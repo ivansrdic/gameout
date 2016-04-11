@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Navigation from './common/navigation/navigation.jsx';
+import PublicNavigation from './common/navigation/public_navigation.jsx';
 import Footer from './common/footer/footer.jsx';
 
 class PublicLayout extends Component {
@@ -16,10 +16,8 @@ class PublicLayout extends Component {
   render() {
     return (
       <div>
-        <Navigation/>
-        <div style={{marginTop: 20}}>
-          {this.props.content()}
-        </div>
+        <PublicNavigation />
+        {this.props.content()}
         <Footer />
       </div>
     );

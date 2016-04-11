@@ -24,7 +24,7 @@ class MainLayout extends Component {
     if(this.props.ready)
       return (
         <div>
-          <Navigation user={this.props.user} logout={this.props.logout}/>
+          <Navigation user={this.props.user} logout={this.props.logout} private={true}/>
           {this.props.content(this.props.user)}
           <Footer />
         </div>

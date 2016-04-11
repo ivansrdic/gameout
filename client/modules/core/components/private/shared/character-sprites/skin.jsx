@@ -9,7 +9,7 @@ class Skin extends Component {
     const {skin} = this.props;
     if (skin) {
       
-      const size = 51;
+      const size = 102;
       return (
         <div className={"skin-container skin-container-" + skin.type}>
           <img

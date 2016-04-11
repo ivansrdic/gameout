@@ -37,60 +37,25 @@ class Navigation extends Component {
             <Navbar.Toggle />
           </Navbar.Header>
           <Navbar.Collapse>
-      
-            {this.renderLoggedInNav()}
+
+            <Nav>
+              <NavItem href="/profile">Profile</NavItem>
+              <NavItem href="/edit-info">User info</NavItem>
+              <NavItem href="/customize-character">Character</NavItem>
+              <NavItem href="/profile-setup">Profile Setup</NavItem>
+              <NavItem href="/exercises">Exercises</NavItem>
+              <NavItem href="/create-workout">Create Workout</NavItem>
+            </Nav>
       
             <Nav id="auth-nav" pullRight style={{marginRight: 0}}>
-              {this.renderAuthNav()}
+              <NavItem onClick={() => {this.props.logout()}}>Log out</NavItem>
             </Nav>
     
           </Navbar.Collapse>
         </Navbar>
-        {this.renderInfoBar()}
+        <InfoBar user={this.props.user} fixed={this.state.fixed} />
       </div>
     );
-  }
-
-  renderInfoBar() {
-    console.log(this.props.user, "whoopsie");
-    if (this.props.user) {
-      return <InfoBar user={this.props.user} fixed={this.state.fixed} />
-    }
-  }
-
-  renderAuthNav() {
-    if (this.props.user) {
-      return <NavItem onClick={() => {this.props.logout()}}>Log out</NavItem>;
-    } else {
-      return <NavItem href="/sign-in">Log in/Register</NavItem>;
-    }
-  }
-
-  /**
-   * Method renders navigation elements that are specific
-   * to logged in users only.
-   * @returns {XML}
-   */
-  renderLoggedInNav() {
-    if (this.props.user) {
-      return (
-        <Nav>
-          <NavItem href="/profile">Profile</NavItem>
-          <NavItem href="/edit-info">User info</NavItem>
-          <NavItem href="/customize-character">Character</NavItem>
-          <NavItem href="/profile-setup">Profile Setup</NavItem>
-          <NavItem href="/exercises">Exercises</NavItem>
-          <NavItem href="/create-workout">Create Workout</NavItem>
-        </Nav>
-      );
-    } else {
-      return (
-        <Nav>
-          <NavItem href="/">Home</NavItem>
-          <NavItem href="/how-it-works">How it works</NavItem>
-        </Nav>
-      );
-    }
   }
 }
 

@@ -7,18 +7,27 @@ class Navigation extends Component {
   }
   
   render() {
-    const {character} = this.props;
+    const {user, character} = this.props;
 
-    return (
-      <Navbar id="info-bar" fixedTop={true} className={this.props.fixed?"":"info-bar"}>
-        <Nav pullRight={true}>
-          <NavItem><i className="fa fa-circle"></i> 0</NavItem>
-          <NavItem><i className="fa fa-star"></i> {character.stats.experience}/120</NavItem>
-          <NavItem><i className="fa fa-heart"></i> {character.stats.health}/50</NavItem>
-          <NavItem>{this.props.user.username + " " + "Lvl " + character.stats.level}</NavItem>
-        </Nav>
-      </Navbar>
-    );
+    if(character) {
+      return (
+        <Navbar id="info-bar" fixedTop={true} className={this.props.fixed?"":"info-bar"}>
+          <Nav pullRight={true}>
+            <NavItem><i className="fa fa-circle"></i> 0</NavItem>
+            <NavItem><i className="fa fa-star"></i> {character.stats.experience}/120</NavItem>
+            <NavItem><i className="fa fa-heart"></i> {character.stats.health}/50</NavItem>
+            <NavItem>{user.username + " " + "Lvl " + character.stats.level}</NavItem>
+          </Nav>
+        </Navbar>
+      );
+    } else {
+      return (
+        <Navbar id="info-bar" fixedTop={true} className={this.props.fixed?"":"info-bar"}>
+          <Nav pullRight={true}>
+          </Nav>
+        </Navbar>
+      );
+    }
   }
 }
 

@@ -71,9 +71,7 @@ export default function() {
       
       const characterId = Characters.insert(character);
 
-
       Items.find({set: {$in: [1, 2]}}).forEach((item) => {
-        console.log(item);
         Meteor.call('addItemToInventory', characterId, item._id, (err) => {if(err) console.log(err);});
       });
 
