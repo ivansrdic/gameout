@@ -22,7 +22,7 @@ export default {
     const validation = new Validation(LocalState, stateKey, "descriptionValidation");
 
     if(Utils.isEmpty(value)) {
-      validation.error(Utils.REQUIRED);
+      validation.warning(Utils.ARE_YOU_SURE);
       return;
     }
 

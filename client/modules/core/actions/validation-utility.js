@@ -37,6 +37,7 @@ const Utils = {
   POSITIVE_NUMBER: "This must be a positive integer number.",
   SERVER_ERROR: "There was a hiccup in communication. For security reasons, please enter your input again.",
   IMAGE_OR_VIDEO: "This should be a youtube or .mp4 video or a .jpg, .jpeg, .png, .gif image.",
+  ARE_YOU_SURE: "Are you sure you want to leave this field empty?",
 
   isNumeric(value) {
     return !isNaN(parseFloat(value)) && isFinite(value);
