@@ -11,11 +11,17 @@ export default class Validation {
   }
 
   setMessage(status, message) {
-    setTimeout(function() {
+    if(this.validationObject === "globalMessage") {
+      setTimeout(function() {
+        let errors = this.getErrors(this.key);
+        errors[this.validationObject] = {status, message};
+        this.LocalState.set(this.key, errors);
+      }.bind(this), 0);
+    } else {
       let errors = this.getErrors(this.key);
       errors[this.validationObject] = {status, message};
       this.LocalState.set(this.key, errors);
-    }.bind(this), 0);
+    }
   }
 
   error(message) {
@@ -55,6 +61,8 @@ const Utils = {
     if(url.match(/\.(jpeg|jpg|gif|png)$/) != null) return true; //jpeg jpg gif png image
     else if(url.match(/\.(mp4)$/) != null) return true;              //mp4 video
     else if(url.match(/^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/) != null) return true;
+    else if(url === "") return true;
+    return false;
   },
 
 

@@ -38,7 +38,7 @@ export default {
     }
 
     if (Utils.isEmpty(value)) {
-      validation.error(Utils.REQUIRED);
+      validation.warning(Utils.ARE_YOU_SURE);
       return;
     }
 
@@ -71,7 +71,7 @@ export default {
 
   createExercise({LocalState}, exercise, resetForm) {
     if (Utils.hasErrors(LocalState.get(stateKey)))
-     return;
+      return;
 
     Meteor.call('addExercise', exercise, function (err) {
       const validation = new Validation(LocalState, stateKey, "globalMessage");
