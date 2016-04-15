@@ -1,10 +1,17 @@
+import {Levels} from '/collections';
+
 export default {
   getCharacter({Meteor}) {
     return Meteor.user().character();
   },
 
   getLevel({Meteor}) {
-    return Meteor.user().character().level();
+    const level = Levels.findOne({level: Meteor.user().character().stats.level});
+    if(level) {
+      return level;
+    } else {
+      return Levels.findOne();
+    }
   },
 
   getInventory() {

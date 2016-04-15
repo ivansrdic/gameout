@@ -1,14 +1,15 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import InfoBar from '../../../../components/common/navigation/info-bar/info-bar.jsx';
 
-export const composer = ({context, getCharacter}, onData) => {
-  const stats = getCharacter().stats;
-  onData(null, {stats});
+export const composer = ({getCharacter}, onData) => {
+  const character = getCharacter();
+  onData(null, {character});
 };
 
-export const depsMapper = (context, actions) => {
+export const depsMapper = (context, {Profile}) => {
   return {
-    getCharacter: actions.Profile.getCharacter,
+    getCharacter: Profile.getCharacter,
+    getLevel: Profile.getLevel,
     context: () => context
   }
 };

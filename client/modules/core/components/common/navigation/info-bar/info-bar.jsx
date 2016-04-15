@@ -7,14 +7,15 @@ class Navigation extends Component {
   }
   
   render() {
-    const {user, stats} = this.props;
+    const {user, character, getLevel} = this.props;
+    const {stats} = character;
 
     if(user && stats) {
       return (
         <Navbar id="info-bar" fixedTop={true} className={this.props.fixed?"":"info-bar"}>
           <Nav pullRight={true}>
-            <NavItem><i className="fa fa-circle"></i> 0</NavItem>
-            <NavItem><i className="fa fa-star"></i> {stats.experience}/120</NavItem>
+            <NavItem><i className="fa fa-circle"></i> {stats.gold}</NavItem>
+            <NavItem><i className="fa fa-star"></i> {stats.experience}/{getLevel().experience}</NavItem>
             <NavItem><i className="fa fa-heart"></i> {stats.health}/50</NavItem>
             <NavItem>{user.username + " " + "Lvl " + stats.level}</NavItem>
           </Nav>

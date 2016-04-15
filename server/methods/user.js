@@ -28,6 +28,7 @@ export default function() {
         Users.update(this.userId, {$set: {"data.currentWorkout.currentWorkoutId": workoutId}});
       }
       else {
+        Meteor.call('character.reward', 50, 10);
         Users.update(this.userId, {$unset: {"data.currentWorkout.currentWorkoutId": ""}});
         Users.update(this.userId, {$set: {"data.currentWorkout.completedExerciseIds": []}});
       }
@@ -46,11 +47,15 @@ export default function() {
         throw new Meteor.Error("user.selectWorkout.unauthorized");
       }
 
+      
+
       if (user.data.currentWorkout.completedExerciseIds.indexOf(exerciseId) == -1) {
         Users.update(this.userId, {$push: {"data.currentWorkout.completedExerciseIds": exerciseId}});
+        Meteor.call('character.reward', 20, 5);
       }
       else {
         Users.update(this.userId, {$pull: {"data.currentWorkout.completedExerciseIds": exerciseId}});
+        Meteor.call('character.reward', -20, -5);
       }
     }
 

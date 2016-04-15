@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import {Users, Characters, Items, Skins} from '/collections';
+import {Users, Characters, Levels, Items, Skins} from '/collections';
 
 export default function() {
   Meteor.methods({
@@ -85,6 +85,35 @@ export default function() {
       }
 
       Characters.update(characterId, {$addToSet: {inventoryIds: itemId}});
+    },
+    
+    'character.reward'(experience, gold) {
+      const character = Characters.findOne({ownerId: this.userId});
+
+      const level = character.level();
+
+      if((character.stats.experience + experience) >= level.experience) {
+        Characters.update(character._id,
+          {
+            $set: {
+              "stats.experience": (character.stats.experience + experience) - level.experience,
+              "stats.level": character.stats.level + 1,
+              "stats.gold": character.stats.gold + gold
+            }
+          }
+        );
+      } else {
+        Characters.update(character._id,
+          {
+            $set: {
+              "stats.experience": character.stats.experience + experience,
+              "stats.gold": character.stats.gold + gold
+            }
+          }
+        );
+      }
+      
+
     }
 
   });

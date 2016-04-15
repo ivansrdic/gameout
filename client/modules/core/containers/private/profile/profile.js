@@ -1,11 +1,14 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import Profile from '../../../components/private/profile/profile.jsx';
 
-function composer({getCharacter}, onData) {
+function composer({getCharacter, getLevel}, onData) {
   const characterSubscription = Meteor.subscribe('character');
 
   if (characterSubscription.ready()) {
     const character = getCharacter();
+
+    console.log(getLevel());
+    console.log(character.stats.level);
     
     const data = {
       ready: true,

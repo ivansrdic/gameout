@@ -1,57 +1,69 @@
 import {Meteor} from 'meteor/meteor';
-import {Users, Characters, Workouts, Exercises} from '/collections';
+import {Users, Characters, Levels, Workouts, Exercises} from '/collections';
 
 export default function() {
-  Meteor.publishComposite('user', {
-    find: function() {
-      if(this.userId)
-        return (
-          Users.find(this.userId,
-            {
-              fields: {
-                services: 0,
-                emails: 0,
-                createdAt: 0
-              }
-            }
-          )
-        );
-      else
-        return this.ready();
-    },
-    children: [
-      {
-        find: function() {
-          if(this.userId)
-            return Characters.find(
-              {ownerId: this.userId},
+  Meteor.publishComposite('user', function() {
+    const character = Characters.findOne({ownerId: this.userId});
+    return {
+      find: function() {
+        if(this.userId)
+          return (
+            Users.find(this.userId,
               {
                 fields: {
-                  stats: 1
+                  services: 0,
+                  emails: 0,
+                  createdAt: 0
                 }
               }
-            );
-          else
-            return this.ready();
-        }
+            )
+          );
+        else
+          return this.ready();
       },
-      {
-        find: function() {
-          if(this.userId)
-            return Workouts.find({ownerId: this.userId});
-          else
-            return this.ready();
+      children: [
+        {
+          find: function() {
+            if(this.userId)
+              return Characters.find(
+                character._id,
+                {
+                  fields: {
+                    stats: 1
+                  }
+                }
+              );
+            else
+              return this.ready();
+          }
+        },
+        {
+          find: function() {
+            if(character) {
+              return Levels.find({level: character.stats.level});
+            }
+            else
+              return this.ready();
+          }
+        },
+        {
+          find: function() {
+            if(this.userId)
+              return Workouts.find({ownerId: this.userId});
+            else
+              return this.ready();
+          }
+        },
+        {
+          find: function() {
+            if(this.userId)
+              return Exercises.find({ownerId: this.userId});
+            else
+              return this.ready();
+          }
         }
-      },
-      {
-        find: function() {
-          if(this.userId)
-            return Exercises.find({ownerId: this.userId});
-          else
-            return this.ready();
-        }
-      }
-    ]
+      ]
+    }
   });
 }
          
