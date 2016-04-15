@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import {Users, Workouts, Exercises} from '/collections';
+import {Users, Characters, Workouts, Exercises} from '/collections';
 
 export default function() {
   Meteor.publishComposite('user', {
@@ -21,7 +21,22 @@ export default function() {
     },
     children: [
       {
-        find: function(post) {
+        find: function() {
+          if(this.userId)
+            return Characters.find(
+              {ownerId: this.userId},
+              {
+                fields: {
+                  stats: 1
+                }
+              }
+            );
+          else
+            return this.ready();
+        }
+      },
+      {
+        find: function() {
           if(this.userId)
             return Workouts.find({ownerId: this.userId});
           else
@@ -29,7 +44,7 @@ export default function() {
         }
       },
       {
-        find: function(post) {
+        find: function() {
           if(this.userId)
             return Exercises.find({ownerId: this.userId});
           else

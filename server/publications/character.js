@@ -3,7 +3,7 @@ import {Users, Characters, Items, Skins, Levels} from '/collections';
 
 export default function() {
   Meteor.publishComposite('character', function() {
-    let character = Characters.findOne({ownerId : this.userId});
+    const character = Characters.findOne({ownerId : this.userId});
 
     return {
       find: function() {
