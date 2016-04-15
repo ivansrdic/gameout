@@ -13,11 +13,12 @@ class Navigation extends Component {
   }
   
   componentDidMount() {
-    window.addEventListener('scroll', _.debounce(this.handleScroll.bind(this), 10));
+    this.debouncedHandleScroll = _.debounce(this.handleScroll.bind(this), 10);
+    window.addEventListener('scroll', this.debouncedHandleScroll);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', _.debounce(this.handleScroll.bind(this), 10));
+    window.removeEventListener('scroll', this.debouncedHandleScroll);
   }
 
   handleScroll() {
