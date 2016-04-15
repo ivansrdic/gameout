@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Component from '/client/modules/core/components/common/component.jsx';
 import {Grid, Row, Col, Panel, Input, ButtonInput} from 'react-bootstrap';
 import ExercisesList from '../shared/exercise/exercises-list.jsx';
 import CreateExerciseModal from './create-exercise-modal.jsx';
@@ -151,6 +152,7 @@ class CreateWorkout extends Component {
     this.setState({selectedExercises:[]});
     this.setState({showExerciseList:false});
     labels.forEach((label) => {this.refs[label].getInputDOMNode().value = '';});
+    this.props.clearState();
   }
 }
 

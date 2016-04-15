@@ -3,7 +3,7 @@ export default {
     return !!Meteor.user().userInfo();
   },
   
-  clearErrors({LocalState}) {
+  clearState({LocalState}) {
     return LocalState.set("ProfileSetupChoice", null);
   }
 }

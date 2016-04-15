@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Grid, Row, Col, Panel, Tabs, Tab, Input, ButtonInput} from 'react-bootstrap';
+import Component from '/client/modules/core/components/common/component.jsx';
 import Message from '../../common/message.jsx';
 
 class SignIn extends Component {
@@ -25,14 +26,14 @@ class SignIn extends Component {
                 <div className="social-buttons">
                   <div className="row">
                     <Col md={12}>
-                      <a className="btn btn-block btn-social btn-facebook" onClick={() => {this.props.Authorization.loginWithFacebook()}}>
+                      <a className="btn btn-block btn-social btn-facebook" onClick={() => {this.props.loginWithFacebook()}}>
                         <i className="fa fa-facebook"></i> Sign in with Facebook
                       </a>
                     </Col>
                   </div>
                   <div className="row">
                     <Col md={12}>
-                      <a className="btn btn-block btn-social btn-google" onClick={() => {this.props.Authorization.loginWithGoogle()}}>
+                      <a className="btn btn-block btn-social btn-google" onClick={() => {this.props.loginWithGoogle()}}>
                         <i className="fa fa-google"></i> Sign in with Google
                       </a>
                     </Col>
@@ -72,7 +73,7 @@ class SignIn extends Component {
 
     const {usernameEmailLogin, passwordLogin} = this.refs;
 
-    this.props.Authorization.login(usernameEmailLogin.getValue(), passwordLogin.getValue());
+    this.props.login(usernameEmailLogin.getValue(), passwordLogin.getValue());
   }
 
   handleRegisterFormSubmit(e) {
@@ -80,7 +81,7 @@ class SignIn extends Component {
 
     const {emailRegister, passwordRegister} = this.refs;
 
-    this.props.Authorization.register(emailRegister.getValue(), passwordRegister.getValue());
+    this.props.register(emailRegister.getValue(), passwordRegister.getValue());
   }
 }
 

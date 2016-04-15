@@ -1,4 +1,5 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Component from '/client/modules/core/components/common/component.jsx';
 import {Input, ButtonInput} from 'react-bootstrap';
 import Message from '../../common/message.jsx';
 
@@ -101,6 +102,7 @@ class Workout extends Component {
   resetForm() {
     const labels = ['name', 'description', 'link', 'unit'];
     labels.forEach((label) => {this.refs[label].getInputDOMNode().value = '';});
+    this.props.clearState();
   }
 }
 

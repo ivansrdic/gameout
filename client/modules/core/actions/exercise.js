@@ -61,7 +61,7 @@ export default {
     validation.success();
   },
 
-  clearErrors({LocalState}) {
+  clearState({LocalState}) {
     LocalState.set(stateKey, null);
   },
 
@@ -78,8 +78,8 @@ export default {
       if(err) {
         validation.error(err.reason);
       } else {
-        validation.success("Exercise successfully added.");
         resetForm();
+        validation.success("Exercise successfully added.");
       }
     });
   },

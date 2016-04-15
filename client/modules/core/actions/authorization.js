@@ -16,8 +16,7 @@ export default {
       if(err.error === 'verify-email') {
         validation.success("Registration successful. An email verification link has been sent.");
       } else {
-        const errorMessage = err.reason;
-        validation.error(errorMessage);
+        validation.error(err.reason);
       }
     });
   },
@@ -46,7 +45,11 @@ export default {
     });
   },
 
-  clearErrors({LocalState}) {
+  localState({LocalState}) {
+    return LocalState.get(stateKey) || {};
+  },
+
+  clearState({LocalState}) {
     LocalState.set(stateKey, null);
   }
 }
@@ -54,8 +57,7 @@ export default {
 export function setErrorOrRedirect(FlowRouter, LocalState, location, err) {
   if(err) {
     const validation = new Validation(LocalState, stateKey, "globalMessage");
-    const errorMessage = err.reason;
-    validation.error(errorMessage);
+    validation.error(err.reason);
   }
   else {
     FlowRouter.go(location);

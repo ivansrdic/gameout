@@ -1,4 +1,6 @@
-import React, {Component} from 'react';
+import React from 'react';
+import Component from '/client/modules/core/components/common/component.jsx';
+import Message from '../../common/message.jsx';
 import {Grid, Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
 
 class EditInfo extends Component {
@@ -15,7 +17,7 @@ class EditInfo extends Component {
 
   render() {
     const {
-      errors,
+      messages,
       ageValidation,
       heightValidation,
       weightValidation,
@@ -25,7 +27,7 @@ class EditInfo extends Component {
     return (
       <Col md={10} mdOffset={1}>
         <h1 className="text-center">Edit info</h1>
-        {this.renderServerErrorMessage(errors)}
+        <Message message={messages.globalMessage}/>
 
         <form onSubmit={this.handleFormSubmit.bind(this)}>
 
@@ -34,8 +36,8 @@ class EditInfo extends Component {
             type="text"
             label="Username"
             placeholder="Username"
-            help={errors.usernameValidation ? errors.usernameValidation.message : ""}
-            bsStyle={errors.usernameValidation ? errors.usernameValidation.status : null}
+            help={messages.usernameValidation ? messages.usernameValidation.message : ""}
+            bsStyle={messages.usernameValidation ? messages.usernameValidation.status : null}
             onBlur={(e) => usernameValidation(this.refs.username.getValue().trim())}/>
 
           <label htmlFor="gender" className="control-label input-group">Gender</label>
@@ -53,8 +55,8 @@ class EditInfo extends Component {
             type="text"
             label="Age"
             placeholder="Age"
-            help={errors.ageValidation ? errors.ageValidation.message : ""}
-            bsStyle={errors.ageValidation ? errors.ageValidation.status : null}
+            help={messages.ageValidation ? messages.ageValidation.message : ""}
+            bsStyle={messages.ageValidation ? messages.ageValidation.status : null}
             onBlur={(e) => ageValidation(Number(this.refs.age.getValue()))}/>
 
           <Input
@@ -62,8 +64,8 @@ class EditInfo extends Component {
             type="text"
             label="Height"
             placeholder="Height - measured in meters"
-            help={errors.heightValidation ? errors.heightValidation.message : ""}
-            bsStyle={errors.heightValidation ? errors.heightValidation.status : null}
+            help={messages.heightValidation ? messages.heightValidation.message : ""}
+            bsStyle={messages.heightValidation ? messages.heightValidation.status : null}
             onBlur={(e) => heightValidation(Number(this.refs.height.getValue()))}/>
 
           <Input
@@ -71,8 +73,8 @@ class EditInfo extends Component {
             type="text"
             label="Weight"
             placeholder="Weight - measured in kilograms"
-            help={errors.weightValidation ? errors.weightValidation.message : ""}
-            bsStyle={errors.weightValidation ? errors.weightValidation.status : null}
+            help={messages.weightValidation ? messages.weightValidation.message : ""}
+            bsStyle={messages.weightValidation ? messages.weightValidation.status : null}
             onBlur={(e) => weightValidation(Number(this.refs.weight.getValue()))}/>
 
           <label htmlFor="level" className="control-label input-group">Level</label>
@@ -95,20 +97,6 @@ class EditInfo extends Component {
     );
   }
 
-  renderServerErrorMessage(errors) {
-    if (errors.serverError) {
-      return (
-        <div className="alert alert-danger alert-dismissible fade in" role="alert">
-          <button type="button" className="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-          <span className="fa fa-exclamation-circle"></span> <strong>{errors.serverError}</strong>
-          <p>Correct your form and submit it again.</p>
-        </div>
-      );
-    }
-  }
-
   //region ButtonGroupHandlers
   handleGenderPick(e, value) {
     this.gender = value;
@@ -122,6 +110,7 @@ class EditInfo extends Component {
   resetForm() {
     const labels = ['age', 'height', 'weight', 'username'];
     labels.forEach((label) => {this.refs[label].getInputDOMNode().value = '';});
+    this.props.clearState();
   }
 
   handleFormSubmit(e) {
@@ -146,10 +135,8 @@ class EditInfo extends Component {
     heightValidation(userInfo.height);
     weightValidation(userInfo.weight);
     usernameValidation(userInfo.username);
-    
-    this.resetForm();
 
-    submitUserInfo(userInfo);
+    submitUserInfo(userInfo, this.resetForm.bind(this));
     this.props.createCharacter(); // Action won't run if user already has a character.
   }
 }

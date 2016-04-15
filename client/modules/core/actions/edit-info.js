@@ -89,20 +89,26 @@ export default {
     validation.success();
   },
 
-  submitUserInfo({LocalState}, userInfo) {
+  submitUserInfo({LocalState}, userInfo, resetForm) {
     if (Utils.hasErrors(LocalState.get(stateKey))) return;
 
     Meteor.call('user.updateUserInfo', userInfo, (err) => {
+      const validation = new Validation(LocalState, stateKey, "globalMessage");
       if (err) {
-        LocalState.set(stateKey, Utils.serverError());
+        validation.error(err.reason);
       } else {
-        LocalState.set(stateKey, null);
+        resetForm();
+        validation.success("Saka čast direktore (neka poruka tu)");
       }
     });
 
   },
 
-  clearErrors({LocalState}) {
+  localState({LocalState}) {
+    return LocalState.get(stateKey) || {};
+  },
+
+  clearState({LocalState}) {
     return LocalState.set(stateKey, null);
   }
 }

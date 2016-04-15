@@ -1,15 +1,13 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import CreateWorkout from '../../../components/private/create-workout/create-workout.jsx';
 
-export const composer = ({localState, clearErrors}, onData) => {
+export const composer = ({localState}, onData) => {
   const messages = localState();
 
   onData(null, {
     ready: true,
     messages
   });
-
-  return clearErrors;
 };
 
 function depsMapper(context, {Exercise, Workout}) {
@@ -21,7 +19,7 @@ function depsMapper(context, {Exercise, Workout}) {
     createWorkout: Workout.createWorkout,
     getExercises: Exercise.getExercises,
     getWorkouts: Workout.getWorkouts,
-    clearErrors: Workout.clearErrors,
+    clearState: Workout.clearState,
     context: () => context
   });
 }

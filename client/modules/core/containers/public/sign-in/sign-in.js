@@ -1,20 +1,22 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import SignIn from '../../../components/public/sign-in/sign-in.jsx';
 
-function composer({Authorization, LocalState}, onData) {
-  const messages = LocalState.get(Authorization.stateKey()) || {};
+function composer({localState}, onData) {
+  const messages = localState();
 
   onData(null, {
     messages
   });
-
-  return Authorization.clearErrors;
 }
 
-function depsMapper(context, actions) {
+function depsMapper(context, {Authorization}) {
   return ({
-    LocalState: context.LocalState,
-    Authorization: actions.Authorization
+    localState: Authorization.localState,
+    register: Authorization.register,
+    login: Authorization.login,
+    loginWithFacebook: Authorization.loginWithFacebook,
+    loginWithGoogle: Authorization.loginWithGoogle,
+    clearState: Authorization.clearState
   });
 }
 

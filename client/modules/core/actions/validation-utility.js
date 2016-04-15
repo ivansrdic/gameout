@@ -11,17 +11,9 @@ export default class Validation {
   }
 
   setMessage(status, message) {
-    if(this.validationObject === "globalMessage") {
-      setTimeout(function() {
-        let errors = this.getErrors(this.key);
-        errors[this.validationObject] = {status, message};
-        this.LocalState.set(this.key, errors);
-      }.bind(this), 0);
-    } else {
-      let errors = this.getErrors(this.key);
-      errors[this.validationObject] = {status, message};
-      this.LocalState.set(this.key, errors);
-    }
+    let errors = this.getErrors(this.key);
+    errors[this.validationObject] = {status, message};
+    this.LocalState.set(this.key, errors);
   }
 
   error(message) {
@@ -58,10 +50,10 @@ const Utils = {
 
   isImageOrVideo(url) {
     url = url.toLowerCase();
-    if(url.match(/\.(jpeg|jpg|gif|png)$/) != null) return true; //jpeg jpg gif png image
+    if(url === "") return true;
     else if(url.match(/\.(mp4)$/) != null) return true;              //mp4 video
-    else if(url.match(/^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/) != null) return true;
-    else if(url === "") return true;
+    else if(url.match(/\.(jpeg|jpg|gif|png)$/) != null) return true; //jpeg jpg gif png image
+    else if(url.match(/^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/) != null) return true; //youtube video
     return false;
   },
 
