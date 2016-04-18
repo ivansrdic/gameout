@@ -3,7 +3,10 @@ import {Users, Characters, Items, Skins, Levels} from '/collections';
 
 export default function() {
   Meteor.publishComposite('character', function() {
-    const character = Characters.findOne({ownerId : this.userId});
+    let character = Characters.findOne({ownerId : this.userId});
+    let characterId = null;
+    if(character) characterId = character._id;
+
     return {
       find: function() {
         if(character) {
@@ -16,6 +19,7 @@ export default function() {
         {
           find: function() {
             if(character) {
+              character = Characters.findOne(characterId);
               return Items.find({_id: {$in: character.inventoryIds}});
             }
             else
@@ -25,6 +29,7 @@ export default function() {
         {
           find: function() {
             if(character) {
+              character = Characters.findOne(characterId);
               return Skins.find();
             }
             else
@@ -34,6 +39,7 @@ export default function() {
         {
           find: function() {
             if(character) {
+              character = Characters.findOne(characterId);
               return Levels.find({level: character.stats.level});
             }
             else
