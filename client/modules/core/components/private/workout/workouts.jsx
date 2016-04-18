@@ -25,13 +25,14 @@ class CreateWorkoutPanel extends Component {
                       workouts={this.props.workouts}
                       getWorkoutExercises={this.props.getWorkoutExercises}
                       onClickDelete={this.props.removeWorkout}/>
-                  <div className="center-button">
-                    <Button bsStyle="info" onClick={this.showPublicWorkouts.bind(this)}>Search workouts</Button>
-                  </div>
                 </Col>
+                <div className="center-button">
+                  <Button bsStyle="info" onClick={this.showPublicWorkouts.bind(this)}>Search workouts</Button>
+                </div>
               </Row>
-              <Row md ={2 }>
-                <Col md={10} >
+
+              <Row>
+                <Col md={10} mdOffset={1} >
                   <CreateWorkout user={this.props.user}/>
                 </Col>
               </Row>
