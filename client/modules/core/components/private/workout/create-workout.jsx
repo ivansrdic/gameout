@@ -27,7 +27,7 @@ class CreateWorkout extends Component {
     return (
       <Grid>
         <Row>
-          <Col md={12}>
+          <Col md={10} >
             <Panel>
               <h1 className="text-center">Create workout</h1>
               <Message message={messages.globalMessage}/>

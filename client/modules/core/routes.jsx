@@ -11,7 +11,7 @@ import ProfileSetup from './containers/private/profile-setup/profile-setup.jsx';
 import EditInfo from './containers/private/profile-setup/edit-info.jsx';
 import CustomizeCharacter from './containers/private/profile-setup/customize-character.jsx';
 import Exercises from './containers/private/exercise/exercises.js';
-import CreateWorkout from './containers/private/create-workout/create-workout.js';
+import Workouts from './containers/private/workout/workouts.js';
 
 export default function (injectDeps, {FlowRouter, LocalState}) {
   const MainLayoutCtx = injectDeps(MainLayout);
@@ -122,12 +122,12 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
     }
   });
 
-  PrivateRoutes.route('/create-workout', {
+  PrivateRoutes.route('/workouts', {
     name: 'create-workout',
 
     action() {
       mount(MainLayoutCtx, {
-        content: (user) => (<CreateWorkout user={user} />)
+        content: (user) => (<Workouts user={user} />)
       });
     }
   });
