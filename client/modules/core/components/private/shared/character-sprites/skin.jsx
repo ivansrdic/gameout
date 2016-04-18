@@ -16,6 +16,7 @@ class Skin extends Component {
             src={"skins/" + skin.type + ".png"}
             className={"skin pixelated"} onClick={this.onClickHandler.bind(this)}
             style={{left: (skin.set-1)*-size+"px"}}
+            draggable="false"
           />
         </div>
       );

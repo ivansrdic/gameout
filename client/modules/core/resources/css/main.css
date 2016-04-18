@@ -2,3 +2,9 @@
   display: flex;
   justify-content: center;
 }
+
+img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}

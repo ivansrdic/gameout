@@ -7,6 +7,7 @@ import Home from './components/public/home/home.jsx';
 import HowItWorks from  './components/public/how-it-works/how-it-works.jsx';
 import SignIn from './containers/public/sign-in/sign-in.js';
 import Profile from './containers/private/profile/profile.js';
+import Party from './containers/private/party/party.js';
 import ProfileSetup from './containers/private/profile-setup/profile-setup.jsx';
 import EditInfo from './containers/private/profile-setup/edit-info.jsx';
 import CustomizeCharacter from './containers/private/profile-setup/customize-character.jsx';
@@ -77,6 +78,15 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
     action() {
       mount(MainLayoutCtx, {
         content: (user) => (<Profile user={user} />)
+      });
+    }
+  });
+
+  PrivateRoutes.route('/party', {
+    name: 'party',
+    action() {
+      mount(MainLayoutCtx, {
+        content: (user) => (<Party user={user} />)
       });
     }
   });

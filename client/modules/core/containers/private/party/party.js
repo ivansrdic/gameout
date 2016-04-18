@@ -1,12 +1,12 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
-import Profile from '../../../components/private/profile/profile.jsx';
+import Party from '../../../components/private/party/party.jsx';
 
-function composer({getCharacter, getLevel}, onData) {
+function composer({getCharacter}, onData) {
   const characterSubscription = Meteor.subscribe('character');
 
   if (characterSubscription.ready()) {
     const character = getCharacter();
-    
+
     const data = {
       ready: true,
       character
@@ -28,7 +28,7 @@ function depsMapper(context, {Profile, Workout}) {
     getCurrentWorkout: Profile.getCurrentWorkout,
     equipItem: Profile.equipItem,
     getWorkouts: Workout.getWorkouts,
-    getWorkoutExercises: Workout.getWorkoutExercises,
+    getWorkoutExercises: Workout.getExercises,
     completeExercise: Profile.completeExercise
   });
 }
@@ -36,4 +36,4 @@ function depsMapper(context, {Profile, Workout}) {
 export default composeAll(
   composeWithTracker(composer),
   useDeps(depsMapper)
-)(Profile);
+)(Party);

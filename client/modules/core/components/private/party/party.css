@@ -1,0 +1,12 @@
+.party .character-container {
+  height: 260px;
+}
+
+.party .character-container .character-sprites{
+  top: auto;
+  transform: none;
+}
+
+.party .character-container .character-details {
+  margin: 0 10px 5px 10px;
+}

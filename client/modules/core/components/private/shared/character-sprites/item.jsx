@@ -19,8 +19,10 @@ class Item extends Component {
         <div className={"item-container item-container-" + item.type}>
           <img
             src={"items/" + item.type + ".png"}
-            className={"item pixelated"} onClick={this.onClickHandler.bind(this)}
+            className={"item pixelated"}
+            onClick={this.onClickHandler.bind(this)}
             style={{left: (item.set-1)*-size+"px"}}
+            draggable="false"
           />
         </div>
       );

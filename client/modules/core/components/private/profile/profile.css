@@ -6,6 +6,10 @@
   background: #E0E0E0;
 }
 
+.character-info .character-container {
+  border: solid 1px #000;
+}
+
 .character-info .toggle {
   border-radius: 0;
   position: absolute;

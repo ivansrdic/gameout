@@ -5,6 +5,10 @@ export default {
     return Meteor.user().character();
   },
 
+  getParty({Meteor}) {
+    return Meteor.user().party();
+  },
+
   getLevel({Meteor}) {
     const level = Levels.findOne({level: Meteor.user().character().stats.level});
     if(level) {
