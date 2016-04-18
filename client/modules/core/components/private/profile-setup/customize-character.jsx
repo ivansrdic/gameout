@@ -17,8 +17,6 @@ export default class CustomizeCharacter extends Component {
       equipSkin
     } = this.props;
 
-    console.log(character, "Current character");
-
     return (
       <Col md={10} mdOffset={1}>
         <h1 className="text-center">Customize character</h1>

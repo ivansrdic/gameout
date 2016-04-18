@@ -16,5 +16,5 @@ export const depsMapper = (context, {Profile}) => {
 
 export default composeAll(
   composeWithTracker(composer),
-  useDeps(depsMapper),
+  useDeps(depsMapper)
 )(InfoBar);

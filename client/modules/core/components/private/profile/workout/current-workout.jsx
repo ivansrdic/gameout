@@ -9,7 +9,7 @@ class CurrentWorkout extends Component {
   }
   
   render() {
-    const {currentWorkout, getWorkoutExercises} = this.props;
+    const {currentWorkout, getWorkoutExercises, getWorkouts, selectWorkout} = this.props;
 
     if(currentWorkout) {
       const completedExerciseIds = currentWorkout.completedExercises.map((e) => {return e._id});
@@ -31,7 +31,10 @@ class CurrentWorkout extends Component {
       return (
         <div>
           <h2 className="text-center">Choose Your Workout For Today</h2>
-          <WorkoutsList workouts={this.props.getWorkouts()} onClickWorkout={this.props.selectWorkout} />
+          <WorkoutsList
+              workouts={getWorkouts()}
+              getWorkoutExercises={getWorkoutExercises}
+              onClickWorkout={selectWorkout} />
         </div>
       );
     }

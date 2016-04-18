@@ -25,62 +25,58 @@ class CreateWorkout extends Component {
     const {messages, nameValidation, descriptionValidation} = this.props;
 
     return (
-      <Grid>
-        <Row>
-          <Col md={12}>
-            <Panel>
-              <h1 className="text-center">Create workout</h1>
-              <Message message={messages.globalMessage}/>
-              <hr/>
-              <form onSubmit={this.handleSetupFormSubmit.bind(this)}>
-                <Col md={6}>
-                  <Input
-                    ref="name"
-                    type="text-left"
-                    label="Workout name"
-                    placeholder="Workout name"
-                    help={messages.nameValidation ? messages.nameValidation.message : ""}
-                    bsStyle={messages.nameValidation ? messages.nameValidation.status : null}
-                    onBlur={() => nameValidation(this.refs.name.getValue())}
-                  />
-                  <Input
-                    ref="description"
-                    type="textarea"
-                    label="Description"
-                    placeholder="Description"
-                    help={messages.descriptionValidation ? messages.descriptionValidation.message : ""}
-                    bsStyle={messages.descriptionValidation ? messages.descriptionValidation.status : null}
-                    onBlur={() => descriptionValidation(this.refs.description.getValue())}
-                  />
-                  <ButtonInput onClick={ ()=> this.setState({ showExerciseList: !this.state.showExerciseList })}>
-                    Show Exercise List
-                  </ButtonInput>
-                  <Panel collapsible expanded={this.state.showExerciseList}>
-                    {this.showData()}
-                  </Panel>
-                </Col>
-                <Col md={6}>
-                  <Panel header="Selected exercises for your workout">
-                      <ExercisesList exercises={this.showSelectedExercises()} onClickRemove={this.removeFromSelectedList.bind(this)}/>
+      <div>
+        <hr />
+        <h1 className="text-center">Create workout</h1>
+        <Message message={messages.globalMessage}/>
+
+        <form onSubmit={this.handleSetupFormSubmit.bind(this)}>
+          <Col md={6}>
+            <Input
+              ref="name"
+              type="text-left"
+              label="Workout name"
+              placeholder="Workout name"
+              help={messages.nameValidation ? messages.nameValidation.message : ""}
+              bsStyle={messages.nameValidation ? messages.nameValidation.status : null}
+              onBlur={() => nameValidation(this.refs.name.getValue())}
+            />
+            <Input
+              ref="description"
+              type="textarea"
+              label="Description"
+              placeholder="Description"
+              help={messages.descriptionValidation ? messages.descriptionValidation.message : ""}
+              bsStyle={messages.descriptionValidation ? messages.descriptionValidation.status : null}
+              onBlur={() => descriptionValidation(this.refs.description.getValue())}
+            />
+            <ButtonInput onClick={ ()=> this.setState({ showExerciseList: !this.state.showExerciseList })}>
+              Show Exercise List
+            </ButtonInput>
+            <Panel collapsible expanded={this.state.showExerciseList}>
+              {this.showData()}
+            </Panel>
+          </Col>
+          <Col md={6}>
+            <Panel header="Selected exercises for your workout">
+              <ExercisesList exercises={this.showSelectedExercises()}
+                             onClickRemove={this.removeFromSelectedList.bind(this)}/>
                     <span className="pull-right">
                         <a className="btn btn-sm btn-success"
                            onClick={() => {this.setState({showCreateModal: true})}}>
                           Create new exercise
                         </a>
                     </span>
-                  </Panel>
-                  <ButtonInput className="pull-right" type="submit" value="Save"/>
-                </Col>
-              </form>
             </Panel>
+            <ButtonInput className="pull-right" type="submit" value="Save"/>
           </Col>
-        </Row>
+        </form>
         <CreateExerciseModal
           user={this.props.user}
           show={this.state.showCreateModal}
           onClickClose={this.closeCreateExerciseModal.bind(this)}
         />
-      </Grid>
+      </div>
     );
   }
 
@@ -103,22 +99,22 @@ class CreateWorkout extends Component {
     var newSelectedExercise = this.state.selectedExercises.slice();
     var indexId = newSelectedIds.indexOf(exercise._id);
     var IndexExercise = newSelectedExercise.indexOf(exercise);
-    if(indexId != -1) {
-        newSelectedIds.splice(indexId, 1);
-        newSelectedExercise.splice(IndexExercise, 1);
-      this.setState({selectedExerciseIds:newSelectedIds});
-      this.setState({selectedExercises:newSelectedExercise});
+    if (indexId != -1) {
+      newSelectedIds.splice(indexId, 1);
+      newSelectedExercise.splice(IndexExercise, 1);
+      this.setState({selectedExerciseIds: newSelectedIds});
+      this.setState({selectedExercises: newSelectedExercise});
     }
   }
 
   addToSelectedList(exercise) {
     var newSelectedIds = this.state.selectedExerciseIds.slice();
     var newSelectedExercise = this.state.selectedExercises.slice();
-    if(newSelectedIds.indexOf(exercise._id) === -1) {
+    if (newSelectedIds.indexOf(exercise._id) === -1) {
       newSelectedIds.push(exercise._id);
       newSelectedExercise.push(exercise);
-      this.setState({selectedExerciseIds:newSelectedIds});
-      this.setState({selectedExercises:newSelectedExercise});
+      this.setState({selectedExerciseIds: newSelectedIds});
+      this.setState({selectedExercises: newSelectedExercise});
     }
   }
 
@@ -148,10 +144,12 @@ class CreateWorkout extends Component {
 
   resetForm() {
     const labels = ['name', 'description'];
-    this.setState({selectedExerciseIds:[]});
-    this.setState({selectedExercises:[]});
-    this.setState({showExerciseList:false});
-    labels.forEach((label) => {this.refs[label].getInputDOMNode().value = '';});
+    this.setState({selectedExerciseIds: []});
+    this.setState({selectedExercises: []});
+    this.setState({showExerciseList: false});
+    labels.forEach((label) => {
+      this.refs[label].getInputDOMNode().value = '';
+    });
     this.props.clearState();
   }
 }

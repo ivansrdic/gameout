@@ -60,12 +60,6 @@ class ExercisesList extends Component {
     });
   }
 
-  showExerciseInfo() {
-    this.setState({
-      showInfo: true
-    });
-  }
-
   closeExerciseInfo() {
     this.setState({
       showInfo: false
