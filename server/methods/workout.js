@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import {Users, Exercises, Workouts} from '/collections';
+import {Users, Exercises, Workouts, PublicWorkouts} from '/collections';
 
 export default function() {
   Meteor.methods({
@@ -19,11 +19,13 @@ export default function() {
 
       let ownerId = Workouts.findOne(workoutId).ownerId;
       if (this.userId != ownerId)
-        throw Meteor.Error("workout.removeWorkout.unauthorized");
+        throw new Meteor.Error("workout.removeWorkout.unauthorized");
 
       Workouts.remove(workoutId);
       
       Users.update(ownerId, {$pull: {"data.workoutIds": workoutId}});
+
+      PublicWorkouts.remove(workoutId);
     },
 
     'removeExerciseFromWorkout'(workoutId, exerciseId) {
@@ -32,7 +34,7 @@ export default function() {
 
       if (workout && exercise) {
         if (workout.ownerId != this.userId || exercise.ownerId != this.userId)
-          throw Meteor.Error("workout.removeExerciseFromWorkout.unauthorized");
+          throw new Meteor.Error("workout.removeExerciseFromWorkout.unauthorized");
 
         Workouts.update(workoutId, {$pull: {exerciseIds: exerciseId}});
       }
@@ -43,9 +45,47 @@ export default function() {
       let exerciseOwner = Workouts.findOne(workoutId).ownerId;
 
       if (workout.ownerId != this.userId || exercise.ownerId != this.userId)
-        throw Meteor.Error("workout.removeExerciseFromWorkout.unauthorized");
+        throw new Meteor.Error("workout.removeExerciseFromWorkout.unauthorized");
 
       Workouts.update(workoutId, {$addToSet: {exerciseIds: exerciseId}});
+    },
+
+    'publishWorkout'(workoutId) {
+      if (this.userId != Workouts.findOne(workoutId).ownerId) {
+        throw new Meteor.Error("workout.publishWorkout.unauthorized");
+      }
+
+      PublicWorkouts.insert({_id: workoutId});
+    },
+
+    'unpublishWorkout'(workoutId) {
+      if (this.userId != Workouts.findOne(workoutId).ownerId) {
+        throw new Meteor.Error("workout.unpublishWorkout.unauthorized");
+      }
+
+      PublicWorkouts.remove({_id: workoutId});
+    },
+
+    'subscribeToWorkout'(workoutId) {
+      if (this.userId == Workouts.findOne(workoutId).ownerId) {
+        throw new Meteor.Error("workout.subscribeToWorkout.unauthorized");
+      }
+      Users.update(
+        this.userId,
+        {$addToSet: {"data.workoutIds": workoutId}}
+      );
+    },
+
+    'unsubscribeFromWorkout'(workoutId) {
+      if (this.userId == Workouts.findOne(workoutId).ownerId) {
+        throw new Meteor.Error("workout.unsubscribeFromWorkout.unauthorized");
+      }
+
+      Users.update(
+        this.userId,
+        {$pull: {"data.workoutIds": workoutId}}
+      );
     }
+
   });
 }

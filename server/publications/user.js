@@ -48,16 +48,24 @@ export default function() {
         },
         {
           find: function() {
-            if(this.userId)
-              return Workouts.find({ownerId: this.userId});
+            if(this.userId){
+              let user = Users.findOne(this.userId);
+              return user.workouts();
+            }
             else
               return this.ready();
           }
         },
         {
           find: function() {
-            if(this.userId)
-              return Exercises.find({ownerId: this.userId});
+            if(this.userId){
+              let user = Users.findOne(this.userId);
+              let exerciseIds = []
+              user.workouts().forEach((workout) => {
+                exerciseIds = exerciseIds.concat(workout.exerciseIds)
+              });
+              return Exercises.find({_id: {$in: exerciseIds}});
+            }
             else
               return this.ready();
           }
