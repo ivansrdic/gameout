@@ -2,6 +2,14 @@
   height: 260px;
 }
 
+.party .equipment-toggle {
+  border-radius: 0;
+  position: absolute;
+  z-index: 20;
+  right: 0;
+  top: 0;
+}
+
 .party .character-container .character-sprites{
   top: auto;
   transform: none;
@@ -9,4 +17,8 @@
 
 .party .character-container .character-details {
   margin: 0 10px 5px 10px;
+}
+
+.quest-history .list-group {
+  margin-bottom: 0;
 }

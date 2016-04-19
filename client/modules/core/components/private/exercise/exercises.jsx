@@ -22,9 +22,6 @@ class CreateExercisePanel extends Component {
               <Row>
                 <Col md={10} mdOffset={1}>
                   <ExercisesList exercises={this.props.exercises} onClickDelete={this.props.removeExercise}/>
-                  <div className="center-button">
-                    <Button bsStyle="info" onClick={this.showPublicExercises.bind(this)}>Search exercises</Button>
-                  </div>
                 </Col>
               </Row>
               <Row>
@@ -45,9 +42,13 @@ class CreateExercisePanel extends Component {
   }
 
   showPublicExercises() {
+    /*
+     <div className="center-button">
+     <Button bsStyle="info" onClick={this.showPublicExercises.bind(this)}>Search exercises</Button>
+     </div>
     this.setState({
       showPublicExercises: true
-    });
+    });*/
   }
 
   closePublicExercises() {

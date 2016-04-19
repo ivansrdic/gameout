@@ -8,9 +8,9 @@ class Navigation extends Component {
   
   render() {
     const {user, character, getLevel} = this.props;
-    const {stats} = character;
 
-    if(user && stats) {
+    if(user && character) {
+      const {stats} = character;
       return (
         <Navbar id="info-bar" fixedTop={true} className={this.props.fixed?"":"info-bar"}>
           <Nav pullRight={true}>

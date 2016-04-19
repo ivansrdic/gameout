@@ -24,7 +24,7 @@ export default function() {
       children: [
         {
           find: function() {
-            if(this.userId)
+            if(character)
               return Characters.find(
                 character._id,
                 {
