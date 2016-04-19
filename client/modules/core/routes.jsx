@@ -13,6 +13,7 @@ import EditInfo from './containers/private/profile-setup/edit-info.jsx';
 import CustomizeCharacter from './containers/private/profile-setup/customize-character.jsx';
 import Exercises from './containers/private/exercise/exercises.js';
 import Workouts from './containers/private/workout/workouts.js';
+import Test from './components/test/test.jsx';
 
 export default function (injectDeps, {FlowRouter, LocalState}) {
   const MainLayoutCtx = injectDeps(MainLayout);
@@ -141,4 +142,15 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
       });
     }
   });
+
+  PrivateRoutes.route('/test', {
+    name: 'test',
+
+    action() {
+      mount(PublicLayoutCtx, {
+        content: () => (<Test />)
+      });
+    }
+  });
+
 }
