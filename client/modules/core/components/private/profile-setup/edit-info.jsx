@@ -136,8 +136,7 @@ class EditInfo extends Component {
     weightValidation(userInfo.weight);
     usernameValidation(userInfo.username);
 
-    submitUserInfo(userInfo, this.resetForm.bind(this));
-    this.props.createCharacter(); // Action won't run if user already has a character.
+    submitUserInfo(userInfo, this.resetForm.bind(this), this.props.createCharacter);
   }
 }
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Panel, Input, Button, ProgressBar} from 'react-bootstrap';
+import {Grid, Row, Col, Panel, Input, Button, ProgressBar, ListGroup, ListGroupItem} from 'react-bootstrap';
 import Character from '../shared/character/character.jsx';
 import Boss from '../shared/boss/boss.jsx';
 
@@ -38,6 +38,9 @@ class Party extends Component {
                 <Col sm={6} lg={4}>
                   <div className="character-container">
                     <Character character={character}/>
+                    <Button className="equipment-toggle" bsStyle="default">
+                      <i className="fa fa-times"></i>
+                    </Button>
                     <div className="character-details">
                       <h4 className="text-center">Stevo</h4>
                       <ProgressBar bsStyle="danger" min={0} max={50} now={character.stats.health}
@@ -48,6 +51,9 @@ class Party extends Component {
                 <Col sm={6} lg={4}>
                   <div className="character-container">
                     <Character character={character}/>
+                    <Button className="equipment-toggle" bsStyle="default">
+                      <i className="fa fa-times"></i>
+                    </Button>
                     <div className="character-details">
                       <h4 className="text-center">Šime</h4>
                       <ProgressBar bsStyle="danger" min={0} max={50} now={character.stats.health}
@@ -58,6 +64,9 @@ class Party extends Component {
                 <Col sm={6} lg={4}>
                   <div className="character-container">
                     <Character character={character}/>
+                    <Button className="equipment-toggle" bsStyle="default">
+                      <i className="fa fa-times"></i>
+                    </Button>
                     <div className="character-details">
                       <h4 className="text-center">Pero</h4>
                       <ProgressBar bsStyle="danger" min={0} max={50} now={character.stats.health}
@@ -67,6 +76,13 @@ class Party extends Component {
                 </Col>
               </Row>
               <Input type="text" placeholder="Enter your friend's username" buttonAfter={<Button>Invite to party</Button>} />
+              <Panel className="quest-history">
+                <ListGroup>
+                  <ListGroupItem>Stevo je uradio 15 dmg</ListGroupItem>
+                  <ListGroupItem>šime je uradio 10 dmg, al je ujebo pa su svi primili 2 dmg</ListGroupItem>
+                  <ListGroupItem>Pero je gej</ListGroupItem>
+                </ListGroup>
+              </Panel>
             </Col>
           </Row>
         </Grid>

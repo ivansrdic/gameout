@@ -7,8 +7,8 @@ export default function() {
     //userInfo must contain age, weight, height, gender, level
     //TODO: fix dat
     'user.updateUserInfo'(userInfo) {
+      Accounts.setUsername(this.userId, userInfo.username);
       Users.update(this.userId, {$set: {
-        "username": userInfo.username,
         "data.userInfo": userInfo
       }});
     },

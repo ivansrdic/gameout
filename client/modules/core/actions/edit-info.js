@@ -89,7 +89,7 @@ export default {
     validation.success();
   },
 
-  submitUserInfo({LocalState}, userInfo, resetForm) {
+  submitUserInfo({LocalState}, userInfo, resetForm, createCharacter) {
     if (Utils.hasErrors(LocalState.get(stateKey))) return;
 
     Meteor.call('user.updateUserInfo', userInfo, (err) => {
@@ -97,6 +97,7 @@ export default {
       if (err) {
         validation.error(err.reason);
       } else {
+        createCharacter(); 
         resetForm();
         validation.success("Saka čast direktore (neka poruka tu)");
       }

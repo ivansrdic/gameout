@@ -67,7 +67,7 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
       }
 
       // This part of code will be updated later on as profile setup divides into two components.
-      if((Meteor.user().data && !Meteor.user().data.characterId) && context.pathname != '/profile-setup') {
+      if((!Meteor.user().data || (Meteor.user().data && !Meteor.user().data.characterId)) && context.pathname != '/profile-setup') {
         redirect('/profile-setup');
       }
     }]
