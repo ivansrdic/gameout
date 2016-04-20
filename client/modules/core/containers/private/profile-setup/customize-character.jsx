@@ -8,7 +8,9 @@ export const composer = ({context, stateKey, clearErrors, getCharacter}, onData)
 
   if (characterSubscription.ready()) {
     const character = getCharacter();
-    onData(null, {errors, character});
+    onData(null, {errors, character, ready: true});
+  } else {
+    onData(null, {ready: false})
   }
 
   return clearErrors;
