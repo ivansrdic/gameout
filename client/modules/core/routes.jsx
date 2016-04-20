@@ -54,6 +54,16 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
     }
   });
 
+  FlowRouter.route('/test', {
+    name: 'test',
+
+    action() {
+      mount(PublicLayoutCtx, {
+        content: () => (<Test />)
+      });
+    }
+  });
+
   /*
      PRIVATE
    */
@@ -139,16 +149,6 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
     action() {
       mount(MainLayoutCtx, {
         content: (user) => (<Workouts user={user} />)
-      });
-    }
-  });
-
-  PrivateRoutes.route('/test', {
-    name: 'test',
-
-    action() {
-      mount(PublicLayoutCtx, {
-        content: () => (<Test />)
       });
     }
   });

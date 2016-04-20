@@ -10,7 +10,7 @@ export default {
   createCharacter({Meteor}) {
     if (Meteor.user().data.characterId) return;
 
-    Meteor.call('createCharacter', function(err) {
+    Meteor.call('character.createCharacter', function(err) {
       if (err) console.log(err);
     });
   },
@@ -26,7 +26,7 @@ export default {
   },
   
   equipSkin({Meteor}, skinId) {
-    Meteor.call('equipSkin', Meteor.user().data.characterId, skinId, function (err) {
+    Meteor.call('character.equipSkin', Meteor.user().data.characterId, skinId, function (err) {
       if (err) console.log(err);
     });
   },

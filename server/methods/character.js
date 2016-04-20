@@ -3,7 +3,7 @@ import {Users, Characters, Levels, Items, Skins} from '/collections';
 
 export default function() {
   Meteor.methods({
-    'equipItem'(characterId, itemId) {
+    'character.equipItem'(characterId, itemId) {
 
       let character = Characters.findOne(characterId);
       if (this.userId != character.ownerId || character.inventoryIds.indexOf(itemId) == -1){
@@ -27,7 +27,7 @@ export default function() {
 
     },
 
-    'equipSkin'(characterId, skinId) {
+    'character.equipSkin'(characterId, skinId) {
 
       let character = Characters.findOne(characterId);
       if (this.userId != character.ownerId){
@@ -51,7 +51,7 @@ export default function() {
 
     },
 
-    'createCharacter'() {
+    'character.createCharacter'() {
       let user = Users.findOne(this.userId);
       if (user.data.characterId) {
         throw Meteor.Error("character.createCharacter.unauthorized");
@@ -72,13 +72,13 @@ export default function() {
       const characterId = Characters.insert(character);
 
       Items.find({set: {$in: [1, 2]}}).forEach((item) => {
-        Meteor.call('addItemToInventory', characterId, item._id, (err) => {if(err) console.log(err);});
+        Meteor.call('character.addItemToInventory', characterId, item._id, (err) => {if(err) console.log(err);});
       });
 
       Users.update(this.userId, {$set: {"data.characterId": characterId}});
     },
 
-    'addItemToInventory'(characterId, itemId) {
+    'character.addItemToInventory'(characterId, itemId) {
       let character = Characters.findOne(characterId);
       if (this.userId != character.ownerId){
         throw Meteor.Error("character.addItemToInventory.unauthorized");

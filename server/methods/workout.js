@@ -3,7 +3,7 @@ import {Users, Exercises, Workouts, PublicWorkouts} from '/collections';
 
 export default function() {
   Meteor.methods({
-    'addWorkout'(workout) {
+    'workout.addWorkout'(workout) {
 
       workout.ownerId = this.userId;
       const workoutId = Workouts.insert(workout);
@@ -15,7 +15,7 @@ export default function() {
       return workoutId;
     },
 
-    'removeWorkout'(workoutId) {
+    'workout.removeWorkout'(workoutId) {
 
       let ownerId = Workouts.findOne(workoutId).ownerId;
       if (this.userId != ownerId)
@@ -28,7 +28,7 @@ export default function() {
       PublicWorkouts.remove(workoutId);
     },
 
-    'removeExerciseFromWorkout'(workoutId, exerciseId) {
+    'workout.removeExerciseFromWorkout'(workoutId, exerciseId) {
       let workout = Workouts.findOne(workoutId);
       let exercise = Workouts.findOne(workoutId);
 
@@ -40,7 +40,7 @@ export default function() {
       }
     },
 
-    'addExerciseToWorkout'(workoutId, exerciseId) {
+    'workout.addExerciseToWorkout'(workoutId, exerciseId) {
       let workoutOwner = Workouts.findOne(workoutId).ownerId;
       let exerciseOwner = Workouts.findOne(workoutId).ownerId;
 
@@ -50,7 +50,7 @@ export default function() {
       Workouts.update(workoutId, {$addToSet: {exerciseIds: exerciseId}});
     },
 
-    'publishWorkout'(workoutId) {
+    'workout.publishWorkout'(workoutId) {
       if (this.userId != Workouts.findOne(workoutId).ownerId) {
         throw new Meteor.Error("workout.publishWorkout.unauthorized");
       }
@@ -58,7 +58,7 @@ export default function() {
       PublicWorkouts.insert({_id: workoutId});
     },
 
-    'unpublishWorkout'(workoutId) {
+    'workout.unpublishWorkout'(workoutId) {
       if (this.userId != Workouts.findOne(workoutId).ownerId) {
         throw new Meteor.Error("workout.unpublishWorkout.unauthorized");
       }
@@ -66,7 +66,7 @@ export default function() {
       PublicWorkouts.remove({_id: workoutId});
     },
 
-    'subscribeToWorkout'(workoutId) {
+    'workout.subscribeToWorkout'(workoutId) {
       if (this.userId == Workouts.findOne(workoutId).ownerId) {
         throw new Meteor.Error("workout.subscribeToWorkout.unauthorized");
       }
@@ -76,7 +76,7 @@ export default function() {
       );
     },
 
-    'unsubscribeFromWorkout'(workoutId) {
+    'workout.unsubscribeFromWorkout'(workoutId) {
       if (this.userId == Workouts.findOne(workoutId).ownerId) {
         throw new Meteor.Error("workout.unsubscribeFromWorkout.unauthorized");
       }

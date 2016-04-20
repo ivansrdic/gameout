@@ -12,28 +12,28 @@ class Test extends Component {
 
   test1() {
     let workout = Workouts.findOne({name: "Full body routine"});
-    Meteor.call('publishWorkout', workout._id);
+    Meteor.call('workout.publishWorkout', workout._id);
   }
 
   test2() {
     let workout = Workouts.findOne({name: "Full body routine"});
-    Meteor.call('unpublishWorkout', workout._id);
+    Meteor.call('workout.unpublishWorkout', workout._id);
   }
 
   test3() {
     let workout = Workouts.findOne({name: "Full body routine"});
     console.log(workout);
-    Meteor.call('subscribeToWorkout', workout._id, (err) => { console.log(err); });
+    Meteor.call('workout.subscribeToWorkout', workout._id, (err) => { console.log(err); });
   }
 
   test4() {
     let workout = Workouts.findOne({name: "Full body routine"});
-    Meteor.call('unsubscribeFromWorkout', workout._id);
+    Meteor.call('workout.unsubscribeFromWorkout', workout._id);
   }
 
   test5() {
     let workout = Workouts.findOne({name: "Full body routine"});
-    Meteor.call('removeWorkout', workout._id);
+    Meteor.call('workout.removeWorkout', workout._id);
   }
 
   render() {

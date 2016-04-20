@@ -3,7 +3,7 @@ import {Users, Exercises, Workouts} from '/collections';
 
 export default function() {
   Meteor.methods({
-    'addExercise'(exercise) {
+    'exercise.addExercise'(exercise) {
 
       exercise.ownerId = this.userId;
       const exerciseId = Exercises.insert(exercise);
@@ -15,7 +15,7 @@ export default function() {
       return exerciseId;
     },
 
-    'removeExercise'(exerciseId) {
+    'exercise.removeExercise'(exerciseId) {
 
       let ownerId = Exercises.findOne(exerciseId).ownerId;
       if (this.userId != ownerId)
@@ -28,7 +28,7 @@ export default function() {
       let groups = Workouts.find({exerciseIds: exerciseId});
 
       groups.forEach((group) => {
-        Meteor.call('removeExerciseFromWorkout', group._id, exerciseId);
+        Meteor.call('workout.removeExerciseFromWorkout', group._id, exerciseId);
       });
     }
   });

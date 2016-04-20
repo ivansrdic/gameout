@@ -64,7 +64,7 @@ export default function() {
               user.workouts().forEach((workout) => {
                 exerciseIds = exerciseIds.concat(workout.exerciseIds)
               });
-              return Exercises.find({_id: {$in: exerciseIds}});
+              return Exercises.find({$or: [{_id: {$in: exerciseIds}}, {ownerId: this.userId}]});
             }
             else
               return this.ready();
