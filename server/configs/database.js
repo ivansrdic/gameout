@@ -427,8 +427,7 @@ export default () => {
           health: 50,
           experience: 0,
           level: 1,
-          gold: 0,
-          gender: "male"
+          gold: 0
         },
         equipment: {
         },

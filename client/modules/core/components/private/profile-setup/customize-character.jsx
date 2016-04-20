@@ -45,11 +45,6 @@ export default class CustomizeCharacter extends Component {
     );
   }
 
-  handleGenderPick(e, value) {
-    this.gender = value;
-    //  One day soon enough when we get a female model.
-  }
-
   handleUndoClick(e) {
     const {equipSkin, getAppearanceIds} = this.props;
     const currentAppearanceIds = getAppearanceIds();

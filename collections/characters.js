@@ -66,11 +66,6 @@ const StatsSchema = new SimpleSchema({
     type: Number,
     min: 0,
     defaultValue: 0
-  },
-  gender: {
-    type: String,
-    allowedValues: ["male", "female"],
-    defaultValue: "male"
   }
 });
 
