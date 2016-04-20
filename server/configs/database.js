@@ -133,6 +133,189 @@ export default () => {
       }
     );
 
+     Skins.insert(
+      {
+        type: "hair",
+        name: "hair6",
+        description: "hair six",
+        set: 6
+      }
+    );
+
+      Skins.insert(
+      {
+        type: "hair",
+        name: "hair7",
+        description: "hair seven",
+        set: 7
+      }
+    );
+
+     Skins.insert(
+      {
+        type: "hair",
+        name: "hair8",
+        description: "hair eight",
+        set: 8
+      }
+    );
+
+     Skins.insert(
+      {
+        type: "hair",
+        name: "hair9",
+        description: "hair nine",
+        set: 9
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair10",
+        description: "hair ten",
+        set: 10
+      }
+    );
+
+     Skins.insert(
+      {
+        type: "hair",
+        name: "hair11",
+        description: "hair eleven",
+        set: 11
+      }
+    );
+
+      Skins.insert(
+      {
+        type: "hair",
+        name: "hair12",
+        description: "hair twelve",
+        set: 12
+      }
+    );
+
+       Skins.insert(
+      {
+        type: "hair",
+        name: "hair13",
+        description: "hair thirteen",
+        set: 13
+      }
+    );
+
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair14",
+        description: "hair fourteen",
+        set: 14
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair15",
+        description: "hair fifteen",
+        set: 15
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair16",
+        description: "hair sixteen",
+        set: 16
+      }
+    );
+
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair17",
+        description: "hair seventeen",
+        set: 17
+      }
+    );
+
+    Skins.insert(
+      {
+        type: "hair",
+        name: "hair18",
+        description: "hair eighteen",
+        set: 18
+      }
+    );
+
+     Skins.insert(
+      {
+        type: "hair",
+        name: "hair19",
+        description: "hair nineteen",
+        set: 19
+      }
+    );
+
+      Skins.insert(
+      {
+        type: "hair",
+        name: "hair20",
+        description: "hair twenty",
+        set: 20
+      }
+    );
+
+     Skins.insert(
+      {
+        type: "hair",
+        name: "hair21",
+        description: "hair twentyone",
+        set: 21
+      }
+    );
+
+     Skins.insert(
+      {
+        type: "hair",
+        name: "hair22",
+        description: "hair twentytwo",
+        set: 22
+      }
+    );
+
+     Skins.insert(
+      {
+        type: "hair",
+        name: "hair23",
+        description: "hair twentythree",
+        set: 23
+      }
+    );
+
+      Skins.insert(
+      {
+        type: "hair",
+        name: "hair24",
+        description: "hair twentyfour",
+        set: 24
+      }
+    );
+
+     Skins.insert(
+      {
+        type: "hair",
+        name: "hair25",
+        description: "hair twentfive",
+        set: 25
+      }
+    );
+
+
     //set torso
     const torsoId1 = Skins.insert(
       {
@@ -281,8 +464,8 @@ export default () => {
     const headId1 = Items.insert(
       {
         type: "head",
-        name: "head1",
-        description: "head one",
+        name: "Helmet of the Initiatives",
+        description: "Basic trainee helmet",
         price: 1,
         set: 1,
         stats: {
@@ -296,29 +479,29 @@ export default () => {
     const chestId1 = Items.insert(
       {
         type: "chest",
-        name: "chest1",
-        description: "chest one",
+        name: "Chaest of the Initiatives",
+        description: "Basic trainee helmet",
         price: "1",
         set: 1,
         stats: {
-          strength: 5,
-          stamina: 4,
-          agility: 3,
-          intelligence: 2
+          strength: 2,
+          stamina: 2,
+          agility: 2,
+          intelligence: 1
         }
       }
     );
     const leftHandId1 = Items.insert(
       {
         type: "leftHand",
-        name: "leftHand1",
-        description: "leftHand one",
+        name: "Shield of Bravery",
+        description: "Basic shield of trainee",
         price: "1",
         set: 1,
         stats: {
-          strength: 5,
-          stamina: 4,
-          agility: 3,
+          strength: 3,
+          stamina: 1,
+          agility: 2,
           intelligence: 2
         }
       }
@@ -326,14 +509,14 @@ export default () => {
     const rightHandId1 = Items.insert(
       {
         type: "rightHand",
-        name: "rightHand1",
-        description: "rightHand one",
+        name: "Sword of Honor",
+        description: "First weapon of the future Warrior",
         price: "1",
         set: 1,
         stats: {
-          strength: 5,
-          stamina: 4,
-          agility: 3,
+          strength: 3,
+          stamina: 2,
+          agility: 2,
           intelligence: 2
         }
       }
@@ -343,42 +526,42 @@ export default () => {
     const headId2 = Items.insert(
       {
         type: "head",
-        name: "head2",
-        description: "head two",
+        name: "Helmet of Bravery",
+        description: "Keeps your head from enemy attacks.",
         price: "2",
         set: 2,
         stats: {
-          strength: 5,
-          stamina: 4,
-          agility: 3,
-          intelligence: 2
+          strength: 4,
+          stamina: 3,
+          agility: 2,
+          intelligence: 3
         }
       }
     );
     const chestId2 = Items.insert(
       {
         type: "chest",
-        name: "chest2",
-        description: "chest two",
+        name: "Armor of the Kings",
+        description: "Modern armor, gives agility.",
         price: "2",
         set: 2,
         stats: {
-          strength: 5,
-          stamina: 4,
-          agility: 3,
-          intelligence: 2
+          strength: 2,
+          stamina: 2,
+          agility: 4,
+          intelligence: 3
         }
       }
     );
     const leftHandId2 = Items.insert(
       {
         type: "leftHand",
-        name: "leftHand2",
-        description: "leftHand two",
+        name: "Shield of Power",
+        description: "Good defense is the best offense.",
         price: "2",
         set: 2,
         stats: {
-          strength: 5,
+          strength: 3,
           stamina: 4,
           agility: 3,
           intelligence: 2
@@ -388,8 +571,8 @@ export default () => {
     const rightHandId2 = Items.insert(
       {
         type: "rightHand",
-        name: "rightHand2",
-        description: "rightHand two",
+        name: "Sword of Power",
+        description: "Whoever holds this sword has a great power!",
         price: "2",
         set: 2,
         stats: {
