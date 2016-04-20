@@ -40,7 +40,7 @@ export default {
   createWorkout({LocalState}, workout, resetForm) {
     if(Utils.hasErrors(LocalState.get(stateKey)))
       return;
-    Meteor.call('addWorkout', workout, function (err) {
+    Meteor.call('workout.addWorkout', workout, function (err) {
       const validation = new Validation(LocalState, stateKey, "globalMessage");
       if(err) {
         validation.error(err.reason);
@@ -52,7 +52,7 @@ export default {
   },
 
   removeWorkout({}, workout) {
-    Meteor.call('removeWorkout', workout._id, function (err) {
+    Meteor.call('workout.removeWorkout', workout._id, function (err) {
       if (err) console.log(err);
     });
   },

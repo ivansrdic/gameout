@@ -73,7 +73,7 @@ export default {
     if (Utils.hasErrors(LocalState.get(stateKey)))
       return;
 
-    Meteor.call('addExercise', exercise, function (err) {
+    Meteor.call('exercise.addExercise', exercise, function (err) {
       const validation = new Validation(LocalState, stateKey, "globalMessage");
       if(err) {
         validation.error(err.reason);
@@ -89,7 +89,7 @@ export default {
   },
 
   removeExercise({}, exercise) {
-    Meteor.call('removeExercise', exercise._id, function (err) {
+    Meteor.call('exercise.removeExercise', exercise._id, function (err) {
       if (err) console.log(err);
     });
   }

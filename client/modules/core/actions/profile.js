@@ -23,7 +23,7 @@ export default {
   },
 
   equipItem({Meteor}, itemId) {
-    Meteor.call('equipItem', Meteor.user().data.characterId, itemId, function (err) {
+    Meteor.call('character.equipItem', Meteor.user().data.characterId, itemId, function (err) {
       if (err) console.log(err);
     });
   },
@@ -40,7 +40,7 @@ export default {
   },
 
   selectWorkout({Meteor}, workoutId) {
-    Meteor.call('selectWorkout', workoutId, function(err) {
+    Meteor.call('user.selectWorkout', workoutId, function(err) {
       if(err) console.log(err);
     });
   },
@@ -50,7 +50,7 @@ export default {
   },
 
   completeExercise({Meteor}, exerciseId) {
-    Meteor.call('selectExercise', exerciseId, function(err) {
+    Meteor.call('user.selectExercise', exerciseId, function(err) {
       if(err) console.log(err);
     });
   }

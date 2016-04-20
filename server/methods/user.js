@@ -19,7 +19,7 @@ export default function() {
     },
 
     // can be used for selecting and unselecting a workout
-    'selectWorkout'(workoutId) {
+    'user.selectWorkout'(workoutId) {
       if (this.userId != Workouts.findOne(workoutId).ownerId) {
         throw new Meteor.Error("user.selectWorkout.unauthorized");
       }
@@ -35,7 +35,7 @@ export default function() {
     },
 
     // can be used for selecting and unselecting 
-    'selectExercise'(exerciseId) {
+    'user.selectExercise'(exerciseId) {
       let user = Users.findOne(this.userId);
       let workout = Workouts.findOne(user.data.currentWorkout.currentWorkoutId);
 
