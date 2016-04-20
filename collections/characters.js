@@ -139,6 +139,18 @@ Characters.helpers({
     // Refactor if we agree skins fall under achievements or monetization.
     return Skins.find({});
   },
+  allHairs() {
+    return Skins.find({"type" : "hair"});
+  },
+  allTorsos() {
+    return Skins.find({"type" : "torso"});
+  },
+  allLegs() {
+    return Skins.find({"type" : "legs"});
+  },
+  allColors() {
+    return Skins.find({"type" : "color"});
+  },
 
   //equipment
   chest() {

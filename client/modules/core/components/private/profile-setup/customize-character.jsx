@@ -12,7 +12,10 @@ export default class CustomizeCharacter extends Component {
   render() {
     const {
       character,
-      getSkins,
+      getHairs,
+      getTorsos,
+      getLegs,
+      getColors,
       getAppearanceIds,
       equipSkin
     } = this.props;
@@ -28,10 +31,37 @@ export default class CustomizeCharacter extends Component {
             </div>
           </Col>
           <Col sm={6} lg={6}>
-            <label htmlFor="level" className="control-label input-group">Hair/Torso/Legs/Skin</label>
+            <label htmlFor="hair" className="control-label input-group">Hair</label>
             <div className="inventory">
               <SkinDescriptionList
-                getSkins={getSkins}
+                getSkins={getHairs}
+                getAppearanceIds={getAppearanceIds}
+                equipItem={equipSkin}
+              />
+            </div>
+
+            <label htmlFor="torso" className="control-label input-group">Torso</label>
+            <div className="inventory">
+              <SkinDescriptionList
+                getSkins={getTorsos}
+                getAppearanceIds={getAppearanceIds}
+                equipItem={equipSkin}
+              />
+            </div>
+
+            <label htmlFor="legs" className="control-label input-group">Legs</label>
+            <div className="inventory">
+              <SkinDescriptionList
+                getSkins={getLegs}
+                getAppearanceIds={getAppearanceIds}
+                equipItem={equipSkin}
+              />
+            </div>
+
+            <label htmlFor="skins" className="control-label input-group">Skins</label>
+            <div className="inventory">
+              <SkinDescriptionList
+                getSkins={getColors}
                 getAppearanceIds={getAppearanceIds}
                 equipItem={equipSkin}
               />

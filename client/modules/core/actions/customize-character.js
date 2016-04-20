@@ -1,5 +1,3 @@
-import Validation, {Utils} from './validation-utility';
-
 const stateKey = "client.modules.core.actions.customize-character";
 
 export default {
@@ -14,9 +12,21 @@ export default {
       if (err) console.log(err);
     });
   },
-  
-  getSkins({Meteor}) {
-    return Meteor.user().character().allSkins();
+
+  getHairs({Meteor}) {
+    return Meteor.user().character().allHairs();
+  },
+
+  getTorsos({Meteor}) {
+    return Meteor.user().character().allTorsos();
+  },
+
+  getLegs({Meteor}) {
+     return Meteor.user().character().allLegs();
+  },
+
+  getColors({Meteor}) {
+    return Meteor.user().character().allColors();
   },
 
   getAppearanceIds({Meteor}) {

@@ -17,7 +17,10 @@ export const composer = ({context, stateKey, clearErrors, getCharacter}, onData)
 export const depsMapper = (context, actions) => {
   return {
     getCharacter: actions.Profile.getCharacter,
-    getSkins: actions.CustomizeCharacter.getSkins,
+    getHairs: actions.CustomizeCharacter.getHairs,
+    getTorsos: actions.CustomizeCharacter.getTorsos,
+    getLegs: actions.CustomizeCharacter.getLegs,
+    getColors: actions.CustomizeCharacter.getColors,
     getAppearanceIds: actions.CustomizeCharacter.getAppearanceIds,
     equipSkin: actions.CustomizeCharacter.equipSkin,
     createCharacter: actions.CustomizeCharacter.createCharacter,
