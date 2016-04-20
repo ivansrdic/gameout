@@ -5,6 +5,12 @@ import CustomizeCharacter from '../../../containers/private/profile-setup/custom
 
 class ProfileSetup extends Component {
 
+  componentDidUpdate() {
+    if (this.props.ready) {
+      NProgress.done();
+    }
+  }
+
   render() {
     return (
       <Grid>

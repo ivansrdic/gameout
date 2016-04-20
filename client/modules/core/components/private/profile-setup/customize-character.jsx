@@ -6,7 +6,14 @@ import SkinDescriptionList from '../shared/character-sprites/skin-description-li
 export default class CustomizeCharacter extends Component {
   constructor(props) {
     super(props);
-    this.lastAppearanceIds = this.props.getAppearanceIds();
+    this.lastAppearanceIds = this.props.ready ? this.props.getAppearanceIds() : undefined;
+  }
+
+  componentDidUpdate() {
+    console.log(this.props.ready);
+    if (this.props.ready) {
+      NProgress.done();
+    }
   }
 
   render() {
@@ -20,7 +27,7 @@ export default class CustomizeCharacter extends Component {
       equipSkin
     } = this.props;
 
-    return (
+    return this.props.ready ? (
       <Col md={10} mdOffset={1}>
         <h1 className="text-center">Customize character</h1>
         <Row>
@@ -72,6 +79,8 @@ export default class CustomizeCharacter extends Component {
         <Button onClick={this.handleUndoClick.bind(this)} className="pull-right">Undo Changes</Button>
 
       </Col>
+    ) : (
+      <div></div>
     );
   }
 

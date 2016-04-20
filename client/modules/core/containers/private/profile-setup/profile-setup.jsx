@@ -3,10 +3,10 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, clearErrors, isUserInfoDone}, onData) => {
   const userInfoSubscription = context().Meteor.subscribe("user");
-  
+
   if (userInfoSubscription.ready()) {
     const choice = isUserInfoDone() ? 'customize-character' : 'edit-info';
-    onData(null, {choice});
+    onData(null, {choice, ready: true});
   }
 
   return clearErrors;
