@@ -20,16 +20,6 @@ export default class CustomizeCharacter extends Component {
     return (
       <Col md={10} mdOffset={1}>
         <h1 className="text-center">Customize character</h1>
-        <label htmlFor="level" className="control-label input-group">Gender</label>
-        <ButtonGroup ref="gender" className="form-group" bsSize="large" data-toggle="buttons">
-          <label onClick={e => this.handleGenderPick(e, "male")} className="btn btn-default active">
-            <input name="gender" value="male" type="radio"/>Male
-          </label>
-          <label onClick={e => this.handleGenderPick(e, "female")} className="btn btn-default">
-            <input name="gender" value="female" type="radio"/>Female
-          </label>
-        </ButtonGroup>
-
         <Row>
           <Col sm={6} lg={6}>
             <label htmlFor="level" className="control-label input-group">Character</label>
