@@ -5,9 +5,7 @@
 # but you can also edit it by hand.
 
 meteor-base             # Packages every Meteor app needs to have
-mobile-experience       # Packages for a great mobile UX
-mongo                   # The database Meteor supports right
-blaze-html-templates    # Compile .html files into Meteor Blaze views
+mongo                   # The database Meteor supports
 reactive-dict           # Client-side reactive dictionary for your app
 tracker                 # Meteor's client-side reactive programming library
 
@@ -29,7 +27,6 @@ accounts-base                       # A user account system
 accounts-password                   # Password support for accounts
 accounts-facebook                   # Login service for Facebook accounts
 accounts-google                     # Login service for Google accounts
-accounts-twitter                    # Login service for Twitter accounts
 
 reywood:publish-composite           # Publish a set of related documents from multiple collections with a reactive join
 aldeed:collection2                  # Automatic validation of insert and update operations on the client and server
