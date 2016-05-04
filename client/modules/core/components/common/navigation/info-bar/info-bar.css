@@ -1,6 +1,7 @@
 #info-bar {
   background: #EEEEEE;
   height: 52px;
+  margin-top: 51px;
 }
 
 #info-bar li {
@@ -11,8 +12,4 @@
   cursor: default;
   padding-left: 5px;
   padding-right: 5px;
-}
-
-.info-bar {
-  position: relative !important;
 }

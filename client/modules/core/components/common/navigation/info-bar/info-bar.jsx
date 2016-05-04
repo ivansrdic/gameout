@@ -12,7 +12,7 @@ class Navigation extends Component {
     if(user && character) {
       const {stats} = character;
       return (
-        <Navbar id="info-bar" fixedTop={true} className={this.props.fixed?"":"info-bar"}>
+        <Navbar id="info-bar" fixedTop={true}>
           <Nav pullRight={true}>
             <NavItem><i className="fa fa-circle"></i> {stats.gold}</NavItem>
             <NavItem><i className="fa fa-star"></i> {stats.experience}/{getLevel().experience}</NavItem>
@@ -23,7 +23,7 @@ class Navigation extends Component {
       );
     } else {
       return (
-        <Navbar id="info-bar" fixedTop={true} className={this.props.fixed?"":"info-bar"}>
+        <Navbar id="info-bar" fixedTop={true}>
           <Nav pullRight={true}>
           </Nav>
         </Navbar>

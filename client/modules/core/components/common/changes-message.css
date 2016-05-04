@@ -1,0 +1,10 @@
+#changes {
+  position: fixed;
+  right: 10px;
+  top: 113px;
+  z-index: 1010;
+}
+
+#changes .list-group-item {
+  width: 200px;
+}

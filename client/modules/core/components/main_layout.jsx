@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Navigation from './common/navigation/navigation.jsx';
+import ChangesMessage from '../containers/common/changes-message.js';
 import Footer from './common/footer/footer.jsx';
 
 
@@ -25,7 +26,10 @@ class MainLayout extends Component {
       return (
         <div>
           <Navigation user={this.props.user} logout={this.props.logout} private={true}/>
-          {this.props.content(this.props.user)}
+          <ChangesMessage></ChangesMessage>
+          <div style={{marginTop: 123 + "px"}}>
+            {this.props.content(this.props.user)}
+          </div>
           <Footer />
         </div>
       );

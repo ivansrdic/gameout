@@ -2,6 +2,7 @@ import {createApp} from 'mantra-core';
 import {DocHead} from 'meteor/kadira:dochead'
 import initContext from './configs/context';
 import email from './configs/email';
+import listeners from './configs/listeners';
 
 // modules
 import coreModule from './modules/core';
@@ -21,3 +22,4 @@ DocHead.addMeta({
 });
 
 email(context);
+listeners(context);

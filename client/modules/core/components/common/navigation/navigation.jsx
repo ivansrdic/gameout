@@ -6,33 +6,12 @@ import InfoBar from '../../../containers/common/navigation/info-bar/info-bar';
 class Navigation extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      fixed: false
-    }
-  }
-  
-  componentDidMount() {
-    this.debouncedHandleScroll = _.debounce(this.handleScroll.bind(this), 10);
-    window.addEventListener('scroll', this.debouncedHandleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.debouncedHandleScroll);
-  }
-
-  handleScroll() {
-    if(window.scrollY > 52) {
-      this.setState({fixed: true});
-    } else {
-      this.setState({fixed: false});
-    }
   }
 
   render() {
     return (
       <div>
-        <Navbar style={{marginBottom: (this.state.fixed?72:0)}}>
+        <Navbar fixedTop={true}>
           <Navbar.Header>
             <a href="/"><img src="logo.png" alt="Gameout logo"/></a>
             <Navbar.Toggle />
@@ -55,7 +34,7 @@ class Navigation extends Component {
     
           </Navbar.Collapse>
         </Navbar>
-        <InfoBar user={this.props.user} fixed={this.state.fixed} />
+        <InfoBar user={this.props.user}/>
       </div>
     );
   }

@@ -1,4 +1,5 @@
-import {Levels} from '/collections';
+import {Characters, Levels} from '/collections';
+import _ from 'lodash';
 
 export default {
   getCharacter({Meteor}) {

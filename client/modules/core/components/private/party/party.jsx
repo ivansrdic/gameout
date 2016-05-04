@@ -42,7 +42,7 @@ class Party extends Component {
                       <i className="fa fa-times"></i>
                     </Button>
                     <div className="character-details">
-                      <h4 className="text-center">Stevo</h4>
+                      <h4 className="text-center">John</h4>
                       <ProgressBar bsStyle="danger" min={0} max={50} now={character.stats.health}
                                    label={" %(now)s / %(max)s "}/>
                     </div>
@@ -55,7 +55,7 @@ class Party extends Component {
                       <i className="fa fa-times"></i>
                     </Button>
                     <div className="character-details">
-                      <h4 className="text-center">Šime</h4>
+                      <h4 className="text-center">Phillip</h4>
                       <ProgressBar bsStyle="danger" min={0} max={50} now={character.stats.health}
                                    label={" %(now)s / %(max)s "}/>
                     </div>
@@ -68,7 +68,7 @@ class Party extends Component {
                       <i className="fa fa-times"></i>
                     </Button>
                     <div className="character-details">
-                      <h4 className="text-center">Pero</h4>
+                      <h4 className="text-center">Peter</h4>
                       <ProgressBar bsStyle="danger" min={0} max={50} now={character.stats.health}
                                    label={" %(now)s / %(max)s "}/>
                     </div>
@@ -78,9 +78,9 @@ class Party extends Component {
               <Input type="text" placeholder="Enter your friend's username" buttonAfter={<Button>Invite to party</Button>} />
               <Panel className="quest-history">
                 <ListGroup>
-                  <ListGroupItem>Stevo je uradio 15 dmg</ListGroupItem>
-                  <ListGroupItem>šime je uradio 10 dmg, al je ujebo pa su svi primili 2 dmg</ListGroupItem>
-                  <ListGroupItem>Pero je gej</ListGroupItem>
+                  <ListGroupItem>Peter dealt 15 damage.</ListGroupItem>
+                  <ListGroupItem>Phillip dealt 20 damage, but The boss man dealt 5 damage to the party.</ListGroupItem>
+                  <ListGroupItem>John dealt 5 damage.</ListGroupItem>
                 </ListGroup>
               </Panel>
             </Col>
