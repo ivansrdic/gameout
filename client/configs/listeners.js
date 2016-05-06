@@ -1,4 +1,4 @@
-import {Characters} from '/collections';
+import {Characters, Items} from '/collections';
 import _ from 'lodash';
 
 export default ({LocalState}) => {
@@ -23,28 +23,26 @@ export default ({LocalState}) => {
         _.forOwn(fields.stats, function(stat, key) {
           const value = stat - character.stats[key];
 
-          if(value != 0) {
-            messagePipe.add({name: key, value});
-          }
+          if(value > 0) messagePipe.addSuccess({name: key, value});
+          else if(value < 0) messagePipe.addDanger({name: key, value});
         });
       }
 
       if(fields.equipment) {
-        const oldFields = _.keys(character.equipment);
-        const newFields = _.keys(fields.equipment);
+        const oldFields = _.values(character.equipment);
+        const newFields = _.values(fields.equipment);
 
-        console.log(_.difference(oldFields, newFields));
-        console.log(_.difference(newFields, oldFields));
+        const oldDiff = _.difference(oldFields, newFields);
+        const newDiff = _.difference(newFields, oldFields);
 
-        /*if(oldFields.length < newFields.length) {
-          messagePipe.add({name: "Equipped ", value: _.difference(oldFields, newFields)});
-        } else if(oldFields.length > newFields.length) {
-          messagePipe.add({name: "Unequipped ", value: _.difference(oldFields, newFields)});
-        } else {
-          messagePipe.add({name: "Replaced ", value: _.difference(oldFields, newFields)});
-        }*/
+        if(oldDiff.length && newDiff.length) {
+          messagePipe.addInfo({name: "Replaced ", value: Items.findOne(newDiff[0]).name});
+        } else if(oldDiff.length) {
+          messagePipe.addDanger({name: "Unequipped ", value: Items.findOne(oldDiff[0]).name});
+        } else if(newDiff.length) {
+          messagePipe.addSuccess({name: "Equipped ", value: Items.findOne(newDiff[0]).name});
+        }
       }
-
 
 
       character = Characters.findOne(id);
@@ -72,6 +70,26 @@ class ChangesMessagePipe {
     this.count++;
 
     this.timeoutRemove();
+  }
+
+  addSuccess(element) {
+    element.style = "success";
+    this.add(element);
+  }
+
+  addDanger(element) {
+    element.style = "danger";
+    this.add(element);
+  }
+
+  addInfo(element) {
+    element.style = "info";
+    this.add(element);
+  }
+
+  addWarning(element) {
+    element.style = "warning";
+    this.add(element);
   }
 
   remove() {

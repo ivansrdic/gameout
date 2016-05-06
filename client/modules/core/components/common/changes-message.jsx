@@ -20,7 +20,7 @@ class ChangesMessage extends Component {
   renderMessages() {
     return this.props.messages.map(function(message) {
       return (
-        <ListGroupItem key={message.key} bsStyle={message.value>=0?"success":"danger"}>
+        <ListGroupItem key={message.key} bsStyle={message.style}>
           {message.name}: {message.value}
         </ListGroupItem>
       );
