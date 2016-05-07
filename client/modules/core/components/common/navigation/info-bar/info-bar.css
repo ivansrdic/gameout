@@ -1,7 +1,6 @@
 #info-bar {
-  background: #EEEEEE;
-  height: 52px;
-  margin-top: 51px;
+  margin-top: 60px;
+  z-index: 1029;
 }
 
 #info-bar li {

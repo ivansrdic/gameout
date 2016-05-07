@@ -21,6 +21,10 @@
   min-width: 20px;
 }
 
+.btn .fa {
+  width: 11px;
+}
+
 .fa-heart {
   color: #d9534f;
 }
@@ -32,3 +36,4 @@
 .fa-circle {
   color: gold;
 }
+

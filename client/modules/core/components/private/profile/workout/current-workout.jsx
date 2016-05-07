@@ -23,7 +23,7 @@ class CurrentWorkout extends Component {
             onClickExercise={this.completeExercise.bind(this)}
           />
           <div className="center-button">
-            <Button bsSize="large" bsStyle="success" onClick={this.finishWorkout.bind(this)}>Finish</Button>
+            <Button bsSize="medium" bsStyle="success" onClick={this.finishWorkout.bind(this)}>Finish</Button>
           </div>
         </div>
       );

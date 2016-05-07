@@ -17,7 +17,7 @@ class Navigation extends Component {
             <NavItem><i className="fa fa-circle"></i> {stats.gold}</NavItem>
             <NavItem><i className="fa fa-star"></i> {stats.experience}/{getLevel().experience}</NavItem>
             <NavItem><i className="fa fa-heart"></i> {stats.health}/50</NavItem>
-            <NavItem>{user.username + " " + "Lvl " + stats.level}</NavItem>
+            <NavItem>{"Level " + stats.level}</NavItem>
           </Nav>
         </Navbar>
       );
