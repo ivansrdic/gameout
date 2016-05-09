@@ -11,7 +11,7 @@ class Navigation extends Component {
   render() {
     return (
       <div>
-        <Navbar fixedTop={true}>
+        <Navbar fixedTop={true} inverse={true}>
           <Navbar.Header>
             <a href="/"><img src="logo.png" alt="Gameout logo"/></a>
             <Navbar.Toggle />

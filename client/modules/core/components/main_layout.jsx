@@ -18,7 +18,7 @@ class MainLayout extends Component {
   componentDidMount() {
     setTimeout(function() {
       $.material.init();
-    }, 500);
+    }, 0);
   }
 
   componentWillUpdate(nextProps) {
@@ -27,7 +27,7 @@ class MainLayout extends Component {
     }
     setTimeout(function() {
       $.material.init();
-    }, 500);
+    }, 0);
   }
   
   render() {

@@ -12,7 +12,7 @@ class Navigation extends Component {
     if(user && character) {
       const {stats} = character;
       return (
-        <Navbar id="info-bar" fixedTop={true}>
+        <Navbar id="info-bar" fixedTop={true} inverse={true}>
           <Nav pullRight={true}>
             <NavItem><i className="fa fa-circle"></i> {stats.gold}</NavItem>
             <NavItem><i className="fa fa-star"></i> {stats.experience}/{getLevel().experience}</NavItem>
