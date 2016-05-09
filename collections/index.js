@@ -7,6 +7,7 @@ import Items from './items';
 import Skins from './skins';
 import Levels from './levels';
 import Quests from './quests';
+import Groups from './groups';
 
 export {Characters};
 export {Users};
@@ -17,6 +18,7 @@ export {Items};
 export {Skins};
 export {Levels};
 export {Quests};
+export {Groups};
 
 export default {
   Characters,
@@ -27,5 +29,6 @@ export default {
   Items,
   Skins,
   Levels,
-  Quests
+  Quests,
+  Groups
 }
