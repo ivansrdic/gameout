@@ -6,6 +6,7 @@ import PublicWorkouts from './public-workouts';
 import Items from './items';
 import Skins from './skins';
 import Levels from './levels';
+import Quests from './quests';
 
 export {Characters};
 export {Users};
@@ -15,6 +16,7 @@ export {PublicWorkouts};
 export {Items};
 export {Skins};
 export {Levels};
+export {Quests};
 
 export default {
   Characters,
@@ -24,5 +26,6 @@ export default {
   PublicWorkouts,
   Items,
   Skins,
-  Levels
+  Levels,
+  Quests
 }
