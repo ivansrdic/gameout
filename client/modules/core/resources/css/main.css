@@ -1,5 +1,14 @@
+.navbar-fixed-top {
+  border: 0;
+}
+
 .navbar-fixed-top .navbar-collapse {
   max-height: 100%;
+}
+
+.navbar .navbar-nav>li>a {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .nav-pills {

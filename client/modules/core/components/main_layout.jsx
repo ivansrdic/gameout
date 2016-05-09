@@ -14,11 +14,20 @@ class MainLayout extends Component {
       NProgress.start();
     }
   }
-  
+
+  componentDidMount() {
+    setTimeout(function() {
+      $.material.init();
+    }, 500);
+  }
+
   componentWillUpdate(nextProps) {
     if(!this.props.ready && nextProps.ready) {
       NProgress.inc();
     }
+    setTimeout(function() {
+      $.material.init();
+    }, 500);
   }
   
   render() {
