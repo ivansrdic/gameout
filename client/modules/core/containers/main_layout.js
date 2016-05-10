@@ -1,7 +1,7 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import MainLayout from '../components/main_layout.jsx';
 
-export function composer({logout}, onData) {
+export function composer({logout, FlowRouter}, onData) {
   const subUser = Meteor.subscribe('user');
   
   if (subUser.ready()) {
@@ -11,8 +11,7 @@ export function composer({logout}, onData) {
       logout
     };
     
-    // FlowRouter can be reached through context variable that can be injected.
-    if (!Meteor.user().data) console.log("There is a fucking error in redirection happening!");
+    if (!Meteor.user().data) console.log("There is an error in redirection!");
     if (!Meteor.user().data.characterId && FlowRouter.current().pathname != "/profile-setup") {
       FlowRouter.go('/profile-setup');
     }
@@ -23,8 +22,9 @@ export function composer({logout}, onData) {
   }
 }
 
-function depsMapper(context, {Authorization}) {
+function depsMapper({FlowRouter}, {Authorization}) {
   return ({
+    FlowRouter,
     logout: Authorization.logout
   });
 }

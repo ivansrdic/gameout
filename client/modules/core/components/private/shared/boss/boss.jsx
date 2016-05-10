@@ -7,13 +7,14 @@ class Boss extends Component {
   }
 
   render() {
+    const {boss} = this.props;
     return (
       <div className="boss-container">
         <img className="boss pixelated"
              src="badguy01.png"
              draggable="false"/>
-        <h3 className="text-center">Boss man 1</h3>
-        <ProgressBar bsStyle="danger" min={0} max={200} now={200}
+        <h3 className="text-center">{boss.name}</h3>
+        <ProgressBar bsStyle="danger" min={0} max={boss.health} now={boss.health}
                      label={" %(now)s / %(max)s "}/>
       </div>
     );

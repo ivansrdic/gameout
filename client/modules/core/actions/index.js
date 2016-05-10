@@ -5,14 +5,16 @@ import CustomizeCharacter from './customize-character';
 import Profile from './profile.js';
 import Exercise from './exercise.js';
 import Workout from './workout.js';
+import Group from './group.js';
 
 export {Authorization};
 export {EditInfo};
+export {ProfileSetup};
 export {CustomizeCharacter};
 export {Profile};
 export {Exercise};
 export {Workout};
-export {ProfileSetup};
+export {Group};
 
 export default {
   Authorization,
@@ -21,5 +23,6 @@ export default {
   CustomizeCharacter,
   Profile,
   Exercise,
-  Workout
+  Workout,
+  Group
 };

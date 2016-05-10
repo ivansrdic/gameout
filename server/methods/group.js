@@ -13,7 +13,7 @@ export default function() {
       let group = {
         ownerId: userId,
         memberIds: [userId]
-      }
+      };
       let groupId = Groups.insert(group);
       Users.update(userId, {$set: {"data.groupId": groupId}});
     },

@@ -1,8 +1,8 @@
-.party .character-container {
+.group .character-container {
   height: 260px;
 }
 
-.party .equipment-toggle {
+.group .equipment-toggle {
   border-radius: 0;
   position: absolute;
   z-index: 20;
@@ -10,13 +10,13 @@
   top: 0;
 }
 
-.party .character-container .character-sprites{
+.group .character-container .character-sprites{
   top: auto;
   transform: none;
   -webkit-transform: none;
 }
 
-.party .character-container .character-details {
+.group .character-container .character-details {
   margin: 0 10px 5px 10px;
 }
 

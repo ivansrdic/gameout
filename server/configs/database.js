@@ -1,5 +1,5 @@
 // Dev
-import {Users, Characters, Items, Skins, Exercises, Workouts, Levels} from '/collections';
+import {Users, Characters, Items, Skins, Exercises, Workouts, Levels, Groups, Quests} from '/collections';
 
 export default () => {
   let user = Users.findOne({username: 'gameout'});
@@ -12,6 +12,8 @@ export default () => {
     Exercises.remove({});
     Workouts.remove({});
     Levels.remove({});
+    Groups.remove({});
+    Quests.remove({});
 
     Accounts.createUser({
       email: 'gameout@gameout.com',
@@ -20,8 +22,26 @@ export default () => {
     });
     user = Users.findOne({username: 'gameout'});
 
-
     const userId = user._id;
+
+    const questId = Quests.insert({
+      name: "First quest",
+      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquam, urna at tincidunt consequat, tortor turpis laoreet leo, in vulputate diam metus vel arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices, dui eget vulputate rutrum, nibh ante tristique eros, sed tempor lacus est a erat. Duis mattis cursus nisi, quis elementum quam vulputate non. Maecenas a erat a sem gravida tempor. Morbi id turpis at dolor ultricies rutrum. Nunc tincidunt ut sem eget laoreet. Nam sed vulputate eros, sed auctor sem. Donec sit amet varius augue.",
+      boss: {
+        name: "First boss",
+        health: 100,
+        damage: 1
+      },
+      rewards: {
+        experience: 100,
+        gold: 20
+      }
+    });
+
+    const groupId = Groups.insert({
+      ownerId: userId,
+      memberIds: [userId]
+    });
 
     // All exercises for all packages at the moment
 
@@ -864,7 +884,8 @@ export default () => {
               "height": "180",
               "gender": "male",
               "level": "beginner"
-            }
+            },
+            "groupId": groupId
           }
         }
       }

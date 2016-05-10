@@ -1,13 +1,12 @@
 import {Characters, Levels} from '/collections';
-import _ from 'lodash';
 
 export default {
-  getCharacter({Meteor}) {
-    return Meteor.user().character();
+  getCharacter({}, user = Meteor.user()) {
+    return Characters.findOne({ownerId: user._id});
   },
 
-  getParty({Meteor}) {
-    return Meteor.user().party();
+  getGroup({Meteor}) {
+    return Meteor.user().group();
   },
 
   getLevel({Meteor}) {

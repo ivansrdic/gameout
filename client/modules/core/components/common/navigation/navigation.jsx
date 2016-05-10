@@ -20,7 +20,7 @@ class Navigation extends Component {
 
             <Nav>
               <NavItem href="/profile">Profile</NavItem>
-              <NavItem href="/party">Party</NavItem>
+              <NavItem href="/group">Group</NavItem>
               <NavItem href="/edit-info">User info</NavItem>
               <NavItem href="/customize-character">Character</NavItem>
               <NavItem href="/profile-setup">Profile Setup</NavItem>

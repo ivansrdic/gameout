@@ -60,7 +60,7 @@ export default function() {
           find: function() {
             if(this.userId){
               let user = Users.findOne(this.userId);
-              let exerciseIds = []
+              let exerciseIds = [];
               user.workouts().forEach((workout) => {
                 exerciseIds = exerciseIds.concat(workout.exerciseIds)
               });
