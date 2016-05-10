@@ -19,9 +19,9 @@ export const depsMapper = (context, {Workout}) => {
     getWorkoutExercises: Workout.getWorkoutExercises,
     removeWorkout: Workout.removeWorkout,
     publishWorkout: Workout.publishWorkout,
-    unPublishWorkout: Workout.unPublishWorkout,
+    unpublishWorkout: Workout.unpublishWorkout,
     subscribeToWorkout: Workout.subscribeToWorkout,
-    unSubscribeFromWorkout: Workout.unSubscribeFromWorkout,
+    unsubscribeFromWorkout: Workout.unsubscribeFromWorkout,
     getPublicWorkouts: Workout.getPublicWorkouts
   }
 };

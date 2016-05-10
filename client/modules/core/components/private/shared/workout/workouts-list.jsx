@@ -46,9 +46,9 @@ class WorkoutsList extends Component {
               onClickDelete={this.props.onClickDelete}
               onClickRemove={this.props.onClickRemove}
               onClickPublish={this.props.onClickPublish}
-              onClickUnPublish={this.props.onClickUnPublish}
+              onClickUnpublish={this.props.onClickUnpublish}
               onClickSubscribe={this.props.onClickSubscribe}
-              onClickUnSubscribe={this.props.onClickUnSubscribe}
+              onClickUnsubscribe={this.props.onClickUnsubscribe}
               onClickInfo={this.onClickInfo.bind(this)}
           />
       );

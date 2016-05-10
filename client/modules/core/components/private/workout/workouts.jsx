@@ -26,7 +26,7 @@ class CreateWorkoutPanel extends Component {
                       getWorkoutExercises={this.props.getWorkoutExercises}
                       onClickDelete={this.props.removeWorkout}
                       onClickPublish={this.props.publishWorkout}
-                      onClickUnPublish={this.props.unPublishWorkout}
+                      onClickUnpublish={this.props.unpublishWorkout}
                   />
                 </Col>
                 <div className="center-button">
@@ -46,7 +46,7 @@ class CreateWorkoutPanel extends Component {
             show={this.state.showPublicWorkouts}
             workouts={this.props.publicWorkouts}
             subscribeToWorkout={this.props.subscribeToWorkout}
-            unSubscribeFromWorkout={this.props.unSubscribeFromWorkout}
+            unsubscribeFromWorkout={this.props.unsubscribeFromWorkout}
             getWorkoutExercises={this.props.getWorkoutExercises}
             closePublicWorkouts={this.closePublicWorkouts.bind(this)}
         />

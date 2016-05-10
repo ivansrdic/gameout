@@ -16,9 +16,9 @@ class Workout extends Component {
            {this.renderDelete()}
            {this.renderRemove()}
            {this.renderPublish()}
-           {this.renderUnPublish()}
+           {this.renderUnpublish()}
            {this.renderSubscribe()}
-           {this.renderUnSubscribe()}
+           {this.renderUnsubscribe()}
            {this.renderInfo()}
           </span>
         </ListGroupItem>
@@ -60,11 +60,11 @@ class Workout extends Component {
     }
   }
 
-  renderUnPublish() {
-    if (this.props.onClickUnPublish) {
+  renderUnpublish() {
+    if (this.props.onClickUnpublish) {
       return (
         <a className="btn btn-xs btn-danger"
-           onClick={this.onClickUnPublish.bind(this)}>
+           onClick={this.onClickUnpublish.bind(this)}>
           <i className="fa fa-minus"></i>
         </a>
       );
@@ -82,11 +82,11 @@ class Workout extends Component {
     }
   }
 
-  renderUnSubscribe() {
-    if (this.props.onClickUnSubscribe) {
+  renderUnsubscribe() {
+    if (this.props.onClickUnsubscribe) {
       return (
         <a className="btn btn-xs btn-danger"
-           onClick={this.onClickUnSubscribe.bind(this)}>
+           onClick={this.onClickUnsubscribe.bind(this)}>
           <i className="fa fa-minus"></i>
         </a>
       );
@@ -133,11 +133,11 @@ class Workout extends Component {
     onClickPublish(workout);
   }
 
-  onClickUnPublish(e) {
+  onClickUnpublish(e) {
     e.stopPropagation();
-    const {workout, onClickUnPublish} = this.props;
+    const {workout, onClickUnpublish} = this.props;
 
-    onClickUnPublish(workout);
+    onClickUnpublish(workout);
   }
 
   onClickSubscribe(e) {
@@ -147,11 +147,11 @@ class Workout extends Component {
     onClickSubscribe(workout);
   }
 
-  onClickUnSubscribe(e) {
+  onClickUnsubscribe(e) {
     e.stopPropagation();
-    const {workout, onClickUnSubscribe} = this.props;
+    const {workout, onClickUnsubscribe} = this.props;
 
-    onClickUnSubscribe(workout);
+    onClickUnsubscribe(workout);
   }
 
   onClickInfo(e) {

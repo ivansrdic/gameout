@@ -77,8 +77,8 @@ export default {
     });
   },
 
-  unPublishWorkout({Meteor}, workout) {
-    Meteor.call('workout.unPublishWorkout', workout._id, function (err) {
+  unpublishWorkout({Meteor}, workout) {
+    Meteor.call('workout.unpublishWorkout', workout._id, function (err) {
       if (err) console.log(err);
     });
   },
@@ -89,8 +89,8 @@ export default {
     });
   },
 
-  unSubscribeFromWorkout({Meteor}, workout) {
-    Meteor.call('workout.unSubscribeFromWorkout', workout._id, function (err) {
+  unsubscribeFromWorkout({Meteor}, workout) {
+    Meteor.call('workout.unsubscribeFromWorkout', workout._id, function (err) {
       if (err) console.log(err);
     });
   },

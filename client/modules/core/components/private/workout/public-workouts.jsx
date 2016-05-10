@@ -27,7 +27,7 @@ class PublicWorkout extends Component {
               workouts={this.props.workouts}
               getWorkoutExercises={this.props.getWorkoutExercises}
               onClickSubscribe={this.props.subscribeToWorkout}
-              onClickUnSubscribe={this.props.unSubscribeFromWorkout}
+              onClickUnsubscribe={this.props.unsubscribeFromWorkout}
             />
 
           </Modal.Body>
