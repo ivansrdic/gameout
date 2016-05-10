@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ListGroup, ListGroupItem} from 'react-bootstrap';
+import {Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
 
 
 class ChangesMessage extends Component {
@@ -9,11 +9,11 @@ class ChangesMessage extends Component {
 
   render() {
     return (
-      <div id="changes">
+      <Panel id="changes">
         <ListGroup>
           {this.renderMessages()}
         </ListGroup>
-      </div>
+      </Panel>
     );
   }
 
