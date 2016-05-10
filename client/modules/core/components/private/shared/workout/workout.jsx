@@ -15,6 +15,10 @@ class Workout extends Component {
          <span className="pull-top-right options">
            {this.renderDelete()}
            {this.renderRemove()}
+           {this.renderPublish()}
+           {this.renderUnPublish()}
+           {this.renderSubscribe()}
+           {this.renderUnSubscribe()}
            {this.renderInfo()}
           </span>
         </ListGroupItem>
@@ -41,6 +45,50 @@ class Workout extends Component {
              onClick={this.onClickRemove.bind(this)}>
             <i className="fa fa-minus"></i>
           </a>
+      );
+    }
+  }
+
+  renderPublish() {
+    if (this.props.onClickPublish) {
+      return (
+        <a className="btn btn-xs btn-success"
+           onClick={this.onClickPublish.bind(this)}>
+          <i className="fa fa-plus"></i>
+        </a>
+      );
+    }
+  }
+
+  renderUnPublish() {
+    if (this.props.onClickUnPublish) {
+      return (
+        <a className="btn btn-xs btn-danger"
+           onClick={this.onClickUnPublish.bind(this)}>
+          <i className="fa fa-minus"></i>
+        </a>
+      );
+    }
+  }
+
+  renderSubscribe() {
+    if (this.props.onClickSubscribe) {
+      return (
+        <a className="btn btn-xs btn-success"
+           onClick={this.onClickSubscribe.bind(this)}>
+          <i className="fa fa-plus"></i>
+        </a>
+      );
+    }
+  }
+
+  renderUnSubscribe() {
+    if (this.props.onClickUnSubscribe) {
+      return (
+        <a className="btn btn-xs btn-danger"
+           onClick={this.onClickUnSubscribe.bind(this)}>
+          <i className="fa fa-minus"></i>
+        </a>
       );
     }
   }
@@ -76,6 +124,34 @@ class Workout extends Component {
     const {workout, onClickRemove} = this.props;
 
     onClickRemove(workout);
+  }
+
+  onClickPublish(e) {
+    e.stopPropagation();
+    const {workout, onClickPublish} = this.props;
+
+    onClickPublish(workout);
+  }
+
+  onClickUnPublish(e) {
+    e.stopPropagation();
+    const {workout, onClickUnPublish} = this.props;
+
+    onClickUnPublish(workout);
+  }
+
+  onClickSubscribe(e) {
+    e.stopPropagation();
+    const {workout, onClickSubscribe} = this.props;
+
+    onClickSubscribe(workout);
+  }
+
+  onClickUnSubscribe(e) {
+    e.stopPropagation();
+    const {workout, onClickUnSubscribe} = this.props;
+
+    onClickUnSubscribe(workout);
   }
 
   onClickInfo(e) {

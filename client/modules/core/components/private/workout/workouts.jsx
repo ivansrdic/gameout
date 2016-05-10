@@ -24,7 +24,10 @@ class CreateWorkoutPanel extends Component {
                   <WorkoutsList
                       workouts={this.props.workouts}
                       getWorkoutExercises={this.props.getWorkoutExercises}
-                      onClickDelete={this.props.removeWorkout}/>
+                      onClickDelete={this.props.removeWorkout}
+                      onClickPublish={this.props.publishWorkout}
+                      onClickUnPublish={this.props.unPublishWorkout}
+                  />
                 </Col>
                 <div className="center-button">
                   <Button bsStyle="info" onClick={this.showPublicWorkouts.bind(this)}>Search workouts</Button>
@@ -41,7 +44,9 @@ class CreateWorkoutPanel extends Component {
         </Row>
         <PublicWorkouts
             show={this.state.showPublicWorkouts}
-            workouts={this.props.workouts}
+            workouts={this.props.publicWorkouts}
+            subscribeToWorkout={this.props.subscribeToWorkout}
+            unSubscribeFromWorkout={this.props.unSubscribeFromWorkout}
             getWorkoutExercises={this.props.getWorkoutExercises}
             closePublicWorkouts={this.closePublicWorkouts.bind(this)}
         />

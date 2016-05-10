@@ -10,30 +10,32 @@ class PublicWorkout extends Component {
   render() {
     return (
       <Modal show={this.props.show} onHide={this.closePublicWorkouts.bind(this)}>
-        {this.renderInventory()}
+        {this.renderPublicWorkouts()}
       </Modal>
     );
   }
 
-  renderInventory() {
+  renderPublicWorkouts() {
     if (this.props.show) {
       return (
-          <div>
+        <div>
           <Modal.Header closeButton>
-      <Modal.Title>Search public workouts</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-      <WorkoutsList
-          workouts={this.props.workouts}
-          getWorkoutExercises={this.props.getWorkoutExercises}
-      />
+            <Modal.Title>Browse public workouts</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <WorkoutsList
+              workouts={this.props.workouts}
+              getWorkoutExercises={this.props.getWorkoutExercises}
+              onClickSubscribe={this.props.subscribeToWorkout}
+              onClickUnSubscribe={this.props.unSubscribeFromWorkout}
+            />
 
-    </Modal.Body>
-      <Modal.Footer>
-      <Button onClick={this.closePublicWorkouts.bind(this)}>Close</Button>
-      </Modal.Footer>
-      </div>
-    );
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.closePublicWorkouts.bind(this)}>Close</Button>
+          </Modal.Footer>
+        </div>
+      );
     }
   }
 

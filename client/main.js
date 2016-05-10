@@ -22,4 +22,6 @@ DocHead.addMeta({
 });
 
 email(context);
-listeners(context);
+setTimeout(function() {
+  listeners(context);
+}, 1000);
