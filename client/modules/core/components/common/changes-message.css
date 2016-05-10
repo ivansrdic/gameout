@@ -1,8 +1,12 @@
 #changes {
   position: fixed;
   right: 10px;
-  top: 113px;
+  top: 130px;
   z-index: 1010;
+}
+
+#changes .panel-body {
+  padding: 0;
 }
 
 #changes .list-group-item {

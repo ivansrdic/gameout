@@ -58,7 +58,7 @@ export default function() {
       PublicWorkouts.insert({_id: workoutId});
     },
 
-    'workout.unpublishWorkout'(workoutId) {
+    'workout.unPublishWorkout'(workoutId) {
       if (this.userId != Workouts.findOne(workoutId).ownerId) {
         throw new Meteor.Error("workout.unpublishWorkout.unauthorized");
       }
@@ -76,7 +76,7 @@ export default function() {
       );
     },
 
-    'workout.unsubscribeFromWorkout'(workoutId) {
+    'workout.unSubscribeFromWorkout'(workoutId) {
       if (this.userId == Workouts.findOne(workoutId).ownerId) {
         throw new Meteor.Error("workout.unsubscribeFromWorkout.unauthorized");
       }

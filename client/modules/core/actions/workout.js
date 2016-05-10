@@ -1,5 +1,7 @@
 import Validation, {Utils} from './validation-utility';
 
+import {PublicWorkouts} from '/collections';
+
 const stateKey = "client.modules.core.actions.workout";
 
 export default {
@@ -67,5 +69,33 @@ export default {
 
   getWorkouts({Meteor}) {
     return Meteor.user().workouts();
+  },
+
+  publishWorkout({Meteor}, workout) {
+    Meteor.call('workout.publishWorkout', workout._id, function (err) {
+      if (err) console.log(err);
+    });
+  },
+
+  unPublishWorkout({Meteor}, workout) {
+    Meteor.call('workout.unPublishWorkout', workout._id, function (err) {
+      if (err) console.log(err);
+    });
+  },
+
+  subscribeToWorkout({Meteor}, workout) {
+    Meteor.call('workout.subscribeToWorkout', workout._id, function (err) {
+      if (err) console.log(err);
+    });
+  },
+
+  unSubscribeFromWorkout({Meteor}, workout) {
+    Meteor.call('workout.unSubscribeFromWorkout', workout._id, function (err) {
+      if (err) console.log(err);
+    });
+  },
+
+  getPublicWorkouts() {
+    return PublicWorkouts.find().map((publicWorkout) => {return publicWorkout.workout()});
   }
 };

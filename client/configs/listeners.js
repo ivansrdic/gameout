@@ -10,10 +10,13 @@ export default ({LocalState}) => {
 
   const messagePipe = new ChangesMessagePipe(LocalState);
 
+  console.log('test');
+
   characterCollection.observeChanges({
     added(id, fields) {
       if(fields.ownerId == Meteor.userId())
         character = fields;
+      console.log(character);
     },
 
     changed(id, fields) {

@@ -6,6 +6,13 @@
   max-height: 100%;
 }
 
+
+@media (max-width: 767px) {
+  .navbar-nav {
+    margin: 5px -15px;
+  }
+}
+
 .navbar .navbar-nav>li>a {
   padding-top: 20px;
   padding-bottom: 20px;
@@ -24,4 +31,24 @@ img {
 
 .progress {
   height: 20px;
+}
+
+.list-group-item .btn.btn-xs {
+  margin-left: 5px;
+  min-width: 20px;
+}
+
+.options .btn {
+  padding: 5px 5px;
+  margin: 0;
+}
+
+.options .btn .fa {
+  width: 15px;
+  height: 15px;
+  font-size: 15px;
+}
+
+.popover-title {
+  color: #000;
 }

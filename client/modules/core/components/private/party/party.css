@@ -13,6 +13,7 @@
 .party .character-container .character-sprites{
   top: auto;
   transform: none;
+  -webkit-transform: none;
 }
 
 .party .character-container .character-details {

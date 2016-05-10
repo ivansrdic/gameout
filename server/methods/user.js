@@ -19,9 +19,9 @@ export default function() {
 
     // can be used for selecting and unselecting a workout
     'user.selectWorkout'(workoutId) {
-      if (this.userId != Workouts.findOne(workoutId).ownerId) {
+      /*if (this.userId != Workouts.findOne(workoutId).ownerId) {
         throw new Meteor.Error("user.selectWorkout.unauthorized");
-      }
+      }*/
       let user = Users.findOne(this.userId);
       if (!user.data.currentWorkout.currentWorkoutId || user.data.currentWorkout.currentWorkoutId != workoutId) {
         Users.update(this.userId, {$set: {"data.currentWorkout.currentWorkoutId": workoutId}});
@@ -38,9 +38,9 @@ export default function() {
       let user = Users.findOne(this.userId);
       let workout = Workouts.findOne(user.data.currentWorkout.currentWorkoutId);
 
-      if (this.userId != workout.ownerId || this.userId != Exercises.findOne(exerciseId).ownerId) {
+      /*if (this.userId != workout.ownerId || this.userId != Exercises.findOne(exerciseId).ownerId) {
         throw new Meteor.Error("user.selectWorkout.unauthorized");
-      }
+      }*/
 
       if (workout.exerciseIds.indexOf(exerciseId) == -1) {
         throw new Meteor.Error("user.selectWorkout.unauthorized");

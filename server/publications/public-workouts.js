@@ -34,7 +34,7 @@ export default function() {
                   });
                   let workouts =  Workouts.find({_id: {$in: workoutIds}});
 
-                  let exerciseIds = []
+                  let exerciseIds = [];
                   workouts.forEach((workout) => {
                     exerciseIds = exerciseIds.concat(workout.exerciseIds)
                   });
