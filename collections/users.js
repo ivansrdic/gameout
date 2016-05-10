@@ -1,6 +1,4 @@
-import {Characters} from './';
-import {Exercises} from './';
-import {Workouts} from './';
+import {Characters, Exercises, Workouts, Groups} from './';
 
 let Users = Meteor.users;
 
@@ -70,6 +68,11 @@ const UserDataSchema = new SimpleSchema({
     type: [String],
     defaultValue: [],
     minCount: 0
+  },
+  groupId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    optional: true
   },
   currentWorkout: {
     type: CurrentWorkoutSchema
@@ -147,6 +150,11 @@ Users.helpers({
       level: this.data.userInfo.level,
       weight: this.data.userInfo.weight
     }
+  },
+
+  group() {
+    if (!this.data.groupId) return undefined;
+    return Groups.findOne(this.data.groupId);
   }
 });
 

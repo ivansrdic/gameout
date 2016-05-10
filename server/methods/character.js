@@ -54,7 +54,7 @@ export default function() {
     'character.createCharacter'() {
       let user = Users.findOne(this.userId);
       if (user.data.characterId) {
-        throw Meteor.Error("character.createCharacter.unauthorized");
+        throw new Meteor.Error("character.createCharacter.unauthorized");
       }
 
       let character = {

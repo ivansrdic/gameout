@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import {Users, Characters, Levels, Workouts, Exercises} from '/collections';
+import {Groups, Users, Characters, Levels, Workouts, Exercises} from '/collections';
 
 export default function() {
   Meteor.publishComposite('user', function() {
@@ -69,6 +69,31 @@ export default function() {
             else
               return this.ready();
           }
+        },
+        {
+          find: function() {
+            if(this.userId){
+              let user = Users.findOne(this.userId);
+              return Groups.find({_id: user.data.groupId});
+            }
+            else
+              return this.ready();
+          },
+          children: [
+            {
+              //TODO: nesigurno
+              find: function() {
+                if(this.userId) {
+                  let user = Users.findOne(this.userId);
+                  if (!user.group())
+                    return this.ready();
+                  return user.group().members();
+                }
+                else
+                  return this.ready();
+              }
+            }
+          ]
         }
       ]
     }
