@@ -2,10 +2,15 @@ import React, {Component} from 'react';
 import {Button} from 'react-bootstrap';
 import WorkoutsList from '../../shared/workout/workouts-list.jsx';
 import ExercisesList from '../../shared/exercise/exercises-list.jsx';
+import CompleteAnimation from '../../shared/animations/complete.jsx';
 
 class CurrentWorkout extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      animate: false
+    };
   }
   
   render() {
@@ -16,6 +21,7 @@ class CurrentWorkout extends Component {
 
       return (
         <div>
+          <CompleteAnimation animate={this.state.animate}/>
           <h2 className="text-center">{currentWorkout.workout.name}</h2>
           <ExercisesList
             exercises={getWorkoutExercises(currentWorkout.workout)}
@@ -30,6 +36,7 @@ class CurrentWorkout extends Component {
     } else {
       return (
         <div>
+          <CompleteAnimation animate={this.state.animate}/>
           <h2 className="text-center">Choose Your Workout For Today</h2>
           <WorkoutsList
               workouts={getWorkouts()}
@@ -45,6 +52,10 @@ class CurrentWorkout extends Component {
   }
 
   finishWorkout() {
+    this.setState({animate: true});
+    setTimeout(function() {
+      this.setState({animate: false});
+    }.bind(this), 3000);
     this.props.finishWorkout(this.props.currentWorkout.workout._id);
   }
 }

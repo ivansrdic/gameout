@@ -14,7 +14,7 @@ class Exercise extends Component {
           {this.renderCheckbox()}
           <b>{exercise.name}</b>
           <span className="badge" style={{float: "none", marginLeft: 10}}>{exercise.unit} reps</span>
-          <span className="pull-right">
+          <span className="pull-right options">
             {this.renderDelete()}
             {this.renderAdd()}
             {this.renderRemove()}

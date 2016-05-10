@@ -12,7 +12,7 @@ class Workout extends Component {
 
         <ListGroupItem header={workout.name} className="clearfix" onClick={onClickWorkout ? this.onClickWorkout.bind(this) : null}>
           {workout.description}
-         <span className="pull-right">
+         <span className="pull-top-right options">
            {this.renderDelete()}
            {this.renderRemove()}
            {this.renderInfo()}

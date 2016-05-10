@@ -16,15 +16,6 @@
   overflow: hidden;
 }
 
-.list-group-item .btn.btn-xs {
-  margin-left: 5px;
-  min-width: 20px;
-}
-
-.btn .fa {
-  width: 11px;
-}
-
 .fa-heart {
   color: #d9534f;
 }

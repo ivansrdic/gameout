@@ -24,7 +24,6 @@ class Profile extends Component {
     }
   }
 
-  // TODO: break down into components
   render() {
     if (this.props.ready) {
       const {character, getLevel, getEquipment, getEquipmentIds, getInventory, equipItem,
