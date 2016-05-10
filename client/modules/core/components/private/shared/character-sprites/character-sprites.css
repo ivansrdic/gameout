@@ -3,6 +3,7 @@
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
 }
 
 .character-sprites .item-container,
@@ -20,6 +21,7 @@
 .character-sprites .item-container-chest {
   left: 50%;
   transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
 }
 
 .character-sprites .item-container-head {
