@@ -5,11 +5,15 @@ export default {
     return stateKey;
   },
   
-  createCharacter({Meteor}) {
-    if (Meteor.user().data.characterId) return;
+  createCharacter({Meteor}, characterCreated) {
+    if (Meteor.user().data.characterId) {
+      characterCreated.set(true);
+      return;
+    }
 
     Meteor.call('character.createCharacter', function(err) {
       if (err) console.log(err);
+      characterCreated.set(true);
     });
   },
 
