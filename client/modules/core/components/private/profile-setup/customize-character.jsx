@@ -22,57 +22,65 @@ export default class CustomizeCharacter extends Component {
     const character = getCharacter();
 
     return (
-      <Col md={10} mdOffset={1}>
-        <h1 className="text-center">Customize character</h1>
+      <Grid>
         <Row>
-          <Col sm={6} lg={6}>
-            <label htmlFor="level" className="control-label input-group">Character</label>
-            <div className="character-container">
-              <Character character={character} isNaked={true}/>
-            </div>
-          </Col>
-          <Col sm={6} lg={6}>
-            <label htmlFor="hair" className="control-label input-group">Hair</label>
-            <div className="inventory">
-              <SkinDescriptionList
-                getSkins={getHairs}
-                getAppearanceIds={getAppearanceIds}
-                equipItem={equipSkin}
-              />
-            </div>
+          <Col md={12}>
+            <Panel>
+              <Col md={10} mdOffset={1}>
+                <h1 className="text-center">Customize character</h1>
+                <Row>
+                  <Col sm={6} lg={6}>
+                    <label htmlFor="level" className="control-label input-group">Character</label>
+                    <div className="character-container">
+                      <Character character={character} isNaked={true}/>
+                    </div>
+                  </Col>
+                  <Col sm={6} lg={6}>
+                    <label htmlFor="hair" className="control-label input-group">Hair</label>
+                    <div className="inventory">
+                      <SkinDescriptionList
+                        getSkins={getHairs}
+                        getAppearanceIds={getAppearanceIds}
+                        equipItem={equipSkin}
+                      />
+                    </div>
 
-            <label htmlFor="torso" className="control-label input-group">Torso</label>
-            <div className="inventory">
-              <SkinDescriptionList
-                getSkins={getTorsos}
-                getAppearanceIds={getAppearanceIds}
-                equipItem={equipSkin}
-              />
-            </div>
+                    <label htmlFor="torso" className="control-label input-group">Torso</label>
+                    <div className="inventory">
+                      <SkinDescriptionList
+                        getSkins={getTorsos}
+                        getAppearanceIds={getAppearanceIds}
+                        equipItem={equipSkin}
+                      />
+                    </div>
 
-            <label htmlFor="legs" className="control-label input-group">Legs</label>
-            <div className="inventory">
-              <SkinDescriptionList
-                getSkins={getLegs}
-                getAppearanceIds={getAppearanceIds}
-                equipItem={equipSkin}
-              />
-            </div>
+                    <label htmlFor="legs" className="control-label input-group">Legs</label>
+                    <div className="inventory">
+                      <SkinDescriptionList
+                        getSkins={getLegs}
+                        getAppearanceIds={getAppearanceIds}
+                        equipItem={equipSkin}
+                      />
+                    </div>
 
-            <label htmlFor="skins" className="control-label input-group">Skins</label>
-            <div className="inventory">
-              <SkinDescriptionList
-                getSkins={getColors}
-                getAppearanceIds={getAppearanceIds}
-                equipItem={equipSkin}
-              />
-            </div>
+                    <label htmlFor="skins" className="control-label input-group">Skins</label>
+                    <div className="inventory">
+                      <SkinDescriptionList
+                        getSkins={getColors}
+                        getAppearanceIds={getAppearanceIds}
+                        equipItem={equipSkin}
+                      />
+                    </div>
+                  </Col>
+                </Row>
+
+                <Button onClick={this.handleUndoClick.bind(this)} className="pull-right">Undo Changes</Button>
+
+              </Col>
+            </Panel>
           </Col>
         </Row>
-
-        <Button onClick={this.handleUndoClick.bind(this)} className="pull-right">Undo Changes</Button>
-
-      </Col>
+      </Grid>
     );
   }
 

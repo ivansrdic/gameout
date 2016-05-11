@@ -6,17 +6,9 @@ import CustomizeCharacter from '../../../containers/private/profile-setup/custom
 class ProfileSetup extends Component {
   render() {
     return (
-      <Grid>
-        <Row>
-          <Col md={12}>
-            <Panel>
-
-              {this.renderChoice(this.props.choice)}
-
-            </Panel>
-          </Col>
-        </Row>
-      </Grid>
+      <div>
+        {this.renderChoice(this.props.choice)}
+      </div>
     );
   }
 
