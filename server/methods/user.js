@@ -29,8 +29,8 @@ export default function() {
       else {
         //Meteor.call('character.reward', 50, 10);
         Users.update(this.userId, {$unset: {"data.currentWorkout.currentWorkoutId": ""}});
-        Users.update(this.userId, {$set: {"data.currentWorkout.completedExerciseIds": []}});
       }
+      Users.update(this.userId, {$set: {"data.currentWorkout.completedExerciseIds": []}});
     },
 
     // can be used for selecting and unselecting 
@@ -66,8 +66,9 @@ export default function() {
       let gold = experience / 4;
 
       Meteor.call('character.reward', user.character()._id, Math.round(experience), Math.round(gold));
-      if (user.group().quest())
+      if (user.group().quest()) {
         Meteor.call('quest.fightBoss');
+      }
       Meteor.call('user.selectWorkout', currentWorkout.workout._id);
     }
 
