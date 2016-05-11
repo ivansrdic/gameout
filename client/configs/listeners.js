@@ -20,11 +20,15 @@ export default ({LocalState}) => {
       messagePipe.getState();
 
       if(fields.stats) {
-        _.forOwn(fields.stats, function(stat, key) {
-          const value = stat - character.stats[key];
+        _.forOwn(fields.stats, function(statValue, key) {
+          if(key == "experience" && fields.stats.level != character.stats.level) {
+            // TODO: make this look normal
+          } else {
+            const value = statValue - character.stats[key];
 
-          if(value > 0) messagePipe.addSuccess({name: key, value});
-          else if(value < 0) messagePipe.addDanger({name: key, value});
+            if(value > 0) messagePipe.addSuccess({name: key, value});
+            else if(value < 0) messagePipe.addDanger({name: key, value});
+          }
         });
       }
 
