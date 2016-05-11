@@ -32,6 +32,11 @@ const GroupSchema = new SimpleSchema({
   damageHistory: {
     type: [DamageSchema],
     defaultValue: []
+  },
+  currentBossHealth: {
+    type: Number,
+    min: 0,
+    optional: true
   }
 });
 

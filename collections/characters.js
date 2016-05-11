@@ -28,25 +28,30 @@ const AppearanceSchema = new SimpleSchema({
 const StatsSchema = new SimpleSchema({
   strength: {
     type: Number,
-    min: 0,
-    defaultValue: 0
+    min: 3,
+    defaultValue: 3
   },
   stamina: {
     type: Number,
-    min: 0,
-    defaultValue: 0
+    min: 3,
+    defaultValue: 3
   },
   agility: {
     type: Number,
-    min: 0,
-    defaultValue: 0
+    min: 3,
+    defaultValue: 3
   },
   intelligence: {
     type: Number,
-    min: 0,
-    defaultValue: 0
+    min: 3,
+    defaultValue: 3
   },
-  health: {
+  currentHealth: {
+    type: Number,
+    min: 0,
+    defaultValue: 50
+  },
+  maxHealth: {
     type: Number,
     min: 0,
     defaultValue: 50
