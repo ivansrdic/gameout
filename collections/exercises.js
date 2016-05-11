@@ -21,6 +21,10 @@ const ExercisesSchema = new SimpleSchema({
   link: {
     type: String,
     optional: true
+  },
+  level: {
+    type:String,
+    allowedValues: ["easy", "medium", "hard"]
   }
 });
 

@@ -53,7 +53,7 @@ export default () => {
       {
         ownerId: userId,
         name: "Lunges",
-        // level: 1,
+        level: "easy",
         description: "The lunge is a classic fitness exercise for the lower body, which helps the flexibility of the hips and hamstrings, and the strength of the buttocks, hamstrings and hip flexors.",
         link:"https://www.youtube.com/watch?v=ekkKhBLZnxc",
         unit: 10
@@ -64,7 +64,7 @@ export default () => {
       {
         ownerId: userId,
         name: "Squats",
-        // level: 1,
+        level: "easy",
       description: "Squat is a compound, full body exercise that trains primarily the muscles of the thighs, hips and buttocks, quadriceps, hamstrings, as well as strengthening the bones, ligaments and insertion of the tendons throughout the lower body." ,
         link: "https://www.youtube.com/watch?v=nEQQle9-0NA",
         unit: 15
@@ -75,7 +75,7 @@ export default () => {
       {
         ownerId: userId,
         name: "Crunches",
-        // level: 1,
+        level: "easy",
         description: "The basic crunch is the consummate abdominal exercise in a strength-training program. Pay special attention to your form when you do crunches, especially if you have lower-back or neck problems",
         link: "https://www.youtube.com/watch?v=NIqgTCTd2MM",
         unit: 20
@@ -86,7 +86,7 @@ export default () => {
       {
         ownerId: userId,
         name: "Laying leg raises",
-        // level: 1,
+        level: "easy",
         description: "Exercise is performed by laying on back with hands under glutes, raising your legs up and returning to start position with yout knees slightly bent.",
         link: "https://www.youtube.com/watch?v=l4kQd9eWclE",
         unit: 10
@@ -97,7 +97,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Mountain climbers",
-          // level: 1,
+          level: "easy",
           description: "Place hands on floor, slightly wider than shoulder width. On forefeet, position one leg forward bent under body and extend other leg back.",
           link: "https://www.youtube.com/watch?v=fBZHkGT0W5Y",
           unit: 10
@@ -109,7 +109,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Dips on chair",
-          // level: 1,
+          level: "easy",
           description: "The dip is an exercise used in strength training. Narrow, shoulder-width dips primarily train the triceps, with major synergists being the anterior deltoid, the pectoralis muscles and the rhomboid muscles of the back (in that order).",
           link: "https://www.youtube.com/watch?v=c3ZGl4pAwZ4",
           unit: 10
@@ -124,7 +124,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Push ups",
-          // level: 2,
+          level: "medium",
           description: "Exercise performed in a prone position by raising and lowering the body with the straightening and bending of the arms while keeping the back straight and supporting the body on the hands and toes.",
           link: "https://www.youtube.com/watch?v=Eh00_rniF8E",
           unit: 10
@@ -135,7 +135,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Dips",
-          // level: 2,
+          level: "medium",
           description: "The dip is an exercise used in strength training. Narrow, shoulder-width dips primarily train the triceps, with major synergists being the anterior deltoid, the pectoralis muscles and the rhomboid muscles of the back (in that order).",
           link: "https://www.youtube.com/watch?v=wjUmnZH528Y",
           unit: 10
@@ -146,7 +146,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Squat jumps",
-          // level: 2,
+          level: "medium",
           description: "Stand with your feet shoulder-width apart, arms hanging at your sides. Squat down until your knees are bent about 90 degrees. Immediately swing your arms overhead and jump upward as high as you can.",
           link: "https://www.youtube.com/watch?v=DeTBwEL4m7s",
           unit: 10
@@ -193,7 +193,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Squats_Women",
-          // level: 1,
+          level: "easy",
           description: "Squat is a compound, full body exercise that trains primarily the muscles of the thighs, hips and buttocks, quadriceps, hamstrings, as well as strengthening the bones, ligaments and insertion of the tendons throughout the lower body.",
           link:"https://www.youtube.com/watch?v=UXJrBgI2RxA",
           unit: 15
@@ -204,7 +204,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Push ups_Women",
-          // level: 1,
+          level: "easy",
           description: "Push-up, targeting all the major muscle groups of the upper body, mostly the pecks, the chest muscles, the anterior delts, the front of your shoulder, and as you go through elbow flexion and extension, you're working your triceps.",
           link:"https://www.youtube.com/watch?v=Q7cPaJZoOng",
           unit: 10
@@ -215,7 +215,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Bridge squeeze",
-          // level: 1,
+          level: "easy",
           description: "The bridge exercise is a back bend, a core strengthener, and a balance pose all in one.",
           link:"https://www.youtube.com/watch?v=2-d8EplhKIM",
           unit: 12
@@ -226,7 +226,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Mountain climbers_Women",
-          // level: 1,
+          level: "easy",
           description: "Place hands on floor, slightly wider than shoulder width. On forefeet, position one leg forward bent under body and extend other leg back.",
           link:"https://www.youtube.com/watch?v=nmwgirgXLYM",
           unit: 10
@@ -237,7 +237,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Lunges_Women",
-          // level: 1,
+          level: "easy",
           description: "The lunge is a classic fitness exercise for the lower body, which helps the flexibility of the hips and hamstrings, and the strength of the buttocks, hamstrings and hip flexors.",
           link:"https://www.youtube.com/watch?v=QF0BQS2W80k",
           unit: 10
@@ -248,7 +248,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Jumping jacks_Women",
-          // level: 1,
+          level: "easy",
           description: "Great exercises where your getting movement in your upper body, your getting movement in your lower body, its cardiovascular and you don't need any equipment.",
           link:"https://www.youtube.com/watch?v=UpH7rm0cYbM",
           unit: 15
@@ -259,7 +259,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Russian twists_Women",
-          // level: 1,
+          level: "easy",
           description: "Grab a medicine ball, dumbbell, or weight plate and sit on the floor with your hips and knees bent 90 degrees. Hold the weight straight out in front of you and keep your back straight. Explosively twist your torso as far as you can to the left, and then reverse the motion, twisting as far as you can to the right. That's one rep.",
           link:"https://www.youtube.com/watch?v=NeAtimSCxsY",
           unit: 20
@@ -270,7 +270,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Bicycle crunches_Women",
-          // level: 1,
+          level: "easy",
           description: "Lie on your back on a mat with knees bent, feet on the floor, and hands behind your head (dont clasp your fingers). Press your lower back into the mat and tighten your ab muscles as you lift your head, shoulders, and upper back off the floor and simultaneously move your right elbow and left knee toward each other while straightening your right leg (don't let it touch the ground).",
           link:"https://www.youtube.com/watch?v=Iwyvozckjak",
           unit: 15
@@ -281,7 +281,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Back extensions_Women",
-          // level: 1,
+          level: "easy",
           description: "Back extension is mostly going to mostly work the erector spine or erector spine muscle group which is the long muscles that run vertically and parallel to your spine and basically are the muscles that hold you up. It's really important to do back extension especially if you have a desk job and you're used to always being in this slumped over type of posture.",
           link:"https://www.youtube.com/watch?v=DDJtB8Zgyow",
           unit: 10
@@ -292,7 +292,7 @@ export default () => {
         {
           ownerId: userId,
           name: "Squat jumps_Women",
-          // level: 1,
+          level: "easy",
           description: "Stand with your feet shoulder-width apart, arms hanging at your sides. Squat down until your knees are bent about 90 degrees. Immediately swing your arms overhead and jump upward as high as you can.",
           link:"https://www.youtube.com/watch?v=U4s4mEQ5VqU",
           unit: 10
