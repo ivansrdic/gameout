@@ -1,15 +1,21 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import Group from '../../../components/private/group/group.jsx';
 
-function composer({getCharacter}, onData) {
+function composer({getCharacter, getMembers, getGroup, getQuest}, onData) {
   const characterSubscription = Meteor.subscribe('character');
 
   if (characterSubscription.ready()) {
     const character = getCharacter();
+    const members = getMembers();
+    const group = getGroup();
+    const quest = getQuest();
 
     const data = {
       ready: true,
-      character
+      character,
+      members,
+      group,
+      quest
     };
     onData(null, data);
   } else {

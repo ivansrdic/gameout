@@ -31,14 +31,7 @@ class Group extends Component {
               <Row className="group">
                 {this.renderGroupMembers()}
               </Row>
-              <Input type="text" placeholder="Enter your friend's username"
-                     value={this.state.inviteUsername}
-                     onChange={(e) => {this.setState({inviteUsername: e.target.value})}}
-                     buttonAfter={
-                       <Button onClick={this.handleInviteClick.bind(this)}>
-                         Invite to group
-                       </Button>
-                     } />
+              {this.renderInviteInput()}
               <Panel className="quest-history">
                 <ListGroup>
                   <ListGroupItem>Peter dealt 15 damage.</ListGroupItem>
@@ -57,8 +50,7 @@ class Group extends Component {
   }
 
   renderQuest() {
-    const {getQuest} = this.props;
-    const quest = getQuest();
+    const {quest} = this.props;
 
     if(quest) {
       return (
@@ -81,26 +73,53 @@ class Group extends Component {
   }
   
   renderGroupMembers() {
-    const {getMembers, getCharacter} = this.props;
+    const {members, group, getCharacter, user} = this.props;
 
-    return getMembers().map((member) => {
-      const character = getCharacter(member);
-      return (
-        <Col sm={6} lg={4} key={member._id}>
-          <div className="character-container">
-            <Character character={character}/>
-            <Button className="equipment-toggle" bsStyle="default" onClick={() => {this.handleRemoveUser(member);}}>
-              <i className="fa fa-times"></i>
-            </Button>
-            <div className="character-details">
-              <h4 className="text-center">{member.username}</h4>
-              <ProgressBar bsStyle="danger" min={0} max={50} now={character.stats.health}
-                           label={" %(now)s / %(max)s "}/>
+    if(group)
+      return members.map((member) => {
+        const character = getCharacter(member);
+        return (
+          <Col sm={6} lg={4} key={member._id}>
+            <div className="character-container">
+              <Character character={character}/>
+              {this.renderRemoveFromGroup(member)}
+              <div className="character-details">
+                <h4 className="text-center">{member.username}</h4>
+                <ProgressBar bsStyle="danger" min={0} max={50} now={character.stats.health}
+                             label={" %(now)s / %(max)s "}/>
+              </div>
             </div>
-          </div>
-        </Col>
+          </Col>
+        );
+      });
+  }
+
+  renderRemoveFromGroup(member) {
+    const {group, user} = this.props;
+
+    if(group.ownerId == user._id && member._id != user._id)
+      return (
+        <Button className="equipment-toggle" bsStyle="default" onClick={() => {this.handleRemoveUser(member);}}>
+          <i className="fa fa-times"></i>
+        </Button>
       );
-    })
+  }
+
+  renderInviteInput() {
+    const {group, user} = this.props;
+
+    if(group)
+      if(user._id == group.ownerId)
+        return (
+          <Input type="text" placeholder="Enter your friend's username"
+                 value={this.state.inviteUsername}
+                 onChange={(e) => {this.setState({inviteUsername: e.target.value})}}
+                 buttonAfter={
+                       <Button onClick={this.handleInviteClick.bind(this)}>
+                         Invite to group
+                       </Button>
+                     } />
+        );
   }
   
   handleRemoveUser(member) {
