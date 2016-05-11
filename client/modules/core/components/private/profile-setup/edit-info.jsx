@@ -116,11 +116,20 @@ class EditInfo extends Component {
 
   //endregion
 
+  /**
+   * Try-catch block is used because of profile-setup component.
+   * There is a possibility of this component unmounting before
+   * calling this function which causes all sorts of errors.
+   */
   resetForm() {
     const labels = ['age', 'height', 'weight', 'username'];
-    labels.forEach((label) => {
-      this.refs[label].getInputDOMNode().value = '';
-    });
+    try{
+      labels.forEach((label) => {
+        this.refs[label].getInputDOMNode().value = '';
+      });
+    } catch(err) {
+      return;
+    }
     this.props.clearState();
   }
 

@@ -2,8 +2,12 @@ import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import InfoBar from '../../../../components/common/navigation/info-bar/info-bar.jsx';
 
 export const composer = ({getCharacter}, onData) => {
-  const character = getCharacter();
-  onData(null, {character});
+  const characterSubscription = Meteor.subscribe('character');
+
+  if (characterSubscription.ready()) {
+    const character = getCharacter();
+    onData(null, {character});
+  } 
 };
 
 export const depsMapper = (context, {Profile}) => {
