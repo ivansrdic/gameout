@@ -1,3 +1,5 @@
+import {Groups, Users, Characters, Levels, Items, Skins} from '/collections';
+
 export default () => {
   Accounts.onCreateUser(function(options, user) {
 
@@ -17,6 +19,12 @@ export default () => {
         last_name: user.services.google.family_name
       }
     }
+    let group = {
+      ownerId: user._id,
+      memberIds: [user._id]
+    };
+    let groupId = Groups.insert(group);
+    user.data = { groupId: groupId };
 
     return user;
   });
