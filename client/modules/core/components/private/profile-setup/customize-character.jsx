@@ -11,7 +11,7 @@ export default class CustomizeCharacter extends Component {
 
   render() {
     const {
-      getCharacter,
+      character,
       getHairs,
       getTorsos,
       getLegs,
@@ -19,7 +19,6 @@ export default class CustomizeCharacter extends Component {
       getAppearanceIds,
       equipSkin
     } = this.props;
-    const character = getCharacter();
 
     return (
       <Grid>
@@ -74,7 +73,10 @@ export default class CustomizeCharacter extends Component {
                   </Col>
                 </Row>
 
-                <Button onClick={this.handleUndoClick.bind(this)} className="pull-right">Undo Changes</Button>
+                <Row>
+                  <Button href="/profile" className="pull-right">To Profile</Button>
+                  <Button onClick={this.handleUndoClick.bind(this)} className="pull-right">Undo Changes</Button>
+                </Row>
 
               </Col>
             </Panel>

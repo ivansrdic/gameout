@@ -2,13 +2,15 @@ import Loading from '../../../components/private/shared/loading/loading.jsx';
 import CustomizeCharacter from '../../../components/private/profile-setup/customize-character.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
-export const composer = ({context, stateKey, clearErrors}, onData) => {
+export const composer = ({context, stateKey, clearErrors, getCharacter}, onData) => {
   const characterSubscription = context().Meteor.subscribe('character');
   const {LocalState} = context();
   const errors = LocalState.get(stateKey()) || {};
-
+  
   if (characterSubscription.ready()) {
-    onData(null, {errors, ready: true});
+    NProgress.done();
+    const character = getCharacter();
+    onData(null, {errors, character});
   }
 
   return clearErrors;

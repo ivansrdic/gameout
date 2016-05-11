@@ -8,7 +8,7 @@ export const composer = ({context, clearErrors, isUserInfoDone}, onData) => {
   if (userInfoSubscription.ready()) {
     const choice = isUserInfoDone() ? 'customize-character' : 'edit-info';
     NProgress.done();
-    onData(null, {choice, ready: true});
+    onData(null, {choice});
   }
 
   return clearErrors;
