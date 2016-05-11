@@ -6,10 +6,6 @@ const BossSchema = new SimpleSchema({
   name: {
     type: String
   },
-  currentHealth: {
-    type: Number,
-    min: 0
-  },
   maxHealth: {
     type: Number,
     min: 0

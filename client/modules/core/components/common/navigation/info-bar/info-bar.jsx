@@ -12,16 +12,16 @@ class Navigation extends Component {
    * @returns {XML}
    */
   render() {
-    const {character, getLevel} = this.props;
+    const {character, level} = this.props;
 
-    try{
-      if(character) {
+    try {
+      if (character && level) {
         const {stats} = character;
         return (
           <Navbar id="info-bar" fixedTop={true} inverse={true}>
             <Nav pullRight={true}>
               <NavItem><i className="fa fa-circle"></i> {stats.gold}</NavItem>
-              <NavItem><i className="fa fa-star"></i> {stats.experience}/{getLevel().experience}</NavItem>
+              <NavItem><i className="fa fa-star"></i> {stats.experience}/{level.experience}</NavItem>
               <NavItem><i className="fa fa-heart"></i> {stats.health}/50</NavItem>
               <NavItem>{"Level " + stats.level}</NavItem>
             </Nav>
@@ -35,7 +35,7 @@ class Navigation extends Component {
           </Navbar>
         );
       }
-    } catch(err) {
+    } catch (err) {
       return (
         <Navbar id="info-bar" fixedTop={true} inverse={true}>
           <Nav pullRight={true}>

@@ -6,11 +6,13 @@ export default function() {
   Meteor.methods({
     'quest.beginQuest'(questId, groupId) {
       let group = Users.findOne(this.userId).group();
+      let quest = Quests.findOne(questId);
 
       if (group._id != groupId || group.ownerId != this.userId) {
         throw new Meteor.Error("quest.begginQuest", "Only group owner can start a quest");
       }
       Groups.update(groupId, {$set: {questId: questId}});
+      Groups.update(groupId, {$set: {currentBossHealth: quest.boss.maxHealth}});
     },
     
     'quest.fightBoss'() {
@@ -26,18 +28,17 @@ export default function() {
       }
 
       Groups.update(user.group()._id, {$push: {damageHistory: damage}});
-      if (quest.boss.currentHealth <= damage.damageToBoss) {
+      if (user.group().currentBossHealth <= damage.damageToBoss) {
         Meteor.call("quest.finishQuest");
       }
       else {
-        Quests.update(quest._id, {$inc: {"boss.currentHealth": -damage.damageToBoss}});
+        Groups.update(user.group()._id, {$inc: {"currentBossHealth": -damage.damageToBoss}});
         user.group().members().forEach((user) => {
-          Characters.update(user.character()._id, {$inc: {"stats.health": -damage.damageFromBoss}});
+          Characters.update(user.character()._id, {$inc: {"stats.currentHealth": -damage.damageFromBoss}});
         });
       }
     },
 
-    //TODO: QUESTOVI SU TRENUTNO SHERANI izmedu svih uzera sta nije nimalo dobro
     'quest.finishQuest'() {
       let user = Users.findOne(this.userId);
       let quest = user.group().quest();
@@ -47,19 +48,7 @@ export default function() {
       });
 
       Groups.update(user.group()._id, {$unset: {questId: ""}});
-      Quests.update(quest._id, {$set: {"boss.currentHealth": quest.boss.maxHealth}});
     }
-
-
-
-    //'guest.completeQuest'() {
-     // let user =
-
-      
-        
-
-    //'quest.finishQuest'(
-    //
 
   });
 }
