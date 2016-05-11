@@ -42,6 +42,7 @@ Groups.helpers({
     return Users.findOne(this.ownerId)
   },
   quest() {
+    if (!this.questId) return undefined;
     return Quests.findOne(this.questId);
   },
   members() {
