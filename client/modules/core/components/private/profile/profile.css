@@ -79,11 +79,11 @@
   margin-top: 0;
 }
 
-.stats-container .progress {
+.progress {
   position: relative;
 }
 
-.stats-container .progress-bar > span {
+.progress-bar > span {
   color: #000;
   font-weight: bold;
   position: absolute;

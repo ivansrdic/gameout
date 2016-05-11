@@ -14,7 +14,7 @@ class Boss extends Component {
              src="badguy01.png"
              draggable="false"/>
         <h3 className="text-center">{boss.name}</h3>
-        <ProgressBar bsStyle="danger" min={0} max={boss.health} now={boss.health}
+        <ProgressBar bsStyle="danger" min={0} max={boss.maxtHealth} now={boss.currentHealth}
                      label={" %(now)s / %(max)s "}/>
       </div>
     );

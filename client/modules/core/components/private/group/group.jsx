@@ -55,25 +55,22 @@ class Group extends Component {
     if(quest) {
       return (
         <Panel>
-          <Boss boss={quest.boss()} />
-          <p>
-            {quest.name}<br/>
-
-            {quest.description}
-          </p>
+          <Boss boss={quest.boss} />
+          <h4>{quest.name}</h4>
+          <p>{quest.description}</p>
         </Panel>
       )
     } else {
       return (
         <Panel className="text-center">
-          <Button>Start next quest</Button>
+          <Button onClick={this.handleBeginQuestClick.bind(this)}>Begin next quest</Button>
         </Panel>
       );
     }
   }
   
   renderGroupMembers() {
-    const {members, group, getCharacter, user} = this.props;
+    const {members, group, getCharacter} = this.props;
 
     if(group)
       return members.map((member) => {
@@ -120,6 +117,12 @@ class Group extends Component {
                        </Button>
                      } />
         );
+  }
+
+  handleBeginQuestClick() {
+    const {quest, group, beginQuest} = this.props;
+
+    beginQuest(quest, group);
   }
   
   handleRemoveUser(member) {
