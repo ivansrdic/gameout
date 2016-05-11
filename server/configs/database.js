@@ -1,5 +1,5 @@
 // Dev
-import {Users, Characters, Items, Skins, Exercises, Workouts, Levels, Groups, Quests} from '/collections';
+import {Users, PublicWorkouts, Characters, Items, Skins, Exercises, Workouts, Levels, Groups, Quests} from '/collections';
 
 export default () => {
   let user = Users.findOne({username: 'gameout'});
@@ -14,6 +14,7 @@ export default () => {
     Levels.remove({});
     Groups.remove({});
     Quests.remove({});
+    PublicWorkouts.remove({});
 
     Accounts.createUser({
       email: 'gameout@gameout.com',
