@@ -2,3 +2,5 @@ node_modules
 .idea
 .deploy
 notes.deni.txt
+npm-debug.log
+.gitignore~
