@@ -1,4 +1,4 @@
-import Items from './';
+import {Items} from './';
 
 const Quests = new Mongo.Collection('quests');
 
@@ -6,11 +6,17 @@ const BossSchema = new SimpleSchema({
   name: {
     type: String
   },
-  health: {
-    type: Number
+  currentHealth: {
+    type: Number,
+    min: 0
+  },
+  maxHealth: {
+    type: Number,
+    min: 0
   },
   damage: {
-    type: Number
+    type: Number,
+    min: 0
   }
 });
 

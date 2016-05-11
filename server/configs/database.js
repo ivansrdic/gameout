@@ -29,8 +29,9 @@ export default () => {
       description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquam, urna at tincidunt consequat, tortor turpis laoreet leo, in vulputate diam metus vel arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices, dui eget vulputate rutrum, nibh ante tristique eros, sed tempor lacus est a erat. Duis mattis cursus nisi, quis elementum quam vulputate non. Maecenas a erat a sem gravida tempor. Morbi id turpis at dolor ultricies rutrum. Nunc tincidunt ut sem eget laoreet. Nam sed vulputate eros, sed auctor sem. Donec sit amet varius augue.",
       boss: {
         name: "First boss",
-        health: 100,
-        damage: 1
+        currentHealth: 100,
+        maxHealth: 100,
+        damage: 4
       },
       rewards: {
         experience: 100,
