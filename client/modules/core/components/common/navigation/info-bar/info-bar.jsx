@@ -7,9 +7,9 @@ class Navigation extends Component {
   }
   
   render() {
-    const {user, character, getLevel} = this.props;
+    const {character, getLevel} = this.props;
 
-    if(user && character) {
+    if(character) {
       const {stats} = character;
       return (
         <Navbar id="info-bar" fixedTop={true} inverse={true}>
@@ -23,7 +23,7 @@ class Navigation extends Component {
       );
     } else {
       return (
-        <Navbar id="info-bar" fixedTop={true}>
+        <Navbar id="info-bar" fixedTop={true} inverse={true}>
           <Nav pullRight={true}>
           </Nav>
         </Navbar>

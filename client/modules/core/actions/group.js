@@ -1,18 +1,23 @@
+import {Groups} from '/collections';
+
 export default {
-  getGroup({Meteor}) {
-    return Meteor.user().group();
+  getGroup() {
+    return Groups.findOne();
   },
 
-  getQuest({Meteor}) {
-    return Meteor.user().group().quest();
+  getQuest() {
+    const group = Groups.findOne();
+    if(group) return group.quest();
   },
 
-  getOwner({Meteor}) {
-    return Meteor.user().group().owner();
+  getOwner() {
+    const group = Groups.findOne();
+    if(group) return group.owner();
   },
 
-  getMembers({Meteor}) {
-    return Meteor.user().group().members();
+  getMembers() {
+    const group = Groups.findOne();
+    if(group) return group.members();
   },
 
   addUserToGroup({Meteor}, username) {

@@ -1,6 +1,6 @@
 import {Meteor} from 'meteor/meteor';
 import {check, Match} from 'meteor/check';
-import {Users, Workouts, Exercises} from '/collections';
+import {Users, Workouts, Exercises, Quests} from '/collections';
 
 export default function() {
   Meteor.methods({
@@ -27,10 +27,10 @@ export default function() {
         Users.update(this.userId, {$set: {"data.currentWorkout.currentWorkoutId": workoutId}});
       }
       else {
-        Meteor.call('character.reward', 50, 10);
+        //Meteor.call('character.reward', 50, 10);
         Users.update(this.userId, {$unset: {"data.currentWorkout.currentWorkoutId": ""}});
-        Users.update(this.userId, {$set: {"data.currentWorkout.completedExerciseIds": []}});
       }
+      Users.update(this.userId, {$set: {"data.currentWorkout.completedExerciseIds": []}});
     },
 
     // can be used for selecting and unselecting 
@@ -50,12 +50,26 @@ export default function() {
 
       if (user.data.currentWorkout.completedExerciseIds.indexOf(exerciseId) == -1) {
         Users.update(this.userId, {$push: {"data.currentWorkout.completedExerciseIds": exerciseId}});
-        Meteor.call('character.reward', 20, 5);
+        //Meteor.call('character.reward', 20, 5);
       }
       else {
         Users.update(this.userId, {$pull: {"data.currentWorkout.completedExerciseIds": exerciseId}});
-        Meteor.call('character.reward', -20, -5);
+        //Meteor.call('character.reward', -20, -5);
       }
+    },
+
+    'user.finishWorkout'() {
+      let user = Users.findOne(this.userId);
+      let currentWorkout = user.currentWorkout();
+      let experience = 20 * currentWorkout.completedExercises.count();
+      experience += 0.5 * experience * currentWorkout.completedExercises.count() / currentWorkout.workout.exercises().count();
+      let gold = experience / 4;
+
+      Meteor.call('character.reward', user.character()._id, Math.round(experience), Math.round(gold));
+      if (user.group().quest()) {
+        Meteor.call('quest.fightBoss');
+      }
+      Meteor.call('user.selectWorkout', currentWorkout.workout._id);
     }
 
   });

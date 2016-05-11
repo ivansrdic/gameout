@@ -6,6 +6,7 @@ import Profile from './profile.js';
 import Exercise from './exercise.js';
 import Workout from './workout.js';
 import Group from './group.js';
+import Quest from './quest.js';
 
 export {Authorization};
 export {EditInfo};
@@ -15,6 +16,7 @@ export {Profile};
 export {Exercise};
 export {Workout};
 export {Group};
+export {Quest};
 
 export default {
   Authorization,
@@ -24,5 +26,6 @@ export default {
   Profile,
   Exercise,
   Workout,
-  Group
+  Group,
+  Quest
 };

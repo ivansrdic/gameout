@@ -6,6 +6,7 @@ import publicWorkouts from './public-workouts';
 import items from './items';
 import skins from './skins';
 import levels from './levels';
+import quests from './quest';
 
 export default function() {
   character();
@@ -16,4 +17,5 @@ export default function() {
   skins();
   levels();
   publicWorkouts();
+  quests();
 }

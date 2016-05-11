@@ -1,15 +1,23 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import Group from '../../../components/private/group/group.jsx';
 
-function composer({getCharacter}, onData) {
+function composer({getCharacter, getMembers, getGroup, getQuest}, onData) {
   const characterSubscription = Meteor.subscribe('character');
+  const questsSubscription = Meteor.subscribe('quests');
 
-  if (characterSubscription.ready()) {
+
+  if (characterSubscription.ready() && questsSubscription.ready()) {
     const character = getCharacter();
+    const members = getMembers();
+    const group = getGroup();
+    const quest = getQuest();
 
     const data = {
       ready: true,
-      character
+      character,
+      members,
+      group,
+      quest
     };
     onData(null, data);
   } else {
@@ -17,7 +25,7 @@ function composer({getCharacter}, onData) {
   }
 }
 
-function depsMapper(context, {Profile, Group}) {
+function depsMapper(context, {Profile, Group, Quest}) {
   return ({
     getCharacter: Profile.getCharacter,
     getGroup: Group.getGroup,
@@ -25,7 +33,8 @@ function depsMapper(context, {Profile, Group}) {
     getOwner: Group.getOwner,
     getMembers: Group.getMembers,
     addUserToGroup: Group.addUserToGroup,
-    removeUserFromGroup: Group.removeUserFromGroup
+    removeUserFromGroup: Group.removeUserFromGroup,
+    beginQuest: Quest.beginQuest
   });
 }
 

@@ -2,6 +2,20 @@ import {Quests, Users, Characters} from './';
 
 const Groups = new Mongo.Collection('groups');
 
+const DamageSchema = new SimpleSchema({
+  userId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id
+  },
+  damageToBoss: {
+    type: Number,
+    min: 0
+  },
+  damageFromBoss: {
+    type: Number,
+    min: 0
+  }
+});
 const GroupSchema = new SimpleSchema({
   ownerId: {
     type: String,
@@ -14,6 +28,10 @@ const GroupSchema = new SimpleSchema({
   },
   memberIds: {
     type: [String]
+  },
+  damageHistory: {
+    type: [DamageSchema],
+    defaultValue: []
   }
 });
 
@@ -24,6 +42,7 @@ Groups.helpers({
     return Users.findOne(this.ownerId)
   },
   quest() {
+    if (!this.questId) return undefined;
     return Quests.findOne(this.questId);
   },
   members() {
@@ -32,10 +51,3 @@ Groups.helpers({
 });
 
 export default Groups;
-//korisnik dobije grupu kad se registrira
-//remove user from group
-//add user to group(ako si vlasnik), invite u tom
-//database.js brise grupe
-//begginQuest
-//damaganje bossa i davanje experinca u selectworkout
-//publicationi za to dvoje

@@ -25,14 +25,7 @@ export default function() {
         {
           find: function() {
             if(character)
-              return Characters.find(
-                character._id,
-                {
-                  fields: {
-                    stats: 1
-                  }
-                }
-              );
+              return Characters.find(character._id);
             else
               return this.ready();
           }
@@ -91,7 +84,26 @@ export default function() {
                 }
                 else
                   return this.ready();
-              }
+              },
+              children: [
+                {
+                  find: function() {
+                    if(this.userId) {
+                      let user = Users.findOne(this.userId);
+                      if (!user.group())
+                        return this.ready();
+                      let characterIds = []
+                      user.group().members().forEach((member) => {
+                        characterIds = characterIds.concat(member.data.characterId);
+                      });
+                      return Characters.find({_id: {$in: characterIds}});
+                    }
+                    else
+                      return this.ready();
+
+                  }
+                }
+              ]
             }
           ]
         }

@@ -1,4 +1,4 @@
-import {Characters, Items} from '/collections';
+import {Characters, Items, Quests} from '/collections';
 import _ from 'lodash';
 
 export default ({LocalState}) => {
@@ -19,12 +19,20 @@ export default ({LocalState}) => {
     changed(id, fields) {
       messagePipe.getState();
 
-      if(fields.stats) {
-        _.forOwn(fields.stats, function(stat, key) {
-          const value = stat - character.stats[key];
+      console.log('test');
 
-          if(value > 0) messagePipe.addSuccess({name: key, value});
-          else if(value < 0) messagePipe.addDanger({name: key, value});
+      if(fields.stats) {
+        _.forOwn(fields.stats, function(statValue, key) {
+          if(key == "experience" && fields.stats.level != character.stats.level) {
+            // TODO: make this look normal
+          } else {
+            const value = statValue - character.stats[key];
+
+            console.log(key);
+
+            if(value > 0) messagePipe.addSuccess({name: key, value});
+            else if(value < 0) messagePipe.addDanger({name: key, value});
+          }
         });
       }
 
@@ -46,6 +54,30 @@ export default ({LocalState}) => {
 
 
       character = Characters.findOne(id);
+    }
+  });
+
+  const questCollection = Quests.find();
+  let quest = null;
+
+  questCollection.observeChanges({
+    added(id, fields) {
+      quest = fields;
+    },
+
+    changed(id, fields) {
+      messagePipe.getState();
+
+      if(fields.boss) {
+        const value = quest.boss.currentHealth - fields.boss.currentHealth;
+
+        if(value != 0) {
+          messagePipe.addSuccess({name: "Damage to boss", value})
+        }
+
+
+          quest = Quests.findOne(id);
+      }
     }
   });
 }

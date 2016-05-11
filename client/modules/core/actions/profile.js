@@ -39,8 +39,14 @@ export default {
       character.equipment.leftHandId, character.equipment.rightHandId];
   },
 
-  selectWorkout({Meteor}, workoutId) {
-    Meteor.call('user.selectWorkout', workoutId, function(err) {
+  selectWorkout({Meteor}, workout) {
+    Meteor.call('user.selectWorkout', workout._id, function(err) {
+      if(err) console.log(err);
+    });
+  },
+
+  finishWorkout({Meteor}) {
+    Meteor.call('user.finishWorkout', function(err) {
       if(err) console.log(err);
     });
   },
