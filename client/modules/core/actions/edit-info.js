@@ -68,7 +68,6 @@ export default {
 
   usernameValidation({LocalState}, value) {
     const validation = new Validation(LocalState, stateKey, "usernameValidation");
-    console.log(value, "DENI");
 
     if(Utils.isEmpty(value)) {
       validation.error(Utils.REQUIRED);
@@ -97,9 +96,9 @@ export default {
       if (err) {
         validation.error(err.reason);
       } else {
-        createCharacter(); 
+        createCharacter();
         resetForm();
-        validation.success("Saka čast direktore (neka poruka tu)");
+        validation.success("Changes were stored!");
       }
     });
 
