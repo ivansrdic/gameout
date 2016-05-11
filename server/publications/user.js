@@ -91,7 +91,26 @@ export default function() {
                 }
                 else
                   return this.ready();
-              }
+              },
+              children: [
+                {
+                  find: function() {
+                    if(this.userId) {
+                      let user = Users.findOne(this.userId);
+                      if (!user.group())
+                        return this.ready();
+                      let characterIds = []
+                      user.group().members().forEach((member) => {
+                        characterIds = characterIds.concat(member.data.characterId);
+                      });
+                      return Characters.find({_id: {$in: characterIds}});
+                    }
+                    else
+                      return this.ready();
+
+                  }
+                }
+              ]
             }
           ]
         }
