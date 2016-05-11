@@ -29,7 +29,8 @@ export default function() {
                 character._id,
                 {
                   fields: {
-                    stats: 1
+                    stats: 1,
+                    ownerId: 1
                   }
                 }
               );
