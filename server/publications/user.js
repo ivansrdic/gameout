@@ -25,15 +25,7 @@ export default function() {
         {
           find: function() {
             if(character)
-              return Characters.find(
-                character._id,
-                {
-                  fields: {
-                    stats: 1,
-                    ownerId: 1
-                  }
-                }
-              );
+              return Characters.find(character._id);
             else
               return this.ready();
           }
