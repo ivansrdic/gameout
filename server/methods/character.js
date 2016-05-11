@@ -87,8 +87,8 @@ export default function() {
       Characters.update(characterId, {$addToSet: {inventoryIds: itemId}});
     },
     
-    'character.reward'(experience, gold) {
-      const character = Characters.findOne({ownerId: this.userId});
+    'character.reward'(characterId, experience, gold) {
+      const character = Characters.findOne(characterId);
 
       const level = character.level();
 

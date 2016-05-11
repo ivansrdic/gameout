@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Workouts, Users} from '/collections';
+import {Workouts, Users, Quests} from '/collections';
 
 class Test extends Component {
   constructor(props) {
@@ -53,9 +53,22 @@ class Test extends Component {
   testGroup4() {
     Meteor.call('group.removeUserFromGroup', Meteor.userId());
   }
+  
+  testFinishWorkout() {
+    Meteor.call('user.finishWorkout');
+  }
+
+  beginQuest() {
+    let user = Users.findOne(Meteor.userId());
+    let quest = Quests.findOne();
+    console.log(user.group());
+    
+    Meteor.call('quest.beginQuest', quest._id, user.group()._id);
+  }
 
   render() {
     Meteor.subscribe('user');
+    Meteor.subscribe('quests');
     Meteor.subscribe('public-workouts');
     return (
       <ul>
@@ -68,6 +81,8 @@ class Test extends Component {
         <li><input type="button" onClick={this.testGroup2} value="TestGroup2" /></li>
         <li><input type="button" onClick={this.testGroup3} value="TestGroup3" /></li>
         <li><input type="button" onClick={this.testGroup4} value="TestGroup4" /></li>
+        <li><input type="button" onClick={this.testFinishWorkout} value="TestFinishWorkout" /></li>
+        <li><input type="button" onClick={this.beginQuest} value="beginQuest" /></li>
       </ul>
     );
   }
