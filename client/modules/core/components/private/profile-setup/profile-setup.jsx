@@ -4,13 +4,6 @@ import EditInfo from '../../../containers/private/profile-setup/edit-info.jsx';
 import CustomizeCharacter from '../../../containers/private/profile-setup/customize-character.jsx';
 
 class ProfileSetup extends Component {
-
-  componentDidUpdate() {
-    if (this.props.ready) {
-      NProgress.done();
-    }
-  }
-
   render() {
     return (
       <Grid>
@@ -26,7 +19,7 @@ class ProfileSetup extends Component {
       </Grid>
     );
   }
-  
+
   renderChoice(choice) {
     if (choice == 'customize-character') {
       return <CustomizeCharacter />
@@ -34,7 +27,7 @@ class ProfileSetup extends Component {
       return <EditInfo />
     }
   }
-  
+
 }
 
 export default ProfileSetup;

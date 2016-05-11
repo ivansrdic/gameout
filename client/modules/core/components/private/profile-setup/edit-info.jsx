@@ -130,7 +130,7 @@ class EditInfo extends Component {
     };
 
     const {ageValidation, heightValidation, weightValidation, usernameValidation, submitUserInfo} = this.props;
-    
+
     ageValidation(userInfo.age);
     heightValidation(userInfo.height);
     weightValidation(userInfo.weight);

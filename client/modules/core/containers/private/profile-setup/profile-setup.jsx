@@ -1,3 +1,4 @@
+import Loading from '../../../components/private/shared/loading/loading.jsx';
 import ProfileSetup from '../../../components/private/profile-setup/profile-setup.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
@@ -6,6 +7,7 @@ export const composer = ({context, clearErrors, isUserInfoDone}, onData) => {
 
   if (userInfoSubscription.ready()) {
     const choice = isUserInfoDone() ? 'customize-character' : 'edit-info';
+    NProgress.done();
     onData(null, {choice, ready: true});
   }
 
@@ -21,6 +23,6 @@ export const depsMapper = (context, actions) => {
 };
 
 export default composeAll(
-  composeWithTracker(composer),
+  composeWithTracker(composer, Loading),
   useDeps(depsMapper)
 )(ProfileSetup);

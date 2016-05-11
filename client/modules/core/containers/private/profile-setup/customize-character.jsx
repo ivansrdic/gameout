@@ -1,16 +1,14 @@
+import Loading from '../../../components/private/shared/loading/loading.jsx';
 import CustomizeCharacter from '../../../components/private/profile-setup/customize-character.jsx';
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
-export const composer = ({context, stateKey, clearErrors, getCharacter}, onData) => {
+export const composer = ({context, stateKey, clearErrors}, onData) => {
   const characterSubscription = context().Meteor.subscribe('character');
   const {LocalState} = context();
   const errors = LocalState.get(stateKey()) || {};
 
   if (characterSubscription.ready()) {
-    const character = getCharacter();
-    onData(null, {errors, character, ready: true});
-  } else {
-    onData(null, {ready: false})
+    onData(null, {errors, ready: true});
   }
 
   return clearErrors;
@@ -33,6 +31,6 @@ export const depsMapper = (context, actions) => {
 };
 
 export default composeAll(
-  composeWithTracker(composer),
+  composeWithTracker(composer, Loading),
   useDeps(depsMapper),
 )(CustomizeCharacter);
