@@ -30,6 +30,7 @@ class CurrentWorkout extends Component {
           />
           <div className="center-button">
             <Button bsStyle="success" onClick={this.finishWorkout.bind(this)}>Finish</Button>
+            <Button bsStyle="warning" onClick={this.selectWorkout.bind(this)}>Cancel</Button>
           </div>
         </div>
       );
@@ -50,13 +51,17 @@ class CurrentWorkout extends Component {
   completeExercise(exercise) {
     this.props.completeExercise(exercise._id);
   }
+  
+  selectWorkout() {
+    this.props.selectWorkout(this.props.currentWorkout.workout._id);
+  }
 
   finishWorkout() {
     this.setState({animate: true});
     setTimeout(function() {
       this.setState({animate: false});
     }.bind(this), 3000);
-    this.props.finishWorkout(this.props.currentWorkout.workout._id);
+    this.props.finishWorkout();
   }
 }
 

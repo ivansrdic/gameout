@@ -27,7 +27,7 @@ class Profile extends Component {
   render() {
     if (this.props.ready) {
       const {character, getLevel, getEquipment, getEquipmentIds, getInventory, equipItem,
-              selectWorkout, getCurrentWorkout, getWorkoutExercises, completeExercise} = this.props;
+              selectWorkout, finishWorkout, getCurrentWorkout, getWorkoutExercises, completeExercise} = this.props;
       return (
         <Grid className="profile" fluid={true}>
           <Row className="character-info no-gutter">
@@ -92,7 +92,8 @@ class Profile extends Component {
                   currentWorkout={getCurrentWorkout()}
                   getWorkoutExercises={getWorkoutExercises}
                   completeExercise={completeExercise}
-                  finishWorkout={selectWorkout}
+                  selectWorkout={selectWorkout}
+                  finishWorkout={finishWorkout}
                 />
               </Panel>
             </Col>

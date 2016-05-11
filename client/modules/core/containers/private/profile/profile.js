@@ -25,6 +25,7 @@ function depsMapper(context, {Profile, Workout}) {
     getEquipment: Profile.getEquipment,
     getEquipmentIds: Profile.getEquipmentIds,
     selectWorkout: Profile.selectWorkout,
+    finishWorkout: Profile.finishWorkout,
     getCurrentWorkout: Profile.getCurrentWorkout,
     equipItem: Profile.equipItem,
     getWorkouts: Workout.getWorkouts,
