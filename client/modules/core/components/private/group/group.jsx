@@ -94,7 +94,7 @@ class Group extends Component {
   renderRemoveFromGroup(member) {
     const {group, user} = this.props;
 
-    if(group.ownerId == user._id && member._id != user._id)
+    if((group.ownerId == user._id && member._id != user._id) || member._id == user._id)
       return (
         <Button className="equipment-toggle" bsStyle="default" onClick={() => {this.handleRemoveUser(member);}}>
           <i className="fa fa-times"></i>
