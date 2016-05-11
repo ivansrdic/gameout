@@ -3,13 +3,9 @@ import ProfileSetup from '../../../components/private/profile-setup/profile-setu
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 
 export const composer = ({context, clearErrors, isUserInfoDone}, onData) => {
-  const userInfoSubscription = context().Meteor.subscribe("user");
-
-  if (userInfoSubscription.ready()) {
-    const choice = isUserInfoDone() ? 'customize-character' : 'edit-info';
-    NProgress.done();
-    onData(null, {choice});
-  }
+  const choice = isUserInfoDone() ? 'customize-character' : 'edit-info';
+  NProgress.done();
+  onData(null, {choice});
 
   return clearErrors;
 };

@@ -38,3 +38,4 @@ email                               # Send email messages
 kadira:dochead                      # Isomorphic way to manipulate document.head for Meteor apps
 
 crosswalk
+reactive-var

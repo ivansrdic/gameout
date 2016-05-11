@@ -88,7 +88,7 @@ export default {
     validation.success();
   },
 
-  submitUserInfo({LocalState}, userInfo, resetForm, createCharacter) {
+  submitUserInfo({LocalState}, userInfo, resetForm) {
     if (Utils.hasErrors(LocalState.get(stateKey))) return;
 
     Meteor.call('user.updateUserInfo', userInfo, (err) => {
@@ -96,7 +96,6 @@ export default {
       if (err) {
         validation.error(err.reason);
       } else {
-        createCharacter();
         resetForm();
         validation.success("Changes were stored!");
       }
