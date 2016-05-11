@@ -34,9 +34,7 @@ class Group extends Component {
               {this.renderInviteInput()}
               <Panel className="quest-history">
                 <ListGroup>
-                  <ListGroupItem>Peter dealt 15 damage.</ListGroupItem>
-                  <ListGroupItem>Phillip dealt 20 damage, but The boss man dealt 5 damage to the group.</ListGroupItem>
-                  <ListGroupItem>John dealt 5 damage.</ListGroupItem>
+                  {this.renderGroupDamageHistory()}
                 </ListGroup>
               </Panel>
             </Col>
@@ -50,9 +48,10 @@ class Group extends Component {
   }
 
   renderQuest() {
-    const {quest} = this.props;
+    const {quest, group} = this.props;
 
     if(quest) {
+      quest.boss.currentHealth = group.currentBossHealth;
       return (
         <Panel>
           <Boss boss={quest.boss} />
@@ -82,7 +81,7 @@ class Group extends Component {
               {this.renderRemoveFromGroup(member)}
               <div className="character-details">
                 <h4 className="text-center">{member.username}</h4>
-                <ProgressBar bsStyle="danger" min={0} max={50} now={character.stats.health}
+                <ProgressBar bsStyle="danger" min={0} max={character.stats.maxHealth} now={character.stats.currentHealth}
                              label={" %(now)s / %(max)s "}/>
               </div>
             </div>
@@ -117,6 +116,25 @@ class Group extends Component {
                        </Button>
                      } />
         );
+  }
+
+  renderGroupDamageHistory() {
+    const {getMembers, getDamageHistory, quest} = this.props;
+
+    const members = getMembers().map((member) => {return {_id: member._id, username: member.username}; });
+
+    const damageHistory = getDamageHistory();
+
+
+    return damageHistory.map((entry) => {
+      return members.map((member) => {
+        if(entry.userId == member._id) {
+          return (
+            <ListGroupItem>{member.username} dealt {entry.damageToBoss} damage to the boss. {quest.boss.name} dealt {entry.damageFromBoss} damage to the group.</ListGroupItem>
+          )
+        }
+      })
+    })
   }
 
   handleBeginQuestClick() {

@@ -32,6 +32,7 @@ function depsMapper(context, {Profile, Group, Quest}) {
     getQuest: Group.getQuest,
     getOwner: Group.getOwner,
     getMembers: Group.getMembers,
+    getDamageHistory: Group.getDamageHistory,
     addUserToGroup: Group.addUserToGroup,
     removeUserFromGroup: Group.removeUserFromGroup,
     beginQuest: Quest.beginQuest

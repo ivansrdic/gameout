@@ -1,4 +1,4 @@
-import {Characters, Items, Quests} from '/collections';
+import {Characters, Items, Groups} from '/collections';
 import _ from 'lodash';
 
 export default ({LocalState}) => {
@@ -53,26 +53,26 @@ export default ({LocalState}) => {
     }
   });
 
-  const questCollection = Quests.find();
-  let quest = null;
+  const groupsCollection = Groups.find();
+  let group = null;
 
-  questCollection.observeChanges({
+  groupsCollection.observeChanges({
     added(id, fields) {
-      quest = fields;
+      group = fields;
     },
 
     changed(id, fields) {
       messagePipe.getState();
 
-      if(fields.boss) {
-        const value = quest.boss.currentHealth - fields.boss.currentHealth;
+      if(fields.currentBossHealth) {
+        const value = group.currentBossHealth - fields.currentBossHealth;
 
         if(value != 0) {
           messagePipe.addSuccess({name: "Damage to boss", value})
         }
 
 
-          quest = Quests.findOne(id);
+        group = Groups.findOne(id);
       }
     }
   });

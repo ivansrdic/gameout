@@ -20,6 +20,12 @@ export default {
     if(group) return group.members();
   },
 
+  getDamageHistory() {
+    const group = Groups.findOne();
+
+    return group.damageHistory;
+  },
+
   addUserToGroup({Meteor}, username) {
     Meteor.call('group.addUserToGroup', username, function(err) {
       if(err) console.log(err);

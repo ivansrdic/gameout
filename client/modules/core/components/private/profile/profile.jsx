@@ -73,7 +73,7 @@ class Profile extends Component {
                 <div>
                   <div className="stats-container">
                     <span><i className="fa fa-heart"></i> Health</span>
-                    <ProgressBar bsStyle="danger" min={0} max={50} now={character.stats.health}
+                    <ProgressBar bsStyle="danger" min={0} max={character.stats.maxHealth} now={character.stats.currentHealth}
                                  label={" %(now)s / %(max)s "}/>
                     <span><i className="fa fa-star"></i> Experience</span>
                     <ProgressBar bsStyle="warning" min={0} max={getLevel().experience} now={character.stats.experience}

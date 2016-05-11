@@ -11,8 +11,11 @@ export default {
 
   getLevel({Meteor}) {
     const character = Meteor.user().character();
+
     if(character) {
-      return Levels.findOne({level: character.stats.level});
+      const level = Levels.findOne({level: character.stats.level});
+
+      return level?level:Levels.findOne();
     }
   },
 
