@@ -66,9 +66,18 @@ class Test extends Component {
     Meteor.call('quest.beginQuest', quest._id, user.group()._id);
   }
 
+  testPvpGroupStart() {
+    Meteor.call('pvp-group.startPvP', "gameout");
+    Meteor.call('pvp-group.startPvP', "gameout");
+  }
+
+  testPvpGroupSurrender() {
+    Meteor.call('pvp-group.surrender');
+  }  
+
+ 
   render() {
     Meteor.subscribe('user');
-    Meteor.subscribe('quests');
     Meteor.subscribe('public-workouts');
     return (
       <ul>
@@ -83,6 +92,8 @@ class Test extends Component {
         <li><input type="button" onClick={this.testGroup4} value="TestGroup4" /></li>
         <li><input type="button" onClick={this.testFinishWorkout} value="TestFinishWorkout" /></li>
         <li><input type="button" onClick={this.beginQuest} value="beginQuest" /></li>
+        <li><input type="button" onClick={this.testPvpGroupStart} value="PvPStart" /></li>
+        <li><input type="button" onClick={this.testPvpGroupSurrender} value="PvPSurrender" /></li>
       </ul>
     );
   }
