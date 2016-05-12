@@ -130,11 +130,11 @@ class Group extends Component {
       return members.map((member) => {
         if(entry.userId == member._id) {
           return (
-            <ListGroupItem>{member.username} dealt {entry.damageToBoss} damage to the boss. {quest.boss.name} dealt {entry.damageFromBoss} damage to the group.</ListGroupItem>
-          )
+            <ListGroupItem>{member.username} dealt {entry.damageToBoss} damage to the boss. The boss dealt {entry.damageFromBoss} damage to the group.</ListGroupItem>
+          );
         }
-      })
-    })
+      });
+    });
   }
 
   handleBeginQuestClick() {
