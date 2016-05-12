@@ -102,6 +102,14 @@ export default function() {
             }
           }
         );
+        Characters.update(character._id, {$inc: 
+          {
+            "stats.strength": 1,
+            "stats.agility": 1,
+            "stats.stamina": 1,
+            "stats.intelligence": 1
+          }
+        });
       } else {
         Characters.update(character._id,
           {
