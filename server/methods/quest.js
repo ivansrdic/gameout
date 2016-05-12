@@ -15,12 +15,11 @@ export default function() {
       Groups.update(groupId, {$set: {currentBossHealth: quest.boss.maxHealth}});
     },
     
-    'quest.fightBoss'() {
+    'quest.fightBoss'(p) {
       let user = Users.findOne(this.userId);
       let currentWorkout = user.currentWorkout();
       let quest = user.group().quest();
 
-      let p = currentWorkout.completedExercises.count() / currentWorkout.workout.exercises().count();
       let damage = {
         userId: this.userId,
         damageToBoss: Math.round(user.character().getTotalStats().strength * p),
