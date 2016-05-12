@@ -5,14 +5,8 @@ export default {
     return Items.find();
   },
 
-  buyItem() {
-    console.log("buy");
-  },
-  
-  beginQuest({Meteor}, quest, group) {
-    quest = Quests.findOne();
-    
-    Meteor.call('quest.beginQuest', quest._id, group._id, function(err) {
+  buyItem({Meteor}, itemId) {
+    Meteor.call('character.buyItem', itemId, function(err) {
       if(err) console.log(err);
     });
   }

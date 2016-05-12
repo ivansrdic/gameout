@@ -1,12 +1,13 @@
 import {useDeps, composeWithTracker, composeAll} from 'mantra-core';
 import Market from '../../../components/private/market/market.jsx';
 
-function composer({context}, onData) {
+function composer({context, getInventory}, onData) {
   const itemsPublication = context.Meteor.subscribe('items');
 
   if(itemsPublication.ready()) {
+    const otherItems = getInventory();
     NProgress.done();
-    onData(null, {});
+    onData(null, {otherItems});
   }
 }
 
