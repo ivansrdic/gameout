@@ -8,7 +8,7 @@ class ItemDescription extends Component {
   }
   
   render() {
-    const {item, className} = this.props;
+    const {item, className, isMarket} = this.props;
     if (item) {
       const size = 51;
       return (
@@ -18,6 +18,7 @@ class ItemDescription extends Component {
             <Popover id={item.name} title={item.name}>
               {item.description}<br/>
               <Stats stats={item.stats}/>
+              {isMarket?<div><br/><b>Price</b>: {item.price}<i className="fa fa-circle"></i></div>:""}
             </Popover>}
         >
           <div className={"item-container item-container-" + item.type + " " + className}>

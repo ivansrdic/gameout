@@ -29,8 +29,8 @@ class Inventory extends Component {
             <div className="inventory">
               <ItemDescriptionList
                 getItems={this.props.getInventory}
-                getEquipmentIds={this.props.getEquipmentIds}
-                equipItem={this.props.equipItem}
+                getOtherItems={this.props.getEquipment}
+                onClickItem={this.props.equipItem}
               />
             </div>
           </Modal.Body>

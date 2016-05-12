@@ -22,7 +22,7 @@ class Navigation extends Component {
             <Nav pullRight={true}>
               <NavItem><i className="fa fa-circle"></i> {stats.gold}</NavItem>
               <NavItem><i className="fa fa-star"></i> {stats.experience}/{level.experience}</NavItem>
-              <NavItem><i className="fa fa-heart"></i> {stats.health}/50</NavItem>
+              <NavItem><i className="fa fa-heart"></i> {stats.currentHealth}/{stats.maxHealth}</NavItem>
               <NavItem>{"Level " + stats.level}</NavItem>
             </Nav>
           </Navbar>

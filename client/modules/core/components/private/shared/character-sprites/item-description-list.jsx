@@ -15,16 +15,25 @@ class ItemDescriptionList extends Component {
   }
 
   renderItems() {
-    const {getItems, getEquipmentIds} = this.props;
+    const {getItems, getOtherItems, onClickItem, isMarket} = this.props;
     const items = getItems();
-    const equipmentIds = getEquipmentIds();
+    const otherItemIds = getOtherItems().map((item) => {return item._id});
 
-    return (items.map(function (item) {
-      if(equipmentIds.indexOf(item._id) != -1)
-        return (<ItemDescription key={item._id} className="selected" onClickHandler={this.props.equipItem} item={item}/>);
-      else
-        return (<ItemDescription key={item._id} onClickHandler={this.props.equipItem} item={item}/>);
-    }.bind(this)));
+    if(isMarket)
+      return (items.map(function (item) {
+        if(otherItemIds.indexOf(item._id) != -1)
+          return (
+            <ItemDescription key={item._id} onClickHandler={onClickItem} item={item} isMarket={isMarket} />
+          );
+      }));
+    else
+      return (items.map(function (item) {
+          return (
+            <ItemDescription
+              className={(otherItemIds.indexOf(item._id) != -1)?"selected":""}
+              key={item._id} onClickHandler={onClickItem} item={item}/>
+          );
+      }));
   }
 }
 

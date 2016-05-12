@@ -1,9 +1,4 @@
 /* General inventory styles */
-.inventory .item-container:hover,
-.inventory .skin-container:hover{
-  cursor: pointer;
-}
-
 .item-container.selected,
 .skin-container.selected{
   background: green;

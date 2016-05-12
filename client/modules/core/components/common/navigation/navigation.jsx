@@ -25,6 +25,7 @@ class Navigation extends Component {
               <NavItem href="/customize-character">Character</NavItem>
               <NavItem href="/exercises">Exercises</NavItem>
               <NavItem href="/workouts">Workouts</NavItem>
+              <NavItem href="/market">Market</NavItem>
             </Nav>
       
             <Nav id="auth-nav" pullRight style={{marginRight: 0}}>

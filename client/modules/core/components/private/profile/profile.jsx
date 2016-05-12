@@ -26,7 +26,7 @@ class Profile extends Component {
 
   render() {
     if (this.props.ready) {
-      const {character, getLevel, getEquipment, getEquipmentIds, getInventory, equipItem,
+      const {character, getLevel, getEquipment, getInventory, equipItem,
               selectWorkout, finishWorkout, getCurrentWorkout, getWorkoutExercises, completeExercise} = this.props;
       return (
         <Grid className="profile" fluid={true}>
@@ -101,7 +101,7 @@ class Profile extends Component {
 
           <Inventory
             show={this.state.showInventory}
-            getEquipmentIds={getEquipmentIds}
+            getEquipment={getEquipment}
             getInventory={getInventory}
             equipItem={equipItem}
             closeInventory={this.closeInventory.bind(this)}

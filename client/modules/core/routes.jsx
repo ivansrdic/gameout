@@ -13,6 +13,7 @@ import EditInfo from './containers/private/profile-setup/edit-info.jsx';
 import CustomizeCharacter from './containers/private/profile-setup/customize-character.jsx';
 import Exercises from './containers/private/exercise/exercises.js';
 import Workouts from './containers/private/workout/workouts.js';
+import Market from './containers/private/market/market.js';
 import Test from './components/test/test.jsx';
 
 export default function (injectDeps, {FlowRouter, LocalState}) {
@@ -128,7 +129,7 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
 
 
   PrivateRoutes.route('/exercises', {
-    name: 'create-exercise',
+    name: 'exercises',
 
     action() {
       mount(MainLayoutCtx, {
@@ -138,11 +139,21 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
   });
 
   PrivateRoutes.route('/workouts', {
-    name: 'create-workout',
+    name: 'workouts',
 
     action() {
       mount(MainLayoutCtx, {
         content: (user) => (<Workouts user={user} />)
+      });
+    }
+  });
+
+  PrivateRoutes.route('/market', {
+    name: 'market',
+
+    action() {
+      mount(MainLayoutCtx, {
+        content: (user) => (<Market user={user} />)
       });
     }
   });

@@ -33,13 +33,6 @@ export default {
     return Meteor.user().character().getEquipment();
   },
 
-  getEquipmentIds({Meteor}) {
-    const character = Meteor.user().character();
-
-    return [character.equipment.chestId, character.equipment.headId,
-      character.equipment.leftHandId, character.equipment.rightHandId];
-  },
-
   selectWorkout({Meteor}, workout) {
     Meteor.call('user.selectWorkout', workout._id, function(err) {
       if(err) console.log(err);
