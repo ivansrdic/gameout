@@ -6,6 +6,7 @@ import Profile from './profile.js';
 import Exercise from './exercise.js';
 import Workout from './workout.js';
 import Group from './group.js';
+import PvPGroup from './pvp-group.js';
 import Quest from './quest.js';
 import Market from './market.js';
 
@@ -17,6 +18,7 @@ export {Profile};
 export {Exercise};
 export {Workout};
 export {Group};
+export {PvPGroup};
 export {Quest};
 export {Market};
 
@@ -29,6 +31,7 @@ export default {
   Exercise,
   Workout,
   Group,
+  PvPGroup,
   Quest,
   Market
 };

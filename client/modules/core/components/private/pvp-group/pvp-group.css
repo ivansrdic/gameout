@@ -1,0 +1,25 @@
+.group .character-container {
+  height: 260px;
+}
+
+.group .equipment-toggle {
+  border-radius: 0;
+  position: absolute;
+  z-index: 20;
+  right: 0;
+  top: 0;
+}
+
+.group .character-container .character-sprites{
+  top: auto;
+  transform: none;
+  -webkit-transform: none;
+}
+
+.group .character-container .character-details {
+  margin: 0 10px 5px 10px;
+}
+
+.quest-history .list-group {
+  margin-bottom: 0;
+}

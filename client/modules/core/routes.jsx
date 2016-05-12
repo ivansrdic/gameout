@@ -8,6 +8,7 @@ import HowItWorks from  './components/public/how-it-works/how-it-works.jsx';
 import SignIn from './containers/public/sign-in/sign-in.js';
 import Profile from './containers/private/profile/profile.js';
 import Group from './containers/private/group/group.js';
+import PvPGroup from './containers/private/pvp-group/pvp-group.js';
 import ProfileSetup from './containers/private/profile-setup/profile-setup.jsx';
 import EditInfo from './containers/private/profile-setup/edit-info.jsx';
 import CustomizeCharacter from './containers/private/profile-setup/customize-character.jsx';
@@ -93,6 +94,15 @@ export default function (injectDeps, {FlowRouter, LocalState}) {
     action() {
       mount(MainLayoutCtx, {
         content: (user) => (<Group user={user} />)
+      });
+    }
+  });
+
+  PrivateRoutes.route('/pvp-group', {
+    name: 'pvp-group',
+    action() {
+      mount(MainLayoutCtx, {
+        content: (user) => (<PvPGroup user={user} />)
       });
     }
   });

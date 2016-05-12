@@ -1,4 +1,4 @@
-import {Characters, Items, Groups} from '/collections';
+import {Characters, Items, Groups, PvPGroups} from '/collections';
 import _ from 'lodash';
 
 export default ({LocalState}) => {
@@ -53,8 +53,9 @@ export default ({LocalState}) => {
     }
   });
 
+
   const groupsCollection = Groups.find();
-  let group = null;
+  let group;
 
   groupsCollection.observeChanges({
     added(id, fields) {
@@ -70,10 +71,43 @@ export default ({LocalState}) => {
         if(value != 0) {
           messagePipe.addSuccess({name: "Damage to boss", value})
         }
-
-
-        group = Groups.findOne(id);
       }
+
+      group = Groups.findOne(id);
+    }
+  });
+
+
+
+
+  const pvpGroupsCollection = PvPGroups.find();
+  let pvpGroup;
+
+  pvpGroupsCollection.observeChanges({
+    added(id, fields) {
+      pvpGroup = fields;
+    },
+
+    changed(id, fields) {
+      messagePipe.getState();
+
+      if(fields.firstPlayerHealth) {
+        const value = pvpGroup.firstPlayerHealth - fields.firstPlayerHealth;
+
+        if (value != 0) {
+          messagePipe.addInfo({name: "firstPlayerDamage", value})
+        }
+      }
+
+      if(fields.secondPlayerHealth) {
+        const value = pvpGroup.secondPlayerHealth - fields.secondPlayerHealth;
+
+        if (value != 0) {
+          messagePipe.addInfo({name: "secondPlayerDamage", value})
+        }
+      }
+
+      pvpGroup = PvPGroups.findOne(id);
     }
   });
 }

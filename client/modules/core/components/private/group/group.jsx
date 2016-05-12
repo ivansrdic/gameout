@@ -33,6 +33,7 @@ class Group extends Component {
               </Row>
               {this.renderInviteInput()}
               <Panel className="quest-history">
+                <h3>Damage history</h3>
                 <ListGroup>
                   {this.renderGroupDamageHistory()}
                 </ListGroup>
