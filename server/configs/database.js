@@ -714,7 +714,7 @@ export default () => {
         type: "head",
         name: "Helmet of the Initiatives",
         description: "Basic trainee helmet",
-        price: 1,
+        price: 20,
         set: 1,
         stats: {
           strength: 5,
@@ -729,7 +729,7 @@ export default () => {
         type: "chest",
         name: "Chaest of the Initiatives",
         description: "Basic trainee helmet",
-        price: "1",
+        price: 25,
         set: 1,
         stats: {
           strength: 2,
@@ -744,7 +744,7 @@ export default () => {
         type: "leftHand",
         name: "Shield of Bravery",
         description: "Basic shield of trainee",
-        price: "1",
+        price: 30,
         set: 1,
         stats: {
           strength: 3,
@@ -759,7 +759,7 @@ export default () => {
         type: "rightHand",
         name: "Sword of Honor",
         description: "First weapon of the future Warrior",
-        price: "1",
+        price: 20,
         set: 1,
         stats: {
           strength: 3,
@@ -776,7 +776,7 @@ export default () => {
         type: "head",
         name: "Helmet of Bravery",
         description: "Keeps your head from enemy attacks.",
-        price: "2",
+        price: 25,
         set: 2,
         stats: {
           strength: 4,
@@ -791,7 +791,7 @@ export default () => {
         type: "chest",
         name: "Armor of the Kings",
         description: "Modern armor, gives agility.",
-        price: "2",
+        price: 30,
         set: 2,
         stats: {
           strength: 2,
@@ -806,7 +806,7 @@ export default () => {
         type: "leftHand",
         name: "Shield of Power",
         description: "Good defense is the best offense.",
-        price: "2",
+        price: 20,
         set: 2,
         stats: {
           strength: 3,
@@ -821,7 +821,7 @@ export default () => {
         type: "rightHand",
         name: "Sword of Power",
         description: "Whoever holds this sword has a great power!",
-        price: "2",
+        price: 25,
         set: 2,
         stats: {
           strength: 5,
@@ -855,8 +855,8 @@ export default () => {
         equipment: {
         },
         inventoryIds: [
-          headId1, chestId1, leftHandId1, rightHandId1,
-          headId2, chestId2, leftHandId2, rightHandId2
+//          headId1, chestId1, leftHandId1, rightHandId1,
+ //         headId2, chestId2, leftHandId2, rightHandId2
         ]
       }
     );

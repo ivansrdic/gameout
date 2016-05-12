@@ -7,7 +7,7 @@ export default function() {
 
       let character = Characters.findOne(characterId);
       if (this.userId != character.ownerId || character.inventoryIds.indexOf(itemId) == -1){
-        throw Meteor.Error("character.equipItem.unauthorized");
+        throw new Meteor.Error("character.equipItem.unauthorized");
       }
 
       const type = Items.findOne({_id: itemId}).type;
@@ -31,7 +31,7 @@ export default function() {
 
       let character = Characters.findOne(characterId);
       if (this.userId != character.ownerId){
-        throw Meteor.Error("character.equipSkin.unauthorized");
+        throw new Meteor.Error("character.equipSkin.unauthorized");
       }
 
       const type = Skins.findOne({_id: skinId}).type;
@@ -71,9 +71,9 @@ export default function() {
       
       const characterId = Characters.insert(character);
 
-      Items.find({set: {$in: [1, 2]}}).forEach((item) => {
-        Meteor.call('character.addItemToInventory', characterId, item._id, (err) => {if(err) console.log(err);});
-      });
+      //Items.find({set: {$in: [1, 2]}}).forEach((item) => {
+      //  Meteor.call('character.addItemToInventory', characterId, item._id, (err) => {if(err) console.log(err);});
+      //});
 
       Users.update(this.userId, {$set: {"data.characterId": characterId}});
     },
@@ -81,7 +81,7 @@ export default function() {
     'character.addItemToInventory'(characterId, itemId) {
       let character = Characters.findOne(characterId);
       if (this.userId != character.ownerId){
-        throw Meteor.Error("character.addItemToInventory.unauthorized");
+        throw new Meteor.Error("character.addItemToInventory.unauthorized");
       }
 
       Characters.update(characterId, {$addToSet: {inventoryIds: itemId}});
@@ -112,8 +112,17 @@ export default function() {
           }
         );
       }
-      
+    },
 
+    'character.buyItem'(itemId) {
+      let user = Users.findOne(this.userId);
+      let item = Items.findOne(itemId);
+
+      if (user.character().stats.gold < item.price)
+        throw new Meteor.Error("character.buyItem", "not enough gold to buy item");
+
+      Characters.update(user.character()._id, {$inc: {"stats.gold": -item.price}});
+      Meteor.call("character.addItemToInventory", user.character()._id, itemId);
     }
 
   });
