@@ -21,7 +21,7 @@ class ItemDescriptionList extends Component {
 
     if(isMarket)
       return (items.map(function (item) {
-        if(otherItemIds.indexOf(item._id) != -1)
+        if(otherItemIds.indexOf(item._id) == -1)
           return (
             <ItemDescription key={item._id} onClickHandler={onClickItem} item={item} isMarket={isMarket} />
           );
