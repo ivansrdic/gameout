@@ -1023,7 +1023,7 @@ export default () => {
         }
       }
     );
-    const rightHandId4 = Items.insert(
+    const rightHandId5 = Items.insert(
       {
         type: "rightHand",
         name: "Sword of Red John",
