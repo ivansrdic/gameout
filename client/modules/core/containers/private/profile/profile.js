@@ -23,7 +23,6 @@ function depsMapper(context, {Profile, Workout}) {
     getLevel: Profile.getLevel,
     getInventory: Profile.getInventory,
     getEquipment: Profile.getEquipment,
-    getEquipmentIds: Profile.getEquipmentIds,
     selectWorkout: Profile.selectWorkout,
     finishWorkout: Profile.finishWorkout,
     getCurrentWorkout: Profile.getCurrentWorkout,

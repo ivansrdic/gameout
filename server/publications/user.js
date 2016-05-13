@@ -1,10 +1,11 @@
 import {Meteor} from 'meteor/meteor';
-import {Groups, Users, Characters, Levels, Workouts, Exercises} from '/collections';
+import {Quests, PvPGroups, Groups, Users, Characters, Levels, Workouts, Exercises} from '/collections';
 
 export default function() {
   Meteor.publishComposite('user', function() {
     const character = Characters.findOne({ownerId: this.userId});
     return {
+      //this user
       find: function() {
         if(this.userId)
           return (
@@ -23,6 +24,7 @@ export default function() {
       },
       children: [
         {
+          //users character
           find: function() {
             if(character)
               return Characters.find(character._id);
@@ -31,6 +33,7 @@ export default function() {
           }
         },
         {
+          //characters level
           find: function() {
             if(character) {
               return Levels.find({level: character.stats.level});
@@ -40,6 +43,7 @@ export default function() {
           }
         },
         {
+          //users workouts
           find: function() {
             if(this.userId){
               let user = Users.findOne(this.userId);
@@ -50,6 +54,7 @@ export default function() {
           }
         },
         {
+          //users exercises
           find: function() {
             if(this.userId){
               let user = Users.findOne(this.userId);
@@ -64,6 +69,7 @@ export default function() {
           }
         },
         {
+          //users group
           find: function() {
             if(this.userId){
               let user = Users.findOne(this.userId);
@@ -75,6 +81,7 @@ export default function() {
           children: [
             {
               //TODO: nesigurno
+              //group members (users)
               find: function() {
                 if(this.userId) {
                   let user = Users.findOne(this.userId);
@@ -87,6 +94,7 @@ export default function() {
               },
               children: [
                 {
+                  //characters of group members
                   find: function() {
                     if(this.userId) {
                       let user = Users.findOne(this.userId);
@@ -101,6 +109,68 @@ export default function() {
                     else
                       return this.ready();
 
+                  }
+                }
+              ]
+            },
+            {
+              //groups quest
+              find: function() {
+                if(this.userId){
+                  let user = Users.findOne(this.userId);
+                  if (!user.group() || !user.group().quest())
+                    return this.ready();
+                  return Quests.find(user.group().quest()._id);
+                }
+                else
+                  return this.ready();
+              }
+            }
+          ]
+        },
+        {
+          //users pvp group
+          find: function() {
+            if(this.userId) {
+              let user = Users.findOne(this.userId);
+              if(!user.pvpGroup())
+                return this.ready();
+              return PvPGroups.find(user.data.pvpGroupId);
+            }
+            else
+              return this.ready();
+          },
+          children: [
+            {
+              //opponent in pvp (user)
+              find: function() {
+                if(this.userId) {
+                  let user = Users.findOne(this.userId);
+                  if(!user.pvpGroup())
+                    return this.ready();
+                  if (user.pvpGroup().firstPlayer()._id != this.userId)
+                    return Users.find(user.pvpGroup().firstPlayerId);
+                  else
+                    return Users.find(user.pvpGroup().secondPlayerId);
+                }
+                else
+                  return this.ready();
+              },
+              children: [
+                {
+                  //opponents character
+                  find: function() {
+                    if(this.userId) {
+                      let user = Users.findOne(this.userId);
+                      if(!user.pvpGroup())
+                        return this.ready();
+                      if (user.pvpGroup().firstPlayer()._id != this.userId)
+                        return Characters.find(Users.findOne(user.pvpGroup().firstPlayerId).character()._id);
+                      else
+                        return Characters.find(Users.findOne(user.pvpGroup().secondPlayerId).character()._id);
+                    }
+                    else
+                      return this.ready();
                   }
                 }
               ]

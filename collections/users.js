@@ -1,4 +1,4 @@
-import {Characters, Exercises, Workouts, Groups} from './';
+import {PvPGroups, Characters, Exercises, Workouts, Groups} from './';
 
 let Users = Meteor.users;
 
@@ -70,6 +70,11 @@ const UserDataSchema = new SimpleSchema({
     minCount: 0
   },
   groupId: {
+    type: String,
+    regEx: SimpleSchema.RegEx.Id,
+    optional: true
+  },
+  pvpGroupId: {
     type: String,
     regEx: SimpleSchema.RegEx.Id,
     optional: true
@@ -155,7 +160,14 @@ Users.helpers({
   group() {
     if (!this.data.groupId) return undefined;
     return Groups.findOne(this.data.groupId);
-  }
+  },
+
+  pvpGroup() {
+    if (!this.data.pvpGroupId) return undefined;
+    return PvPGroups.findOne(this.data.pvpGroupId);
+  },
+
+
 });
 
 export default Users;

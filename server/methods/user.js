@@ -61,13 +61,18 @@ export default function() {
     'user.finishWorkout'() {
       let user = Users.findOne(this.userId);
       let currentWorkout = user.currentWorkout();
+      let p = currentWorkout.completedExercises.count() / currentWorkout.workout.exercises().count();
+
       let experience = 20 * currentWorkout.completedExercises.count();
-      experience += 0.5 * experience * currentWorkout.completedExercises.count() / currentWorkout.workout.exercises().count();
+      experience += 0.5 * experience * p;
       let gold = experience / 4;
 
       Meteor.call('character.reward', user.character()._id, Math.round(experience), Math.round(gold));
       if (user.group().quest()) {
-        Meteor.call('quest.fightBoss');
+        Meteor.call('quest.fightBoss', p);
+      }
+      if (user.pvpGroup()) {
+        Meteor.call('pvp-group.fightOpponent', p);
       }
       Meteor.call('user.selectWorkout', currentWorkout.workout._id);
     }

@@ -1,4 +1,4 @@
-import {Characters, Items, Quests} from '/collections';
+import {Characters, Items, Groups, PvPGroups} from '/collections';
 import _ from 'lodash';
 
 export default ({LocalState}) => {
@@ -53,27 +53,61 @@ export default ({LocalState}) => {
     }
   });
 
-  const questCollection = Quests.find();
-  let quest = null;
 
-  questCollection.observeChanges({
+  const groupsCollection = Groups.find();
+  let group;
+
+  groupsCollection.observeChanges({
     added(id, fields) {
-      quest = fields;
+      group = fields;
     },
 
     changed(id, fields) {
       messagePipe.getState();
 
-      if(fields.boss) {
-        const value = quest.boss.currentHealth - fields.boss.currentHealth;
+      if(fields.currentBossHealth) {
+        const value = group.currentBossHealth - fields.currentBossHealth;
 
         if(value != 0) {
           messagePipe.addSuccess({name: "Damage to boss", value})
         }
-
-
-          quest = Quests.findOne(id);
       }
+
+      group = Groups.findOne(id);
+    }
+  });
+
+
+
+
+  const pvpGroupsCollection = PvPGroups.find();
+  let pvpGroup;
+
+  pvpGroupsCollection.observeChanges({
+    added(id, fields) {
+      pvpGroup = fields;
+    },
+
+    changed(id, fields) {
+      messagePipe.getState();
+
+      if(fields.firstPlayerHealth) {
+        const value = pvpGroup.firstPlayerHealth - fields.firstPlayerHealth;
+
+        if (value != 0) {
+          messagePipe.addInfo({name: "firstPlayerDamage", value})
+        }
+      }
+
+      if(fields.secondPlayerHealth) {
+        const value = pvpGroup.secondPlayerHealth - fields.secondPlayerHealth;
+
+        if (value != 0) {
+          messagePipe.addInfo({name: "secondPlayerDamage", value})
+        }
+      }
+
+      pvpGroup = PvPGroups.findOne(id);
     }
   });
 }

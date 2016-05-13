@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Workouts, Users, Quests} from '/collections';
+import {Items, Workouts, Users, Quests} from '/collections';
 
 class Test extends Component {
   constructor(props) {
@@ -66,9 +66,23 @@ class Test extends Component {
     Meteor.call('quest.beginQuest', quest._id, user.group()._id);
   }
 
+  testPvpGroupStart() {
+    Meteor.call('pvp-group.startPvP', "gameout");
+    Meteor.call('pvp-group.startPvP', "gameout");
+  }
+
+  testPvpGroupSurrender() {
+    Meteor.call('pvp-group.surrender');
+  }  
+
+  testBuyItem() {
+    Meteor.call('character.buyItem', Items.findOne({name: "Shield of Bravery"})._id);
+  }
+ 
   render() {
     Meteor.subscribe('user');
-    Meteor.subscribe('quests');
+    Meteor.subscribe('items');
+    Meteor.subscribe('character');
     Meteor.subscribe('public-workouts');
     return (
       <ul>
@@ -83,6 +97,9 @@ class Test extends Component {
         <li><input type="button" onClick={this.testGroup4} value="TestGroup4" /></li>
         <li><input type="button" onClick={this.testFinishWorkout} value="TestFinishWorkout" /></li>
         <li><input type="button" onClick={this.beginQuest} value="beginQuest" /></li>
+        <li><input type="button" onClick={this.testPvpGroupStart} value="PvPStart" /></li>
+        <li><input type="button" onClick={this.testPvpGroupSurrender} value="PvPSurrender" /></li>
+        <li><input type="button" onClick={this.testBuyItem} value="BuyItem" /></li>
       </ul>
     );
   }

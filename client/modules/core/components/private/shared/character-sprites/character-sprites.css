@@ -72,3 +72,14 @@
   position: absolute;
   top: 0;
 }
+
+.price {
+  position: absolute;
+  left: 0;
+  bottom: -10px;
+}
+
+.item-container:hover,
+.skin-container:hover{
+  cursor: pointer;
+}

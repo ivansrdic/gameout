@@ -3,6 +3,7 @@ import Users from './users';
 import Exercises from './exercises';
 import Workouts from './workouts';
 import PublicWorkouts from './public-workouts';
+import PvPGroups from './pvp-groups.js';
 import Items from './items';
 import Skins from './skins';
 import Levels from './levels';
@@ -14,6 +15,7 @@ export {Users};
 export {Exercises};
 export {Workouts};
 export {PublicWorkouts};
+export {PvPGroups};
 export {Items};
 export {Skins};
 export {Levels};
@@ -30,5 +32,6 @@ export default {
   Skins,
   Levels,
   Quests,
-  Groups
+  Groups,
+  PvPGroups
 }
