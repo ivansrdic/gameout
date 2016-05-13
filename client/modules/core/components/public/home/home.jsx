@@ -12,15 +12,13 @@ class Home extends Component {
 
   render() {
     return (
+      <div id="header">
       <Grid>
-        <video autoPlay loop muted poster="landing-page.png" id="background">
-          <source src="landing-page.mp4" type="video/mp4" />
-        </video>
         <Row>
           <Jumbotron style={{'backgroundColor': 'rgba(148, 134, 115, 0.4)', 'color': 'white'}}>
             <h2>Welcome to Gameout</h2>
             <p>Impossible isn’t a fact. It’s an opinion. Impossible isn’t a declaration. It’s a dare. Impossible is potential. Impossible is nothing.</p>
-            <p><Button href="/how-it-works" bsStyle="success"bsSize="large">Learn more</Button></p>
+            <p><Button href="/how-it-works" bsStyle="success" bsSize="large" style={{'color':'#3399FF'}}><b>Learn more</b></Button></p>
           </Jumbotron>
         </Row>
         <Row className="show-grid">
@@ -53,6 +51,7 @@ class Home extends Component {
           </Col>
         </Row>
       </Grid>
+      </div>
     );
   }
 }

@@ -12,6 +12,7 @@ class HowItWorks extends Component {
 
   render() {
     return (
+      <div id="header">
       <Grid>
         <video autoPlay loop muted poster="landing-page.png" id="background">
           <source src="landing-page.mp4" type="video/mp4" />
@@ -44,6 +45,7 @@ class HowItWorks extends Component {
           </Col>
         </Row>
       </Grid>
+      </div>
     );
   }
 }
