@@ -8,9 +8,19 @@ class Exercise extends Component {
   
   render() {
     const {exercise, onClickExercise} = this.props;
+    var style;
+    if (exercise.level == "easy") {
+      style = "success";
+    }
+    else if (exercise.level == "medium") {
+      style = "warning";
+    }
+    else if (exercise.level == "hard") {
+      style = "danger";
+    }
 
     return (
-        <ListGroupItem className="clearfix" onClick={onClickExercise ? this.onClickExercise.bind(this) : null}>
+        <ListGroupItem className="clearfix" bsStyle={style} onClick={onClickExercise ? this.onClickExercise.bind(this) : null}>
           {this.renderCheckbox()}
           <b>{exercise.name}</b>
           <span className="badge" style={{float: "none", marginLeft: 10}}>{exercise.unit} reps</span>
