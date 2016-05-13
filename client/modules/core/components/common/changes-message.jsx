@@ -9,18 +9,16 @@ class ChangesMessage extends Component {
 
   render() {
     return (
-      <Panel id="changes">
-        <ListGroup>
-          {this.renderMessages()}
-        </ListGroup>
-      </Panel>
+      <div id="changes">
+        {this.renderMessages()}
+      </div>
     );
   }
 
   renderMessages() {
     return this.props.messages.map(function(message) {
       return (
-        <ListGroupItem key={message.key} bsStyle={message.style}>
+        <ListGroupItem key={message.key} bsStyle={message.style} className={"animated " + message.animation}>
           {message.name}: {message.value}
         </ListGroupItem>
       );

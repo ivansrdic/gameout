@@ -52,3 +52,33 @@ img {
 .popover-title {
   color: #000;
 }
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.center-button {
+  text-align: center;
+}
+
+.no-gutter [class*='col-'] {
+  padding-right:0;
+  padding-left:0;
+}
+
+.hide-of {
+  overflow: hidden;
+}
+
+.fa-heart {
+  color: #f44336;
+}
+
+.fa-star {
+  color: #ff9800;
+}
+
+.fa-circle {
+  color: gold;
+}

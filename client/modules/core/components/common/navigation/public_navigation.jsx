@@ -8,7 +8,7 @@ class PublicNavigation extends Component {
   
   render() {
     return (
-      <Navbar>
+      <Navbar inverse={true}>
         <Navbar.Header>
           <a href="/"><img src="logo.png" alt="Gameout logo"/></a>
           <Navbar.Toggle />

@@ -5,10 +5,6 @@
   z-index: 1010;
 }
 
-#changes .panel-body {
-  padding: 0;
-}
-
 #changes .list-group-item {
   width: 200px;
 }

@@ -117,6 +117,7 @@ class ChangesMessagePipe {
     this.pipe = [];
     this.LocalState = LocalState;
     this.count = 0;
+    this.tmpcnt = 0;
   }
 
   getState() {
@@ -125,6 +126,7 @@ class ChangesMessagePipe {
 
   add(element) {
     element.key = this.count;
+    element.animation = "fadeIn";
 
     this.pipe = _.concat(this.pipe, element);
     this.set();
@@ -154,16 +156,30 @@ class ChangesMessagePipe {
     this.add(element);
   }
 
+  hide() {
+    this.pipe[this.tmpcnt].animation = "fadeOut";
+    this.set();
+    this.tmpcnt++;
+  }
+
   remove() {
     this.pipe = _.drop(this.LocalState.get('changesMessage'));
     this.set();
+    this.tmpcnt--;
   }
 
   set() {
     this.LocalState.set('changesMessage', this.pipe);
   }
 
+  timeoutHide(time = 4500) {
+    setTimeout(function() {
+      this.hide();
+    }.bind(this), time);
+  }
+
   timeoutRemove(time = 5000) {
+    this.timeoutHide();
     setTimeout(function() {
       this.remove();
     }.bind(this), time);
