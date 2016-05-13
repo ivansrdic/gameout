@@ -27,9 +27,10 @@ export default {
   },
 
   startPvP({Meteor}, username) {
-    Meteor.call('pvp-group.startPvP', username, function(err) {
-      if(err) console.log(err);
-    });
+    if(username)
+      Meteor.call('pvp-group.startPvP', username, function(err) {
+        if(err) console.log(err);
+      });
   },
 
   surrender({Meteor}) {

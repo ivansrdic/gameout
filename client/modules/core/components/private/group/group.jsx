@@ -120,22 +120,24 @@ class Group extends Component {
   }
 
   renderGroupDamageHistory() {
-    const {getMembers, getDamageHistory, quest} = this.props;
+    const {members, getDamageHistory, quest} = this.props;
 
-    const members = getMembers().map((member) => {return {_id: member._id, username: member.username}; });
+    if(members) {
+      const filteredMembers = members.map((member) => {return {_id: member._id, username: member.username}; });
 
-    const damageHistory = getDamageHistory();
+      const damageHistory = getDamageHistory();
 
 
-    return damageHistory.map((entry) => {
-      return members.map((member) => {
-        if(entry.userId == member._id) {
-          return (
-            <ListGroupItem>{member.username} dealt {entry.damageToBoss} damage to the boss. The boss dealt {entry.damageFromBoss} damage to the group.</ListGroupItem>
-          );
-        }
+      return damageHistory.map((entry) => {
+        return filteredMembers.map((member) => {
+          if(entry.userId == member._id) {
+            return (
+              <ListGroupItem>{member.username} dealt {entry.damageToBoss} damage to the boss. The boss dealt {entry.damageFromBoss} damage to the group.</ListGroupItem>
+            );
+          }
+        });
       });
-    });
+    }
   }
 
   handleBeginQuestClick() {

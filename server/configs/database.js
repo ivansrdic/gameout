@@ -746,7 +746,7 @@ export default () => {
     const chestId1 = Items.insert(
       {
         type: "chest",
-        name: "Chaest of the Initiatives",
+        name: "Chest of the Initiatives",
         description: "Basic trainee helmet",
         price: 25,
         set: 1,
@@ -788,6 +788,7 @@ export default () => {
         }
       }
     );
+
 
     //set2
     const headId2 = Items.insert(
@@ -847,6 +848,193 @@ export default () => {
           stamina: 4,
           agility: 3,
           intelligence: 2
+        }
+      }
+    );
+
+    //set3
+    const headId3 = Items.insert(
+      {
+        type: "head",
+        name: "Helmet of Wisdom",
+        description: "Only the smartest can wear this on.",
+        price: 30,
+        set: 3,
+        stats: {
+          strength: 5,
+          stamina: 4,
+          agility: 3,
+          intelligence: 6
+        }
+      }
+    );
+    const chestId3 = Items.insert(
+      {
+        type: "chest",
+        name: "Armor of the Engineer",
+        description: "Only the strong, only the patient can wear this heavy burden.",
+        price: 30,
+        set: 3,
+        stats: {
+          strength: 3,
+          stamina: 3,
+          agility: 5,
+          intelligence: 6
+        }
+      }
+    );
+    const leftHandId3 = Items.insert(
+      {
+        type: "leftHand",
+        name: "Shield of Luck",
+        description: "Gives You luck in desperate times.",
+        price: 25,
+        set: 3,
+        stats: {
+          strength: 3,
+          stamina: 5,
+          agility: 4,
+          intelligence: 3
+        }
+      }
+    );
+    const rightHandId3 = Items.insert(
+      {
+        type: "rightHand",
+        name: "Sword of Agility",
+        description: "If You're looking for speed, this is what you need!",
+        price: 28,
+        set: 3,
+        stats: {
+          strength: 5,
+          stamina: 3,
+          agility: 5,
+          intelligence: 3
+        }
+      }
+    );
+
+
+    //set4
+    const headId4 = Items.insert(
+      {
+        type: "head",
+        name: "Helmet of the Kings",
+        description: "Only the worthy can wear this on.",
+        price: 35,
+        set: 4,
+        stats: {
+          strength: 5,
+          stamina: 5,
+          agility: 2,
+          intelligence: 4
+        }
+      }
+    );
+    const chestId4 = Items.insert(
+      {
+        type: "chest",
+        name: "Armor of the Developer",
+        description: "You will not know why this armor works, but You won't care.",
+        price: 30,
+        set: 4,
+        stats: {
+          strength: 4,
+          stamina: 5,
+          agility: 4,
+          intelligence: 6
+        }
+      }
+    );
+    const leftHandId4 = Items.insert(
+      {
+        type: "leftHand",
+        name: "Shield of Exception",
+        description: "Throws away every hit You take.",
+        price: 32,
+        set: 4,
+        stats: {
+          strength: 5,
+          stamina: 3,
+          agility: 5,
+          intelligence: 4
+        }
+      }
+    );
+    const rightHandId4 = Items.insert(
+      {
+        type: "rightHand",
+        name: "Buster Sword",
+        description: "This is not just a sword, it is Your honor.",
+        price: 28,
+        set: 4,
+        stats: {
+          strength: 5,
+          stamina: 5,
+          agility: 3,
+          intelligence: 6
+        }
+      }
+    );
+
+    //set5
+    const headId5 = Items.insert(
+      {
+        type: "head",
+        name: "Helmet of Mako",
+        description: "Made out of strong steel, immune to light attacks.",
+        price: 35,
+        set: 5,
+        stats: {
+          strength: 4,
+          stamina: 4,
+          agility: 5,
+          intelligence: 4
+        }
+      }
+    );
+    const chestId5 = Items.insert(
+      {
+        type: "chest",
+        name: "Armor of the Assembler",
+        description: "This armor looks like an ordinary armor, but his power is enormous.",
+        price: 25,
+        set: 5,
+        stats: {
+          strength: 3,
+          stamina: 4,
+          agility: 5,
+          intelligence: 3
+        }
+      }
+    );
+    const leftHandId5 = Items.insert(
+      {
+        type: "leftHand",
+        name: "Shield of Stark",
+        description: "Made with adamantium, almost indestructible.",
+        price: 40,
+        set: 5,
+        stats: {
+          strength: 5,
+          stamina: 3,
+          agility: 5,
+          intelligence: 8
+        }
+      }
+    );
+    const rightHandId5 = Items.insert(
+      {
+        type: "rightHand",
+        name: "Sword of Red John",
+        description: "Mysterious dagger, quick, light and complex to predict his movements.",
+        price: 25,
+        set: 5,
+        stats: {
+          strength: 5,
+          stamina: 5,
+          agility: 3,
+          intelligence: 3
         }
       }
     );
