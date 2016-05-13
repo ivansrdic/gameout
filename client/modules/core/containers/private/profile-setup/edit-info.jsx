@@ -9,6 +9,7 @@ export const composer = ({localState}, onData) => {
 
 export const depsMapper = (context, actions) => {
   return {
+    getUserInfo: actions.EditInfo.getUserInfo,
     localState: actions.EditInfo.localState,
     ageValidation: actions.EditInfo.ageValidation,
     heightValidation: actions.EditInfo.heightValidation,
