@@ -45,7 +45,7 @@ class EditInfo extends Component {
                     onBlur={(e) => usernameValidation(this.refs.username.getValue().trim())}/>
 
                   <label htmlFor="gender" className="control-label input-group">Gender</label>
-                  <ButtonGroup ref="gender" className="form-group" bsSize="large" data-toggle="buttons">
+                  <ButtonGroup ref="gender" className="form-group" data-toggle="buttons">
                     <label onClick={e => this.handleGenderPick(e, "male")} className="btn btn-default active">
                       <input name="gender" value="male" type="radio"/>Male
                     </label>
@@ -82,7 +82,7 @@ class EditInfo extends Component {
                     onBlur={(e) => weightValidation(Number(this.refs.weight.getValue()))}/>
 
                   <label htmlFor="level" className="control-label input-group">Level</label>
-                  <ButtonGroup refs="level" className="form-group" bsSize="large" data-toggle="buttons">
+                  <ButtonGroup refs="level" className="form-group" data-toggle="buttons">
                     <label onClick={e => this.handleLevelPick(e, "beginner")} className="btn btn-default active">
                       <input name="level" value="beginner" type="radio"/>Beginner
                     </label>
