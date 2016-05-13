@@ -4,6 +4,7 @@ import {Grid, Row, Col, Panel, Input, ButtonInput} from 'react-bootstrap';
 import ExercisesList from '../shared/exercise/exercises-list.jsx';
 import CreateExerciseModal from './create-exercise-modal.jsx';
 import Message from '../../common/message.jsx';
+import Validation, {Utils} from '../../../actions/validation-utility';
 
 class CreateWorkout extends Component {
   constructor(props) {
@@ -133,6 +134,12 @@ class CreateWorkout extends Component {
       description: description.getValue(),
       exerciseIds: this.state.selectedExerciseIds
     };
+
+    if (workout.exerciseIds.length == 0) {
+      this.resetForm();
+      this.props.warningCreateWorkout();
+      return;
+    }
 
     const {nameValidation, descriptionValidation} = this.props;
 
