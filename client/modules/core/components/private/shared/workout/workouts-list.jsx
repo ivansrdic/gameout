@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ListGroup} from 'react-bootstrap';
+import {ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 import Workout from './workout.jsx';
 import WorkoutsInfo from './workout-info.jsx'
 
@@ -14,7 +14,7 @@ class WorkoutsList extends Component {
   }
 
   render() {
-    if (this.props.workouts)
+    if (this.props.workouts.count() != 0)
       return (
         <div>
           <ListGroup className="workout-list">
@@ -30,7 +30,11 @@ class WorkoutsList extends Component {
       );
     else
       return (
-        <div></div>
+        <div>
+          <ListGroup style={{'textAlign':'center'}}>
+            <ListGroupItem><Button href="/workouts">There are no workouts</Button></ListGroupItem>
+          </ListGroup>
+        </div>
       );
   }
 
@@ -39,18 +43,18 @@ class WorkoutsList extends Component {
 
     return (workouts.map(function (workout) {
       return (
-          <Workout
-              key={workout._id}
-              workout={workout}
-              onClickWorkout={this.props.onClickWorkout}
-              onClickDelete={this.props.onClickDelete}
-              onClickRemove={this.props.onClickRemove}
-              onClickPublish={this.props.onClickPublish}
-              onClickUnpublish={this.props.onClickUnpublish}
-              onClickSubscribe={this.props.onClickSubscribe}
-              onClickUnsubscribe={this.props.onClickUnsubscribe}
-              onClickInfo={this.onClickInfo.bind(this)}
-          />
+        <Workout
+          key={workout._id}
+          workout={workout}
+          onClickWorkout={this.props.onClickWorkout}
+          onClickDelete={this.props.onClickDelete}
+          onClickRemove={this.props.onClickRemove}
+          onClickPublish={this.props.onClickPublish}
+          onClickUnpublish={this.props.onClickUnpublish}
+          onClickSubscribe={this.props.onClickSubscribe}
+          onClickUnsubscribe={this.props.onClickUnsubscribe}
+          onClickInfo={this.onClickInfo.bind(this)}
+        />
       );
     }.bind(this)));
   }

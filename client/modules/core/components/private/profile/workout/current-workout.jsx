@@ -48,6 +48,12 @@ class CurrentWorkout extends Component {
     }
   }
 
+  componentDidMount() {
+    setTimeout(function () {
+      $.material.init();
+    }, 0);
+  }
+
   completeExercise(exercise) {
     this.props.completeExercise(exercise._id);
   }
