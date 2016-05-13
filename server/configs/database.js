@@ -52,7 +52,8 @@ export default () => {
     const exerciseLunges = Exercises.insert(
       {
         ownerId: userId,
-        name: "Lunges",
+        name: "Lunges men",
+        gender:"male",
         level: "easy",
         description: "The lunge is a classic fitness exercise for the lower body, which helps the flexibility of the hips and hamstrings, and the strength of the buttocks, hamstrings and hip flexors.",
         link:"https://www.youtube.com/embed/ekkKhBLZnxc",
@@ -63,7 +64,8 @@ export default () => {
     const exerciseSquats = Exercises.insert(
       {
         ownerId: userId,
-        name: "Squats",
+        name: "Squats men",
+        gender:"male",
         level: "easy",
       description: "Squat is a compound, full body exercise that trains primarily the muscles of the thighs, hips and buttocks, quadriceps, hamstrings, as well as strengthening the bones, ligaments and insertion of the tendons throughout the lower body." ,
         link: "https://www.youtube.com/embed/nEQQle9-0NA",
@@ -74,7 +76,8 @@ export default () => {
     const exerciseCrunches = Exercises.insert(
       {
         ownerId: userId,
-        name: "Crunches",
+        name: "Crunches men",
+        gender:"male",
         level: "easy",
         description: "The basic crunch is the consummate abdominal exercise in a strength-training program. Pay special attention to your form when you do crunches, especially if you have lower-back or neck problems",
         link: "https://www.youtube.com/embed/NIqgTCTd2MM",
@@ -85,7 +88,8 @@ export default () => {
     const exerciseLayingLegRaises = Exercises.insert(
       {
         ownerId: userId,
-        name: "Laying leg raises",
+        name: "Laying leg raises men",
+        gender:"male",
         level: "easy",
         description: "Exercise is performed by laying on back with hands under glutes, raising your legs up and returning to start position with yout knees slightly bent.",
         link: "https://www.youtube.com/embed/l4kQd9eWclE",
@@ -96,7 +100,8 @@ export default () => {
     const exerciseMountainClimbers = Exercises.insert(
         {
           ownerId: userId,
-          name: "Mountain climbers",
+          name: "Mountain climbers men",
+          gender:"male",
           level: "easy",
           description: "Place hands on floor, slightly wider than shoulder width. On forefeet, position one leg forward bent under body and extend other leg back.",
           link: "https://www.youtube.com/embed/fBZHkGT0W5Y",
@@ -108,7 +113,8 @@ export default () => {
     const exerciseDipsOnChair = Exercises.insert(
         {
           ownerId: userId,
-          name: "Dips on chair",
+          name: "Dips on chair men",
+          gender:"male",
           level: "easy",
           description: "The dip is an exercise used in strength training. Narrow, shoulder-width dips primarily train the triceps, with major synergists being the anterior deltoid, the pectoralis muscles and the rhomboid muscles of the back (in that order).",
           link: "https://www.youtube.com/embed/c3ZGl4pAwZ4",
@@ -123,7 +129,8 @@ export default () => {
     const exercisePushUps = Exercises.insert(
         {
           ownerId: userId,
-          name: "Push ups",
+          name: "Push ups men",
+          gender:"male",
           level: "medium",
           description: "Exercise performed in a prone position by raising and lowering the body with the straightening and bending of the arms while keeping the back straight and supporting the body on the hands and toes.",
           link: "https://www.youtube.com/embed/Eh00_rniF8E",
@@ -134,7 +141,8 @@ export default () => {
     const exerciseDips = Exercises.insert(
         {
           ownerId: userId,
-          name: "Dips",
+          name: "Dips men",
+          gender:"male",
           level: "medium",
           description: "The dip is an exercise used in strength training. Narrow, shoulder-width dips primarily train the triceps, with major synergists being the anterior deltoid, the pectoralis muscles and the rhomboid muscles of the back (in that order).",
           link: "https://www.youtube.com/embed/wjUmnZH528Y",
@@ -145,7 +153,8 @@ export default () => {
     const exerciseSquatJumps = Exercises.insert(
         {
           ownerId: userId,
-          name: "Squat jumps",
+          name: "Squat jumps men",
+          gender:"male",
           level: "medium",
           description: "Stand with your feet shoulder-width apart, arms hanging at your sides. Squat down until your knees are bent about 90 degrees. Immediately swing your arms overhead and jump upward as high as you can.",
           link: "https://www.youtube.com/embed/DeTBwEL4m7s",
@@ -192,7 +201,8 @@ export default () => {
     const exerciseSquatWomen = Exercises.insert(
         {
           ownerId: userId,
-          name: "Squats_Women",
+          name: "Squats women",
+          gender: "female",
           level: "easy",
           description: "Squat is a compound, full body exercise that trains primarily the muscles of the thighs, hips and buttocks, quadriceps, hamstrings, as well as strengthening the bones, ligaments and insertion of the tendons throughout the lower body.",
           link:"https://www.youtube.com/watch?v=UXJrBgI2RxA",
@@ -203,7 +213,8 @@ export default () => {
     const exercisePushUpWomen = Exercises.insert(
         {
           ownerId: userId,
-          name: "Push ups_Women",
+          name: "Push ups women",
+          gender: "female",
           level: "easy",
           description: "Push-up, targeting all the major muscle groups of the upper body, mostly the pecks, the chest muscles, the anterior delts, the front of your shoulder, and as you go through elbow flexion and extension, you're working your triceps.",
           link:"https://www.youtube.com/embed/Q7cPaJZoOng",
@@ -214,8 +225,9 @@ export default () => {
     const exerciseBridgeSqueezeWomen = Exercises.insert(
         {
           ownerId: userId,
-          name: "Bridge squeeze",
-          level: "easy",
+          name: "Bridge squeeze women",
+          gender: "female",
+          level: "medium",
           description: "The bridge exercise is a back bend, a core strengthener, and a balance pose all in one.",
           link:"https://www.youtube.com/embed/2-d8EplhKIM",
           unit: 12
@@ -225,7 +237,8 @@ export default () => {
     const exerciseMountainClimberWomen = Exercises.insert(
         {
           ownerId: userId,
-          name: "Mountain climbers_Women",
+          name: "Mountain climbers women",
+          gender: "female",
           level: "easy",
           description: "Place hands on floor, slightly wider than shoulder width. On forefeet, position one leg forward bent under body and extend other leg back.",
           link:"https://www.youtube.com/embed/nmwgirgXLYM",
@@ -236,7 +249,8 @@ export default () => {
     const exerciseLungeWomen = Exercises.insert(
         {
           ownerId: userId,
-          name: "Lunges_Women",
+          name: "Lunges women",
+          gender: "female",
           level: "easy",
           description: "The lunge is a classic fitness exercise for the lower body, which helps the flexibility of the hips and hamstrings, and the strength of the buttocks, hamstrings and hip flexors.",
           link:"https://www.youtube.com/embed/QF0BQS2W80k",
@@ -247,7 +261,8 @@ export default () => {
     const exerciseJumpingJackWomen = Exercises.insert(
         {
           ownerId: userId,
-          name: "Jumping jacks_Women",
+          name: "Jumping jacks women",
+          gender: "female",
           level: "easy",
           description: "Great exercises where your getting movement in your upper body, your getting movement in your lower body, its cardiovascular and you don't need any equipment.",
           link:"https://www.youtube.com/embed/UpH7rm0cYbM",
@@ -258,8 +273,9 @@ export default () => {
     const exerciseRussianTwistWomen = Exercises.insert(
         {
           ownerId: userId,
-          name: "Russian twists_Women",
-          level: "easy",
+          name: "Russian twists women",
+          gender: "female",
+          level: "medium",
           description: "Grab a medicine ball, dumbbell, or weight plate and sit on the floor with your hips and knees bent 90 degrees. Hold the weight straight out in front of you and keep your back straight. Explosively twist your torso as far as you can to the left, and then reverse the motion, twisting as far as you can to the right. That's one rep.",
           link:"https://www.youtube.com/embed/NeAtimSCxsY",
           unit: 20
@@ -269,8 +285,9 @@ export default () => {
     const exerciseBicycleCrunchWomen = Exercises.insert(
         {
           ownerId: userId,
-          name: "Bicycle crunches_Women",
-          level: "easy",
+          name: "Bicycle crunches women",
+          gender: "female",
+          level: "medium",
           description: "Lie on your back on a mat with knees bent, feet on the floor, and hands behind your head (dont clasp your fingers). Press your lower back into the mat and tighten your ab muscles as you lift your head, shoulders, and upper back off the floor and simultaneously move your right elbow and left knee toward each other while straightening your right leg (don't let it touch the ground).",
           link:"https://www.youtube.com/embed/Iwyvozckjak",
           unit: 15
@@ -280,7 +297,8 @@ export default () => {
     const exerciseBackExtensionWomen = Exercises.insert(
         {
           ownerId: userId,
-          name: "Back extensions_Women",
+          name: "Back extensions women",
+          gender: "female",
           level: "easy",
           description: "Back extension is mostly going to mostly work the erector spine or erector spine muscle group which is the long muscles that run vertically and parallel to your spine and basically are the muscles that hold you up. It's really important to do back extension especially if you have a desk job and you're used to always being in this slumped over type of posture.",
           link:"https://www.youtube.com/embed/DDJtB8Zgyow",
@@ -291,7 +309,8 @@ export default () => {
     const exerciseSquatJumpsWomen = Exercises.insert(
         {
           ownerId: userId,
-          name: "Squat jumps_Women",
+          name: "Squat jumps women",
+          gender: "female",
           level: "easy",
           description: "Stand with your feet shoulder-width apart, arms hanging at your sides. Squat down until your knees are bent about 90 degrees. Immediately swing your arms overhead and jump upward as high as you can.",
           link:"https://www.youtube.com/embed/U4s4mEQ5VqU",

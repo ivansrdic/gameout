@@ -20,7 +20,7 @@ class CreateWorkoutPanel extends Component {
           <Col md={12}>
             <Panel>
               <Row>
-                <Col md={10} mdOffset={1}>
+                <Col md={10} mdOffset={1}><h1 className="text-center">Workouts List</h1>
                   <WorkoutsList
                       workouts={this.props.workouts}
                       getWorkoutExercises={this.props.getWorkoutExercises}

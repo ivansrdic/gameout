@@ -42,6 +42,7 @@ class CreateWorkout extends Component {
               bsStyle={messages.nameValidation ? messages.nameValidation.status : null}
               onBlur={() => nameValidation(this.refs.name.getValue())}
             />
+
             <Input
               ref="description"
               type="textarea"
