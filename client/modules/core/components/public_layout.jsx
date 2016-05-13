@@ -13,6 +13,13 @@ class PublicLayout extends Component {
     }
   }
 
+  componentDidMount() {
+    setTimeout(function() {
+      $.material.init();
+    }, 0);
+  }
+
+
   render() {
     return (
       <div>

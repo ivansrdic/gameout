@@ -48,6 +48,15 @@ export default ({LocalState}) => {
         }
       }
 
+      if(fields.inventoryIds) {
+        const oldFields = _.values(character.inventoryIds);
+        const newFields = _.values(fields.inventoryIds);
+
+        const newDiff = _.difference(newFields, oldFields);
+
+        messagePipe.addSuccess({name: "Bought ", value: Items.findOne(newDiff[0]).name});
+      }
+
 
       character = Characters.findOne(id);
     }

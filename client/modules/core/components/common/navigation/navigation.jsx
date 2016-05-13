@@ -36,7 +36,7 @@ class Navigation extends Component {
                 <MenuItem href="/group">Group</MenuItem>
                 <MenuItem href="/pvp-group">PvP</MenuItem>
               </NavDropdown>
-              <NavDropdown title="Social" id="basic-nav-dropdown">
+              <NavDropdown title="Workout" id="basic-nav-dropdown">
                 <MenuItem href="/exercises">Exercises</MenuItem>
                 <MenuItem href="/workouts">Workouts</MenuItem>
               </NavDropdown>
