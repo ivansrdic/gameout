@@ -16,6 +16,7 @@ function depsMapper(context, {Workout}) {
     localState: Workout.localState,
     nameValidation : Workout.nameValidation,
     descriptionValidation: Workout.descriptionValidation,
+    warningCreateWorkout: Workout.warningCreateWorkout,
     createWorkout: Workout.createWorkout,
     getExercises: Workout.getExercises,
     getWorkouts: Workout.getWorkouts,

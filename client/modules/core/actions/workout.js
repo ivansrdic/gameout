@@ -53,6 +53,11 @@ export default {
     });
   },
 
+  warningCreateWorkout({LocalState}) {
+    const validation = new Validation(LocalState, stateKey, "globalMessage");
+    validation.error("Can not create workout without exercises.");
+  },
+
   removeWorkout({}, workout) {
     Meteor.call('workout.removeWorkout', workout._id, function (err) {
       if (err) console.log(err);
