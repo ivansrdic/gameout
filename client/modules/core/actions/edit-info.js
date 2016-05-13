@@ -8,6 +8,14 @@ export default {
     return stateKey;
   },
 
+  getUserInfo({Meteor}) {
+    let retValue = Meteor.user().userInfo();
+    if (!retValue) return null;
+
+    retValue.username = Meteor.user().username;
+    return retValue;
+  },
+
   completeSetup(userData) {
     // TODO: display error on character creation
     const characterId = Characters.insert(userData, function (err) {

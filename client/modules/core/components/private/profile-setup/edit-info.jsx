@@ -1,4 +1,4 @@
-  import React from 'react';
+import React from 'react';
 import Component from '/client/modules/core/components/common/component.jsx';
 import Message from '../../common/message.jsx';
 import {Grid, Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
@@ -7,12 +7,7 @@ class EditInfo extends Component {
   constructor(props) {
     super(props);
 
-    this.gender = "male";
-    this.level = "beginner";
-  }
-
-  componentDidMount() {
-    NProgress.done();
+    this.inputLabels = ['age', 'height', 'weight', 'username'];
   }
 
   render() {
@@ -46,10 +41,10 @@ class EditInfo extends Component {
 
                   <label htmlFor="gender" className="control-label input-group">Gender</label>
                   <ButtonGroup ref="gender" className="form-group" bsSize="large" data-toggle="buttons">
-                    <label onClick={e => this.handleGenderPick(e, "male")} className="btn btn-default active">
+                    <label onClick={e => this.handleGenderPick(e, "male")} className="male btn btn-default">
                       <input name="gender" value="male" type="radio"/>Male
                     </label>
-                    <label onClick={e => this.handleGenderPick(e, "female")} className="btn btn-default">
+                    <label onClick={e => this.handleGenderPick(e, "female")} className="female btn btn-default">
                       <input name="gender" value="female" type="radio"/>Female
                     </label>
                   </ButtonGroup>
@@ -83,13 +78,16 @@ class EditInfo extends Component {
 
                   <label htmlFor="level" className="control-label input-group">Level</label>
                   <ButtonGroup refs="level" className="form-group" bsSize="large" data-toggle="buttons">
-                    <label onClick={e => this.handleLevelPick(e, "beginner")} className="btn btn-default active">
+                    <label onClick={e => this.handleLevelPick(e, "beginner")}
+                           className="beginner btn btn-default">
                       <input name="level" value="beginner" type="radio"/>Beginner
                     </label>
-                    <label onClick={e => this.handleLevelPick(e, "intermediate")} className="btn btn-default">
+                    <label onClick={e => this.handleLevelPick(e, "intermediate")}
+                           className="intermediate btn btn-default">
                       <input name="level" value="intermediate" type="radio"/>Intermediate
                     </label>
-                    <label onClick={e => this.handleLevelPick(e, "advance")} className="btn btn-default">
+                    <label onClick={e => this.handleLevelPick(e, "advance")}
+                           className="advance btn btn-default">
                       <input name="level" value="advanced" type="radio"/>Advanced
                     </label>
                   </ButtonGroup>
@@ -103,6 +101,44 @@ class EditInfo extends Component {
         </Row>
       </Grid>
     );
+  }
+
+  componentDidMount() {
+    NProgress.done();
+
+    if (!this.loadUserData(this.props.getUserInfo())) {
+      // Intentionally not turning it into a function.
+      $(".male").addClass("active");
+      this.handleGenderPick(null, "male");
+
+      $(".beginner").addClass("active");
+      this.handleLevelPick(null, "beginner");
+    }
+  }
+
+  /**
+   * Method loads the form with data user previously had
+   * if he previously had any data to begin with.
+   * @param currentUserData Object containing userInfo and username.
+   * @returns {boolean} true if function changed something, false otherwise.
+   */
+  loadUserData(currentUserData) {
+    if (!currentUserData) return false;
+
+    // Accounts for weight, height, username, age
+    this.inputLabels.forEach((label) => {
+      if (currentUserData[label])
+        this.refs[label].getInputDOMNode().value = currentUserData[label];
+    });
+
+    const {gender, level} = currentUserData;
+    $(`.${gender}`).addClass("active"); // GUI
+    this.handleGenderPick(null, gender); // Value
+
+    $(`.${level}`).addClass("active"); // GUI
+    this.handleLevelPick(null, level); // Value
+
+    return true;
   }
 
   //region ButtonGroupHandlers
@@ -122,12 +158,11 @@ class EditInfo extends Component {
    * calling this function which causes all sorts of errors.
    */
   resetForm() {
-    const labels = ['age', 'height', 'weight', 'username'];
-    try{
-      labels.forEach((label) => {
+    try {
+      this.inputLabels.forEach((label) => {
         this.refs[label].getInputDOMNode().value = '';
       });
-    } catch(err) {
+    } catch (err) {
       return;
     }
     this.props.clearState();
