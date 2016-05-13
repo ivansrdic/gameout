@@ -36,7 +36,8 @@ export default () => {
       rewards: {
         experience: 100,
         gold: 20
-      }
+      },
+      questNumber: 1
     });
 
     const groupId = Groups.insert({

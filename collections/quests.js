@@ -56,6 +56,11 @@ const QuestSchema = new SimpleSchema({
   },
   rewards: {
     type: RewardsSchema
+  },
+  questNumber: {
+    type: Number,
+    min: 0,
+    unique: true
   }
 });
 

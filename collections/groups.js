@@ -37,6 +37,11 @@ const GroupSchema = new SimpleSchema({
     type: Number,
     min: 0,
     optional: true
+  },
+  lastQuestNumber: {
+    type: Number,
+    min: 0,
+    defaultValue: 0
   }
 });
 
