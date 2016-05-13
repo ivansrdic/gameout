@@ -1,4 +1,4 @@
-import React from 'react';
+  import React from 'react';
 import Component from '/client/modules/core/components/common/component.jsx';
 import Message from '../../common/message.jsx';
 import {Grid, Row, Col, Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';

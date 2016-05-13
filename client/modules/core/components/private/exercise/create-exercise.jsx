@@ -1,11 +1,14 @@
 import React from 'react';
 import Component from '/client/modules/core/components/common/component.jsx';
-import {Input, ButtonInput} from 'react-bootstrap';
+import {Panel, Input, ButtonGroup, ButtonInput} from 'react-bootstrap';
 import Message from '../../common/message.jsx';
 
 class Workout extends Component {
   constructor(props) {
     super(props);
+
+    this.gender = "male";
+    this.level = "easy";
   }
 
   componentDidMount() {
@@ -26,11 +29,21 @@ class Workout extends Component {
             id="name"
             ref="name"
             type="text"
-            label="Workout name"
-            placeholder="Workout name"
+            label="Exercise name"
+            placeholder="Exercise name"
             help={messages.nameValidation ? messages.nameValidation.message : ""}
             bsStyle={messages.nameValidation ? messages.nameValidation.status : null}
             onBlur={() => nameValidation(this.refs.name.getValue())}/>
+
+          <label htmlFor="gender" className="control-label input-group">Gender</label>
+          <ButtonGroup ref="gender" className="form-group" data-toggle="buttons">
+            <label onClick={e => this.handleGenderPick(e, "male")} className="btn btn-default active">
+              <input name="gender" value="male" type="radio"/>Male </label>
+            <label onClick={e => this.handleGenderPick(e, "female")} className="btn btn-default">
+              <input name="gender" value="female" type="radio"/>Female</label>
+            <label onClick={e => this.handleGenderPick(e, "unisex")} className="btn btn-default">
+              <input name="gender" value="unisex" type="radio"/>Unisex</label>
+          </ButtonGroup>
 
           <Input
             ref="description"
@@ -62,10 +75,32 @@ class Workout extends Component {
             onBlur={() => unitValidation(this.refs.unit.getValue())}
           />
 
+          <label htmlFor="level" className="control-label input-group">Level</label>
+          <ButtonGroup refs="level" className="form-group"  data-toggle="buttons">
+            <label onClick={e => this.handleLevelPick(e, "easy")} className="btn btn-default active">
+              <input name="level" value="easy" color="red" type="radio"/>Easy
+            </label>
+            <label onClick={e => this.handleLevelPick(e, "medium")} className="btn btn-default">
+              <input class="medium" name="level" value="medium" type="radio"/>Medium
+            </label>
+            <label onClick={e => this.handleLevelPick(e, "hard")} className="btn btn-default">
+              <input class="hard" name="level" value="hard" type="radio"/>Hard
+            </label>
+          </ButtonGroup>
+
           <ButtonInput className="pull-right" type="submit" value="Save"/>
         </form>
       </div>
     );
+  }
+
+
+  handleGenderPick(e, value) {
+    this.gender = value;
+  }
+
+  handleLevelPick(e, value) {
+    this.level = value;
   }
   
   
@@ -73,14 +108,19 @@ class Workout extends Component {
     e.preventDefault();
     
     const {name, description, link, unit} = this.refs;
+    const {gender, level} = this;
     
     const exercise = {
       ownerId: this.props.user._id,
       name: name.getValue(),
+      gender,
       description: description.getValue(),
       link: link.getValue(),
-      unit: unit.getValue()
+      unit: unit.getValue(),
+      level
     };
+
+    console.log(exercise);
 
     const youtubeUrlMatch = exercise.link.match(/^(?:https?:\/\/)?(?:www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/);
 

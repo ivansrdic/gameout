@@ -22,6 +22,11 @@ const ExercisesSchema = new SimpleSchema({
     type: String,
     optional: true
   },
+  gender: {
+    type: String,
+    allowedValues: ["male", "female", "unisex"],
+    defaultValue: "unisex"
+  },
   level: {
     type:String,
     allowedValues: ["easy", "medium", "hard"]

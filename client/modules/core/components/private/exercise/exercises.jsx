@@ -20,7 +20,7 @@ class CreateExercisePanel extends Component {
           <Col md={12}>
             <Panel>
               <Row>
-                <Col md={10} mdOffset={1}>
+                <Col md={10} mdOffset={1}><h1 className="text-center">Exercises List</h1>
                   <ExercisesList exercises={this.props.exercises} onClickDelete={this.props.removeExercise}/>
                 </Col>
               </Row>
