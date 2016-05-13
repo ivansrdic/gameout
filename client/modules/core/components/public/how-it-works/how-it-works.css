@@ -8,6 +8,14 @@
 
 
 #howitworksPanel {
+  position: relative;
   background-color: rgba(148, 134, 115, 0.4);
   color: white;
+  text-align: center;
+}
+
+#steps{
+  width:500px;
+  margin:0 auto;
+  text-align:left;
 }

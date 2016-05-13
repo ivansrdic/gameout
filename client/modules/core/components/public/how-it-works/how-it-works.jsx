@@ -14,9 +14,6 @@ class HowItWorks extends Component {
     return (
       <div id="header">
       <Grid>
-        <video autoPlay loop muted poster="landing-page.png" id="background">
-          <source src="landing-page.mp4" type="video/mp4" />
-        </video>
         <Row>
           <Col md={12}>
             <Panel id="howitworksPanel">
@@ -31,7 +28,7 @@ class HowItWorks extends Component {
                 To start using the app, all you have to do is follow a few simple steps:
                 <br/>
                 <br/>
-                <ul>
+                <ul id="steps">
                   <li>First you have to sign up – you can do this by using your Facebook/Google+ account</li>
                   <li>The next step is setting up your profile. Tell us about your daily habits, some personal data and create your own character</li>
                   <li>Creating your character is a fun step because there are a lot of customizations</li>
