@@ -48,20 +48,22 @@ class Group extends Component {
   }
 
   renderPlayer(player, currentHealth) {
-    const {getCharacter} = this.props;
+    if(player) {
+      const {getCharacter} = this.props;
 
-    const character = getCharacter(player);
+      const character = getCharacter(player);
 
-    return (
-      <div className="character-container">
-        <Character character={character}/>
-        <div className="character-details">
-          <h4 className="text-center">{player.username}</h4>
-          <ProgressBar bsStyle="danger" min={0} max={character.stats.maxHealth} now={currentHealth}
-                       label={" %(now)s / %(max)s "}/>
+      return (
+        <div className="character-container">
+          <Character character={character}/>
+          <div className="character-details">
+            <h4 className="text-center">{player.username}</h4>
+            <ProgressBar bsStyle="danger" min={0} max={character.stats.maxHealth} now={currentHealth}
+                         label={" %(now)s / %(max)s "}/>
+          </div>
         </div>
-      </div>
-    );
+      );
+    }
   }
 
   renderInviteInput() {
@@ -111,8 +113,7 @@ class Group extends Component {
       return members.map((member) => {
         if (entry.userId == member._id) {
           return (
-            <ListGroupItem>{member.username} dealt {entry.damageToBoss} damage to the boss. The boss
-              dealt {entry.damageFromBoss} damage to the group.</ListGroupItem>
+            <ListGroupItem>{member.username} dealt {entry.damageToEnemy} damage.</ListGroupItem>
           );
         }
       });
