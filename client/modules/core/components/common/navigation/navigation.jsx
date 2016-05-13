@@ -1,10 +1,19 @@
 import React, {Component} from 'react';
-import {Navbar, Nav, NavItem} from 'react-bootstrap';
+import {Navbar, Nav, NavItem, NavDropdown, MenuItem} from 'react-bootstrap';
 import InfoBar from '../../../containers/common/navigation/info-bar/info-bar';
 
 class Navigation extends Component {
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    const toggle = $("#navbar-toggle");
+    $(".navbar").on('click','.navbar-collapse.in',function(e) {
+      if( $(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle' ) {
+        toggle.click();
+      }
+    }.bind(this));
   }
 
   render() {
@@ -13,18 +22,24 @@ class Navigation extends Component {
         <Navbar fixedTop={true} inverse={true}>
           <Navbar.Header>
             <a href="/"><img src="logo.png" alt="Gameout logo"/></a>
-            <Navbar.Toggle />
+            <Navbar.Toggle id="navbar-toggle"/>
           </Navbar.Header>
           <Navbar.Collapse>
 
             <Nav>
               <NavItem href="/profile">Profile</NavItem>
-              <NavItem href="/group">Group</NavItem>
-              <NavItem href="/pvp-group">Pvp</NavItem>
-              <NavItem href="/edit-info">User info</NavItem>
-              <NavItem href="/customize-character">Character</NavItem>
-              <NavItem href="/exercises">Exercises</NavItem>
-              <NavItem href="/workouts">Workouts</NavItem>
+              <NavDropdown title="Settings" id="basic-nav-dropdown">
+                <MenuItem href="/edit-info">User info</MenuItem>
+                <MenuItem href="/customize-character">Character</MenuItem>
+              </NavDropdown>
+              <NavDropdown title="Social" id="basic-nav-dropdown">
+                <MenuItem href="/group">Group</MenuItem>
+                <MenuItem href="/pvp-group">PvP</MenuItem>
+              </NavDropdown>
+              <NavDropdown title="Social" id="basic-nav-dropdown">
+                <MenuItem href="/exercises">Exercises</MenuItem>
+                <MenuItem href="/workouts">Workouts</MenuItem>
+              </NavDropdown>
               <NavItem href="/market">Market</NavItem>
             </Nav>
       
