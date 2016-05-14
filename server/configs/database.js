@@ -25,13 +25,13 @@ export default () => {
 
     const userId = user._id;
 
-    const questId = Quests.insert({
-      name: "First quest",
-      description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin aliquam, urna at tincidunt consequat, tortor turpis laoreet leo, in vulputate diam metus vel arcu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ultrices, dui eget vulputate rutrum, nibh ante tristique eros, sed tempor lacus est a erat. Duis mattis cursus nisi, quis elementum quam vulputate non. Maecenas a erat a sem gravida tempor. Morbi id turpis at dolor ultricies rutrum. Nunc tincidunt ut sem eget laoreet. Nam sed vulputate eros, sed auctor sem. Donec sit amet varius augue.",
-      boss: {
-        name: "First boss",
+    const questId1 = Quests.insert({
+      name: "Sir ButterHam",
+      description: "Since the beginning of modern technology, evil organization called CalorieCorp has ruled the world. Everybody stopped working out, and stayed home, playing on their smartphones and consoles. Every day, CalorieCorp is recruiting more and more warriors on their side. The current situation looks hopeless. But there is still hope. There are still a few warriors out there and they have only one goal: motivate people to stand up and work out! \n These warriors have decided to stop working from the shadows. They are members of the FitOrder. They believe that there is a warrior in every single person. A warrior who will not fall, who will stand up against weakness when they are hungry. A warrior who can become great and fit!\n  CalorieCorp has heard about the rebels from the FitOrder and they have decided to put Lord FatBelly in charge. His only goal is to demotivate every single person from working out, making them believe that they will never be fit and in shape. But he is not alone, his right hand, Sir ButterHam has pledged himself to his bidding with the promise that he would stop every single Warrior from becoming fit and strong. \n You are the one who can decide. You can prove them right and become one of them, big and ruler of the couch... or you can be a hero. A hero who will stop their attempt to rule the world and your thirst for junk food and sweets. The path of the Warrior is tough and noble, but at the end of that path, you will become one of the great Warriors, fit and in great shape! Get ready to have an adventure of your life, let's go! \n If you want to become a Warrior, first you have to face your first challenge. Defeat Sir ButterHam before he manages to succeed in his mission. \n Sir ButterHam: I see you think that you can be fit and strong. Don’t be fooled with such foolish idea. It is easier to relax on the couch. Join me, be big and happy! \n  You will stand against me, young Warrior? Okay, have it your way. Now you will experience the true nature of our Order. Eventually you will fall to my influence... buahahah",
+     boss: {
+        name: "Sir ButterHam",
         maxHealth: 100,
-        damage: 4
+        damage: 5
       },
       rewards: {
         experience: 100,
@@ -39,6 +39,22 @@ export default () => {
       },
       questNumber: 1
     });
+    
+    const questId2 = Quests.insert({
+      name: "Lord FatBelly",
+      description: "Sir ButterHam has been defeated. His master is not satisfied with that result and he seeks revenge in order to stop your goal to become fit and in shape! You must stop him from his own madness, face him, face CalorieCorp! \n Lord FatBelly: I’ve been expecting you, my young fellow. Let us stop this nonsense, you don’t have to fight me. You can be part of our Order, one of our leaders. All you have to do is stop trying to get fit. It is that simple. Why would you do such things when you can enjoy cookies, chocolate and pasta. If you decide to stand against me then you will see how weak you are. So, what will it be?",
+      boss: {
+        name: "Lord FatBelly",
+        maxHealth: 200,
+        damage: 10
+      },
+      rewards: {
+        experience: 200,
+        gold: 50
+      },
+      questNumber: 2
+    });
+
 
     const groupId = Groups.insert({
       ownerId: userId,
