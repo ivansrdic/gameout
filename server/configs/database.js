@@ -734,13 +734,13 @@ export default () => {
         type: "head",
         name: "Helmet of the Initiatives",
         description: "Basic trainee helmet",
-        price: 20,
+        price: 30,
         set: 1,
         stats: {
-          strength: 5,
-          stamina: 4,
-          agility: 3,
-          intelligence: 2
+          strength: 1,
+          stamina: 1,
+          agility: 1,
+          intelligence: 1
         }
       }
     );
@@ -749,12 +749,12 @@ export default () => {
         type: "chest",
         name: "Chest of the Initiatives",
         description: "Basic trainee helmet",
-        price: 25,
+        price: 30,
         set: 1,
         stats: {
-          strength: 2,
-          stamina: 2,
-          agility: 2,
+          strength: 1,
+          stamina: 1,
+          agility: 1,
           intelligence: 1
         }
       }
@@ -767,10 +767,10 @@ export default () => {
         price: 30,
         set: 1,
         stats: {
-          strength: 3,
+          strength: 1,
           stamina: 1,
-          agility: 2,
-          intelligence: 2
+          agility: 1,
+          intelligence: 1
         }
       }
     );
@@ -779,13 +779,13 @@ export default () => {
         type: "rightHand",
         name: "Sword of Honor",
         description: "First weapon of the future Warrior",
-        price: 20,
+        price: 30,
         set: 1,
         stats: {
-          strength: 3,
-          stamina: 2,
-          agility: 2,
-          intelligence: 2
+          strength: 1,
+          stamina: 1,
+          agility: 1,
+          intelligence: 1
         }
       }
     );
@@ -797,13 +797,13 @@ export default () => {
         type: "head",
         name: "Helmet of Bravery",
         description: "Keeps your head from enemy attacks.",
-        price: 25,
+        price: 60,
         set: 2,
         stats: {
-          strength: 4,
-          stamina: 3,
+          strength: 2,
+          stamina: 2,
           agility: 2,
-          intelligence: 3
+          intelligence: 2
         }
       }
     );
@@ -812,13 +812,13 @@ export default () => {
         type: "chest",
         name: "Armor of the Kings",
         description: "Modern armor, gives agility.",
-        price: 30,
+        price: 60,
         set: 2,
         stats: {
           strength: 2,
           stamina: 2,
-          agility: 4,
-          intelligence: 3
+          agility: 2,
+          intelligence: 2
         }
       }
     );
@@ -827,12 +827,12 @@ export default () => {
         type: "leftHand",
         name: "Shield of Power",
         description: "Good defense is the best offense.",
-        price: 20,
+        price: 60,
         set: 2,
         stats: {
-          strength: 3,
-          stamina: 4,
-          agility: 3,
+          strength: 2,
+          stamina: 2,
+          agility: 2,
           intelligence: 2
         }
       }
@@ -842,12 +842,12 @@ export default () => {
         type: "rightHand",
         name: "Sword of Power",
         description: "Whoever holds this sword has a great power!",
-        price: 25,
+        price: 60,
         set: 2,
         stats: {
-          strength: 5,
-          stamina: 4,
-          agility: 3,
+          strength: 2,
+          stamina: 2,
+          agility: 2,
           intelligence: 2
         }
       }
@@ -859,13 +859,13 @@ export default () => {
         type: "head",
         name: "Helmet of Wisdom",
         description: "Only the smartest can wear this on.",
-        price: 30,
+        price: 90,
         set: 3,
         stats: {
-          strength: 5,
-          stamina: 4,
+          strength: 3,
+          stamina: 3,
           agility: 3,
-          intelligence: 6
+          intelligence: 3
         }
       }
     );
@@ -874,13 +874,13 @@ export default () => {
         type: "chest",
         name: "Armor of the Engineer",
         description: "Only the strong, only the patient can wear this heavy burden.",
-        price: 30,
+        price: 90,
         set: 3,
         stats: {
           strength: 3,
           stamina: 3,
-          agility: 5,
-          intelligence: 6
+          agility: 3,
+          intelligence: 3
         }
       }
     );
@@ -889,12 +889,12 @@ export default () => {
         type: "leftHand",
         name: "Shield of Luck",
         description: "Gives You luck in desperate times.",
-        price: 25,
+        price: 90,
         set: 3,
         stats: {
           strength: 3,
-          stamina: 5,
-          agility: 4,
+          stamina: 3,
+          agility: 3,
           intelligence: 3
         }
       }
@@ -904,12 +904,12 @@ export default () => {
         type: "rightHand",
         name: "Sword of Agility",
         description: "If You're looking for speed, this is what you need!",
-        price: 28,
+        price: 90,
         set: 3,
         stats: {
-          strength: 5,
+          strength: 3,
           stamina: 3,
-          agility: 5,
+          agility: 3,
           intelligence: 3
         }
       }
@@ -922,12 +922,12 @@ export default () => {
         type: "head",
         name: "Helmet of the Kings",
         description: "Only the worthy can wear this on.",
-        price: 35,
+        price: 120,
         set: 4,
         stats: {
-          strength: 5,
-          stamina: 5,
-          agility: 2,
+          strength: 4,
+          stamina: 4,
+          agility: 4,
           intelligence: 4
         }
       }
@@ -937,13 +937,13 @@ export default () => {
         type: "chest",
         name: "Armor of the Developer",
         description: "You will not know why this armor works, but You won't care.",
-        price: 30,
+        price: 120,
         set: 4,
         stats: {
           strength: 4,
-          stamina: 5,
+          stamina: 4,
           agility: 4,
-          intelligence: 6
+          intelligence: 4
         }
       }
     );
@@ -952,12 +952,12 @@ export default () => {
         type: "leftHand",
         name: "Shield of Exception",
         description: "Throws away every hit You take.",
-        price: 32,
+        price: 120,
         set: 4,
         stats: {
-          strength: 5,
-          stamina: 3,
-          agility: 5,
+          strength: 4,
+          stamina: 4,
+          agility: 4,
           intelligence: 4
         }
       }
@@ -967,13 +967,13 @@ export default () => {
         type: "rightHand",
         name: "Buster Sword",
         description: "This is not just a sword, it is Your honor.",
-        price: 28,
+        price: 120,
         set: 4,
         stats: {
-          strength: 5,
-          stamina: 5,
-          agility: 3,
-          intelligence: 6
+          strength: 4,
+          stamina: 4,
+          agility: 4,
+          intelligence: 4
         }
       }
     );
@@ -984,13 +984,13 @@ export default () => {
         type: "head",
         name: "Helmet of Mako",
         description: "Made out of strong steel, immune to light attacks.",
-        price: 35,
+        price: 150,
         set: 5,
         stats: {
-          strength: 4,
-          stamina: 4,
+          strength: 5,
+          stamina: 5,
           agility: 5,
-          intelligence: 4
+          intelligence: 5
         }
       }
     );
@@ -999,13 +999,13 @@ export default () => {
         type: "chest",
         name: "Armor of the Assembler",
         description: "This armor looks like an ordinary armor, but his power is enormous.",
-        price: 25,
+        price: 150,
         set: 5,
         stats: {
-          strength: 3,
-          stamina: 4,
+          strength: 5,
+          stamina: 5,
           agility: 5,
-          intelligence: 3
+          intelligence: 5
         }
       }
     );
@@ -1014,13 +1014,13 @@ export default () => {
         type: "leftHand",
         name: "Shield of Stark",
         description: "Made with adamantium, almost indestructible.",
-        price: 40,
+        price: 150,
         set: 5,
         stats: {
           strength: 5,
-          stamina: 3,
+          stamina: 5,
           agility: 5,
-          intelligence: 8
+          intelligence: 5
         }
       }
     );
@@ -1029,13 +1029,13 @@ export default () => {
         type: "rightHand",
         name: "Sword of Red John",
         description: "Mysterious dagger, quick, light and complex to predict his movements.",
-        price: 25,
+        price: 150,
         set: 5,
         stats: {
           strength: 5,
           stamina: 5,
-          agility: 3,
-          intelligence: 3
+          agility: 5,
+          intelligence: 5
         }
       }
     );
