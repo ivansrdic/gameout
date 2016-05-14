@@ -54,11 +54,14 @@ class Group extends Component {
     if(quest) {
       quest.boss.currentHealth = group.currentBossHealth;
       quest.boss.image = quest.questNumber;
+
+      quest.description = quest.description.split(/(\r\n|\n|\r)/gm);
+
       return (
         <Panel>
           <Boss boss={quest.boss} />
           <h4>{quest.name}</h4>
-          <p>{quest.description}</p>
+          <div>{this.renderDescription(quest.description)}</div>
         </Panel>
       )
     } else {
@@ -68,6 +71,14 @@ class Group extends Component {
         </Panel>
       );
     }
+  }
+
+  renderDescription(description) {
+    let count = 0;
+    return description.map((line) => {
+      count++;
+      return <p key={count}>{line}</p>
+    });
   }
   
   renderGroupMembers() {
