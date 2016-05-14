@@ -1,6 +1,6 @@
 import Validation, {Utils} from './validation-utility';
 
-import {PublicWorkouts} from '/collections';
+import {Workouts, PublicWorkouts} from '/collections';
 
 const stateKey = "client.modules.core.actions.workout";
 
@@ -101,6 +101,7 @@ export default {
   },
 
   getPublicWorkouts() {
-    return PublicWorkouts.find().map((publicWorkout) => {return publicWorkout.workout()});
+    workoutsIds = PublicWorkouts.find().map((publicWorkout) => {return publicWorkout._id});
+    return Workouts.find({_id: {$in: workoutsIds}});
   }
 };
