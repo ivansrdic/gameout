@@ -192,6 +192,7 @@ export default () => {
             exerciseIds: [exerciseSquats, exercisePushUps, exerciseLunges, exerciseDipsOnChair]
         }
     );
+    PublicWorkouts.insert({_id: workoutHomeRoutineMen});
 
     const workoutCoreRoutineMen = Workouts.insert(
         {
@@ -201,6 +202,7 @@ export default () => {
             exerciseIds: [exerciseCrunches, exerciseMountainClimbers, exerciseLayingLegRaises, exerciseSquatJumps]
         }
     );
+    PublicWorkouts.insert({_id: workoutCoreRoutineMen});
 
     const workoutCantWalkMen = Workouts.insert(
         {
@@ -210,6 +212,7 @@ export default () => {
           exerciseIds: [exerciseSquats, exerciseMountainClimbers, exerciseLunges, exerciseSquatJumps]
         }
     );
+    PublicWorkouts.insert({_id: workoutCantWalkMen});
 
     /*
          Women version exercises
@@ -347,6 +350,7 @@ export default () => {
           exerciseIds: [exerciseBicycleCrunchWomen, exerciseBackExtensionWomen, exerciseSquatWomen, exerciseBridgeSqueezeWomen]
         }
     );
+    PublicWorkouts.insert({_id: workoutHomeRoutineWomen});
 
     const workoutFullBodyRoutineWomen = Workouts.insert(
         {
@@ -356,6 +360,7 @@ export default () => {
           exerciseIds: [exercisePushUpWomen, exerciseJumpingJackWomen, exerciseLungeWomen, exerciseRussianTwistWomen]
         }
     );
+    PublicWorkouts.insert({_id: workoutFullBodyRoutineWomen});
 
     const workoutCantWalkWomen = Workouts.insert(
         {
@@ -365,6 +370,7 @@ export default () => {
           exerciseIds: [exerciseSquatWomen, exerciseJumpingJackWomen, exerciseMountainClimberWomen, exerciseSquatJumpsWomen, exerciseLungeWomen]
         }
     );
+    PublicWorkouts.insert({_id: workoutCantWalkWomen});
 
 
     /*
@@ -1090,8 +1096,8 @@ export default () => {
         $set: {
           'data': {
             "characterId": charId,
-            "exerciseIds": [ exerciseLunges, exerciseSquats, exerciseCrunches, exerciseLayingLegRaises, exerciseMountainClimbers, exerciseDipsOnChair, exercisePushUps, exerciseDips, exerciseSquatJumps ],
-            "workoutIds": [ workoutHomeRoutineMen, workoutCoreRoutineMen, workoutCantWalkMen ],
+            "exerciseIds": [ exerciseLunges, exerciseSquats, exerciseCrunches, exerciseLayingLegRaises, exerciseMountainClimbers, exerciseDipsOnChair, exercisePushUps, exerciseDips, exerciseSquatJumps, exerciseSquatWomen, exercisePushUpWomen, exerciseBridgeSqueezeWomen, exerciseMountainClimberWomen, exerciseLungeWomen, exerciseJumpingJackWomen, exerciseRussianTwistWomen, exerciseBicycleCrunchWomen, exerciseBackExtensionWomen, exerciseSquatJumpsWomen ],
+            "workoutIds": [ workoutHomeRoutineMen, workoutCoreRoutineMen, workoutCantWalkWomen, workoutHomeRoutineWomen, workoutFullBodyRoutineWomen, workoutCantWalkWomen ],
             "currentWorkout": {
               "completedExerciseIds": []
             },

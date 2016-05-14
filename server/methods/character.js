@@ -1,5 +1,5 @@
 import {Meteor} from 'meteor/meteor';
-import {Users, Characters, Levels, Items, Skins} from '/collections';
+import {Workouts, Users, Characters, Levels, Items, Skins} from '/collections';
 
 export default function() {
   Meteor.methods({
@@ -76,6 +76,17 @@ export default function() {
       //});
 
       Users.update(this.userId, {$set: {"data.characterId": characterId}});
+      console.log(user);
+      if (user.userInfo.gender == "male") {
+        Meteor.call("workout.subscribeToWorkout", Workouts.findOne({name: "Home routine"})._id);
+        Meteor.call("workout.subscribeToWorkout", Workouts.findOne({name: "Core routine"})._id);
+        Meteor.call("workout.subscribeToWorkout", Workouts.findOne({name: "Can't walk"})._id);
+      }
+      else {
+        Meteor.call("workout.subscribeToWorkout", Workouts.findOne({name: "Home routine Women"})._id);
+        Meteor.call("workout.subscribeToWorkout", Workouts.findOne({name: "Full body routine Women"})._id);
+        Meteor.call("workout.subscribeToWorkout", Workouts.findOne({name: "Can't walk Women"})._id);
+      }
     },
 
     'character.addItemToInventory'(characterId, itemId) {
