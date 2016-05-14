@@ -17,6 +17,7 @@ class PublicLayout extends Component {
     setTimeout(function() {
       $.material.init();
     }, 0);
+    $('body').css('backgroundImage', "url('full_page_background.png')");
   }
 
 

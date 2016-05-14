@@ -19,6 +19,7 @@ class MainLayout extends Component {
     setTimeout(function() {
       $.material.init();
     }, 0);
+    $('body').css('backgroundImage', "none");
   }
 
   componentWillUpdate(nextProps) {
