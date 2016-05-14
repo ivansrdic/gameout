@@ -7,13 +7,15 @@ export default function() {
     'quest.beginQuest'(questId, groupId) {
       let group = Users.findOne(this.userId).group();
       let quest = Quests.findOne({questNumber: group.lastQuestNumber + 1});
-      if (!quest)
+
+      if (!quest) {
         quest = Quests.findOne({questNumber: 1});
+      }
 
       if (group._id != groupId || group.ownerId != this.userId) {
         throw new Meteor.Error("quest.begginQuest", "Only group owner can start a quest");
       }
-      Groups.update(groupId, {$set: {questId: questId}});
+      Groups.update(groupId, {$set: {questId: quest._id}});
       Groups.update(groupId, {$set: {currentBossHealth: quest.boss.maxHealth}});
     },
     
