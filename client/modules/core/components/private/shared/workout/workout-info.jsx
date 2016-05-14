@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Button, Modal} from 'react-bootstrap';
-import ExercisesList from  '../../shared/exercise/exercises-list.jsx';
 import Exercise from '../exercise/exercise.jsx';
 
 class WorkoutsInfo extends Component {

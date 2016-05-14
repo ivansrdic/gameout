@@ -15,7 +15,7 @@ class ExercisesList extends Component {
   }
 
   render() {
-    if (this.props.exercises.count() != 0)
+    if ((this.props.exercises.length) || (this.props.exercises.count && this.props.exercises.count() != 0))
       return (
         <div>
           <ListGroup className="exercise-list">

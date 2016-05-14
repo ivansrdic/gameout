@@ -76,8 +76,8 @@ export default function() {
       //});
 
       Users.update(this.userId, {$set: {"data.characterId": characterId}});
-      console.log(user);
-      if (user.userInfo.gender == "male") {
+      
+      if (user.data.userInfo.gender == "male") {
         Meteor.call("workout.subscribeToWorkout", Workouts.findOne({name: "Home routine"})._id);
         Meteor.call("workout.subscribeToWorkout", Workouts.findOne({name: "Core routine"})._id);
         Meteor.call("workout.subscribeToWorkout", Workouts.findOne({name: "Can't walk"})._id);
