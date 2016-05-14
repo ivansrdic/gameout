@@ -11,7 +11,7 @@ class Boss extends Component {
     return (
       <div className="boss-container">
         <img className="boss pixelated"
-             src="badguy01.png"
+             src={boss.image + ".png"}
              draggable="false"/>
         <h3 className="text-center">{boss.name}</h3>
         <ProgressBar bsStyle="danger" min={0} max={boss.maxHealth} now={boss.currentHealth}

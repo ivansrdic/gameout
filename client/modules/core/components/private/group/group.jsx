@@ -53,6 +53,7 @@ class Group extends Component {
 
     if(quest) {
       quest.boss.currentHealth = group.currentBossHealth;
+      quest.boss.image = quest.questNumber;
       return (
         <Panel>
           <Boss boss={quest.boss} />
