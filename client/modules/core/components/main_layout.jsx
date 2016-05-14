@@ -37,7 +37,7 @@ class MainLayout extends Component {
         <div>
           <Navigation user={this.props.user} logout={this.props.logout} private={true}/>
           <ChangesMessage></ChangesMessage>
-          <div style={{marginTop: 100 + "px"}}>
+          <div style={{marginTop: 110 + "px"}}>
             {this.props.content(this.props.user)}
           </div>
           <Footer />
