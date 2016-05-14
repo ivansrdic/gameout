@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ListGroup} from 'react-bootstrap';
+import {ListGroup, ListGroupItem, Button} from 'react-bootstrap';
 import Exercise from './exercise.jsx';
 import ExercisesInfo from '../../shared/exercise/exercise-info.jsx';
 
@@ -14,7 +14,7 @@ class ExercisesList extends Component {
   }
   
   render() {
-    if (this.props.exercises)
+    if (this.props.exercises.count() != 0)
       return (
         <div>
           <ListGroup className="exercise-list">
@@ -29,7 +29,11 @@ class ExercisesList extends Component {
       );
     else
       return (
-        <div></div>
+        <div>
+          <ListGroup style={{'textAlign':'center'}}>
+            <ListGroupItem><Button href="/exercises">There are no exercises</Button></ListGroupItem>
+          </ListGroup>
+        </div>
       );
   }
 
