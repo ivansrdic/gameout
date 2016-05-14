@@ -8,11 +8,12 @@ class ExercisesList extends Component {
     super(props);
 
     this.state = {
+      count: 0,
       exercise: null,
       showInfo: false
     };
   }
-  
+
   render() {
     if (this.props.exercises.count() != 0)
       return (
@@ -30,9 +31,7 @@ class ExercisesList extends Component {
     else
       return (
         <div>
-          <ListGroup style={{'textAlign':'center'}}>
-            <ListGroupItem><Button href="/exercises">There are no exercises</Button></ListGroupItem>
-          </ListGroup>
+          {this.renderEasterButton()}
         </div>
       );
   }
@@ -41,7 +40,7 @@ class ExercisesList extends Component {
     const {exercises, completedExerciseIds} = this.props;
 
     return (exercises.map(function (exercise) {
-      const completed = completedExerciseIds?completedExerciseIds.indexOf(exercise._id) != -1:null;
+      const completed = completedExerciseIds ? completedExerciseIds.indexOf(exercise._id) != -1 : null;
       return (
         <Exercise
           key={exercise._id}
@@ -57,8 +56,29 @@ class ExercisesList extends Component {
     }.bind(this)));
   }
 
+  onClickEasterEgg() {
+    this.setState({
+      count: this.state.count + 1,
+      exercise: this.state.exercise,
+      showInfo: this.state.showInfo
+    });
+  }
+
+  renderEasterButton() {
+    let troll = this.state.count >= 25 ? "There is no spoon!" : "There are no exercises";
+    return (
+      <div>
+        <ListGroup style={{'textAlign':'center'}}>
+          <ListGroupItem><Button onClick={() => this.onClickEasterEgg()}
+                                 href="/exercises">{troll}</Button></ListGroupItem>
+        </ListGroup>
+      </div>
+    );
+  }
+
   onClickInfo(exercise) {
     this.setState({
+      count: this.state.count,
       exercise,
       showInfo: true
     });
