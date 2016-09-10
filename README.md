@@ -31,8 +31,6 @@ everyone of what happened.
 
 
 ## Tutorials
-#### React
-[Modern React with Redux - udemy](https://www.udemy.com/react-redux/learn/#/) ivansrdic93@gmail.com gameouttutoriali
 #### Meteor
 [Meteor learning - community](https://github.com/ericdouglas/Meteor-Learning)<br>
 [Official Meteor React](https://www.meteor.com/tutorials/react/creating-an-app)<br>
